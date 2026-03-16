@@ -1,0 +1,116 @@
+/* 千岁团队自定义主题 - 龙虾风格 */
+
+:root {
+  --vp-c-brand: #ff6b6b;
+  --vp-c-brand-light: #ff8787;
+  --vp-c-brand-dark: #fa5252;
+  --vp-c-bg: #fff5f5;
+  --vp-c-bg-alt: #ffe3e3;
+}
+
+/* Hero 区域 */
+.VPHero {
+  background: linear-gradient(135deg, #fff5f5 0%, #ffe3e3 100%);
+}
+
+.VPHero h1 {
+  font-size: 3rem;
+  font-weight: 800;
+  color: #fa5252;
+}
+
+.VPHero .name {
+  color: #fa5252;
+}
+
+.VPHero .tagline {
+  font-size: 1.5rem;
+  color: #666;
+}
+
+/* 卡片样式 */
+.VPFeature {
+  border: 2px solid #ffe3e3;
+  border-radius: 12px;
+  transition: all 0.3s ease;
+}
+
+.VPFeature:hover {
+  border-color: #ff6b6b;
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(255, 107, 107, 0.2);
+}
+
+/* 导航栏 */
+.VPNav {
+  backdrop-filter: blur(8px);
+  background: rgba(255, 255, 255, 0.9);
+}
+
+/* 按钮样式 */
+.VPButton.brand {
+  background: linear-gradient(135deg, #ff6b6b 0%, #fa5252 100%);
+  border: none;
+  font-weight: 600;
+}
+
+.VPButton.brand:hover {
+  background: linear-gradient(135deg, #ff8787 0%, #ff6b6b 100%);
+  transform: translateY(-2px);
+}
+
+/* 数据展示 */
+.stat-card {
+  background: linear-gradient(135deg, #fff5f5 0%, #ffe3e3 100%);
+  border-radius: 16px;
+  padding: 24px;
+  text-align: center;
+  margin: 16px 0;
+}
+
+.stat-number {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: #fa5252;
+  line-height: 1;
+}
+
+.stat-label {
+  font-size: 0.9rem;
+  color: #666;
+  margin-top: 8px;
+}
+
+/* 龙虾图标动画 */
+.lobster-icon {
+  font-size: 4rem;
+  animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+/* 页脚 */
+.VPFooter {
+  background: #fff5f5;
+  border-top: 1px solid #ffe3e3;
+}
+
+/* 代码块 */
+.vp-code {
+  background: #f8f9fa;
+  border-radius: 8px;
+}
+
+/* 表格样式 */
+table {
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+th {
+  background: #fff5f5;
+  color: #fa5252;
+}
