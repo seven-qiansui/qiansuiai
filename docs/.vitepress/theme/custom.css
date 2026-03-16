@@ -27,37 +27,78 @@
   margin: 0 auto;
 }
 
-/* 数据卡片 */
+/* 数据卡片 - 一排显示 */
 .stat-cards {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 1.5rem;
-  margin: 2rem 0;
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin: 3rem 0;
+  flex-wrap: wrap;
 }
 
 .stat-card {
   background: linear-gradient(135deg, #fff5f5 0%, #ffe3e3 100%);
-  border-radius: 12px;
-  padding: 2rem;
+  border-radius: 16px;
+  padding: 2rem 3rem;
   text-align: center;
-  transition: transform 0.3s ease;
+  min-width: 180px;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.stat-card::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    45deg,
+    transparent 30%,
+    rgba(255, 255, 255, 0.3) 50%,
+    transparent 70%
+  );
+  transform: rotate(45deg);
+  animation: shine 3s infinite;
+}
+
+@keyframes shine {
+  0% { transform: translateX(-100%) rotate(45deg); }
+  100% { transform: translateX(100%) rotate(45deg); }
 }
 
 .stat-card:hover {
-  transform: translateY(-4px);
+  transform: translateY(-8px) scale(1.05);
+  box-shadow: 0 12px 32px rgba(255, 107, 107, 0.3);
 }
 
 .stat-number {
-  font-size: 2.5rem;
+  font-size: 3rem;
   font-weight: 800;
   color: #fa5252;
   line-height: 1;
   margin-bottom: 0.5rem;
+  display: block;
+  animation: countUp 0.8s ease-out;
+}
+
+@keyframes countUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .stat-label {
-  font-size: 0.9rem;
+  font-size: 0.95rem;
   color: #666;
+  font-weight: 500;
 }
 
 /* 特性列表 */
@@ -85,6 +126,12 @@
   font-weight: 700;
   color: #333;
   margin: 2rem 0 1rem;
+  animation: fadeIn 0.6s ease-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 .main-content p {
@@ -95,10 +142,12 @@
 .main-content a {
   color: #ff6b6b;
   text-decoration: none;
+  transition: all 0.2s ease;
 }
 
 .main-content a:hover {
   text-decoration: underline;
+  color: #fa5252;
 }
 
 /* 列表样式 */
@@ -108,17 +157,23 @@
 }
 
 .main-content li {
-  padding: 0.5rem 0;
+  padding: 0.75rem 0;
   padding-left: 1.5rem;
   position: relative;
   color: #555;
+  transition: all 0.2s ease;
 }
 
 .main-content li::before {
-  content: "→";
+  content: "🦞";
   position: absolute;
   left: 0;
-  color: #ff6b6b;
+  font-size: 1rem;
+}
+
+.main-content li:hover {
+  transform: translateX(8px);
+  color: #fa5252;
 }
 
 /* 引用块 */
@@ -128,6 +183,16 @@
   margin: 1.5rem 0;
   color: #666;
   font-style: italic;
+  background: #fff5f5;
+  padding: 1rem;
+  border-radius: 0 8px 8px 0;
+}
+
+/* 分隔线 */
+.main-content hr {
+  border: none;
+  border-top: 2px dashed #ffe3e3;
+  margin: 2rem 0;
 }
 
 /* 页脚 */
@@ -141,14 +206,33 @@
 /* 响应式 */
 @media (max-width: 768px) {
   .stat-cards {
-    grid-template-columns: repeat(2, 1fr);
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+  
+  .stat-card {
+    flex: 1 1 40%;
+    min-width: 140px;
+    padding: 1.5rem 2rem;
   }
   
   .stat-number {
-    font-size: 2rem;
+    font-size: 2.5rem;
   }
   
   .VPHero h1 {
     font-size: 2rem;
   }
+}
+
+/* 龙虾图标动画 */
+.lobster-wave {
+  display: inline-block;
+  animation: wave 2s infinite;
+}
+
+@keyframes wave {
+  0%, 100% { transform: rotate(0deg); }
+  25% { transform: rotate(15deg); }
+  75% { transform: rotate(-15deg); }
 }
