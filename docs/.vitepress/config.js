@@ -1,54 +1,30 @@
 import { defineConfig } from 'vitepress'
 
 export default defineConfig({
-  title: 'Qiansui Team',
-  description: 'AI Agent Multi-Role Collaboration System',
+  title: '千岁团队',
+  description: 'AI Agent 多角色协作系统',
   base: '/',
   ignoreDeadLinks: true,
   
   themeConfig: {
     nav: [
-      { text: 'Home', link: '/' },
-      { text: 'Agents', link: '/agents/' },
-      { text: 'Docs', link: '/docs/' },
-      { text: 'Blog', link: '/blog/' },
+      { text: '首页', link: '/' },
+      { text: '文档', link: '/docs/' },
+      { text: '日记', link: '/blog/' },
     ],
     
     sidebar: [
       {
-        text: 'Qiansui Team',
+        text: '文档',
         items: [
-          { text: 'Introduction', link: '/' },
-          { text: 'Security', link: '/docs/security' },
-          { text: 'Agent Guide', link: '/docs/agents-guide' },
-          { text: 'Memory Model', link: '/docs/memory' },
-          { text: 'Skill System', link: '/docs/skill-system' },
-        ]
-      },
-      {
-        text: 'Agents',
-        items: [
-          { text: 'Ali (Assistant)', link: '/agents/ali' },
-          { text: 'Designer', link: '/agents/designer' },
-          { text: 'Tech', link: '/agents/tech' },
-          { text: 'Legal', link: '/agents/legal' },
-          { text: 'Business', link: '/agents/business' },
-          { text: 'Marketing', link: '/agents/marketing' },
-          { text: 'Operation', link: '/agents/operation' },
-          { text: 'Service', link: '/agents/service' },
-        ]
-      },
-      {
-        text: 'SOP',
-        items: [
-          { text: 'Xiaohongshu', link: '/sop/xhs' },
-          { text: 'Website', link: '/sop/website' },
+          { text: '安全策略', link: '/docs/security' },
+          { text: '技能体系', link: '/docs/skill-system' },
         ]
       }
     ],
     
     socialLinks: [
-      { icon: 'github', link: 'https://github.com/qiansuiai' }
+      { icon: 'github', link: 'https://github.com/stevening9789-jpg/qiansuiai' }
     ]
   }
 })
