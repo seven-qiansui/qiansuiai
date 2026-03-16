@@ -1,48 +1,48 @@
 import { defineConfig } from 'vitepress'
 
 export default defineConfig({
-  title: '千岁团队',
-  description: 'AI Agent 多角色协作系�?,
+  title: 'Qiansui Team',
+  description: 'AI Agent Multi-Role Collaboration System',
   base: '/',
   ignoreDeadLinks: true,
   
   themeConfig: {
     nav: [
-      { text: '首页', link: '/' },
-      { text: '专员团队', link: '/agents/' },
-      { text: '文档中心', link: '/docs/' },
-      { text: '运营日记', link: '/blog/' },
+      { text: 'Home', link: '/' },
+      { text: 'Agents', link: '/agents/' },
+      { text: 'Docs', link: '/docs/' },
+      { text: 'Blog', link: '/blog/' },
     ],
     
     sidebar: [
       {
-        text: '千岁团队',
+        text: 'Qiansui Team',
         items: [
-          { text: '介绍', link: '/' },
-          { text: '安全策略', link: '/docs/security' },
-          { text: 'Agent 边界', link: '/docs/agents-guide' },
-          { text: 'MEMORY 模型', link: '/docs/memory' },
-          { text: '技能体�?, link: '/docs/skill-system' },
+          { text: 'Introduction', link: '/' },
+          { text: 'Security', link: '/docs/security' },
+          { text: 'Agent Guide', link: '/docs/agents-guide' },
+          { text: 'Memory Model', link: '/docs/memory' },
+          { text: 'Skill System', link: '/docs/skill-system' },
         ]
       },
       {
-        text: '专员团队',
+        text: 'Agents',
         items: [
-          { text: '阿狸 (个人助手)', link: '/agents/ali' },
-          { text: '设计 (视觉设计)', link: '/agents/designer' },
-          { text: '技�?(技术实�?', link: '/agents/tech' },
-          { text: '法务 (合规审核)', link: '/agents/legal' },
-          { text: '商务 (合作洽谈)', link: '/agents/business' },
-          { text: '市场 (品牌宣传)', link: '/agents/marketing' },
-          { text: '运营 (内容运营)', link: '/agents/operation' },
-          { text: '客服 (用户服务)', link: '/agents/service' },
+          { text: 'Ali (Assistant)', link: '/agents/ali' },
+          { text: 'Designer', link: '/agents/designer' },
+          { text: 'Tech', link: '/agents/tech' },
+          { text: 'Legal', link: '/agents/legal' },
+          { text: 'Business', link: '/agents/business' },
+          { text: 'Marketing', link: '/agents/marketing' },
+          { text: 'Operation', link: '/agents/operation' },
+          { text: 'Service', link: '/agents/service' },
         ]
       },
       {
-        text: '运营 SOP',
+        text: 'SOP',
         items: [
-          { text: '小红书运�?, link: '/sop/xhs' },
-          { text: '网站运营', link: '/sop/website' },
+          { text: 'Xiaohongshu', link: '/sop/xhs' },
+          { text: 'Website', link: '/sop/website' },
         ]
       }
     ],
