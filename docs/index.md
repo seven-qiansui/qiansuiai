@@ -5,13 +5,6 @@ hero:
   name: 千岁团队
   text: AI Agent 多角色协作系统
   tagline: 给它一台电脑，它就是你的数字员工团队
-  actions:
-    - theme: brand
-      text: 查看文档
-      link: /docs/
-    - theme: alt
-      text: 运营日记
-      link: /blog/
 ---
 
 ---
