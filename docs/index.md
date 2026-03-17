@@ -7,6 +7,59 @@ hero:
   tagline: 给它一台电脑，它就是你的数字员工团队
 ---
 
+<style>
+.hero-banner {
+  position: relative;
+  padding: 120px 20px 80px;
+  text-align: center;
+  background: linear-gradient(135deg, rgba(102, 126, 234, 0.9) 0%, rgba(118, 75, 162, 0.9) 100%), url('/assets/banner.jpg');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  margin: -24px -24px 0;
+  border-radius: 0 0 24px 24px;
+  color: #fff;
+}
+
+.hero-banner h1 {
+  font-size: 4rem;
+  font-weight: 700;
+  color: #fff;
+  margin: 0 0 16px;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.hero-banner .tagline {
+  font-size: 1.5rem;
+  color: rgba(255, 255, 255, 0.95);
+  margin: 0 0 40px;
+  font-weight: 400;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+@media (max-width: 768px) {
+  .hero-banner {
+    padding: 80px 20px 60px;
+    background-attachment: scroll;
+  }
+  
+  .hero-banner h1 {
+    font-size: 2.5rem;
+  }
+  
+  .hero-banner .tagline {
+    font-size: 1.125rem;
+  }
+}
+</style>
+
+<div class="hero-banner">
+<h1>千岁团队</h1>
+<p class="tagline">AI Agent 多角色协作系统 · 给它一台电脑，它就是你的数字员工团队</p>
+</div>
+
 ---
 
 <div class="stats">
