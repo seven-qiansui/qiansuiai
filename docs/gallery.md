@@ -15,7 +15,7 @@ AI 生成的图片作品集，展示千岁团队的创意成果。
 
 <div class="gallery-item">
   <div class="gallery-image">
-    <img src="/assets/gallery/2026-03-17-12-36-狸花猫龙虾装.png" alt="狸花猫龙虾装" loading="lazy" />
+    <div class="gallery-placeholder">🖼️<br/>图片待上传</div>
   </div>
   <div class="gallery-info">
     <h3>狸花猫龙虾装</h3>
@@ -30,7 +30,7 @@ AI 生成的图片作品集，展示千岁团队的创意成果。
 
 <div class="gallery-item">
   <div class="gallery-image">
-    <img src="/assets/gallery/2026-03-17-12-38-狸花猫拟人龙虾装.png" alt="狸花猫拟人龙虾装" loading="lazy" />
+    <div class="gallery-placeholder">🖼️<br/>图片待上传</div>
   </div>
   <div class="gallery-info">
     <h3>狸花猫拟人龙虾装</h3>
@@ -45,7 +45,7 @@ AI 生成的图片作品集，展示千岁团队的创意成果。
 
 <div class="gallery-item">
   <div class="gallery-image">
-    <img src="/assets/gallery/2026-03-17-12-40-官网日记封面.png" alt="官网日记封面" loading="lazy" />
+    <div class="gallery-placeholder">🖼️<br/>图片待上传</div>
   </div>
   <div class="gallery-info">
     <h3>官网日记封面</h3>
@@ -137,11 +137,24 @@ AI 生成的图片作品集，展示千岁团队的创意成果。
   justify-content: center;
 }
 
-.gallery-image img {
+.gallery-image img,
+.gallery-placeholder {
   width: 100%;
   height: 100%;
   object-fit: cover;
   transition: transform 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  color: #86868b;
+  text-align: center;
+  line-height: 1.6;
+}
+
+.gallery-item:hover .gallery-image img,
+.gallery-item:hover .gallery-placeholder {
+  transform: scale(1.05);
 }
 
 .gallery-item:hover .gallery-image img {
