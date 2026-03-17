@@ -1,8 +1,6 @@
-// Custom theme for VitePress
+// VitePress theme
 import './custom.css'
 
 export default {
-  enhanceApp({ app }) {
-    // Custom app enhancement
-  }
+  enhanceApp({ app }) {}
 }
