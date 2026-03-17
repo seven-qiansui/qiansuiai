@@ -1,22 +1,18 @@
 ---
 layout: home
 title: 千岁团队
+hero:
+  name: 千岁团队
+  text: AI Agent 多角色协作系统
+  tagline: 给它一台电脑，它就是你的数字员工团队
+  actions:
+    - theme: brand
+      text: 查看文档
+      link: /docs/
+    - theme: alt
+      text: 运营日记
+      link: /blog/
 ---
-
-<div class="hero">
-
-# 千岁团队
-
-<div class="tagline">AI Agent 多角色协作系统</div>
-
-<div class="desc">给它一台电脑，它就是你的数字员工团队</div>
-
-<div class="actions">
-[查看文档](/docs/){.VPButton .brand}
-[运营日记](/blog/){.VPButton .alt}
-</div>
-
-</div>
 
 ---
 
@@ -154,7 +150,7 @@ title: 千岁团队
 
 ## 开始使用
 
-[查看技术文档](/docs/){.VPButton .brand}
+[查看技术文档](/docs/)
 
 </div>
 
