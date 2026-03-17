@@ -542,7 +542,9 @@ hr {
   }
 }
 
-/* 加载动画 */
+/* ========== 动效系统 ========== */
+
+/* 加载动画 - 淡入上移 */
 @keyframes fadeInUp {
   from {
     opacity: 0;
@@ -554,6 +556,49 @@ hr {
   }
 }
 
+/* 数字滚动动画 */
+@keyframes countUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px) scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* 脉冲光晕效果 */
+@keyframes pulse {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(0, 122, 255, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 0 12px rgba(0, 122, 255, 0);
+  }
+}
+
+/* 渐变光效 */
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+/* 浮动效果 */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+/* 元素入场动画 */
 .hero, .stat, .feature, .security-item, .case {
   animation: fadeInUp 0.6s ease-out backwards;
 }
@@ -575,3 +620,135 @@ hr {
 .case:nth-child(2) { animation-delay: 0.3s; }
 .case:nth-child(3) { animation-delay: 0.4s; }
 .case:nth-child(4) { animation-delay: 0.5s; }
+
+/* 数字特殊动画 */
+.stat .num {
+  animation: countUp 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) backwards;
+}
+
+/* 按钮悬停光效 */
+.VPButton.brand {
+  position: relative;
+  overflow: hidden;
+}
+
+.VPButton.brand::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.3),
+    transparent
+  );
+  transition: left 0.5s ease;
+}
+
+.VPButton.brand:hover::before {
+  left: 100%;
+}
+
+/* 特性卡片悬停增强 */
+.feature:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 24px 80px rgba(0, 122, 255, 0.15);
+}
+
+.feature:hover .icon {
+  animation: float 2s ease-in-out infinite;
+}
+
+/* 安全项悬停效果 */
+.security-item:hover {
+  border-color: var(--vp-c-brand);
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(0, 122, 255, 0.1);
+}
+
+/* 应用场景卡片 */
+.case:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 60px rgba(0, 122, 255, 0.12);
+}
+
+.case .case-efficiency {
+  position: relative;
+  display: inline-block;
+  padding: 4px 12px;
+  background: rgba(0, 122, 255, 0.1);
+  border-radius: 12px;
+  font-weight: 700;
+}
+
+/* 统计数据高亮 */
+.stat:hover .num {
+  color: var(--vp-c-brand-light);
+  transform: scale(1.1);
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* 导航栏滚动效果 */
+.VPNav.scrolled {
+  background: rgba(255, 255, 255, 0.95);
+  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.08);
+}
+
+/* 链接悬停下划线动画 */
+.footer-links a {
+  position: relative;
+}
+
+.footer-links a::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--vp-c-brand);
+  transition: width 0.3s ease;
+}
+
+.footer-links a:hover::after {
+  width: 100%;
+}
+
+/* 标题链接图标旋转 */
+.section h2 a[href^="#"] {
+  opacity: 0;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.section h2:hover a[href^="#"] {
+  opacity: 1;
+  transform: rotate(15deg);
+}
+
+/* 移动端优化动效 */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* 高性能动画优化 */
+.feature,
+.security-item,
+.case,
+.VPButton {
+  will-change: transform;
+}
+
+.feature:hover,
+.security-item:hover,
+.case:hover {
+  will-change: auto;
+}
