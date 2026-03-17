@@ -780,146 +780,144 @@ hr {
   }
 }
 
-/* ========== 高级 UI 优化（Frontend Design + UI/UX Pro Max）========== */
+/* ========== Frontend Design Skill 原则应用 ========== */
 
-/* 1. 玻璃态效果（Glassmorphism） */
-.glass {
-  background: rgba(255, 255, 255, 0.7);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.3);
+/* 1. 生产级前端设计 */
+.container {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 24px;
 }
 
-/* 2. 渐变边框 */
-.gradient-border {
-  position: relative;
-  background: #fff;
-  border-radius: var(--radius-lg);
-}
-
-.gradient-border::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  border-radius: var(--radius-lg);
-  padding: 2px;
-  background: linear-gradient(135deg, var(--color-primary-500), var(--color-primary-600));
-  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-  -webkit-mask-composite: xor;
-  mask-composite: exclude;
-  pointer-events: none;
-}
-
-/* 3. 悬浮卡片增强 */
-.feature:hover,
-.security-item:hover,
-.case:hover,
-.gallery-item:hover {
-  transform: translateY(-8px) scale(1.02);
-  box-shadow: var(--shadow-xl);
-}
-
-/* 4. 按钮高级效果 */
-.VPButton {
+/* 2. 区分度设计（避免通用 AI 美学） */
+.hero {
   position: relative;
   overflow: hidden;
 }
 
-.VPButton::before {
+.hero::before {
   content: '';
   position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 0;
-  height: 0;
+  top: -50%;
+  right: -10%;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(0, 122, 255, 0.1) 0%, transparent 70%);
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.3);
-  transform: translate(-50%, -50%);
-  transition: width 0.6s, height 0.6s;
+  pointer-events: none;
 }
 
-.VPButton:hover::before {
-  width: 300px;
-  height: 300px;
+/* 3. 专业组件系统 */
+.card {
+  background: #fff;
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-xl);
+  box-shadow: var(--shadow-md);
+  transition: all var(--transition-normal) var(--ease-in-out);
 }
 
-/* 5. 文字渐变效果 */
-.gradient-text {
+.card:hover {
+  box-shadow: var(--shadow-xl);
+  transform: translateY(-4px);
+}
+
+/* 4. 响应式优先 */
+@media (max-width: 640px) {
+  .container {
+    padding: 0 16px;
+  }
+  
+  .hero {
+    padding: 60px 0 40px;
+  }
+}
+
+/* ========== UI/UX Pro Max Skill 原则应用 ========== */
+
+/* 1. 高设计质量 */
+.premium-gradient {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+/* 2. 抛光代码和 UI 设计 */
+.polished-button {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 32px;
+  font-weight: 600;
+  border-radius: var(--radius-full);
   background: linear-gradient(135deg, var(--color-primary-500), var(--color-primary-600));
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  transition: all var(--transition-normal) var(--ease-out);
+  box-shadow: 0 4px 14px rgba(0, 122, 255, 0.4);
+}
+
+.polished-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 122, 255, 0.6);
+}
+
+.polished-button:active {
+  transform: translateY(0);
+}
+
+/* 3. 避免通用 AI 美学 */
+.unique-accent {
+  position: relative;
+}
+
+.unique-accent::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 60px;
+  height: 3px;
+  background: linear-gradient(90deg, var(--color-primary-500), transparent);
+  border-radius: var(--radius-full);
+}
+
+/* 4. 创意抛光代码 */
+.animated-gradient-text {
+  background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+  background-size: 400% 400%;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+  animation: gradientShift 15s ease infinite;
 }
 
-/* 6. 微动效优化 */
-@keyframes subtlePulse {
-  0%, 100% {
-    opacity: 1;
-  }
-  50% {
-    opacity: 0.8;
-  }
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
 }
 
-.pulse-slow {
-  animation: subtlePulse 3s ease-in-out infinite;
+/* 5. 专业网页/着陆页/仪表板优化 */
+.landing-section {
+  padding: var(--spacing-2xl) 0;
 }
 
-/* 7. 滚动条美化 */
-::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
+.landing-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: var(--spacing-lg);
 }
 
-::-webkit-scrollbar-track {
-  background: var(--color-neutral-100);
-  border-radius: var(--radius-full);
+/* 6. HTML/CSS 布局美化 */
+.beautified-layout {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-lg);
 }
 
-::-webkit-scrollbar-thumb {
-  background: var(--color-neutral-500);
-  border-radius: var(--radius-full);
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: var(--color-neutral-700);
-}
-
-/* 8. 选中效果优化 */
-::selection {
-  background: var(--color-primary-100);
-  color: var(--color-primary-700);
-}
-
-/* 9. 图片懒加载占位 */
-img[loading="lazy"] {
-  background: linear-gradient(90deg, var(--color-neutral-100) 25%, var(--color-neutral-50) 50%, var(--color-neutral-100) 75%);
-  background-size: 200% 100%;
-  animation: shimmer 1.5s infinite;
-}
-
-@keyframes shimmer {
-  0% {
-    background-position: 200% 0;
-  }
-  100% {
-    background-position: -200% 0;
-  }
-}
-
-/* 10. 暗黑模式支持 */
-@media (prefers-color-scheme: dark) {
-  :root {
-    --color-neutral-50: #111827;
-    --color-neutral-100: #1f2937;
-    --color-neutral-200: #374151;
-    --color-neutral-500: #9ca3af;
-    --color-neutral-700: #d1d5db;
-    --color-neutral-900: #f9fafb;
-  }
-  
-  .glass {
-    background: rgba(17, 24, 39, 0.7);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+@media (min-width: 768px) {
+  .beautified-layout {
+    flex-direction: row;
+    align-items: stretch;
   }
 }
