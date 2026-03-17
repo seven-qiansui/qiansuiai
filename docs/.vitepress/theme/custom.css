@@ -780,164 +780,146 @@ hr {
   }
 }
 
-/* ========== 动效系统 ========== */
+/* ========== 高级 UI 优化（Frontend Design + UI/UX Pro Max）========== */
 
-/* 1️⃣ 渐变背景流动效果 */
-@keyframes gradientFlow {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
+/* 1. 玻璃态效果（Glassmorphism） */
+.glass {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
 }
 
-/* 2️⃣ 卡片悬停悬浮效果 */
-@keyframes cardFloat {
-  0%, 100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-8px);
-  }
+/* 2. 渐变边框 */
+.gradient-border {
+  position: relative;
+  background: #fff;
+  border-radius: var(--radius-lg);
 }
 
-/* 3️⃣ 按钮点击反馈 */
-@keyframes buttonPress {
-  0% {
-    transform: scale(1);
-  }
-  50% {
-    transform: scale(0.95);
-  }
-  100% {
-    transform: scale(1);
-  }
+.gradient-border::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: var(--radius-lg);
+  padding: 2px;
+  background: linear-gradient(135deg, var(--color-primary-500), var(--color-primary-600));
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
 }
 
-/* 4️⃣ 元素淡入动画 */
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* 5️⃣ Banner 形象微动效（呼吸效果） */
-@keyframes gentleBreath {
-  0%, 100% {
-    transform: scale(1);
-  }
-  50% {
-    transform: scale(1.02);
-  }
-}
-
-/* 6️⃣ 滚动视差效果 */
-.parallax {
-  background-attachment: fixed;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-}
-
-/* 应用动效 */
-.VPButton {
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.VPButton:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(0, 122, 255, 0.2);
-}
-
-.VPButton:active {
-  animation: buttonPress 0.2s ease;
-  transform: scale(0.95);
-}
-
-/* 卡片悬浮效果 */
-.feature,
-.security-item,
-.case,
-.gallery-item,
-.diary-card {
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
+/* 3. 悬浮卡片增强 */
 .feature:hover,
 .security-item:hover,
 .case:hover,
 .gallery-item:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 20px 60px rgba(0, 122, 255, 0.15);
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: var(--shadow-xl);
 }
 
-.diary-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 12px 40px rgba(0, 122, 255, 0.1);
+/* 4. 按钮高级效果 */
+.VPButton {
+  position: relative;
+  overflow: hidden;
 }
 
-/* 淡入动画类 */
-.fade-in-up {
-  opacity: 0;
-  animation: fadeInUp 0.8s ease-out forwards;
+.VPButton::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  transform: translate(-50%, -50%);
+  transition: width 0.6s, height 0.6s;
 }
 
-.fade-in-up-delay-1 {
-  opacity: 0;
-  animation: fadeInUp 0.8s ease-out 0.2s forwards;
+.VPButton:hover::before {
+  width: 300px;
+  height: 300px;
 }
 
-.fade-in-up-delay-2 {
-  opacity: 0;
-  animation: fadeInUp 0.8s ease-out 0.4s forwards;
+/* 5. 文字渐变效果 */
+.gradient-text {
+  background: linear-gradient(135deg, var(--color-primary-500), var(--color-primary-600));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
-.fade-in-up-delay-3 {
-  opacity: 0;
-  animation: fadeInUp 0.8s ease-out 0.6s forwards;
+/* 6. 微动效优化 */
+@keyframes subtlePulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.8;
+  }
 }
 
-/* Banner 形象微动效 */
-.hero-image,
-.banner-image {
-  animation: gentleBreath 4s ease-in-out infinite;
+.pulse-slow {
+  animation: subtlePulse 3s ease-in-out infinite;
 }
 
-/* 渐变背景 */
-.gradient-bg {
-  background: linear-gradient(-45deg, #007aff, #00c6ff, #007aff, #00c6ff);
-  background-size: 400% 400%;
-  animation: gradientFlow 15s ease infinite;
+/* 7. 滚动条美化 */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
 }
 
-/* 滚动触发动画 */
-.scroll-animate {
-  opacity: 0;
-  transform: translateY(30px);
-  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+::-webkit-scrollbar-track {
+  background: var(--color-neutral-100);
+  border-radius: var(--radius-full);
 }
 
-.scroll-animate.visible {
-  opacity: 1;
-  transform: translateY(0);
+::-webkit-scrollbar-thumb {
+  background: var(--color-neutral-500);
+  border-radius: var(--radius-full);
 }
 
-/* 性能优化 */
-@media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-neutral-700);
+}
+
+/* 8. 选中效果优化 */
+::selection {
+  background: var(--color-primary-100);
+  color: var(--color-primary-700);
+}
+
+/* 9. 图片懒加载占位 */
+img[loading="lazy"] {
+  background: linear-gradient(90deg, var(--color-neutral-100) 25%, var(--color-neutral-50) 50%, var(--color-neutral-100) 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+/* 10. 暗黑模式支持 */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-neutral-50: #111827;
+    --color-neutral-100: #1f2937;
+    --color-neutral-200: #374151;
+    --color-neutral-500: #9ca3af;
+    --color-neutral-700: #d1d5db;
+    --color-neutral-900: #f9fafb;
+  }
+  
+  .glass {
+    background: rgba(17, 24, 39, 0.7);
+    border: 1px solid rgba(255, 255, 255, 0.1);
   }
 }
