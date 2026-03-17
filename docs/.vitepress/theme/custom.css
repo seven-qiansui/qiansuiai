@@ -19,6 +19,17 @@ body {
   line-height: 1.6;
 }
 
+/* 全局居中对齐 */
+.VPContent, .VPPage, .VPDoc {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.VPDoc.has-aside .content-container {
+  max-width: 100%;
+}
+
 /* 导航栏 - sanwan.ai 极简风格 */
 .VPNav {
   background: #ffffff;
