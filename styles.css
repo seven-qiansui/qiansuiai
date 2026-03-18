@@ -1818,7 +1818,98 @@ body.loaded {
     transform: scale(0.95);
 }
 
-/* ========== 日记页面样式 ========== */
+/* ========== 日记页面样式 - 卡片式 ========== */
+.diary-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.diary-card {
+    background: var(--card-bg);
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    transition: all 0.3s ease;
+    opacity: 0;
+    transform: translateY(20px);
+}
+
+.diary-card.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.diary-card:hover {
+    box-shadow: var(--shadow-hover);
+}
+
+.diary-card-header {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+    padding: 1.25rem 1.5rem;
+    background: var(--bg-color);
+    border-bottom: 1px solid var(--border-color);
+}
+
+.diary-card-date {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 60px;
+}
+
+.diary-day {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--primary-color);
+    line-height: 1;
+}
+
+.diary-month {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    margin-top: 0.25rem;
+}
+
+.diary-card-title h2 {
+    font-size: 1.15rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.diary-card-tags {
+    display: flex;
+    gap: 0.4rem;
+    flex-wrap: wrap;
+}
+
+.diary-card-body {
+    padding: 1.5rem;
+}
+
+.diary-card-body p {
+    margin-bottom: 0.75rem;
+    color: var(--text-secondary);
+    line-height: 1.7;
+}
+
+.diary-card-body strong {
+    color: var(--text-primary);
+}
+
+.diary-card-body ul {
+    margin-left: 1.5rem;
+    margin-bottom: 1rem;
+    color: var(--text-secondary);
+}
+
+.diary-card-body li {
+    margin-bottom: 0.4rem;
+}
+
+/* ========== 日记页面样式（旧版兼容） ========== */
 .diary-timeline {
     position: relative;
     padding-left: 2rem;
