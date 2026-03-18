@@ -2560,6 +2560,108 @@ body.loaded {
     color: #94a3b8;
 }
 
+/* 相册页面 - 横向卡片布局 */
+.gallery-horizontal-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.gallery-horizontal-card {
+    background: var(--card-bg);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    color: var(--text-primary);
+}
+
+.gallery-horizontal-card:hover {
+    box-shadow: var(--shadow-hover);
+    transform: translateX(5px);
+}
+
+.gallery-horizontal-cover {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 180px;
+    overflow: hidden;
+}
+
+.gallery-horizontal-cover img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.image-placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: white;
+}
+
+.placeholder-icon {
+    font-size: 3rem;
+    margin-bottom: 0.5rem;
+}
+
+.placeholder-text {
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+.gallery-horizontal-info {
+    padding: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.gallery-horizontal-info h3 {
+    font-size: 1.15rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.gallery-horizontal-info p {
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+    line-height: 1.5;
+    margin-bottom: 0.75rem;
+}
+
+/* 覆盖旧的 gallery-grid 样式 */
+.gallery-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.gallery-item {
+    background: var(--card-bg);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    transition: all 0.3s ease;
+}
+
+.gallery-item:hover {
+    box-shadow: var(--shadow-hover);
+    transform: translateX(5px);
+}
+
 /* 加载更多 */
 .load-more {
     text-align: center;
@@ -2614,6 +2716,16 @@ body.loaded {
 
     .news-categories {
         flex-wrap: wrap;
+    }
+
+    .gallery-horizontal-card,
+    .gallery-item {
+        grid-template-columns: 1fr;
+    }
+
+    .gallery-horizontal-cover,
+    .gallery-image {
+        min-height: 160px;
     }
 
     .advantages-grid {
