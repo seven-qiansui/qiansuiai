@@ -24,6 +24,9 @@
     --gradient-tech: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     --gradient-automation: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
     --gradient-integration: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+    --gradient-service-1: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%);
+    --gradient-service-2: linear-gradient(135deg, #a18cd1 0%, #fbc2eb 100%);
+    --gradient-service-3: linear-gradient(135deg, #84fab0 0%, #8fd3f4 100%);
 }
 
 body {
@@ -179,6 +182,13 @@ body.loaded {
 .tagline {
     font-size: 1.1rem;
     color: var(--text-secondary);
+    font-weight: 500;
+}
+
+.subtitle {
+    font-size: 1rem;
+    color: var(--text-secondary);
+    margin-top: 0.5rem;
 }
 
 /* 滚动指示器 */
@@ -378,145 +388,163 @@ body.loaded {
     margin-bottom: 0;
 }
 
-/* 技能网格 */
-.skills-grid {
+/* ========== 服务卡片（核心业务） ========== */
+.services-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-    gap: 1rem;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.25rem;
 }
 
-.skill-card {
+.service-card {
     background: var(--card-bg);
-    border-radius: 12px;
-    padding: 1.5rem;
+    border-radius: 16px;
+    padding: 2rem 1.5rem;
     box-shadow: var(--shadow);
     transition: all 0.3s ease;
     position: relative;
     overflow: hidden;
     cursor: pointer;
+    border: 2px solid transparent;
 }
 
-.skill-card::before {
+.service-card::before {
     content: '';
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
-    height: 100%;
-    background: var(--gradient-blue);
-    opacity: 0;
-    transition: opacity 0.3s ease;
-    z-index: 0;
+    height: 6px;
+    background: var(--gradient-service-1);
 }
 
-.skill-card:hover::before {
-    opacity: 0.05;
+.service-card:nth-child(2)::before {
+    background: var(--gradient-service-2);
 }
 
-.skill-card:hover {
+.service-card:nth-child(3)::before {
+    background: var(--gradient-service-3);
+}
+
+.service-card:hover {
     transform: translateY(-8px) scale(1.02);
     box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    border-color: var(--primary-color);
 }
 
-.skill-icon {
-    font-size: 2rem;
-    margin-bottom: 0.75rem;
+.service-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
     position: relative;
     z-index: 1;
     transition: transform 0.3s ease;
 }
 
-.skill-card:hover .skill-icon {
-    transform: scale(1.2) rotate(10deg);
+.service-card:hover .service-icon {
+    transform: scale(1.15) rotate(5deg);
 }
 
-.skill-card h3 {
-    font-size: 1.1rem;
-    font-weight: 600;
+.service-card h3 {
+    font-size: 1.3rem;
+    font-weight: 700;
     margin-bottom: 0.5rem;
     color: var(--text-primary);
     position: relative;
     z-index: 1;
 }
 
-.skill-card p {
-    font-size: 0.9rem;
+.service-desc {
+    font-size: 0.95rem;
     color: var(--text-secondary);
+    margin-bottom: 1.25rem;
     position: relative;
     z-index: 1;
 }
 
-.skill-glow {
+.service-list {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 1.25rem 0;
+    position: relative;
+    z-index: 1;
+}
+
+.service-list li {
+    padding: 0.4rem 0;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    border-bottom: 1px dashed var(--border-color);
+}
+
+.service-list li:last-child {
+    border-bottom: none;
+}
+
+.service-tag {
+    display: inline-block;
+    background: var(--gradient-blue);
+    color: white;
+    padding: 0.35rem 0.75rem;
+    border-radius: 9999px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    position: relative;
+    z-index: 1;
+}
+
+.service-glow {
     position: absolute;
     top: 50%;
     left: 50%;
     width: 0;
     height: 0;
-    background: radial-gradient(circle, rgba(59, 130, 246, 0.3) 0%, transparent 70%);
+    background: radial-gradient(circle, rgba(59, 130, 246, 0.2) 0%, transparent 70%);
     border-radius: 50%;
     transform: translate(-50%, -50%);
     transition: width 0.4s ease, height 0.4s ease;
     pointer-events: none;
 }
 
-.skill-card:hover .skill-glow {
-    width: 200px;
-    height: 200px;
+.service-card:hover .service-glow {
+    width: 250px;
+    height: 250px;
 }
 
-/* 技术栈标签 */
-.tech-stack {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
+/* 服务优势 */
+.advantages-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 1rem;
 }
 
-.tech-tag {
+.advantage-item {
     background: var(--card-bg);
-    color: var(--primary-color);
-    padding: 0.5rem 1rem;
-    border-radius: 9999px;
-    font-size: 0.9rem;
-    font-weight: 500;
+    border-radius: 12px;
+    padding: 1.5rem 1rem;
     box-shadow: var(--shadow);
-    border: 1px solid var(--border-color);
-    cursor: pointer;
+    text-align: center;
     transition: all 0.3s ease;
-    position: relative;
-    overflow: hidden;
 }
 
-.tech-tag::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: var(--gradient-blue);
-    opacity: 0;
-    transition: left 0.4s ease, opacity 0.3s ease;
-    z-index: 0;
+.advantage-item:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-hover);
 }
 
-.tech-tag:hover {
-    transform: translateY(-3px) scale(1.05);
-    box-shadow: 0 6px 12px rgba(59, 130, 246, 0.2);
-    border-color: var(--primary-color);
+.advantage-icon {
+    font-size: 2.5rem;
+    margin-bottom: 0.75rem;
 }
 
-.tech-tag:hover::before {
-    left: 0;
-    opacity: 0.1;
+.advantage-item h4 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: var(--text-primary);
 }
 
-.tech-tag.clicked {
-    animation: tagClick 0.3s ease;
-}
-
-@keyframes tagClick {
-    0%, 100% { transform: scale(1); }
-    50% { transform: scale(0.95); }
+.advantage-item p {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
 }
 
 /* 快速入口 */
@@ -1100,7 +1128,14 @@ body.loaded {
         font-size: 4rem;
     }
 
-    .skills-grid,
+    .services-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .advantages-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
     .entry-grid {
         grid-template-columns: 1fr;
     }
