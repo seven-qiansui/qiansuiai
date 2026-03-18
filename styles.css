@@ -19,6 +19,11 @@
     --shadow-hover: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
     --gradient-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     --gradient-blue: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+    --gradient-jewelry: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+    --gradient-ecommerce: linear-gradient(135deg, #f6d365 0%, #fda085 100%);
+    --gradient-tech: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    --gradient-automation: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+    --gradient-integration: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
 }
 
 body {
@@ -898,6 +903,7 @@ body.loaded {
     font-weight: 500;
     cursor: pointer;
     transition: all 0.3s ease;
+    font-size: 0.9rem;
 }
 
 .filter-btn:hover {
@@ -941,7 +947,27 @@ body.loaded {
     position: relative;
     height: 200px;
     overflow: hidden;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+/* 分类渐变背景 */
+.jewelry-gradient {
+    background: var(--gradient-jewelry);
+}
+
+.ecommerce-gradient {
+    background: var(--gradient-ecommerce);
+}
+
+.tech-gradient {
+    background: var(--gradient-tech);
+}
+
+.automation-gradient {
+    background: var(--gradient-automation);
+}
+
+.integration-gradient {
+    background: var(--gradient-integration);
 }
 
 .image-placeholder {
@@ -1146,8 +1172,9 @@ body.loaded {
     }
 
     .filter-btn {
-        padding: 0.4rem 0.75rem;
-        font-size: 0.85rem;
+        padding: 0.4rem 0.6rem;
+        font-size: 0.8rem;
+        white-space: nowrap;
     }
 }
 
