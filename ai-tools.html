@@ -34,55 +34,163 @@
             </div>
         </section>
 
+        <!-- AI 工具分类标签 -->
+        <section class="section fade-on-scroll">
+            <div class="tool-categories">
+                <button class="category-btn active" data-category="all">全部</button>
+                <button class="category-btn" data-category="ecommerce">🛍️ 电商工具</button>
+                <button class="category-btn" data-category="social">📱 社媒工具</button>
+                <button class="category-btn" data-category="ai">🤖 AI 效率</button>
+                <button class="category-btn" data-category="business">💼 商业分析</button>
+            </div>
+        </section>
+
         <!-- AI 工具列表 -->
         <section class="section fade-on-scroll">
             <h2>🛠️ 在线工具</h2>
             <div class="tools-grid">
-                <!-- 工具 1 -->
-                <div class="tool-card">
+                <!-- 工具 1: 产品标题优化 -->
+                <div class="tool-card" data-category="ecommerce">
                     <div class="tool-icon">✍️</div>
-                    <h3>AI 文案生成</h3>
-                    <p>输入关键词，自动生成产品描述、广告文案、社交媒体内容</p>
+                    <h3>产品标题优化</h3>
+                    <p>生成高点击率的电商标题，提升转化率</p>
                     <div class="tool-demo">
-                        <input type="text" placeholder="输入产品关键词，如：护肤品、补水、保湿" class="tool-input">
-                        <button class="tool-btn" onclick="generateText(this)">✨ 生成文案</button>
-                        <div class="tool-output"></div>
-                    </div>
-                </div>
-
-                <!-- 工具 2 -->
-                <div class="tool-card">
-                    <div class="tool-icon">🏷️</div>
-                    <h3>小红书标题生成</h3>
-                    <p>一键生成爆款小红书标题，吸引点击</p>
-                    <div class="tool-demo">
-                        <input type="text" placeholder="输入内容主题，如：美妆测评、穿搭分享" class="tool-input">
+                        <input type="text" placeholder="输入产品名称，如：护肤品、手机壳" class="tool-input">
                         <button class="tool-btn" onclick="generateTitle(this)">✨ 生成标题</button>
                         <div class="tool-output"></div>
                     </div>
                 </div>
 
-                <!-- 工具 3 -->
-                <div class="tool-card">
-                    <div class="tool-icon">📊</div>
-                    <h3>AI 数据分析</h3>
-                    <p>上传数据，自动分析趋势、生成洞察报告</p>
+                <!-- 工具 2: 卖点提炼工具 -->
+                <div class="tool-card" data-category="ecommerce">
+                    <div class="tool-icon">💎</div>
+                    <h3>卖点提炼工具</h3>
+                    <p>从产品描述中提取核心卖点</p>
                     <div class="tool-demo">
-                        <input type="file" class="tool-input" accept=".csv,.xlsx">
-                        <button class="tool-btn" onclick="analyzeData(this)">📈 开始分析</button>
+                        <textarea placeholder="输入产品描述..." class="tool-input" rows="3"></textarea>
+                        <button class="tool-btn" onclick="extractSellingPoints(this)">💎 提炼卖点</button>
                         <div class="tool-output"></div>
                     </div>
                 </div>
 
-                <!-- 工具 4 -->
-                <div class="tool-card">
+                <!-- 工具 3: 买家秀文案生成 -->
+                <div class="tool-card" data-category="ecommerce">
+                    <div class="tool-icon">📸</div>
+                    <h3>买家秀文案生成</h3>
+                    <p>生成真实感的产品评价文案</p>
+                    <div class="tool-demo">
+                        <input type="text" placeholder="输入产品名称" class="tool-input">
+                        <button class="tool-btn" onclick="generateReview(this)">📸 生成评价</button>
+                        <div class="tool-output"></div>
+                    </div>
+                </div>
+
+                <!-- 工具 4: 小红书文案生成 -->
+                <div class="tool-card" data-category="social">
+                    <div class="tool-icon">📕</div>
+                    <h3>小红书文案生成</h3>
+                    <p>一键生成爆款小红书笔记</p>
+                    <div class="tool-demo">
+                        <input type="text" placeholder="输入内容主题，如：美妆测评、穿搭分享" class="tool-input">
+                        <button class="tool-btn" onclick="generateXiaohongshu(this)">✨ 生成文案</button>
+                        <div class="tool-output"></div>
+                    </div>
+                </div>
+
+                <!-- 工具 5: 朋友圈文案生成 -->
+                <div class="tool-card" data-category="social">
+                    <div class="tool-icon">📱</div>
+                    <h3>朋友圈文案生成</h3>
+                    <p>生成吸引人的朋友圈内容</p>
+                    <div class="tool-demo">
+                        <input type="text" placeholder="输入想表达的内容" class="tool-input">
+                        <button class="tool-btn" onclick="generateWechat(this)">📱 生成文案</button>
+                        <div class="tool-output"></div>
+                    </div>
+                </div>
+
+                <!-- 工具 6: 公众号标题生成 -->
+                <div class="tool-card" data-category="social">
+                    <div class="tool-icon">📝</div>
+                    <h3>公众号标题生成</h3>
+                    <p>生成 10w+ 爆款公众号标题</p>
+                    <div class="tool-demo">
+                        <input type="text" placeholder="输入文章主题" class="tool-input">
+                        <button class="tool-btn" onclick="generateArticleTitle(this)">📝 生成标题</button>
+                        <div class="tool-output"></div>
+                    </div>
+                </div>
+
+                <!-- 工具 7: Prompt 生成器 -->
+                <div class="tool-card" data-category="ai">
+                    <div class="tool-icon">🎯</div>
+                    <h3>Prompt 生成器</h3>
+                    <p>帮助写出更好的 AI 提示词</p>
+                    <div class="tool-demo">
+                        <input type="text" placeholder="描述你想完成的任务" class="tool-input">
+                        <button class="tool-btn" onclick="generatePrompt(this)">🎯 生成 Prompt</button>
+                        <div class="tool-output"></div>
+                    </div>
+                </div>
+
+                <!-- 工具 8: AI 成本计算器 -->
+                <div class="tool-card" data-category="ai">
+                    <div class="tool-icon">💰</div>
+                    <h3>AI 成本计算器</h3>
+                    <p>计算使用 AI 节省的人力成本</p>
+                    <div class="tool-demo">
+                        <input type="number" placeholder="团队人数" class="tool-input">
+                        <input type="number" placeholder="平均月薪（元）" class="tool-input">
+                        <button class="tool-btn" onclick="calculateCost(this)">💰 开始计算</button>
+                        <div class="tool-output"></div>
+                    </div>
+                </div>
+
+                <!-- 工具 9: AI 配色方案 -->
+                <div class="tool-card" data-category="ai">
                     <div class="tool-icon">🎨</div>
                     <h3>AI 配色方案</h3>
                     <p>输入主色调，生成专业配色方案</p>
                     <div class="tool-demo">
-                        <input type="color" class="tool-input" value="#3b82f6">
+                        <input type="color" class="tool-input" value="#3b82f6" style="height: 50px;">
                         <button class="tool-btn" onclick="generateColors(this)">🎨 生成配色</button>
                         <div class="tool-output color-palette"></div>
+                    </div>
+                </div>
+
+                <!-- 工具 10: SWOT 分析生成 -->
+                <div class="tool-card" data-category="business">
+                    <div class="tool-icon">📊</div>
+                    <h3>SWOT 分析生成</h3>
+                    <p>输入信息自动生成 SWOT 分析</p>
+                    <div class="tool-demo">
+                        <textarea placeholder="输入公司/产品名称和基本情况" class="tool-input" rows="3"></textarea>
+                        <button class="tool-btn" onclick="generateSWOT(this)">📊 生成分析</button>
+                        <div class="tool-output"></div>
+                    </div>
+                </div>
+
+                <!-- 工具 11: 竞品分析模板 -->
+                <div class="tool-card" data-category="business">
+                    <div class="tool-icon">🔍</div>
+                    <h3>竞品分析模板</h3>
+                    <p>快速生成竞品分析框架</p>
+                    <div class="tool-demo">
+                        <input type="text" placeholder="输入你的行业" class="tool-input">
+                        <button class="tool-btn" onclick="generateCompetitorAnalysis(this)">🔍 生成模板</button>
+                        <div class="tool-output"></div>
+                    </div>
+                </div>
+
+                <!-- 工具 12: 商业计划书大纲 -->
+                <div class="tool-card" data-category="business">
+                    <div class="tool-icon">📋</div>
+                    <h3>商业计划书大纲</h3>
+                    <p>AI 生成 BP 框架</p>
+                    <div class="tool-demo">
+                        <input type="text" placeholder="输入项目名称/领域" class="tool-input">
+                        <button class="tool-btn" onclick="generateBP(this)">📋 生成大纲</button>
+                        <div class="tool-output"></div>
                     </div>
                 </div>
             </div>
@@ -105,114 +213,176 @@
     </div>
 
     <script>
-        // AI 文案生成模拟
-        function generateText(btn) {
-            const input = btn.parentElement.querySelector('.tool-input').value;
-            const output = btn.parentElement.querySelector('.tool-output');
-            
-            if (!input) {
-                alert('请先输入产品关键词～');
-                return;
-            }
+        // 工具分类筛选
+        document.querySelectorAll('.category-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.category-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                
+                const category = btn.dataset.category;
+                document.querySelectorAll('.tool-card').forEach(card => {
+                    if (category === 'all' || card.dataset.category === category) {
+                        card.style.display = 'block';
+                        setTimeout(() => {
+                            card.style.opacity = '1';
+                            card.style.transform = 'translateY(0)';
+                        }, 50);
+                    } else {
+                        card.style.opacity = '0';
+                        card.style.transform = 'translateY(20px)';
+                        setTimeout(() => {
+                            card.style.display = 'none';
+                        }, 300);
+                    }
+                });
+            });
+        });
 
-            output.innerHTML = '<p class="loading">🤖 AI 正在思考中...</p>';
-            
-            setTimeout(() => {
-                output.innerHTML = `
-                    <div class="output-content">
-                        <p><strong>生成结果：</strong></p>
-                        <p>💧 深层补水，锁住肌肤每一滴水份</p>
-                        <p>🌿 天然植物萃取，温和不刺激</p>
-                        <p>✨ 28 天见证肌肤蜕变，重现水润光泽</p>
-                    </div>
-                `;
-            }, 1500);
-        }
-
-        // 小红书标题生成模拟
+        // 产品标题优化
         function generateTitle(btn) {
             const input = btn.parentElement.querySelector('.tool-input').value;
             const output = btn.parentElement.querySelector('.tool-output');
-            
-            if (!input) {
-                alert('请先输入内容主题～');
-                return;
-            }
-
-            output.innerHTML = '<p class="loading">🤖 AI 正在生成爆款标题...</p>';
-            
+            if (!input) { alert('请先输入产品名称～'); return; }
+            output.innerHTML = '<p class="loading">🤖 AI 正在生成...</p>';
             setTimeout(() => {
-                output.innerHTML = `
-                    <div class="output-content">
-                        <p><strong>爆款标题推荐：</strong></p>
-                        <p>1️⃣ 救命！这个${input}也太好用了吧！！</p>
-                        <p>2️⃣ 亲测有效｜${input}的正确打开方式</p>
-                        <p>3️⃣ 被问爆了！我的${input}秘诀在这里</p>
-                    </div>
-                `;
+                output.innerHTML = `<div class="output-content"><p><strong>推荐标题：</strong></p><p>1️⃣ 【爆款】${input} 神器！用了就回不去了</p><p>2️⃣ 后悔没早买！${input} 真实测评</p><p>3️⃣ ${input} 选购指南｜看完再买不踩坑</p></div>`;
             }, 1500);
         }
 
-        // 数据分析模拟
-        function analyzeData(btn) {
+        // 卖点提炼
+        function extractSellingPoints(btn) {
+            const input = btn.parentElement.querySelector('.tool-input').value;
             const output = btn.parentElement.querySelector('.tool-output');
-            
-            output.innerHTML = '<p class="loading">📊 AI 正在分析数据...</p>';
-            
+            if (!input) { alert('请先输入产品描述～'); return; }
+            output.innerHTML = '<p class="loading">🤖 AI 正在提炼...</p>';
             setTimeout(() => {
-                output.innerHTML = `
-                    <div class="output-content">
-                        <p><strong>分析结果：</strong></p>
-                        <p>📈 销售趋势：环比增长 23%</p>
-                        <p>🎯 用户画像：25-35 岁女性占比 68%</p>
-                        <p>💡 优化建议：加大社交媒体投放</p>
-                    </div>
-                `;
-            }, 2000);
+                output.innerHTML = `<div class="output-content"><p><strong>核心卖点：</strong></p><p>✅ 独特优势：市场差异化亮点</p><p>✅ 用户价值：解决什么痛点</p><p>✅ 信任背书：品质保证/认证</p><p>✅ 促销激励：限时优惠/赠品</p></div>`;
+            }, 1500);
         }
 
-        // 配色方案生成模拟
+        // 买家秀文案
+        function generateReview(btn) {
+            const input = btn.parentElement.querySelector('.tool-input').value;
+            const output = btn.parentElement.querySelector('.tool-output');
+            if (!input) { alert('请先输入产品名称～'); return; }
+            output.innerHTML = '<p class="loading">🤖 AI 正在生成...</p>';
+            setTimeout(() => {
+                output.innerHTML = `<div class="output-content"><p><strong>买家秀文案：</strong></p><p>⭐⭐⭐⭐⭐</p><p>用了一段时间才来评价，${input} 真的超出预期！包装很用心，质感也不错，这个价格能买到这样的品质真的很值～会回购！</p></div>`;
+            }, 1500);
+        }
+
+        // 小红书文案
+        function generateXiaohongshu(btn) {
+            const input = btn.parentElement.querySelector('.tool-input').value;
+            const output = btn.parentElement.querySelector('.tool-output');
+            if (!input) { alert('请先输入主题～'); return; }
+            output.innerHTML = '<p class="loading">🤖 AI 正在生成...</p>';
+            setTimeout(() => {
+                output.innerHTML = `<div class="output-content"><p><strong>爆款笔记：</strong></p><p>标题：救命！这个${input}也太好用了吧！！</p><p>正文：姐妹们！今天必须给你们安利这个${input}！用了一次就彻底爱上了～</p><p>#${input} #好物分享 #种草</p></div>`;
+            }, 1500);
+        }
+
+        // 朋友圈文案
+        function generateWechat(btn) {
+            const input = btn.parentElement.querySelector('.tool-input').value;
+            const output = btn.parentElement.querySelector('.tool-output');
+            if (!input) { alert('请先输入内容～'); return; }
+            output.innerHTML = '<p class="loading">🤖 AI 正在生成...</p>';
+            setTimeout(() => {
+                output.innerHTML = `<div class="output-content"><p><strong>朋友圈文案：</strong></p><p>✨ ${input}</p><p>—— 记录生活中的小美好 ——</p></div>`;
+            }, 1500);
+        }
+
+        // 公众号标题
+        function generateArticleTitle(btn) {
+            const input = btn.parentElement.querySelector('.tool-input').value;
+            const output = btn.parentElement.querySelector('.tool-output');
+            if (!input) { alert('请先输入文章主题～'); return; }
+            output.innerHTML = '<p class="loading">🤖 AI 正在生成...</p>';
+            setTimeout(() => {
+                output.innerHTML = `<div class="output-content"><p><strong>10w+ 标题推荐：</strong></p><p>1️⃣ ${input} 的真相，90% 的人都不知道</p><p>2️⃣ 深度｜关于${input}，这是最全面的一篇</p><p>3️⃣ ${input} 刷屏背后：你可能忽略了这些</p></div>`;
+            }, 1500);
+        }
+
+        // Prompt 生成器
+        function generatePrompt(btn) {
+            const input = btn.parentElement.querySelector('.tool-input').value;
+            const output = btn.parentElement.querySelector('.tool-output');
+            if (!input) { alert('请先描述任务～'); return; }
+            output.innerHTML = '<p class="loading">🤖 AI 正在生成...</p>';
+            setTimeout(() => {
+                output.innerHTML = `<div class="output-content"><p><strong>优化后的 Prompt：</strong></p><p>你是一位专家，请帮我完成以下任务：</p><p>任务：${input}</p><p>要求：1. 专业准确 2. 结构清晰 3. 实用可操作</p><p>请分步骤详细解答。</p></div>`;
+            }, 1500);
+        }
+
+        // AI 成本计算器
+        function calculateCost(btn) {
+            const inputs = btn.parentElement.querySelectorAll('.tool-input');
+            const output = btn.parentElement.querySelector('.tool-output');
+            const headcount = parseInt(inputs[0].value) || 0;
+            const avgSalary = parseInt(inputs[1].value) || 0;
+            if (!headcount || !avgSalary) { alert('请填写完整信息～'); return; }
+            output.innerHTML = '<p class="loading">🤖 AI 正在计算...</p>';
+            setTimeout(() => {
+                const monthlyCost = headcount * avgSalary;
+                const yearlyCost = monthlyCost * 12;
+                const aiCost = monthlyCost * 0.3;
+                const savings = monthlyCost - aiCost;
+                output.innerHTML = `<div class="output-content"><p><strong>成本分析：</strong></p><p>💰 当前人力成本：¥${monthlyCost.toLocaleString()}/月</p><p>🤖 AI 工具成本：约¥${aiCost.toLocaleString()}/月</p><p>💵 每月节省：¥${savings.toLocaleString()}</p><p>📊 年度节省：¥${(savings * 12).toLocaleString()}</p></div>`;
+            }, 1500);
+        }
+
+        // AI 配色方案
         function generateColors(btn) {
             const color = btn.parentElement.querySelector('.tool-input').value;
             const output = btn.parentElement.querySelector('.tool-output');
-            
-            output.innerHTML = '<p class="loading">🎨 AI 正在生成配色...</p>';
-            
+            output.innerHTML = '<p class="loading">🤖 AI 正在生成...</p>';
             setTimeout(() => {
-                output.innerHTML = `
-                    <div class="output-content color-palette">
-                        <div class="color-swatch" style="background: ${color}"></div>
-                        <div class="color-swatch" style="background: ${adjustColor(color, 20)}"></div>
-                        <div class="color-swatch" style="background: ${adjustColor(color, -20)}"></div>
-                        <div class="color-swatch" style="background: ${adjustColor(color, 40)}"></div>
-                        <div class="color-swatch" style="background: ${adjustColor(color, -40)}"></div>
-                    </div>
-                `;
+                output.innerHTML = `<div class="output-content color-palette"><div class="color-swatch" style="background: ${color}" title="主色"></div><div class="color-swatch" style="background: #60a5fa" title="辅助色"></div><div class="color-swatch" style="background: #34d399" title="强调色"></div><div class="color-swatch" style="background: #fbbf24" title="点缀色"></div><div class="color-swatch" style="background: #f87171" title="警示色"></div></div>`;
             }, 1000);
         }
 
-        // 颜色调整辅助函数
-        function adjustColor(color, amount) {
-            return color; // 简化版本，实际使用需要颜色计算
+        // SWOT 分析
+        function generateSWOT(btn) {
+            const input = btn.parentElement.querySelector('.tool-input').value;
+            const output = btn.parentElement.querySelector('.tool-output');
+            if (!input) { alert('请输入公司/产品信息～'); return; }
+            output.innerHTML = '<p class="loading">🤖 AI 正在分析...</p>';
+            setTimeout(() => {
+                output.innerHTML = `<div class="output-content"><p><strong>SWOT 分析：</strong></p><p>💪 优势 (S)：技术领先、团队专业</p><p>💔 劣势 (W)：品牌知名度低、资金有限</p><p>🌟 机会 (O)：市场需求增长、政策支持</p><p>⚠️ 威胁 (T)：竞争激烈、技术迭代快</p></div>`;
+            }, 1500);
+        }
+
+        // 竞品分析
+        function generateCompetitorAnalysis(btn) {
+            const input = btn.parentElement.querySelector('.tool-input').value;
+            const output = btn.parentElement.querySelector('.tool-output');
+            if (!input) { alert('请输入行业～'); return; }
+            output.innerHTML = '<p class="loading">🤖 AI 正在生成...</p>';
+            setTimeout(() => {
+                output.innerHTML = `<div class="output-content"><p><strong>竞品分析框架：</strong></p><p>1️⃣ 市场规模：${input}行业整体规模</p><p>2️⃣ 主要玩家：TOP5 竞品分析</p><p>3️⃣ 产品对比：功能/价格/服务</p><p>4️⃣ 用户画像：目标客群特征</p><p>5️⃣ 营销策略：渠道/内容/活动</p></div>`;
+            }, 1500);
+        }
+
+        // 商业计划书大纲
+        function generateBP(btn) {
+            const input = btn.parentElement.querySelector('.tool-input').value;
+            const output = btn.parentElement.querySelector('.tool-output');
+            if (!input) { alert('请输入项目名称～'); return; }
+            output.innerHTML = '<p class="loading">🤖 AI 正在生成...</p>';
+            setTimeout(() => {
+                output.innerHTML = `<div class="output-content"><p><strong>BP 大纲：</strong></p><p>1. 执行摘要</p><p>2. 市场痛点与机会</p><p>3. 产品与服务（${input}）</p><p>4. 商业模式</p><p>5. 竞争分析</p><p>6. 运营计划</p><p>7. 财务预测</p><p>8. 融资需求</p></div>`;
+            }, 1500);
         }
 
         // 滚动动画
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
+        const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -50px 0px' };
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
+                if (entry.isIntersecting) entry.target.classList.add('visible');
             });
-        }, observerOptions);
-
-        document.querySelectorAll('.fade-on-scroll').forEach(el => {
-            observer.observe(el);
         });
+        document.querySelectorAll('.fade-on-scroll').forEach(el => observer.observe(el));
     </script>
 </body>
 </html>
