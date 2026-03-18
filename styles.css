@@ -637,6 +637,41 @@ body.loaded {
     margin-top: 1rem !important;
 }
 
+/* 微信二维码 */
+.wechat-qr-section {
+    margin: 2rem 0;
+}
+
+.wechat-qr-card {
+    display: inline-block;
+    background: var(--bg-color);
+    padding: 1.5rem;
+    border-radius: 16px;
+    box-shadow: var(--shadow);
+    transition: all 0.3s ease;
+}
+
+.wechat-qr-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-hover);
+}
+
+.wechat-qr-image {
+    width: 200px;
+    height: 200px;
+    object-fit: contain;
+    border-radius: 8px;
+    background: white;
+    padding: 0.5rem;
+}
+
+.wechat-qr-text {
+    margin-top: 1rem;
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    font-weight: 500;
+}
+
 .contact-links {
     display: flex;
     justify-content: center;
