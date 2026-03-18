@@ -192,31 +192,31 @@
                 <p>有项目需求？随时找我。</p>
                 <p class="contact-note">响应时间：常规需求 ≤2 小时 · 紧急需求 ≤1 小时</p>
                 
-                <!-- 微信按钮 -->
+                <!-- 微信按钮 - 悬停浮现二维码 -->
                 <div class="contact-buttons">
-                    <button class="contact-btn wechat-btn" onclick="showQR('wechat')">
-                        <span class="btn-icon">💬</span>
-                        <span>加微信</span>
-                    </button>
-                    <button class="contact-btn official-btn" onclick="showQR('official')">
-                        <span class="btn-icon">📢</span>
-                        <span>公众号</span>
-                    </button>
+                    <div class="qr-hover-wrapper">
+                        <button class="contact-btn wechat-btn">
+                            <span class="btn-icon">💬</span>
+                            <span>加微信</span>
+                        </button>
+                        <div class="qr-hover-popup">
+                            <img src="wechat-qr.jpg" alt="个人微信" class="qr-hover-image">
+                            <p>扫一扫添加好友</p>
+                        </div>
+                    </div>
+                    <div class="qr-hover-wrapper">
+                        <button class="contact-btn official-btn">
+                            <span class="btn-icon">📢</span>
+                            <span>公众号</span>
+                        </button>
+                        <div class="qr-hover-popup">
+                            <img src="wechat-official.jpg" alt="微信公众号" class="qr-hover-image">
+                            <p>扫一扫关注公众号</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
-
-        <!-- 二维码弹窗 -->
-        <div class="qr-modal" id="qrModal" onclick="hideQR(event)">
-            <div class="qr-modal-content">
-                <button class="qr-close" onclick="hideQR()">&times;</button>
-                <div class="qr-container">
-                    <img id="qrImage" src="" alt="二维码" class="qr-image">
-                    <p id="qrTitle" class="qr-title"></p>
-                    <p id="qrDesc" class="qr-desc"></p>
-                </div>
-            </div>
-        </div>
 
         <!-- 页脚 -->
         <footer class="footer">
@@ -233,51 +233,6 @@
     </div>
 
     <script>
-        // 二维码数据
-        const qrData = {
-            wechat: {
-                src: 'wechat-qr.jpg',
-                title: '💬 个人微信',
-                desc: '扫一扫添加好友'
-            },
-            official: {
-                src: 'wechat-official.jpg',
-                title: '📢 微信公众号',
-                desc: '扫一扫关注公众号'
-            }
-        };
-
-        // 显示二维码
-        function showQR(type) {
-            const modal = document.getElementById('qrModal');
-            const qrImage = document.getElementById('qrImage');
-            const qrTitle = document.getElementById('qrTitle');
-            const qrDesc = document.getElementById('qrDesc');
-
-            qrImage.src = qrData[type].src;
-            qrTitle.textContent = qrData[type].title;
-            qrDesc.textContent = qrData[type].desc;
-
-            modal.classList.add('show');
-            document.body.style.overflow = 'hidden';
-        }
-
-        // 隐藏二维码
-        function hideQR(event) {
-            if (!event || event.target === event.currentTarget) {
-                const modal = document.getElementById('qrModal');
-                modal.classList.remove('show');
-                document.body.style.overflow = '';
-            }
-        }
-
-        // ESC 键关闭
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape') {
-                hideQR();
-            }
-        });
-
         // 滚动动画 - Intersection Observer
         const observerOptions = {
             threshold: 0.1,
