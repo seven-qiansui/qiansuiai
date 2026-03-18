@@ -1156,7 +1156,7 @@ body.loaded {
 /* 探索更多 - 一排三个 */
 .explore-row {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     gap: 1rem;
 }
 
@@ -2382,6 +2382,106 @@ body.loaded {
     box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
 }
 
+/* 视频页面 */
+.video-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+}
+
+.video-card {
+    background: var(--card-bg);
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    transition: all 0.3s ease;
+}
+
+.video-card:hover {
+    box-shadow: var(--shadow-hover);
+    transform: translateX(5px);
+}
+
+.video-cover {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 180px;
+}
+
+.video-play {
+    width: 60px;
+    height: 60px;
+    background: rgba(255,255,255,0.2);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    color: white;
+    backdrop-filter: blur(4px);
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.video-card:hover .video-play {
+    background: rgba(255,255,255,0.35);
+    transform: scale(1.1);
+}
+
+.video-type-badge {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    padding: 0.25rem 0.6rem;
+    border-radius: 6px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: white;
+}
+
+.ai-badge { background: rgba(59, 130, 246, 0.85); }
+.manual-badge { background: rgba(16, 185, 129, 0.85); }
+.mixed-badge { background: rgba(139, 92, 246, 0.85); }
+
+.video-info {
+    padding: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.video-info h3 {
+    font-size: 1.15rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.video-info p {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    margin-bottom: 0.75rem;
+    line-height: 1.5;
+}
+
+.video-meta {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 0.75rem;
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+}
+
+.video-categories {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
 /* 加载更多 */
 .load-more {
     text-align: center;
@@ -2431,7 +2531,7 @@ body.loaded {
     }
 
     .explore-row {
-        grid-template-columns: 1fr;
+        grid-template-columns: repeat(2, 1fr);
     }
 
     .advantages-grid {
@@ -2533,6 +2633,14 @@ body.loaded {
 
     .singles-grid {
         grid-template-columns: repeat(3, 1fr);
+    }
+
+    .video-card {
+        grid-template-columns: 1fr;
+    }
+
+    .video-cover {
+        min-height: 160px;
     }
 
     .gallery-filter {
