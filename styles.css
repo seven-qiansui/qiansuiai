@@ -1079,7 +1079,62 @@ body.loaded {
     color: var(--text-secondary);
 }
 
-/* 快速入口 */
+/* 探索更多 - 一排三个 */
+.explore-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+}
+
+.explore-item {
+    background: var(--card-bg);
+    border-radius: 12px;
+    padding: 1.5rem 1rem;
+    box-shadow: var(--shadow);
+    text-decoration: none;
+    color: var(--text-primary);
+    transition: all 0.3s ease;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 2px solid transparent;
+}
+
+.explore-item:hover {
+    transform: translateY(-6px);
+    box-shadow: var(--shadow-hover);
+    border-color: var(--primary-color);
+}
+
+.explore-icon {
+    font-size: 2.5rem;
+    margin-bottom: 0.75rem;
+}
+
+.explore-item h3 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 0.4rem;
+}
+
+.explore-item p {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+}
+
+.explore-arrow {
+    margin-top: 0.75rem;
+    font-size: 1.2rem;
+    color: var(--primary-color);
+    transition: transform 0.3s ease;
+}
+
+.explore-item:hover .explore-arrow {
+    transform: translateX(5px);
+}
+
+/* 快速入口（保留兼容） */
 .entry-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -1998,6 +2053,10 @@ body.loaded {
     }
 
     .services-grid-simple {
+        grid-template-columns: 1fr;
+    }
+
+    .explore-row {
         grid-template-columns: 1fr;
     }
 

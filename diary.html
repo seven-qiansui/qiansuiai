@@ -181,7 +181,7 @@ git config --global https.proxy http://127.0.0.1:7897</code></pre>
             });
         }, observerOptions);
 
-        document.querySelectorAll('.fade-on-scroll').forEach(el => {
+        document.querySelectorAll('.fade-on-scroll, .diary-entry').forEach(el => {
             observer.observe(el);
         });
 
