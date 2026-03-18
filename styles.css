@@ -1252,12 +1252,12 @@ body.loaded {
     color: var(--text-secondary);
 }
 
-/* 精选留言 - 滚动轮播 */
+/* 精选留言 - 滚动卡片 */
 .marquee-container {
     overflow: hidden;
     position: relative;
     margin-bottom: 1.5rem;
-    padding: 0.5rem 0;
+    padding: 1rem 0;
 }
 
 .marquee-container::before,
@@ -1265,7 +1265,7 @@ body.loaded {
     content: '';
     position: absolute;
     top: 0;
-    width: 60px;
+    width: 40px;
     height: 100%;
     z-index: 2;
     pointer-events: none;
@@ -1283,8 +1283,8 @@ body.loaded {
 
 .marquee-track {
     display: flex;
-    gap: 1rem;
-    animation: marqueeScroll 25s linear infinite;
+    gap: 1.25rem;
+    animation: marqueeScroll 30s linear infinite;
     width: max-content;
 }
 
@@ -1299,19 +1299,33 @@ body.loaded {
 
 .marquee-card {
     background: var(--card-bg);
-    border-radius: 12px;
-    padding: 1.25rem;
-    box-shadow: var(--shadow);
-    min-width: 280px;
-    max-width: 280px;
-    border: 1px solid var(--border-color);
+    border-radius: 16px;
+    padding: 1.5rem;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+    min-width: 300px;
+    max-width: 300px;
+    border: 2px solid var(--border-color);
     transition: all 0.3s ease;
     flex-shrink: 0;
+    position: relative;
+    overflow: hidden;
+}
+
+.marquee-card::before {
+    content: '"';
+    position: absolute;
+    top: -5px;
+    right: 15px;
+    font-size: 5rem;
+    color: var(--primary-color);
+    opacity: 0.08;
+    font-family: Georgia, serif;
+    line-height: 1;
 }
 
 .marquee-card:hover {
-    box-shadow: var(--shadow-hover);
-    transform: translateY(-3px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+    transform: translateY(-4px);
     border-color: var(--primary-light);
 }
 
@@ -1319,20 +1333,22 @@ body.loaded {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 0.75rem;
+    margin-bottom: 1rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid var(--border-color);
 }
 
 .marquee-user {
-    font-size: 0.9rem;
+    font-size: 0.95rem;
     font-weight: 600;
     color: var(--text-primary);
 }
 
 .marquee-tag {
     font-size: 0.75rem;
-    padding: 0.2rem 0.6rem;
+    padding: 0.25rem 0.75rem;
     border-radius: 9999px;
-    font-weight: 500;
+    font-weight: 600;
 }
 
 .tag-ecommerce {
@@ -1351,12 +1367,12 @@ body.loaded {
 }
 
 .marquee-card-body {
-    font-size: 0.9rem;
-    color: var(--text-secondary);
-    line-height: 1.5;
-    margin-bottom: 0.75rem;
+    font-size: 0.95rem;
+    color: var(--text-primary);
+    line-height: 1.6;
+    margin-bottom: 1rem;
     display: -webkit-box;
-    -webkit-line-clamp: 2;
+    -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
     overflow: hidden;
 }
@@ -1364,6 +1380,14 @@ body.loaded {
 .marquee-time {
     font-size: 0.8rem;
     color: #94a3b8;
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+}
+
+.marquee-time::before {
+    content: '🕐';
+    font-size: 0.75rem;
 }
 
 .view-more {
