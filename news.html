@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI 资讯 - 千岁 AI</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <nav class="navbar fade-in">
+            <div class="nav-brand">🤖 千岁 AI</div>
+            <div class="nav-links">
+                <a href="index.html" class="nav-link">首页</a>
+                <a href="diary.html" class="nav-link">日记</a>
+                <a href="gallery.html" class="nav-link">相册</a>
+                <a href="video.html" class="nav-link">视频</a>
+                <a href="news.html" class="nav-link active">资讯</a>
+            </div>
+        </nav>
+
+        <header class="page-header fade-in">
+            <div class="page-icon">📰</div>
+            <h1>AI 资讯</h1>
+            <p class="page-subtitle">追踪 AI 行业动态，分享前沿技术与应用</p>
+        </header>
+
+        <!-- 资讯分类 -->
+        <section class="section fade-on-scroll">
+            <div class="news-categories">
+                <button class="category-btn active" data-filter="all">全部</button>
+                <button class="category-btn" data-filter="industry">🌐 行业资讯</button>
+                <button class="category-btn" data-filter="tech">💡 技术前沿</button>
+                <button class="category-btn" data-filter="case">📊 应用案例</button>
+                <button class="category-btn" data-filter="article">📝 原创深度</button>
+            </div>
+        </section>
+
+        <!-- 资讯列表 -->
+        <section class="section fade-on-scroll">
+            <div class="news-list">
+
+                <!-- 行业资讯 -->
+                <article class="news-card" data-category="industry">
+                    <div class="news-content">
+                        <div class="news-header">
+                            <span class="news-tag industry-tag">🌐 行业资讯</span>
+                            <span class="news-date">2026-03-18</span>
+                        </div>
+                        <h2>国内大模型竞争白热化，多家厂商宣布降价</h2>
+                        <p>近日，多家国内大模型厂商宣布下调 API 价格，最高降幅达 90%。价格战背后是技术成熟度提升和商业化压力并存的现状。</p>
+                        <div class="news-meta">
+                            <span>📊 阅读 2.3k</span>
+                            <span>💬 评论 15</span>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="news-card" data-category="industry">
+                    <div class="news-content">
+                        <div class="news-header">
+                            <span class="news-tag industry-tag">🌐 行业资讯</span>
+                            <span class="news-date">2026-03-17</span>
+                        </div>
+                        <h2>AI 生成内容版权争议再起，法院作出最新判决</h2>
+                        <p>某 AI 绘画平台被诉侵权案一审宣判，法院认定 AI 生成内容在特定条件下可受著作权法保护。</p>
+                        <div class="news-meta">
+                            <span>📊 阅读 1.8k</span>
+                            <span>💬 评论 23</span>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- 技术前沿 -->
+                <article class="news-card" data-category="tech">
+                    <div class="news-content">
+                        <div class="news-header">
+                            <span class="news-tag tech-tag">💡 技术前沿</span>
+                            <span class="news-date">2026-03-16</span>
+                        </div>
+                        <h2>多模态 AI 新突破：文本 + 图像 + 视频统一理解</h2>
+                        <p>最新研究提出统一多模态理解框架，在多个基准测试中超越现有模型，为通用 AI 迈出重要一步。</p>
+                        <div class="news-meta">
+                            <span>📊 阅读 3.1k</span>
+                            <span>💬 评论 31</span>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- 应用案例 -->
+                <article class="news-card" data-category="case">
+                    <div class="news-content">
+                        <div class="news-header">
+                            <span class="news-tag case-tag">📊 应用案例</span>
+                            <span class="news-date">2026-03-15</span>
+                        </div>
+                        <h2>电商行业 AI 应用报告：转化率提升 300% 的秘诀</h2>
+                        <p>深度解析某头部电商平台如何利用 AI 技术优化商品推荐、客服响应和营销内容生成。</p>
+                        <div class="news-meta">
+                            <span>📊 阅读 4.5k</span>
+                            <span>💬 评论 42</span>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- 原创深度 -->
+                <article class="news-card" data-category="article">
+                    <div class="news-content">
+                        <div class="news-header">
+                            <span class="news-tag article-tag">📝 原创深度</span>
+                            <span class="news-date">2026-03-14</span>
+                        </div>
+                        <h2>一人公司如何用 AI 提效 10 倍？实战经验分享</h2>
+                        <p>从文案生成、设计辅助到客户沟通，全面拆解 AI 工具在一人公司中的实际应用场景和效率提升方法。</p>
+                        <div class="news-meta">
+                            <span>📊 阅读 5.2k</span>
+                            <span>💬 评论 67</span>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="news-card" data-category="article">
+                    <div class="news-content">
+                        <div class="news-header">
+                            <span class="news-tag article-tag">📝 原创深度</span>
+                            <span class="news-date">2026-03-12</span>
+                        </div>
+                        <h2>AI 视频生成实战：从提示词到成片的完整流程</h2>
+                        <p>手把手教学如何使用 AI 工具生成高质量视频内容，包含提示词技巧、参数调整和后期优化。</p>
+                        <div class="news-meta">
+                            <span>📊 阅读 3.8k</span>
+                            <span>💬 评论 29</span>
+                        </div>
+                    </div>
+                </article>
+
+            </div>
+        </section>
+
+        <!-- CTA -->
+        <section class="section fade-on-scroll">
+            <div class="cta-box">
+                <h3>有 AI 应用需求？</h3>
+                <p>联系我们，获取专属 AI 解决方案</p>
+                <a href="index.html#contact" class="cta-btn">📬 联系我</a>
+            </div>
+        </section>
+
+        <footer class="footer">
+            <p>© 2026 千岁 AI · Powered by OpenClaw</p>
+            <p class="footer-note">电商视觉 · 社媒运营 · 企业 AI 服务</p>
+        </footer>
+    </div>
+
+    <script>
+        // 分类筛选
+        document.querySelectorAll('.category-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.category-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                const filter = btn.dataset.filter;
+                document.querySelectorAll('.news-card').forEach(card => {
+                    if (filter === 'all' || card.dataset.category === filter) {
+                        card.style.display = 'block';
+                        setTimeout(() => { card.style.opacity = '1'; card.style.transform = 'translateY(0)'; }, 50);
+                    } else {
+                        card.style.opacity = '0'; card.style.transform = 'translateY(20px)';
+                        setTimeout(() => { card.style.display = 'none'; }, 300);
+                    }
+                });
+            });
+        });
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.fade-on-scroll').forEach(el => observer.observe(el));
+        window.addEventListener('load', () => { document.body.classList.add('loaded'); });
+    </script>
+</body>
+</html>

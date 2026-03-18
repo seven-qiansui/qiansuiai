@@ -2482,6 +2482,84 @@ body.loaded {
     flex-wrap: wrap;
 }
 
+/* 资讯页面 */
+.news-categories {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.news-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.news-card {
+    background: var(--card-bg);
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: var(--shadow);
+    transition: all 0.3s ease;
+    border-left: 4px solid var(--border-color);
+}
+
+.news-card:hover {
+    box-shadow: var(--shadow-hover);
+    transform: translateX(5px);
+}
+
+.news-card.industry-tag { border-left-color: #3b82f6; }
+.news-card.tech-tag { border-left-color: #8b5cf6; }
+.news-card.case-tag { border-left-color: #10b981; }
+.news-card.article-tag { border-left-color: #f59e0b; }
+
+.news-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.75rem;
+}
+
+.news-tag {
+    padding: 0.25rem 0.6rem;
+    border-radius: 6px;
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+
+.industry-tag { background: #dbeafe; color: #1e40af; }
+.tech-tag { background: #ede9fe; color: #5b21b6; }
+.case-tag { background: #d1fae5; color: #065f46; }
+.article-tag { background: #fef3c7; color: #92400e; }
+
+.news-date {
+    font-size: 0.85rem;
+    color: #94a3b8;
+}
+
+.news-card h2 {
+    font-size: 1.15rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    line-height: 1.4;
+}
+
+.news-card p {
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin-bottom: 0.75rem;
+}
+
+.news-meta {
+    display: flex;
+    gap: 1rem;
+    font-size: 0.8rem;
+    color: #94a3b8;
+}
+
 /* 加载更多 */
 .load-more {
     text-align: center;
@@ -2532,6 +2610,10 @@ body.loaded {
 
     .explore-row {
         grid-template-columns: repeat(2, 1fr);
+    }
+
+    .news-categories {
+        flex-wrap: wrap;
     }
 
     .advantages-grid {
