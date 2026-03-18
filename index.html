@@ -91,21 +91,6 @@
             </div>
         </section>
 
-        <!-- 技术栈 -->
-        <section class="section fade-on-scroll">
-            <h2>⚙️ 技术栈</h2>
-            <div class="tech-stack">
-                <span class="tech-tag" data-hover>OpenClaw</span>
-                <span class="tech-tag" data-hover>飞书 API</span>
-                <span class="tech-tag" data-hover>PowerShell</span>
-                <span class="tech-tag" data-hover>GitHub Actions</span>
-                <span class="tech-tag" data-hover>GitHub Pages</span>
-                <span class="tech-tag" data-hover>HTML/CSS</span>
-                <span class="tech-tag" data-hover>Node.js</span>
-                <span class="tech-tag" data-hover>Git</span>
-            </div>
-        </section>
-
         <!-- 快速入口 -->
         <section class="section fade-on-scroll">
             <h2>🚀 探索更多</h2>
@@ -221,14 +206,6 @@
             
             card.addEventListener('mouseleave', () => {
                 card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) translateY(0)';
-            });
-        });
-
-        // 技术栈标签点击效果
-        document.querySelectorAll('[data-hover]').forEach(tag => {
-            tag.addEventListener('click', () => {
-                tag.classList.add('clicked');
-                setTimeout(() => tag.classList.remove('clicked'), 300);
             });
         });
 
