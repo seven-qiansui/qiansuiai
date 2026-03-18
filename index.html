@@ -16,7 +16,6 @@
                 <a href="index.html" class="nav-link active">首页</a>
                 <a href="diary.html" class="nav-link">日记</a>
                 <a href="gallery.html" class="nav-link">相册</a>
-                <a href="message-wall.html" class="nav-link">留言</a>
             </div>
         </nav>
 
@@ -95,10 +94,10 @@
                     <p>电商设计、珠宝设计、社媒案例</p>
                     <div class="entry-arrow">→</div>
                 </a>
-                <a href="message-wall.html" class="entry-card">
-                    <div class="entry-icon">💬</div>
-                    <h3>需求留言</h3>
-                    <p>留下需求，我会主动联系你</p>
+                <a href="ai-tools.html" class="entry-card">
+                    <div class="entry-icon">🤖</div>
+                    <h3>AI 工具箱</h3>
+                    <p>免费体验 AI 工具</p>
                     <div class="entry-arrow">→</div>
                 </a>
             </div>
@@ -113,11 +112,78 @@
                     <h3>案例投票</h3>
                     <p>为你喜欢的作品投票</p>
                 </a>
-                <a href="ai-tools.html" class="interactive-card">
-                    <div class="interactive-icon">🤖</div>
-                    <h3>AI 工具箱</h3>
-                    <p>免费体验 AI 工具</p>
+                <a href="message-wall.html" class="interactive-card">
+                    <div class="interactive-icon">💬</div>
+                    <h3>需求留言</h3>
+                    <p>留下需求，我会主动联系你</p>
                 </a>
+            </div>
+        </section>
+
+        <!-- 精选留言 -->
+        <section class="section fade-on-scroll">
+            <h2>💬 精选留言</h2>
+            <div class="featured-messages">
+                <div class="featured-message">
+                    <div class="message-content">
+                        <p>需要设计一款护肤品的主图和详情页，产品刚上市，想要清新简约风格，预算 5k 左右，有类似案例可以参考吗？</p>
+                    </div>
+                    <div class="message-footer">
+                        <span class="message-user">👤 张先生</span>
+                        <span class="message-service">🎨 电商视觉设计</span>
+                        <span class="message-time">2 小时前</span>
+                    </div>
+                </div>
+
+                <div class="featured-message">
+                    <div class="message-content">
+                        <p>小红书账号代运营，美妆类目，已有产品，需要内容策划和笔记撰写，希望能打造爆款～</p>
+                    </div>
+                    <div class="message-footer">
+                        <span class="message-user">👤 李女士</span>
+                        <span class="message-service">📱 社媒内容运营</span>
+                        <span class="message-time">5 小时前</span>
+                    </div>
+                </div>
+
+                <div class="featured-message">
+                    <div class="message-content">
+                        <p>想引入 AI 工具优化客服流程，需要方案设计和员工培训，团队 20 人左右，有企业级解决方案吗？</p>
+                    </div>
+                    <div class="message-footer">
+                        <span class="message-user">👤 某科技公司</span>
+                        <span class="message-service">🚀 企业 AI 服务</span>
+                        <span class="message-time">1 天前</span>
+                    </div>
+                </div>
+            </div>
+            <div class="view-more">
+                <a href="message-wall.html" class="view-more-btn">查看全部留言 →</a>
+            </div>
+        </section>
+
+        <!-- 快速留言 -->
+        <section class="section fade-on-scroll">
+            <div class="quick-message-box">
+                <h2>📮 快速留言</h2>
+                <p class="quick-message-desc">简单描述需求，我会在 2 小时内联系你</p>
+                <form id="quickMessageForm" class="quick-message-form">
+                    <div class="quick-form-row">
+                        <input type="text" id="quickName" placeholder="怎么称呼你？*" class="quick-input" required>
+                        <input type="text" id="quickContact" placeholder="微信/手机/邮箱*" class="quick-input" required>
+                    </div>
+                    <div class="quick-form-row">
+                        <select id="quickService" class="quick-input" required>
+                            <option value="">请选择服务类型</option>
+                            <option value="ecommerce">🎨 电商视觉设计</option>
+                            <option value="social">📱 社媒内容运营</option>
+                            <option value="ai">🚀 企业 AI 服务</option>
+                            <option value="other">💡 其他需求</option>
+                        </select>
+                    </div>
+                    <textarea id="quickMessage" placeholder="请简单描述你的需求..." class="quick-textarea" rows="3" required></textarea>
+                    <button type="submit" class="quick-submit-btn">🚀 立即提交</button>
+                </form>
             </div>
         </section>
 
@@ -212,6 +278,23 @@
             if (e.key === 'Escape') {
                 hideQR();
             }
+        });
+
+        // 快速留言表单提交
+        document.getElementById('quickMessageForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const formData = {
+                name: document.getElementById('quickName').value,
+                contact: document.getElementById('quickContact').value,
+                service: document.getElementById('quickService').value,
+                message: document.getElementById('quickMessage').value
+            };
+
+            // TODO: 实际使用时需要对接后端 API 或飞书多维表格
+            alert('✅ 需求提交成功！我会在 2 小时内联系你～');
+            
+            this.reset();
         });
 
         // 滚动动画 - Intersection Observer
