@@ -1152,6 +1152,29 @@ body.loaded {
     margin-bottom: 0.5rem;
 }
 
+.diary-images {
+    display: flex;
+    gap: 1rem;
+    margin: 1rem 0;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.diary-image {
+    max-width: 100%;
+    width: 300px;
+    border-radius: 8px;
+    box-shadow: var(--shadow);
+}
+
+.image-caption {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    text-align: center;
+    font-style: italic;
+    margin: 0.75rem 0;
+}
+
 .code-block {
     background: #1e293b;
     color: #e2e8f0;
