@@ -2143,83 +2143,211 @@ body.loaded {
     font-weight: 500;
 }
 
-/* 系列作品展示 */
-.gallery-series {
-    grid-column: 1 / -1;
+/* 系列入口卡片 */
+.series-entry {
+    text-decoration: none;
+    color: var(--text-primary);
+    cursor: pointer;
+}
+
+.series-badge {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background: rgba(0,0,0,0.6);
+    color: white;
+    padding: 0.3rem 0.75rem;
+    border-radius: 9999px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    backdrop-filter: blur(4px);
+}
+
+/* 系列详情页 */
+.back-link {
+    display: inline-block;
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: 500;
+    margin-bottom: 1rem;
+    transition: transform 0.2s ease;
+}
+
+.back-link:hover {
+    transform: translateX(-5px);
+}
+
+.detail-header {
+    text-align: center;
+    padding: 2rem 0;
+}
+
+.detail-header h1 {
+    font-size: 2rem;
+    font-weight: 700;
+    background: var(--gradient-blue);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 1rem;
+}
+
+.detail-desc {
+    font-size: 1rem;
+    color: var(--text-secondary);
+    line-height: 1.8;
+    max-width: 600px;
+    margin: 0 auto 1rem;
+}
+
+.detail-tags {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+/* 作品列表 */
+.artwork-list {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.artwork-item {
     background: var(--card-bg);
     border-radius: 16px;
     overflow: hidden;
     box-shadow: var(--shadow);
-    transition: all 0.3s ease;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
 }
 
-.gallery-series:hover {
-    box-shadow: var(--shadow-hover);
+.artwork-item.visible {
+    opacity: 1;
+    transform: translateY(0);
 }
 
-.series-header {
-    padding: 1.5rem;
-}
-
-.series-header h3 {
-    font-size: 1.3rem;
-    font-weight: 700;
-    margin-bottom: 0.5rem;
-}
-
-.series-header p {
-    font-size: 0.95rem;
-    color: var(--text-secondary);
-    margin-bottom: 0.75rem;
-}
-
-.series-hero {
+.artwork-image {
     width: 100%;
     overflow: hidden;
 }
 
-.series-hero-image {
+.artwork-image img {
     width: 100%;
     height: auto;
     display: block;
 }
 
-.series-grid {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    gap: 0;
-    border-top: 1px solid var(--border-color);
+.artwork-info {
+    padding: 1.25rem;
+    border-bottom: 1px solid var(--border-color);
 }
 
-.series-item {
-    overflow: hidden;
-    position: relative;
-    aspect-ratio: 1;
+.artwork-info h3 {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
 }
 
-.series-item img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.3s ease;
-    display: block;
+.artwork-info p {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
 }
 
-.series-item:hover img {
-    transform: scale(1.08);
+/* 点评区 */
+.artwork-comments {
+    padding: 1.25rem;
 }
 
-.series-item span {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background: linear-gradient(transparent, rgba(0,0,0,0.6));
-    color: white;
-    padding: 0.5rem;
-    font-size: 0.8rem;
-    font-weight: 500;
+.comment-list {
+    margin-bottom: 1rem;
+}
+
+.no-comment {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
     text-align: center;
+    padding: 1rem 0;
+}
+
+.comment-item {
+    padding: 0.75rem 0;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.comment-item:last-child {
+    border-bottom: none;
+}
+
+.comment-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.4rem;
+}
+
+.comment-author {
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+.comment-time {
+    font-size: 0.8rem;
+    color: #94a3b8;
+}
+
+.comment-body {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+}
+
+.comment-form {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.comment-name {
+    width: 200px;
+    padding: 0.6rem;
+    border: 2px solid var(--border-color);
+    border-radius: 8px;
+    font-size: 0.9rem;
+}
+
+.comment-text {
+    width: 100%;
+    padding: 0.6rem;
+    border: 2px solid var(--border-color);
+    border-radius: 8px;
+    font-size: 0.9rem;
+    font-family: inherit;
+    resize: vertical;
+}
+
+.comment-name:focus,
+.comment-text:focus {
+    outline: none;
+    border-color: var(--primary-color);
+}
+
+.comment-btn {
+    align-self: flex-start;
+    padding: 0.6rem 1.5rem;
+    background: var(--gradient-blue);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.comment-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
 }
 
 /* 加载更多 */
@@ -2367,8 +2495,8 @@ body.loaded {
         grid-template-columns: 1fr;
     }
 
-    .series-grid {
-        grid-template-columns: repeat(3, 1fr);
+    .comment-name {
+        width: 100%;
     }
 
     .gallery-filter {

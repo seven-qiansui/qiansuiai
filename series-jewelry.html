@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>和平之翼·翡翠珠宝系列 - 千岁 AI</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <nav class="navbar fade-in">
+            <div class="nav-brand">🤖 千岁 AI</div>
+            <div class="nav-links">
+                <a href="index.html" class="nav-link">首页</a>
+                <a href="gallery.html" class="nav-link">相册</a>
+            </div>
+        </nav>
+
+        <!-- 返回相册 -->
+        <a href="gallery.html" class="back-link fade-in">← 返回相册</a>
+
+        <!-- 系列头部 -->
+        <header class="detail-header fade-in">
+            <h1>和平之翼 · 翡翠珠宝系列</h1>
+            <p class="detail-desc">融合翡翠与现代设计美学，AI 辅助设计全套珠宝系列。灵感来源于和平鸽的优雅身姿，以翡翠为载体，表达对美好生活的向往。</p>
+            <div class="detail-tags">
+                <span class="tag">翡翠</span>
+                <span class="tag">珠宝设计</span>
+                <span class="tag">AI 设计</span>
+                <span class="tag">系列作品</span>
+            </div>
+        </header>
+
+        <!-- 作品大图列表 -->
+        <section class="section fade-on-scroll">
+            <div class="artwork-list">
+
+                <div class="artwork-item" id="work-1">
+                    <div class="artwork-image">
+                        <img src="jewelry/jewelry-collection.png" alt="整套系列合集">
+                    </div>
+                    <div class="artwork-info">
+                        <h3>整套系列合集</h3>
+                        <p>全系列产品合影，包含戒指、项链、耳环、手链四大品类</p>
+                    </div>
+                    <div class="artwork-comments" id="comments-1">
+                        <div class="comment-list"></div>
+                        <div class="comment-form">
+                            <input type="text" placeholder="昵称" class="comment-name">
+                            <textarea placeholder="说说你对这个设计的看法..." class="comment-text" rows="2"></textarea>
+                            <button class="comment-btn" onclick="addComment(1)">💬 发表点评</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="artwork-item" id="work-2">
+                    <div class="artwork-image">
+                        <img src="jewelry/jewelry-ring.png" alt="翡翠戒指">
+                    </div>
+                    <div class="artwork-info">
+                        <h3>翡翠戒指 · 单品设计</h3>
+                        <p>精雕细琢的翡翠戒指，以和平之翼为造型灵感</p>
+                    </div>
+                    <div class="artwork-comments" id="comments-2">
+                        <div class="comment-list"></div>
+                        <div class="comment-form">
+                            <input type="text" placeholder="昵称" class="comment-name">
+                            <textarea placeholder="说说你对这个设计的看法..." class="comment-text" rows="2"></textarea>
+                            <button class="comment-btn" onclick="addComment(2)">💬 发表点评</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="artwork-item" id="work-3">
+                    <div class="artwork-image">
+                        <img src="jewelry/jewelry-necklace.png" alt="翡翠项链">
+                    </div>
+                    <div class="artwork-info">
+                        <h3>翡翠项链 · 单品设计</h3>
+                        <p>温润翡翠，点缀优雅颈间，展现东方韵味</p>
+                    </div>
+                    <div class="artwork-comments" id="comments-3">
+                        <div class="comment-list"></div>
+                        <div class="comment-form">
+                            <input type="text" placeholder="昵称" class="comment-name">
+                            <textarea placeholder="说说你对这个设计的看法..." class="comment-text" rows="2"></textarea>
+                            <button class="comment-btn" onclick="addComment(3)">💬 发表点评</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="artwork-item" id="work-4">
+                    <div class="artwork-image">
+                        <img src="jewelry/jewelry-earring.png" alt="翡翠耳环">
+                    </div>
+                    <div class="artwork-info">
+                        <h3>翡翠耳环 · 单品设计</h3>
+                        <p>灵动翡翠，耳畔的东方雅韵</p>
+                    </div>
+                    <div class="artwork-comments" id="comments-4">
+                        <div class="comment-list"></div>
+                        <div class="comment-form">
+                            <input type="text" placeholder="昵称" class="comment-name">
+                            <textarea placeholder="说说你对这个设计的看法..." class="comment-text" rows="2"></textarea>
+                            <button class="comment-btn" onclick="addComment(4)">💬 发表点评</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="artwork-item" id="work-5">
+                    <div class="artwork-image">
+                        <img src="jewelry/jewelry-bracelet.png" alt="翡翠手链">
+                    </div>
+                    <div class="artwork-info">
+                        <h3>翡翠手链 · 单品设计</h3>
+                        <p>腕间翠色，尽显东方韵味</p>
+                    </div>
+                    <div class="artwork-comments" id="comments-5">
+                        <div class="comment-list"></div>
+                        <div class="comment-form">
+                            <input type="text" placeholder="昵称" class="comment-name">
+                            <textarea placeholder="说说你对这个设计的看法..." class="comment-text" rows="2"></textarea>
+                            <button class="comment-btn" onclick="addComment(5)">💬 发表点评</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="artwork-item" id="work-6">
+                    <div class="artwork-image">
+                        <img src="jewelry/jewelry-wearing.png" alt="佩戴效果">
+                    </div>
+                    <div class="artwork-info">
+                        <h3>翡翠项链 · 佩戴效果</h3>
+                        <p>真实佩戴展示，感受翡翠之美</p>
+                    </div>
+                    <div class="artwork-comments" id="comments-6">
+                        <div class="comment-list"></div>
+                        <div class="comment-form">
+                            <input type="text" placeholder="昵称" class="comment-name">
+                            <textarea placeholder="说说你对这个设计的看法..." class="comment-text" rows="2"></textarea>
+                            <button class="comment-btn" onclick="addComment(6)">💬 发表点评</button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <footer class="footer">
+            <p>© 2026 千岁 AI · Powered by OpenClaw</p>
+        </footer>
+    </div>
+
+    <script>
+        // 点评功能（localStorage 存储）
+        function loadComments() {
+            for (let i = 1; i <= 6; i++) {
+                const comments = JSON.parse(localStorage.getItem('jewelry-comments-' + i) || '[]');
+                renderComments(i, comments);
+            }
+        }
+
+        function renderComments(id, comments) {
+            const list = document.querySelector('#comments-' + id + ' .comment-list');
+            if (comments.length === 0) {
+                list.innerHTML = '<p class="no-comment">暂无点评，来说说你的看法～</p>';
+            } else {
+                list.innerHTML = comments.map(c => `
+                    <div class="comment-item">
+                        <div class="comment-header">
+                            <span class="comment-author">👤 ${c.name}</span>
+                            <span class="comment-time">${c.time}</span>
+                        </div>
+                        <p class="comment-body">${c.text}</p>
+                    </div>
+                `).join('');
+            }
+        }
+
+        function addComment(id) {
+            const container = document.querySelector('#comments-' + id);
+            const name = container.querySelector('.comment-name').value.trim();
+            const text = container.querySelector('.comment-text').value.trim();
+            
+            if (!name || !text) { alert('请填写昵称和点评内容～'); return; }
+            
+            const comments = JSON.parse(localStorage.getItem('jewelry-comments-' + id) || '[]');
+            comments.push({
+                name: name,
+                text: text,
+                time: new Date().toLocaleString('zh-CN')
+            });
+            localStorage.setItem('jewelry-comments-' + id, JSON.stringify(comments));
+            
+            renderComments(id, comments);
+            container.querySelector('.comment-name').value = '';
+            container.querySelector('.comment-text').value = '';
+        }
+
+        // 滚动动画
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) entry.target.classList.add('visible');
+            });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.fade-on-scroll, .artwork-item').forEach(el => observer.observe(el));
+
+        window.addEventListener('load', () => {
+            document.body.classList.add('loaded');
+            loadComments();
+        });
+    </script>
+</body>
+</html>
