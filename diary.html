@@ -26,25 +26,24 @@
         </header>
 
         <section class="section fade-on-scroll">
-            <div class="diary-list">
+            <div class="diary-horizontal-list">
 
-                <!-- Day 002 - 最新的排最前面 -->
-                <div class="diary-card">
-                    <div class="diary-card-header">
-                        <div class="diary-card-date">
-                            <span class="diary-day">18</span>
-                            <span class="diary-month">2026.03</span>
-                        </div>
-                        <div class="diary-card-title">
-                            <h2>🎨 Day 002 - 官网重构上线</h2>
-                            <div class="diary-card-tags">
-                                <span class="tag">网站</span>
-                                <span class="tag">重构</span>
-                                <span class="tag">UI</span>
-                            </div>
+                <!-- Day 002 -->
+                <div class="diary-h-card" onclick="openDiary(this)">
+                    <div class="diary-h-cover" style="background:linear-gradient(135deg,#667eea,#764ba2);">
+                        <div class="diary-h-day">Day 002</div>
+                        <div class="diary-h-date-badge">03.18</div>
+                    </div>
+                    <div class="diary-h-info">
+                        <h3>🎨 官网重构上线</h3>
+                        <p>一天时间从零搭建完整官网，AI 赋能效率拉满</p>
+                        <div class="diary-h-meta">
+                            <span class="tag">网站</span>
+                            <span class="tag">重构</span>
+                            <span class="tag">UI</span>
                         </div>
                     </div>
-                    <div class="diary-card-body">
+                    <div class="diary-h-detail" style="display:none;">
                         <p><strong>今天干了啥</strong></p>
                         <p>官网大改版！参考 sanwan.ai 风格，从零开始重新设计了千岁 AI 官网。</p>
                         <p><strong>完成清单</strong></p>
@@ -60,35 +59,31 @@
                 </div>
 
                 <!-- Day 001 -->
-                <div class="diary-card">
-                    <div class="diary-card-header">
-                        <div class="diary-card-date">
-                            <span class="diary-day">17</span>
-                            <span class="diary-month">2026.03</span>
-                        </div>
-                        <div class="diary-card-title">
-                            <h2>🦞 Day 001 - 狸花猫龙虾装出道</h2>
-                            <div class="diary-card-tags">
-                                <span class="tag">Gemini</span>
-                                <span class="tag">AI 生图</span>
-                                <span class="tag">IP 设计</span>
-                            </div>
+                <div class="diary-h-card" onclick="openDiary(this)">
+                    <div class="diary-h-cover" style="background:linear-gradient(135deg,#11998e,#38ef7d);">
+                        <div class="diary-h-day">Day 001</div>
+                        <div class="diary-h-date-badge">03.17</div>
+                    </div>
+                    <div class="diary-h-info">
+                        <h3>🦞 狸花猫龙虾装出道</h3>
+                        <p>Gemini 生图跑通，首发 IP 正式出道</p>
+                        <div class="diary-h-meta">
+                            <span class="tag">Gemini</span>
+                            <span class="tag">AI 生图</span>
+                            <span class="tag">IP</span>
                         </div>
                     </div>
-                    <div class="diary-card-body">
+                    <div class="diary-h-detail" style="display:none;">
                         <p><strong>今天干了啥</strong></p>
                         <p>搞了件大事——把 Gemini 生图功能跑通了！首发 IP「狸花猫龙虾装」正式出道，以后它就是团队吉祥物了！</p>
-
                         <p><strong>今日作品</strong></p>
                         <div class="diary-images">
                             <img src="diary-day001-1.jpg" alt="狸花猫龙虾装" class="diary-image">
                         </div>
                         <p class="image-caption">"手绘风格，动漫，一只可爱的狸花猫穿着红色龙虾服装"</p>
                         <p><strong>评价</strong>：可爱，能当主 IP！</p>
-
                         <p><strong>翻车现场</strong></p>
                         <p>想生成手绘白板流程图，结果 Gemini API 抽风了...行吧，明天再试。</p>
-
                         <p><strong>明天干啥</strong></p>
                         <ul>
                             <li>发布小红书（狸花猫首秀）</li>
@@ -102,17 +97,59 @@
             </div>
         </section>
 
+        <!-- 弹出层 -->
+        <div class="diary-modal" id="diaryModal" onclick="closeDiary(event)">
+            <div class="diary-modal-content">
+                <button class="diary-modal-close" onclick="closeDiary()">&times;</button>
+                <div class="diary-modal-header" id="modalHeader"></div>
+                <div class="diary-modal-body" id="modalBody"></div>
+            </div>
+        </div>
+
         <footer class="footer">
             <p>© 2026 千岁 AI · Powered by OpenClaw</p>
-            <p class="footer-note">电商视觉 · 社媒运营 · 企业 AI 服务</p>
         </footer>
     </div>
 
     <script>
+        function openDiary(card) {
+            const title = card.querySelector('h3').innerHTML;
+            const cover = card.querySelector('.diary-h-cover');
+            const day = card.querySelector('.diary-h-day').textContent;
+            const date = card.querySelector('.diary-h-date-badge').textContent;
+            const tags = card.querySelector('.diary-h-meta').innerHTML;
+            const detail = card.querySelector('.diary-h-detail').innerHTML;
+            const bg = cover.style.background;
+
+            document.getElementById('modalHeader').innerHTML = `
+                <div class="modal-top" style="background:${bg};padding:2rem;color:white;border-radius:16px 16px 0 0;">
+                    <div style="font-size:1.5rem;font-weight:700;">${day}</div>
+                    <div style="font-size:0.9rem;opacity:0.8;">2026.${date}</div>
+                </div>
+                <div style="padding:1.25rem 1.5rem;border-bottom:1px solid var(--border-color);">
+                    <h2 style="font-size:1.3rem;margin-bottom:0.5rem;">${title}</h2>
+                    <div class="diary-h-meta">${tags}</div>
+                </div>
+            `;
+            document.getElementById('modalBody').innerHTML = `<div class="diary-card-body">${detail}</div>`;
+
+            document.getElementById('diaryModal').classList.add('show');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeDiary(event) {
+            if (!event || event.target === event.currentTarget) {
+                document.getElementById('diaryModal').classList.remove('show');
+                document.body.style.overflow = '';
+            }
+        }
+
+        document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeDiary(); });
+
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
         }, { threshold: 0.1 });
-        document.querySelectorAll('.fade-on-scroll, .diary-card').forEach(el => observer.observe(el));
+        document.querySelectorAll('.fade-on-scroll').forEach(el => observer.observe(el));
         window.addEventListener('load', () => { document.body.classList.add('loaded'); });
     </script>
 </body>
