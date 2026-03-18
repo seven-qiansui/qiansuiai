@@ -2497,17 +2497,41 @@ body.loaded {
 }
 
 .news-card {
+    display: block;
     background: var(--card-bg);
     border-radius: 12px;
     padding: 1.5rem;
     box-shadow: var(--shadow);
     transition: all 0.3s ease;
-    border-left: 4px solid var(--border-color);
+    border-left: 4px solid var(--primary-color);
+    text-decoration: none;
+    color: var(--text-primary);
 }
 
 .news-card:hover {
     box-shadow: var(--shadow-hover);
     transform: translateX(5px);
+}
+
+.news-placeholder {
+    border-left-color: var(--border-color);
+    opacity: 0.7;
+}
+
+.news-source {
+    font-size: 0.8rem;
+    color: #94a3b8;
+}
+
+.source-note {
+    text-align: center;
+    padding: 1rem;
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+}
+
+.source-note p {
+    margin-bottom: 0.25rem;
 }
 
 .news-card.industry-tag { border-left-color: #3b82f6; }
