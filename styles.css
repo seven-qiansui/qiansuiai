@@ -2163,6 +2163,19 @@ body.loaded {
     backdrop-filter: blur(4px);
 }
 
+.video-badge {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    background: rgba(239, 68, 68, 0.85);
+    color: white;
+    padding: 0.3rem 0.75rem;
+    border-radius: 9999px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    backdrop-filter: blur(4px);
+}
+
 /* 系列详情页 */
 .back-link {
     display: inline-block;
