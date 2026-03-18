@@ -942,103 +942,177 @@ body.loaded {
     color: white;
 }
 
-.tools-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+/* 工具单列布局 */
+.tools-single-column {
+    display: flex;
+    flex-direction: column;
     gap: 1.5rem;
 }
 
-.tool-card {
+.tool-card-full {
     background: var(--card-bg);
-    border-radius: 12px;
-    padding: 1.5rem;
+    border-radius: 16px;
     box-shadow: var(--shadow);
+    overflow: hidden;
     transition: all 0.3s ease;
+    border: 1px solid var(--border-color);
 }
 
-.tool-card:hover {
-    transform: translateY(-4px);
+.tool-card-full:hover {
     box-shadow: var(--shadow-hover);
 }
 
-.tool-icon {
+.tool-card-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1.5rem;
+    border-bottom: 1px solid var(--border-color);
+    background: var(--bg-color);
+}
+
+.tool-card-icon {
     font-size: 2.5rem;
-    margin-bottom: 0.75rem;
+    flex-shrink: 0;
 }
 
-.tool-card h3 {
-    font-size: 1.1rem;
-    margin-bottom: 0.5rem;
+.tool-card-info h3 {
+    font-size: 1.15rem;
+    font-weight: 600;
+    margin-bottom: 0.25rem;
 }
 
-.tool-card p {
+.tool-card-info p {
     font-size: 0.9rem;
     color: var(--text-secondary);
+}
+
+.tool-card-body {
+    padding: 1.5rem;
+}
+
+.tool-input-group {
     margin-bottom: 1rem;
 }
 
-.tool-demo {
-    margin-top: 1rem;
+.tool-input-group label {
+    display: block;
+    font-weight: 600;
+    font-size: 0.9rem;
+    margin-bottom: 0.4rem;
+    color: var(--text-primary);
 }
 
-.tool-input {
+.tool-input-full,
+.tool-textarea-full {
     width: 100%;
     padding: 0.75rem;
     border: 2px solid var(--border-color);
     border-radius: 8px;
-    margin-bottom: 0.75rem;
     font-size: 0.95rem;
+    font-family: inherit;
+    transition: border-color 0.3s ease;
 }
 
-.tool-btn {
+.tool-input-full:focus,
+.tool-textarea-full:focus {
+    outline: none;
+    border-color: var(--primary-color);
+}
+
+.tool-textarea-full {
+    resize: vertical;
+}
+
+.tool-btn-large {
     width: 100%;
-    padding: 0.75rem;
+    padding: 0.875rem;
     background: var(--gradient-blue);
     color: white;
     border: none;
     border-radius: 8px;
+    font-size: 1rem;
     font-weight: 600;
     cursor: pointer;
     transition: all 0.3s ease;
+    margin-top: 0.5rem;
 }
 
-.tool-btn:hover {
+.tool-btn-large:hover {
     transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+    box-shadow: 0 6px 16px rgba(59, 130, 246, 0.3);
 }
 
-.tool-output {
+/* 工具输出区 */
+.tool-output-full {
     margin-top: 1rem;
+    min-height: 0;
+}
+
+.tool-output-full .loading {
+    color: var(--text-secondary);
+    font-style: italic;
     padding: 1rem;
     background: var(--bg-color);
     border-radius: 8px;
-    min-height: 60px;
 }
 
-.tool-output .loading {
-    color: var(--text-secondary);
-    font-style: italic;
-}
-
-.output-content {
-    font-size: 0.9rem;
-    color: var(--text-primary);
-}
-
-.output-content p {
-    margin-bottom: 0.5rem;
-}
-
-.color-palette {
-    display: flex;
-    gap: 0.5rem;
-}
-
-.color-swatch {
-    width: 40px;
-    height: 40px;
+.tool-output-full .output-content {
+    background: var(--bg-color);
     border-radius: 8px;
-    border: 2px solid var(--border-color);
+    overflow: hidden;
+}
+
+.tool-output-full .output-text {
+    padding: 1.25rem;
+    font-size: 0.95rem;
+    color: var(--text-primary);
+    line-height: 1.8;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+
+/* 输出操作按钮 */
+.output-actions {
+    display: flex;
+    gap: 0.75rem;
+    padding: 0.75rem 1.25rem;
+    border-top: 1px solid var(--border-color);
+    background: white;
+}
+
+.output-btn {
+    padding: 0.5rem 1.25rem;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: none;
+}
+
+.copy-btn {
+    background: var(--gradient-blue);
+    color: white;
+}
+
+.copy-btn:hover {
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+}
+
+.copy-btn.copied {
+    background: #10b981;
+}
+
+.download-btn {
+    background: var(--bg-color);
+    color: var(--text-primary);
+    border: 1px solid var(--border-color);
+}
+
+.download-btn:hover {
+    border-color: var(--primary-color);
+    color: var(--primary-color);
 }
 
 /* 服务优势 */
