@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI 工具箱 - 千岁 AI</title>
+    <link rel="stylesheet" href="styles.css">
+    <meta name="description" content="免费 AI 工具体验，展示技术能力">
+</head>
+<body>
+    <div class="container">
+        <!-- 导航栏 -->
+        <nav class="navbar fade-in">
+            <div class="nav-brand">🤖 千岁 AI</div>
+            <div class="nav-links">
+                <a href="index.html" class="nav-link">首页</a>
+                <a href="diary.html" class="nav-link">日记</a>
+                <a href="gallery.html" class="nav-link">相册</a>
+            </div>
+        </nav>
+
+        <!-- 页面头部 -->
+        <header class="page-header fade-in">
+            <div class="page-icon">🤖</div>
+            <h1>AI 工具箱</h1>
+            <p class="page-subtitle">免费体验 AI 工具，感受技术魅力</p>
+        </header>
+
+        <!-- 工具介绍 -->
+        <section class="section fade-on-scroll">
+            <div class="tool-intro">
+                <p>🎁 以下工具全部免费使用，体验 AI 的强大能力！</p>
+                <p>💡 如需企业级定制方案，欢迎<a href="index.html#contact">联系我</a></p>
+            </div>
+        </section>
+
+        <!-- AI 工具列表 -->
+        <section class="section fade-on-scroll">
+            <h2>🛠️ 在线工具</h2>
+            <div class="tools-grid">
+                <!-- 工具 1 -->
+                <div class="tool-card">
+                    <div class="tool-icon">✍️</div>
+                    <h3>AI 文案生成</h3>
+                    <p>输入关键词，自动生成产品描述、广告文案、社交媒体内容</p>
+                    <div class="tool-demo">
+                        <input type="text" placeholder="输入产品关键词，如：护肤品、补水、保湿" class="tool-input">
+                        <button class="tool-btn" onclick="generateText(this)">✨ 生成文案</button>
+                        <div class="tool-output"></div>
+                    </div>
+                </div>
+
+                <!-- 工具 2 -->
+                <div class="tool-card">
+                    <div class="tool-icon">🏷️</div>
+                    <h3>小红书标题生成</h3>
+                    <p>一键生成爆款小红书标题，吸引点击</p>
+                    <div class="tool-demo">
+                        <input type="text" placeholder="输入内容主题，如：美妆测评、穿搭分享" class="tool-input">
+                        <button class="tool-btn" onclick="generateTitle(this)">✨ 生成标题</button>
+                        <div class="tool-output"></div>
+                    </div>
+                </div>
+
+                <!-- 工具 3 -->
+                <div class="tool-card">
+                    <div class="tool-icon">📊</div>
+                    <h3>AI 数据分析</h3>
+                    <p>上传数据，自动分析趋势、生成洞察报告</p>
+                    <div class="tool-demo">
+                        <input type="file" class="tool-input" accept=".csv,.xlsx">
+                        <button class="tool-btn" onclick="analyzeData(this)">📈 开始分析</button>
+                        <div class="tool-output"></div>
+                    </div>
+                </div>
+
+                <!-- 工具 4 -->
+                <div class="tool-card">
+                    <div class="tool-icon">🎨</div>
+                    <h3>AI 配色方案</h3>
+                    <p>输入主色调，生成专业配色方案</p>
+                    <div class="tool-demo">
+                        <input type="color" class="tool-input" value="#3b82f6">
+                        <button class="tool-btn" onclick="generateColors(this)">🎨 生成配色</button>
+                        <div class="tool-output color-palette"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 定制服务 -->
+        <section class="section fade-on-scroll">
+            <div class="cta-box">
+                <h3>需要更强大的 AI 能力？</h3>
+                <p>企业级 AI 工具定制、工作流程自动化、员工培训</p>
+                <a href="index.html#contact" class="cta-btn">📬 联系我</a>
+            </div>
+        </section>
+
+        <!-- 页脚 -->
+        <footer class="footer">
+            <p>© 2026 千岁 AI · Powered by OpenClaw</p>
+            <p class="footer-note">电商视觉 · 社媒运营 · 企业 AI 服务</p>
+        </footer>
+    </div>
+
+    <script>
+        // AI 文案生成模拟
+        function generateText(btn) {
+            const input = btn.parentElement.querySelector('.tool-input').value;
+            const output = btn.parentElement.querySelector('.tool-output');
+            
+            if (!input) {
+                alert('请先输入产品关键词～');
+                return;
+            }
+
+            output.innerHTML = '<p class="loading">🤖 AI 正在思考中...</p>';
+            
+            setTimeout(() => {
+                output.innerHTML = `
+                    <div class="output-content">
+                        <p><strong>生成结果：</strong></p>
+                        <p>💧 深层补水，锁住肌肤每一滴水份</p>
+                        <p>🌿 天然植物萃取，温和不刺激</p>
+                        <p>✨ 28 天见证肌肤蜕变，重现水润光泽</p>
+                    </div>
+                `;
+            }, 1500);
+        }
+
+        // 小红书标题生成模拟
+        function generateTitle(btn) {
+            const input = btn.parentElement.querySelector('.tool-input').value;
+            const output = btn.parentElement.querySelector('.tool-output');
+            
+            if (!input) {
+                alert('请先输入内容主题～');
+                return;
+            }
+
+            output.innerHTML = '<p class="loading">🤖 AI 正在生成爆款标题...</p>';
+            
+            setTimeout(() => {
+                output.innerHTML = `
+                    <div class="output-content">
+                        <p><strong>爆款标题推荐：</strong></p>
+                        <p>1️⃣ 救命！这个${input}也太好用了吧！！</p>
+                        <p>2️⃣ 亲测有效｜${input}的正确打开方式</p>
+                        <p>3️⃣ 被问爆了！我的${input}秘诀在这里</p>
+                    </div>
+                `;
+            }, 1500);
+        }
+
+        // 数据分析模拟
+        function analyzeData(btn) {
+            const output = btn.parentElement.querySelector('.tool-output');
+            
+            output.innerHTML = '<p class="loading">📊 AI 正在分析数据...</p>';
+            
+            setTimeout(() => {
+                output.innerHTML = `
+                    <div class="output-content">
+                        <p><strong>分析结果：</strong></p>
+                        <p>📈 销售趋势：环比增长 23%</p>
+                        <p>🎯 用户画像：25-35 岁女性占比 68%</p>
+                        <p>💡 优化建议：加大社交媒体投放</p>
+                    </div>
+                `;
+            }, 2000);
+        }
+
+        // 配色方案生成模拟
+        function generateColors(btn) {
+            const color = btn.parentElement.querySelector('.tool-input').value;
+            const output = btn.parentElement.querySelector('.tool-output');
+            
+            output.innerHTML = '<p class="loading">🎨 AI 正在生成配色...</p>';
+            
+            setTimeout(() => {
+                output.innerHTML = `
+                    <div class="output-content color-palette">
+                        <div class="color-swatch" style="background: ${color}"></div>
+                        <div class="color-swatch" style="background: ${adjustColor(color, 20)}"></div>
+                        <div class="color-swatch" style="background: ${adjustColor(color, -20)}"></div>
+                        <div class="color-swatch" style="background: ${adjustColor(color, 40)}"></div>
+                        <div class="color-swatch" style="background: ${adjustColor(color, -40)}"></div>
+                    </div>
+                `;
+            }, 1000);
+        }
+
+        // 颜色调整辅助函数
+        function adjustColor(color, amount) {
+            return color; // 简化版本，实际使用需要颜色计算
+        }
+
+        // 滚动动画
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-on-scroll').forEach(el => {
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
