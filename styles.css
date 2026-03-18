@@ -637,52 +637,138 @@ body.loaded {
     margin-top: 1rem !important;
 }
 
-/* 微信二维码 */
-.wechat-qr-section {
-    margin: 2rem 0;
-}
-
-.wechat-qr-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 1.5rem;
+/* 联系按钮 */
+.contact-buttons {
+    display: flex;
     justify-content: center;
-    margin-bottom: 1.5rem;
+    gap: 1rem;
+    margin: 1.5rem 0;
+    flex-wrap: wrap;
 }
 
-.wechat-qr-card {
-    background: var(--bg-color);
-    padding: 1.5rem;
-    border-radius: 16px;
-    box-shadow: var(--shadow);
+.contact-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 12px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
     transition: all 0.3s ease;
+    box-shadow: var(--shadow);
+}
+
+.btn-icon {
+    font-size: 1.2rem;
+}
+
+.wechat-btn {
+    background: linear-gradient(135deg, #07c160 0%, #06ad56 100%);
+    color: white;
+}
+
+.wechat-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 16px rgba(7, 193, 96, 0.3);
+}
+
+.official-btn {
+    background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+    color: white;
+}
+
+.official-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 16px rgba(59, 130, 246, 0.3);
+}
+
+/* 二维码弹窗 */
+.qr-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(4px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
+
+.qr-modal.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+.qr-modal-content {
+    background: var(--card-bg);
+    border-radius: 20px;
+    padding: 2rem;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    position: relative;
+    transform: scale(0.9) translateY(20px);
+    transition: all 0.3s ease;
+}
+
+.qr-modal.show .qr-modal-content {
+    transform: scale(1) translateY(0);
+}
+
+.qr-close {
+    position: absolute;
+    top: 0.75rem;
+    right: 0.75rem;
+    width: 32px;
+    height: 32px;
+    border: none;
+    background: var(--bg-color);
+    border-radius: 50%;
+    font-size: 1.5rem;
+    color: var(--text-secondary);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.qr-close:hover {
+    background: var(--border-color);
+    color: var(--text-primary);
+    transform: rotate(90deg);
+}
+
+.qr-container {
     text-align: center;
 }
 
-.wechat-qr-card:hover {
-    transform: translateY(-4px);
-    box-shadow: var(--shadow-hover);
-}
-
-.wechat-qr-image {
-    width: 180px;
-    height: 180px;
+.qr-image {
+    width: 280px;
+    height: 280px;
     object-fit: contain;
-    border-radius: 8px;
+    border-radius: 12px;
     background: white;
-    padding: 0.5rem;
+    padding: 1rem;
+    box-shadow: var(--shadow);
 }
 
-.wechat-qr-title {
-    margin-top: 1rem;
-    font-size: 1rem;
-    color: var(--text-primary);
+.qr-title {
+    margin-top: 1.25rem;
+    font-size: 1.2rem;
     font-weight: 600;
+    color: var(--text-primary);
 }
 
-.wechat-qr-text {
+.qr-desc {
     margin-top: 0.5rem;
-    font-size: 0.85rem;
+    font-size: 0.95rem;
     color: var(--text-secondary);
 }
 
@@ -1189,9 +1275,25 @@ body.loaded {
         grid-template-columns: 1fr;
     }
 
+    .contact-buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .contact-btn {
+        width: 100%;
+        max-width: 200px;
+        justify-content: center;
+    }
+
     .contact-links {
         flex-direction: column;
         gap: 0.75rem;
+    }
+
+    .qr-image {
+        width: 240px;
+        height: 240px;
     }
 
     .back-to-top {
