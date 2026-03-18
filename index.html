@@ -123,67 +123,65 @@
         <!-- 精选留言 -->
         <section class="section fade-on-scroll">
             <h2>💬 精选留言</h2>
-            <div class="featured-messages">
-                <div class="featured-message">
-                    <div class="message-content">
-                        <p>需要设计一款护肤品的主图和详情页，产品刚上市，想要清新简约风格，预算 5k 左右，有类似案例可以参考吗？</p>
+            <div class="marquee-container">
+                <div class="marquee-track">
+                    <div class="marquee-card">
+                        <div class="marquee-card-header">
+                            <span class="marquee-user">👤 张先生</span>
+                            <span class="marquee-tag tag-ecommerce">🎨 电商视觉</span>
+                        </div>
+                        <p class="marquee-card-body">需要设计一款护肤品的主图和详情页，产品刚上市，想要清新简约风格</p>
+                        <span class="marquee-time">2 小时前</span>
                     </div>
-                    <div class="message-footer">
-                        <span class="message-user">👤 张先生</span>
-                        <span class="message-service">🎨 电商视觉设计</span>
-                        <span class="message-time">2 小时前</span>
-                    </div>
-                </div>
 
-                <div class="featured-message">
-                    <div class="message-content">
-                        <p>小红书账号代运营，美妆类目，已有产品，需要内容策划和笔记撰写，希望能打造爆款～</p>
+                    <div class="marquee-card">
+                        <div class="marquee-card-header">
+                            <span class="marquee-user">👤 李女士</span>
+                            <span class="marquee-tag tag-social">📱 社媒运营</span>
+                        </div>
+                        <p class="marquee-card-body">小红书账号代运营，美妆类目，需要内容策划和笔记撰写</p>
+                        <span class="marquee-time">5 小时前</span>
                     </div>
-                    <div class="message-footer">
-                        <span class="message-user">👤 李女士</span>
-                        <span class="message-service">📱 社媒内容运营</span>
-                        <span class="message-time">5 小时前</span>
-                    </div>
-                </div>
 
-                <div class="featured-message">
-                    <div class="message-content">
-                        <p>想引入 AI 工具优化客服流程，需要方案设计和员工培训，团队 20 人左右，有企业级解决方案吗？</p>
+                    <div class="marquee-card">
+                        <div class="marquee-card-header">
+                            <span class="marquee-user">👤 某科技公司</span>
+                            <span class="marquee-tag tag-ai">🚀 企业 AI</span>
+                        </div>
+                        <p class="marquee-card-body">想引入 AI 工具优化客服流程，需要方案设计和员工培训</p>
+                        <span class="marquee-time">1 天前</span>
                     </div>
-                    <div class="message-footer">
-                        <span class="message-user">👤 某科技公司</span>
-                        <span class="message-service">🚀 企业 AI 服务</span>
-                        <span class="message-time">1 天前</span>
+
+                    <div class="marquee-card">
+                        <div class="marquee-card-header">
+                            <span class="marquee-user">👤 王总</span>
+                            <span class="marquee-tag tag-ecommerce">🎨 电商视觉</span>
+                        </div>
+                        <p class="marquee-card-body">新品上市，需要一套完整的电商视觉方案，主图+详情页+视频</p>
+                        <span class="marquee-time">2 天前</span>
+                    </div>
+
+                    <div class="marquee-card">
+                        <div class="marquee-card-header">
+                            <span class="marquee-user">👤 陈女士</span>
+                            <span class="marquee-tag tag-social">📱 社媒运营</span>
+                        </div>
+                        <p class="marquee-card-body">公众号内容代写，每周 3 篇深度文章，健康养生方向</p>
+                        <span class="marquee-time">3 天前</span>
+                    </div>
+
+                    <div class="marquee-card">
+                        <div class="marquee-card-header">
+                            <span class="marquee-user">👤 某电商团队</span>
+                            <span class="marquee-tag tag-ai">🚀 企业 AI</span>
+                        </div>
+                        <p class="marquee-card-body">团队 10 人，想做 AI 培训，提升全员效率</p>
+                        <span class="marquee-time">3 天前</span>
                     </div>
                 </div>
             </div>
             <div class="view-more">
                 <a href="message-wall.html" class="view-more-btn">查看全部留言 →</a>
-            </div>
-        </section>
-
-        <!-- 快速留言 -->
-        <section class="section fade-on-scroll">
-            <div class="quick-message-box">
-                <h2>📮 快速留言</h2>
-                <p class="quick-message-desc">简单描述需求，我会在 2 小时内联系你</p>
-                <form id="quickMessageForm" class="quick-message-form">
-                    <div class="quick-form-row">
-                        <input type="text" id="quickName" placeholder="怎么称呼你？*" class="quick-input" required>
-                        <input type="text" id="quickContact" placeholder="微信/手机/邮箱*" class="quick-input" required>
-                    </div>
-                    <div class="quick-form-row">
-                        <select id="quickService" class="quick-input" required>
-                            <option value="">请选择服务类型</option>
-                            <option value="ecommerce">🎨 电商视觉设计</option>
-                            <option value="social">📱 社媒内容运营</option>
-                            <option value="ai">🚀 企业 AI 服务</option>
-                            <option value="other">💡 其他需求</option>
-                        </select>
-                    </div>
-                    <textarea id="quickMessage" placeholder="请简单描述你的需求..." class="quick-textarea" rows="3" required></textarea>
-                    <button type="submit" class="quick-submit-btn">🚀 立即提交</button>
-                </form>
             </div>
         </section>
 
@@ -280,23 +278,6 @@
             }
         });
 
-        // 快速留言表单提交
-        document.getElementById('quickMessageForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            const formData = {
-                name: document.getElementById('quickName').value,
-                contact: document.getElementById('quickContact').value,
-                service: document.getElementById('quickService').value,
-                message: document.getElementById('quickMessage').value
-            };
-
-            // TODO: 实际使用时需要对接后端 API 或飞书多维表格
-            alert('✅ 需求提交成功！我会在 2 小时内联系你～');
-            
-            this.reset();
-        });
-
         // 滚动动画 - Intersection Observer
         const observerOptions = {
             threshold: 0.1,
@@ -329,6 +310,13 @@
         backToTop.addEventListener('click', () => {
             window.scrollTo({ top: 0, behavior: 'smooth' });
         });
+
+        // 无缝滚动 - 复制卡片实现循环
+        const marqueeTrack = document.querySelector('.marquee-track');
+        if (marqueeTrack) {
+            const cards = marqueeTrack.innerHTML;
+            marqueeTrack.innerHTML = cards + cards;
+        }
 
         // 加载完成动画
         window.addEventListener('load', () => {
