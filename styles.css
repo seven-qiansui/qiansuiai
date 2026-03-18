@@ -2207,73 +2207,90 @@ body.loaded {
     flex-wrap: wrap;
 }
 
-/* 作品列表 */
-.artwork-list {
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
-}
-
-.artwork-item {
+/* 合集大图 */
+.hero-artwork {
     background: var(--card-bg);
     border-radius: 16px;
     overflow: hidden;
     box-shadow: var(--shadow);
-    opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 0.5s ease, transform 0.5s ease;
 }
 
-.artwork-item.visible {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-.artwork-image {
-    width: 100%;
-    overflow: hidden;
-}
-
-.artwork-image img {
+.hero-artwork img {
     width: 100%;
     height: auto;
     display: block;
 }
 
-.artwork-info {
-    padding: 1.25rem;
-    border-bottom: 1px solid var(--border-color);
-}
-
-.artwork-info h3 {
-    font-size: 1.2rem;
-    font-weight: 600;
-    margin-bottom: 0.5rem;
-}
-
-.artwork-info p {
+.hero-caption {
+    text-align: center;
+    padding: 0.75rem;
+    font-size: 0.9rem;
     color: var(--text-secondary);
-    font-size: 0.95rem;
+    border-top: 1px solid var(--border-color);
 }
 
-/* 点评区 */
-.artwork-comments {
-    padding: 1.25rem;
+/* 单品小图网格 */
+.singles-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 0.75rem;
+}
+
+.single-item {
+    background: var(--card-bg);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    position: relative;
+    aspect-ratio: 1;
+}
+
+.single-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.3s ease;
+}
+
+.single-item:hover img {
+    transform: scale(1.05);
+}
+
+.single-item span {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(transparent, rgba(0,0,0,0.5));
+    color: white;
+    padding: 0.4rem;
+    font-size: 0.8rem;
+    text-align: center;
+    font-weight: 500;
+}
+
+/* 统一点评区 */
+.comments-section {
+    background: var(--card-bg);
+    border-radius: 16px;
+    padding: 1.5rem;
+    box-shadow: var(--shadow);
 }
 
 .comment-list {
-    margin-bottom: 1rem;
+    margin-bottom: 1.5rem;
 }
 
 .no-comment {
     color: var(--text-secondary);
     font-size: 0.9rem;
     text-align: center;
-    padding: 1rem 0;
+    padding: 1.5rem 0;
 }
 
 .comment-item {
-    padding: 0.75rem 0;
+    padding: 1rem 0;
     border-bottom: 1px solid var(--border-color);
 }
 
@@ -2298,7 +2315,7 @@ body.loaded {
 }
 
 .comment-body {
-    font-size: 0.9rem;
+    font-size: 0.95rem;
     color: var(--text-secondary);
     line-height: 1.6;
 }
@@ -2307,6 +2324,8 @@ body.loaded {
     display: flex;
     flex-direction: column;
     gap: 0.75rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border-color);
 }
 
 .comment-name {
@@ -2497,6 +2516,10 @@ body.loaded {
 
     .comment-name {
         width: 100%;
+    }
+
+    .singles-grid {
+        grid-template-columns: repeat(3, 1fr);
     }
 
     .gallery-filter {
