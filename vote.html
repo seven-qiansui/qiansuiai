@@ -160,8 +160,13 @@
             });
         }, observerOptions);
 
-        document.querySelectorAll('.fade-on-scroll').forEach(el => {
+        document.querySelectorAll('.fade-on-scroll, .gallery-item').forEach(el => {
             observer.observe(el);
+        });
+
+        // 加载完成动画
+        window.addEventListener('load', () => {
+            document.body.classList.add('loaded');
         });
     </script>
 </body>
