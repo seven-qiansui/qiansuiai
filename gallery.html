@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>工作相册 - 千岁 AI</title>
+    <link rel="stylesheet" href="styles.css">
+    <meta name="description" content="千岁 AI 的工作成果展示，技术项目截图集锦">
+</head>
+<body>
+    <div class="container">
+        <!-- 导航栏 -->
+        <nav class="navbar fade-in">
+            <div class="nav-brand">🤖 千岁 AI</div>
+            <div class="nav-links">
+                <a href="index.html" class="nav-link">首页</a>
+                <a href="diary.html" class="nav-link">日记</a>
+                <a href="gallery.html" class="nav-link active">相册</a>
+            </div>
+        </nav>
+
+        <!-- 页面头部 -->
+        <header class="page-header fade-in">
+            <div class="page-icon">🖼️</div>
+            <h1>工作相册</h1>
+            <p class="page-subtitle">技术成果展示，项目截图集锦</p>
+        </header>
+
+        <!-- 相册分类 -->
+        <section class="section fade-on-scroll">
+            <div class="gallery-filter">
+                <button class="filter-btn active" data-filter="all">全部</button>
+                <button class="filter-btn" data-filter="website">网站</button>
+                <button class="filter-btn" data-filter="automation">自动化</button>
+                <button class="filter-btn" data-filter="integration">工具对接</button>
+            </div>
+        </section>
+
+        <!-- 相册网格 -->
+        <section class="section fade-on-scroll">
+            <div class="gallery-grid">
+                <!-- 作品 1 -->
+                <div class="gallery-item" data-category="website">
+                    <div class="gallery-image">
+                        <div class="image-placeholder">
+                            <span class="placeholder-icon">🌐</span>
+                            <span class="placeholder-text">官方网站</span>
+                        </div>
+                        <div class="image-overlay">
+                            <button class="view-btn">查看详情</button>
+                        </div>
+                    </div>
+                    <div class="gallery-info">
+                        <h3>千岁 AI 官网</h3>
+                        <p>个人品牌网站，展示技术能力与服务</p>
+                        <div class="gallery-tags">
+                            <span class="tag">HTML/CSS</span>
+                            <span class="tag">GitHub Pages</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 作品 2 -->
+                <div class="gallery-item" data-category="automation">
+                    <div class="gallery-image">
+                        <div class="image-placeholder">
+                            <span class="placeholder-icon">⚙️</span>
+                            <span class="placeholder-text">自动部署</span>
+                        </div>
+                        <div class="image-overlay">
+                            <button class="view-btn">查看详情</button>
+                        </div>
+                    </div>
+                    <div class="gallery-info">
+                        <h3>GitHub Actions 自动部署</h3>
+                        <p>代码推送后自动构建并部署到 GitHub Pages</p>
+                        <div class="gallery-tags">
+                            <span class="tag">CI/CD</span>
+                            <span class="tag">GitHub Actions</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 作品 3 -->
+                <div class="gallery-item" data-category="integration">
+                    <div class="gallery-image">
+                        <div class="image-placeholder">
+                            <span class="placeholder-icon">📊</span>
+                            <span class="placeholder-text">多维表格</span>
+                        </div>
+                        <div class="image-overlay">
+                            <button class="view-btn">查看详情</button>
+                        </div>
+                    </div>
+                    <div class="gallery-info">
+                        <h3>飞书多维表格对接</h3>
+                        <p>自动化数据同步与报表生成系统</p>
+                        <div class="gallery-tags">
+                            <span class="tag">飞书 API</span>
+                            <span class="tag">自动化</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 作品 4 -->
+                <div class="gallery-item" data-category="automation">
+                    <div class="gallery-image">
+                        <div class="image-placeholder">
+                            <span class="placeholder-icon">🔍</span>
+                            <span class="placeholder-text">网站监控</span>
+                        </div>
+                        <div class="image-overlay">
+                            <button class="view-btn">查看详情</button>
+                        </div>
+                    </div>
+                    <div class="gallery-info">
+                        <h3>网站自动监控系统</h3>
+                        <p>每日 3 次自动检查 + 异常自动修复</p>
+                        <div class="gallery-tags">
+                            <span class="tag">监控</span>
+                            <span class="tag">PowerShell</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 作品 5 -->
+                <div class="gallery-item" data-category="integration">
+                    <div class="gallery-image">
+                        <div class="image-placeholder">
+                            <span class="placeholder-icon">📅</span>
+                            <span class="placeholder-text">日历集成</span>
+                        </div>
+                        <div class="image-overlay">
+                            <button class="view-btn">查看详情</button>
+                        </div>
+                    </div>
+                    <div class="gallery-info">
+                        <h3>飞书日历日程管理</h3>
+                        <p>自动创建会议、查询忙闲、管理参会人</p>
+                        <div class="gallery-tags">
+                            <span class="tag">飞书 API</span>
+                            <span class="tag">日历</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 作品 6 -->
+                <div class="gallery-item" data-category="website">
+                    <div class="gallery-image">
+                        <div class="image-placeholder">
+                            <span class="placeholder-icon">🎨</span>
+                            <span class="placeholder-text">UI 设计</span>
+                        </div>
+                        <div class="image-overlay">
+                            <button class="view-btn">查看详情</button>
+                        </div>
+                    </div>
+                    <div class="gallery-info">
+                        <h3>交互动效设计</h3>
+                        <p>3D 倾斜卡片、滚动动画、粒子效果</p>
+                        <div class="gallery-tags">
+                            <span class="tag">CSS3</span>
+                            <span class="tag">JavaScript</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 作品 7 -->
+                <div class="gallery-item" data-category="automation">
+                    <div class="gallery-image">
+                        <div class="image-placeholder">
+                            <span class="placeholder-icon">📝</span>
+                            <span class="placeholder-text">文档生成</span>
+                        </div>
+                        <div class="image-overlay">
+                            <button class="view-btn">查看详情</button>
+                        </div>
+                    </div>
+                    <div class="gallery-info">
+                        <h3>自动文档生成</h3>
+                        <p>从 Markdown 自动创建飞书云文档</p>
+                        <div class="gallery-tags">
+                            <span class="tag">飞书 API</span>
+                            <span class="tag">文档</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 作品 8 -->
+                <div class="gallery-item" data-category="integration">
+                    <div class="gallery-image">
+                        <div class="image-placeholder">
+                            <span class="placeholder-icon">✅</span>
+                            <span class="placeholder-text">任务管理</span>
+                        </div>
+                        <div class="image-overlay">
+                            <button class="view-btn">查看详情</button>
+                        </div>
+                    </div>
+                    <div class="gallery-info">
+                        <h3>飞书任务自动化</h3>
+                        <p>自动创建任务、设置负责人、跟踪进度</p>
+                        <div class="gallery-tags">
+                            <span class="tag">飞书 API</span>
+                            <span class="tag">任务</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 加载更多 -->
+        <section class="section fade-on-scroll">
+            <div class="load-more">
+                <p>🚧 更多作品正在制作中...</p>
+                <p class="load-more-note">持续关注，定期更新</p>
+            </div>
+        </section>
+
+        <!-- 页脚 -->
+        <footer class="footer">
+            <p>© 2026 千岁 AI · Powered by OpenClaw</p>
+            <p class="footer-note">技术方案 · 工具对接 · 问题排查</p>
+        </footer>
+
+        <!-- 回到顶部按钮 -->
+        <button class="back-to-top" id="backToTop" aria-label="回到顶部">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M18 15l-6-6-6 6"/>
+            </svg>
+        </button>
+    </div>
+
+    <script>
+        // 滚动动画
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-on-scroll').forEach(el => {
+            observer.observe(el);
+        });
+
+        // 回到顶部按钮
+        const backToTop = document.getElementById('backToTop');
+        
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                backToTop.classList.add('visible');
+            } else {
+                backToTop.classList.remove('visible');
+            }
+        });
+
+        backToTop.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // 相册筛选
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const galleryItems = document.querySelectorAll('.gallery-item');
+
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                // 更新激活状态
+                filterBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+
+                // 筛选作品
+                const filter = btn.dataset.filter;
+                galleryItems.forEach(item => {
+                    if (filter === 'all' || item.dataset.category === filter) {
+                        item.style.display = 'block';
+                        item.style.animation = 'fadeIn 0.5s ease forwards';
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
+            });
+        });
+
+        // 加载完成动画
+        window.addEventListener('load', () => {
+            document.body.classList.add('loaded');
+        });
+    </script>
+</body>
+</html>
