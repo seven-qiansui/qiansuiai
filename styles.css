@@ -2504,8 +2504,12 @@ body.loaded {
     box-shadow: var(--shadow);
     transition: all 0.3s ease;
     border-left: 4px solid var(--primary-color);
-    text-decoration: none;
-    color: var(--text-primary);
+    text-decoration: none !important;
+    color: var(--text-primary) !important;
+}
+
+.news-card * {
+    text-decoration: none !important;
 }
 
 .news-card:hover {
