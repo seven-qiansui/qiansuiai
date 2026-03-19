@@ -6,7 +6,13 @@
     <title>浮梦·高级珠宝系列 - 千岁 AI</title>
     <link rel="stylesheet" href="styles.css">
     <style>
-        .dream-series{background:linear-gradient(135deg,#8B7DB8 0%,#3D8B6E 50%,#C4A35A 100%);padding:60px 20px;text-align:center;color:#fff;margin-bottom:40px;border-radius:0 0 24px 24px}
+        .dream-series{background:#1A1A2E;padding:60px 20px;text-align:center;color:#fff;margin-bottom:40px;border-radius:0 0 24px 24px}
+        .design-principles{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px;margin-top:24px}
+        .principle-card{background:#fff;padding:28px;border-radius:16px;box-shadow:0 4px 20px rgba(0,0,0,0.08);text-align:center;transition:transform .2s}
+        .principle-card:hover{transform:translateY(-4px)}
+        .principle-icon{width:64px;height:64px;border-radius:16px;display:flex;align-items:center;justify-content:center;font-size:28px;margin:0 auto 16px;color:#fff;box-shadow:0 4px 12px rgba(0,0,0,0.15)}
+        .principle-card h3{font-size:16px;margin-bottom:8px;color:#222;font-weight:700}
+        .principle-card p{font-size:14px;color:#666;line-height:1.6}
         .dream-series h1{font-size:36px;margin-bottom:12px;font-weight:900;letter-spacing:4px}
         .dream-series .subtitle{font-size:18px;opacity:0.9;margin-bottom:24px}
         .dream-series .tags{display:flex;justify-content:center;gap:12px;flex-wrap:wrap}
@@ -18,12 +24,14 @@
         .story-card .icon{font-size:32px;margin-bottom:12px}
         .story-card h3{font-size:16px;margin-bottom:8px;color:#222}
         .story-card p{font-size:14px;color:#666;line-height:1.6}
-        .piece-detail{margin:40px 0;padding:30px;background:#fff;border:2px solid #e8e4df;border-radius:16px}
-        .piece-detail h3{font-size:22px;margin-bottom:16px;color:#8B7DB8}
-        .piece-detail .meta{display:flex;gap:16px;flex-wrap:wrap;margin-bottom:20px;font-size:13px;color:#888}
-        .piece-detail .meta span{background:#f5f3ee;padding:4px 12px;border-radius:4px}
-        .piece-detail p{font-size:14px;color:#555;line-height:1.8;margin-bottom:12px}
-        .piece-detail ul{margin:12px 0 12px 20px;font-size:14px;color:#555;line-height:1.8}
+        .piece-detail{margin:40px 0;padding:0;background:#fff;border:2px solid #e8e4df;border-radius:16px;overflow:hidden;box-shadow:0 4px 20px rgba(0,0,0,0.06)}
+        .piece-detail h3{font-size:22px;margin:0;padding:24px 30px 16px;color:#8B7DB8;font-weight:800;border-bottom:2px solid #f5f3ee}
+        .piece-detail .meta{display:flex;gap:12px;flex-wrap:wrap;padding:0 30px 20px;font-size:13px;color:#888}
+        .piece-detail .meta span{background:#f5f3ee;padding:6px 14px;border-radius:6px;font-weight:600}
+        .piece-detail img{width:100%;margin:0;border-radius:0;box-shadow:none}
+        .piece-detail .content{padding:20px 30px 30px}
+        .piece-detail .content p{font-size:14px;color:#555;line-height:1.8;margin-bottom:12px}
+        .piece-detail .content ul{margin:12px 0 12px 20px;font-size:14px;color:#555;line-height:1.8}
         .material-table{width:100%;border-collapse:collapse;margin:20px 0;font-size:13px}
         .material-table th,.material-table td{border:1px solid #ddd;padding:10px;text-align:left}
         .material-table th{background:#f5f3ee;font-weight:700}
@@ -84,19 +92,19 @@
             <p style="font-size:15px;color:#555;line-height:1.8;margin-bottom:24px">
                 整套设计以「梦的五个瞬间」为叙事线——<strong>入梦、漂浮、绽放、纠缠、梦醒</strong>。每件单品对应一种梦的状态，材质语言统一但造型各异，形成完整的佩戴叙事。
             </p>
-            <div class="story-grid">
-                <div class="story-card">
-                    <div class="icon">🌊</div>
+            <div class="design-principles">
+                <div class="principle-card">
+                    <div class="principle-icon" style="background:linear-gradient(135deg,#3D8B6E,#8B7DB8)">🌊</div>
                     <h3>线条</h3>
                     <p>流体曲线，没有硬折角，所有转折如呼吸般自然</p>
                 </div>
-                <div class="story-card">
-                    <div class="icon">⚖️</div>
+                <div class="principle-card">
+                    <div class="principle-icon" style="background:linear-gradient(135deg,#C4A35A,#E8E4F0)">⚖️</div>
                     <h3>材质对比</h3>
                     <p>玉石的「润」× 黄金的「刚」× 宝石的「烈」</p>
                 </div>
-                <div class="story-card">
-                    <div class="icon">◻️</div>
+                <div class="principle-card">
+                    <div class="principle-icon" style="background:linear-gradient(135deg,#8B7DB8,#C4A35A)">◻️</div>
                     <h3>留白</h3>
                     <p>每件作品至少 30% 是"空"的——镂空、悬浮、断开，让光和空气成为设计的一部分</p>
                 </div>
@@ -145,10 +153,12 @@
                     <span>🏆 18K 黄金约 28-32g</span>
                     <span>✨ 蓝宝石×2 + 钻石约 1.2ct</span>
                 </div>
-                <img src="jewelry/dream-necklace.jpg" alt="项链「入梦·流」" style="width:100%;border-radius:12px;margin:16px 0;box-shadow:0 4px 12px rgba(0,0,0,0.08)">
-                <p><strong>梦境对应：</strong>入梦——意识如水流涌入</p>
-                <p><strong>结构描述：</strong>项链前端为一条不对称的流体金属曲线，从左锁骨延伸至胸口中央。主石为冰种翡翠随形切割，镶嵌在流体曲线的汇聚点，如水流裹挟着一块冰。左侧为多层细金链（3-4 根，不同长度，自然垂落）；右侧为单根粗链过渡为金属流体造型。</p>
-                <p><strong>设计意象：</strong>想象一条河在锁骨上流动，翡翠是河中最透亮的那块冰，被水流推到最低点停住。链条是水流的轨迹——左边散开如溪流分叉，右边收拢为主河道。</p>
+                <img src="jewelry/dream-necklace.jpg" alt="项链「入梦·流」" style="width:100%;display:block">
+                <div class="content">
+                    <p><strong>梦境对应：</strong>入梦——意识如水流涌入</p>
+                    <p><strong>结构描述：</strong>项链前端为一条不对称的流体金属曲线，从左锁骨延伸至胸口中央。主石为冰种翡翠随形切割，镶嵌在流体曲线的汇聚点，如水流裹挟着一块冰。左侧为多层细金链（3-4 根，不同长度，自然垂落）；右侧为单根粗链过渡为金属流体造型。</p>
+                    <p><strong>设计意象：</strong>想象一条河在锁骨上流动，翡翠是河中最透亮的那块冰，被水流推到最低点停住。链条是水流的轨迹——左边散开如溪流分叉，右边收拢为主河道。</p>
+                </div>
             </div>
 
             <!-- 单品二 -->
@@ -160,11 +170,13 @@
                     <span>🏆 18K 玫瑰金约 8.3g</span>
                     <span>✨ 不对称设计</span>
                 </div>
-                <img src="jewelry/dream-earrings.jpg" alt="耳饰「漂浮·萤」" style="width:100%;border-radius:12px;margin:16px 0;box-shadow:0 4px 12px rgba(0,0,0,0.08)">
-                <p><strong>梦境对应：</strong>漂浮——梦中万物失重</p>
-                <p><strong>左耳（长款）：</strong>耳钉基座为 18K 金云朵造型（约 12mm），下方悬挂极细金链（长约 7cm），末端为翡翠水滴形吊坠（8×12mm），链中段穿 2 颗小圆钻石。</p>
-                <p><strong>右耳（短款）：</strong>耳钉基座为同款云朵造型，下方簇状设计：3 颗不同大小宝石（翡翠圆珠 + 红宝石 + 钻石），以短针悬挂，间距不等，如萤火虫聚散。</p>
-                <p><strong>设计意象：</strong>左耳是一颗从云里落下的翡翠雨滴，还没落地，悬在半空。右耳是三只萤火虫刚好飞到耳边，还没散开。两边不一样，但都是"漂浮着的东西"。</p>
+                <img src="jewelry/dream-earrings.jpg" alt="耳饰「漂浮·萤」" style="width:100%;display:block">
+                <div class="content">
+                    <p><strong>梦境对应：</strong>漂浮——梦中万物失重</p>
+                    <p><strong>左耳（长款）：</strong>耳钉基座为 18K 金云朵造型（约 12mm），下方悬挂极细金链（长约 7cm），末端为翡翠水滴形吊坠（8×12mm），链中段穿 2 颗小圆钻石。</p>
+                    <p><strong>右耳（短款）：</strong>耳钉基座为同款云朵造型，下方簇状设计：3 颗不同大小宝石（翡翠圆珠 + 红宝石 + 钻石），以短针悬挂，间距不等，如萤火虫聚散。</p>
+                    <p><strong>设计意象：</strong>左耳是一颗从云里落下的翡翠雨滴，还没落地，悬在半空。右耳是三只萤火虫刚好飞到耳边，还没散开。两边不一样，但都是"漂浮着的东西"。</p>
+                </div>
             </div>
 
             <!-- 单品三 -->
@@ -176,10 +188,12 @@
                     <span>🏆 22K 黄金约 8-10g</span>
                     <span>✨ 沙弗莱石×3 + 红宝石 + 钻石×5</span>
                 </div>
-                <img src="jewelry/dream-ring.jpg" alt="戒指「绽放·露」" style="width:100%;border-radius:12px;margin:16px 0;box-shadow:0 4px 12px rgba(0,0,0,0.08)">
-                <p><strong>梦境对应：</strong>绽放——梦中最清晰的画面</p>
-                <p><strong>结构描述：</strong>主石为高冰翡翠蛋面，包镶，镶口边缘做花瓣形态（5 瓣），每瓣尖端镶 1 颗小圆钻。戒臂从主石底部向两侧延伸为藤蔓造型，<strong>左右不对称</strong>——左侧藤蔓紧密缠绕，右侧藤蔓渐疏、末端断开（象征梦的边界模糊）。</p>
-                <p><strong>设计意象：</strong>翡翠是一朵刚开的花，金属是托着它的藤。左边的藤还在长，右边的已经断了——因为梦总是在最美的时候碎掉。花瓣尖上的钻石是还没干的露水。</p>
+                <img src="jewelry/dream-ring.jpg" alt="戒指「绽放·露」" style="width:100%;display:block">
+                <div class="content">
+                    <p><strong>梦境对应：</strong>绽放——梦中最清晰的画面</p>
+                    <p><strong>结构描述：</strong>主石为高冰翡翠蛋面，包镶，镶口边缘做花瓣形态（5 瓣），每瓣尖端镶 1 颗小圆钻。戒臂从主石底部向两侧延伸为藤蔓造型，<strong>左右不对称</strong>——左侧藤蔓紧密缠绕，右侧藤蔓渐疏、末端断开（象征梦的边界模糊）。</p>
+                    <p><strong>设计意象：</strong>翡翠是一朵刚开的花，金属是托着它的藤。左边的藤还在长，右边的已经断了——因为梦总是在最美的时候碎掉。花瓣尖上的钻石是还没干的露水。</p>
+                </div>
             </div>
 
             <!-- 单品四 -->
@@ -191,16 +205,18 @@
                     <span>🏆 18K 黄金 +22K 金约 35-40g</span>
                     <span>✨ 红宝石×4 + 内侧和田玉条</span>
                 </div>
-                <img src="jewelry/dream-bracelet.jpg" alt="手镯「纠缠·环」" style="width:100%;border-radius:12px;margin:16px 0;box-shadow:0 4px 12px rgba(0,0,0,0.08)">
-                <p><strong>梦境对应：</strong>纠缠——梦中时间扭曲，首尾相接</p>
-                <p><strong>三段式结构：</strong></p>
-                <ul>
-                    <li><strong>翡翠段（约 1/3）：</strong>翡翠整料雕刻弧面</li>
-                    <li><strong>过渡段（约 1/3）：</strong>金包玉，玉石逐渐被金属纹理覆盖，微镶 + 金属包边渐变</li>
-                    <li><strong>金属段（约 1/3）：</strong>黄金镂空云纹，花丝工艺</li>
-                </ul>
-                <p><strong>隐藏细节：</strong>镯身内侧贴合皮肤处嵌一条窄和田玉条（宽约 3mm），佩戴时触感温润，外部不可见。</p>
-                <p><strong>设计意象：</strong>一边是纯粹的翡翠（梦），一边是金属镂空（现实），中间在融合但永远错开一点。内侧那条白玉是只有自己知道的秘密——贴着皮肤，别人看不到。</p>
+                <img src="jewelry/dream-bracelet.jpg" alt="手镯「纠缠·环」" style="width:100%;display:block">
+                <div class="content">
+                    <p><strong>梦境对应：</strong>纠缠——梦中时间扭曲，首尾相接</p>
+                    <p><strong>三段式结构：</strong></p>
+                    <ul>
+                        <li><strong>翡翠段（约 1/3）：</strong>翡翠整料雕刻弧面</li>
+                        <li><strong>过渡段（约 1/3）：</strong>金包玉，玉石逐渐被金属纹理覆盖，微镶 + 金属包边渐变</li>
+                        <li><strong>金属段（约 1/3）：</strong>黄金镂空云纹，花丝工艺</li>
+                    </ul>
+                    <p><strong>隐藏细节：</strong>镯身内侧贴合皮肤处嵌一条窄和田玉条（宽约 3mm），佩戴时触感温润，外部不可见。</p>
+                    <p><strong>设计意象：</strong>一边是纯粹的翡翠（梦），一边是金属镂空（现实），中间在融合但永远错开一点。内侧那条白玉是只有自己知道的秘密——贴着皮肤，别人看不到。</p>
+                </div>
             </div>
 
             <!-- 单品五 -->
@@ -212,10 +228,12 @@
                     <span>🏆 18K 黄金立体微雕</span>
                     <span>✨ 红宝石约 2ct + 钻石×2 + 翡翠珠×2</span>
                 </div>
-                <img src="jewelry/dream-brooch.jpg" alt="胸针「梦醒·蝶」" style="width:100%;border-radius:12px;margin:16px 0;box-shadow:0 4px 12px rgba(0,0,0,0.08)">
-                <p><strong>梦境对应：</strong>梦醒——庄周梦蝶，不知谁梦了谁</p>
-                <p><strong>结构描述：</strong>蝴蝶造型，上翼为翡翠薄片（厚度约 1.5mm），可透光，背光时呈现梦幻绿，激光雕刻极浅翼脉纹理（正面光看不到，背光时显现）。下翼为 18K 金镂空骨架，填珐琅（渐变紫蓝色）。蝶身为黄金立体微雕，腹部镶 1 颗椭圆形红宝石（约 2ct），头部 2 颗小圆钻石作为眼睛。</p>
-                <p><strong>设计意象：</strong>上面两片翅膀是翡翠磨到能透光——对着光看是绿色的梦，不对着光就是深色的玉。下面两片是金属的，用珐琅做了紫蓝渐变——这是现实那一半。身上那颗红宝石是心脏，是整套设计里最浓烈的一个点。触须上挂着两颗小翡翠珠子，走路会晃，像蝴蝶还活着。</p>
+                <img src="jewelry/dream-brooch.jpg" alt="胸针「梦醒·蝶」" style="width:100%;display:block">
+                <div class="content">
+                    <p><strong>梦境对应：</strong>梦醒——庄周梦蝶，不知谁梦了谁</p>
+                    <p><strong>结构描述：</strong>蝴蝶造型，上翼为翡翠薄片（厚度约 1.5mm），可透光，背光时呈现梦幻绿，激光雕刻极浅翼脉纹理（正面光看不到，背光时显现）。下翼为 18K 金镂空骨架，填珐琅（渐变紫蓝色）。蝶身为黄金立体微雕，腹部镶 1 颗椭圆形红宝石（约 2ct），头部 2 颗小圆钻石作为眼睛。</p>
+                    <p><strong>设计意象：</strong>上面两片翅膀是翡翠磨到能透光——对着光看是绿色的梦，不对着光就是深色的玉。下面两片是金属的，用珐琅做了紫蓝渐变——这是现实那一半。身上那颗红宝石是心脏，是整套设计里最浓烈的一个点。触须上挂着两颗小翡翠珠子，走路会晃，像蝴蝶还活着。</p>
+                </div>
             </div>
         </section>
 
