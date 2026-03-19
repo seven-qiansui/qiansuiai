@@ -1,10 +1,25 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>和平之翼·翡翠珠宝系列 - 千岁 AI</title>
+    <title>和平之翼 · 翡翠珠宝系列 - 千岁 AI</title>
     <link rel="stylesheet" href="styles.css">
+    <style>
+        .series-hero{text-align:center;padding:40px 20px;margin-bottom:32px}
+        .series-hero h1{font-size:28px;margin-bottom:12px}
+        .series-hero p{font-size:15px;color:#888;max-width:600px;margin:0 auto;line-height:1.7}
+        .series-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:24px}
+        .series-item{background:var(--card-bg,#fff);border:2px solid var(--border-color,#e8e4df);border-radius:16px;overflow:hidden;transition:all .3s}
+        .series-item:hover{transform:translateY(-4px);box-shadow:0 8px 24px rgba(0,0,0,0.1);border-color:var(--primary-color,#c0392b)}
+        .series-item-image{aspect-ratio:1/1;overflow:hidden;background:#f5f5f5;display:flex;align-items:center;justify-content:center}
+        .series-item-image img{width:100%;height:100%;object-fit:cover}
+        .series-item-info{padding:20px}
+        .series-item-info h3{font-size:18px;font-weight:700;margin-bottom:8px}
+        .series-item-info p{font-size:14px;color:#888;line-height:1.6}
+        .back-link{display:inline-flex;align-items:center;gap:6px;color:var(--primary-color,#c0392b);text-decoration:none;font-weight:600;font-size:14px;margin-bottom:24px;transition:opacity .2s}
+        .back-link:hover{opacity:.7}
+    </style>
 </head>
 <body>
     <div class="container">
@@ -12,130 +27,59 @@
             <div class="nav-brand">🤖 千岁 AI</div>
             <div class="nav-links">
                 <a href="index.html" class="nav-link">首页</a>
-                <a href="diary.html" class="nav-link">日记</a>
-                <a href="gallery.html" class="nav-link">相册</a>
+                <a href="diary.html" class="nav-link">创作站</a>
+                <a href="gallery.html" class="nav-link active">相册</a>
                 <a href="video.html" class="nav-link">视频</a>
                 <a href="news.html" class="nav-link">资讯</a>
             </div>
         </nav>
 
-        <a href="gallery.html" class="back-link fade-in">← 返回相册 · 珠宝设计</a>
+        <a href="gallery.html" class="back-link fade-in">← 返回相册</a>
 
-        <!-- 系列头部 -->
-        <header class="detail-header fade-in">
+        <div class="series-hero fade-in">
+            <div style="font-size:64px;margin-bottom:16px">💎</div>
             <h1>和平之翼 · 翡翠珠宝系列</h1>
-            <p class="detail-desc">融合翡翠与现代设计美学，AI 辅助设计全套珠宝系列。灵感来源于和平鸽的优雅身姿，以翡翠为载体，表达对美好生活的向往。</p>
-            <div class="detail-tags">
-                <span class="tag">翡翠</span>
-                <span class="tag">珠宝设计</span>
-                <span class="tag">AI 设计</span>
-                <span class="tag">系列作品</span>
-            </div>
-        </header>
+            <p>融合东方美学与现代设计理念，以翡翠为主石，诠释和平与优雅的珠宝创作系列</p>
+        </div>
 
-        <!-- 合集大图 -->
         <section class="section fade-on-scroll">
-            <div class="hero-artwork">
-                <img src="jewelry/jewelry-collection.png" alt="和平之翼·翡翠珠宝系列合集">
-                <div class="hero-caption">▲ 整套系列合集 · 戒指 / 项链 / 耳环 / 手链</div>
-            </div>
-        </section>
-
-        <!-- 单品小图网格 -->
-        <section class="section fade-on-scroll">
-            <h2>📸 单品展示</h2>
-            <div class="singles-grid">
-                <div class="single-item">
-                    <img src="jewelry/jewelry-ring.png" alt="翡翠戒指">
-                    <span>戒指</span>
-                </div>
-                <div class="single-item">
-                    <img src="jewelry/jewelry-necklace.png" alt="翡翠项链">
-                    <span>项链</span>
-                </div>
-                <div class="single-item">
-                    <img src="jewelry/jewelry-earring.png" alt="翡翠耳环">
-                    <span>耳环</span>
-                </div>
-                <div class="single-item">
-                    <img src="jewelry/jewelry-bracelet.png" alt="翡翠手链">
-                    <span>手链</span>
-                </div>
-                <div class="single-item">
-                    <img src="jewelry/jewelry-wearing.png" alt="佩戴效果">
-                    <span>佩戴效果</span>
-                </div>
-            </div>
-        </section>
-
-        <!-- 统一点评区 -->
-        <section class="section fade-on-scroll">
-            <h2>💬 点评</h2>
-            <div class="comments-section">
-                <div class="comment-list" id="commentList"></div>
-                <div class="comment-form">
-                    <input type="text" id="commentName" placeholder="昵称" class="comment-name">
-                    <textarea id="commentText" placeholder="说说你对这个系列的看法..." class="comment-text" rows="3"></textarea>
-                    <button class="comment-btn" onclick="addComment()">💬 发表点评</button>
+            <div class="series-grid">
+                <!-- 设计专员填充珠宝图片 -->
+                <div class="series-item">
+                    <div class="series-item-image">
+                        <div style="font-size:80px">💍</div>
+                    </div>
+                    <div class="series-item-info">
+                        <h3>作品 1 — 等待设计专员替换</h3>
+                        <p>占位示例，设计专员将替换为真实珠宝图片和描述</p>
+                    </div>
                 </div>
             </div>
         </section>
 
         <footer class="footer">
             <p>© 2026 千岁 AI · Powered by OpenClaw</p>
+            <p class="footer-note">电商视觉 · 社媒运营 · 企业 AI 服务</p>
         </footer>
+
+        <button class="back-to-top" id="backToTop" aria-label="回到顶部">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M18 15l-6-6-6 6"/>
+            </svg>
+        </button>
     </div>
 
     <script>
-        const COMMENT_KEY = 'series-jewelry-comments';
-
-        function loadComments() {
-            const comments = JSON.parse(localStorage.getItem(COMMENT_KEY) || '[]');
-            const list = document.getElementById('commentList');
-            if (comments.length === 0) {
-                list.innerHTML = '<p class="no-comment">暂无点评，来说说你的看法～</p>';
-            } else {
-                list.innerHTML = comments.map(c => `
-                    <div class="comment-item">
-                        <div class="comment-header">
-                            <span class="comment-author">👤 ${c.name}</span>
-                            <span class="comment-time">${c.time}</span>
-                        </div>
-                        <p class="comment-body">${c.text}</p>
-                    </div>
-                `).join('');
-            }
-        }
-
-        function addComment() {
-            const name = document.getElementById('commentName').value.trim();
-            const text = document.getElementById('commentText').value.trim();
-            if (!name || !text) { alert('请填写昵称和点评内容～'); return; }
-
-            const comments = JSON.parse(localStorage.getItem(COMMENT_KEY) || '[]');
-            comments.unshift({ name, text, time: new Date().toLocaleString('zh-CN') });
-            localStorage.setItem(COMMENT_KEY, JSON.stringify(comments));
-
-            loadComments();
-            document.getElementById('commentName').value = '';
-            document.getElementById('commentText').value = '';
-        }
-
         const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) entry.target.classList.add('visible');
-            });
-        }, { threshold: 0.1 });
+            entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
+        }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
         document.querySelectorAll('.fade-on-scroll').forEach(el => observer.observe(el));
 
-        window.addEventListener('load', () => {
-            document.body.classList.add('loaded');
-            loadComments();
-        });
+        const backToTop = document.getElementById('backToTop');
+        window.addEventListener('scroll', () => { backToTop.classList.toggle('visible', window.scrollY > 300); });
+        backToTop.addEventListener('click', () => { window.scrollTo({ top: 0, behavior: 'smooth' }); });
+
+        window.addEventListener('load', () => { document.body.classList.add('loaded'); });
     </script>
 </body>
 </html>
-
-
-
-

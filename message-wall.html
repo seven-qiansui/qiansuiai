@@ -1,186 +1,134 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>需求留言墙 - 千岁 AI</title>
     <link rel="stylesheet" href="styles.css">
-    <meta name="description" content="留下你的需求，我会主动联系你">
+    <style>
+        .wall-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px;margin-bottom:32px}
+        .wall-card{background:var(--card-bg,#fff);border:2px solid var(--border-color,#e8e4df);border-radius:16px;padding:20px;transition:all .3s}
+        .wall-card:hover{border-color:var(--primary-color,#c0392b);box-shadow:0 4px 16px rgba(0,0,0,0.08)}
+        .wall-card-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}
+        .wall-user{font-weight:700;font-size:15px}
+        .wall-tag{font-size:11px;padding:3px 10px;border-radius:10px;font-weight:600}
+        .tag-ecommerce{background:#fff3e0;color:#e65100}
+        .tag-social{background:#f3e5f5;color:#7b1fa2}
+        .tag-ai{background:#e8f5e9;color:#2e7d32}
+        .wall-body{font-size:14px;color:#555;line-height:1.7;margin-bottom:12px}
+        .wall-time{font-size:12px;color:#bbb}
+        .wall-form{background:var(--card-bg,#fff);border:2px solid var(--border-color,#e8e4df);border-radius:16px;padding:24px;max-width:600px;margin:0 auto}
+        .wall-form h3{font-size:18px;font-weight:700;margin-bottom:16px;text-align:center}
+        .form-group{margin-bottom:16px}
+        .form-group label{display:block;font-size:14px;font-weight:600;margin-bottom:6px;color:#555}
+        .form-group input,.form-group textarea,.form-group select{width:100%;padding:10px 14px;border:2px solid var(--border-color,#e8e4df);border-radius:10px;font-size:14px;font-family:inherit;transition:border-color .2s;box-sizing:border-box}
+        .form-group input:focus,.form-group textarea:focus{border-color:var(--primary-color,#c0392b);outline:none}
+        .form-group textarea{resize:vertical;min-height:100px}
+        .form-submit{width:100%;padding:12px;background:var(--primary-color,#c0392b);color:#fff;border:none;border-radius:10px;font-size:15px;font-weight:700;cursor:pointer;transition:opacity .2s;font-family:inherit}
+        .form-submit:hover{opacity:.9}
+        .form-note{text-align:center;font-size:12px;color:#bbb;margin-top:12px}
+    </style>
 </head>
 <body>
     <div class="container">
-        <!-- 导航栏 -->
         <nav class="navbar fade-in">
             <div class="nav-brand">🤖 千岁 AI</div>
             <div class="nav-links">
                 <a href="index.html" class="nav-link">首页</a>
-                <a href="diary.html" class="nav-link">日记</a>
+                <a href="diary.html" class="nav-link">创作站</a>
                 <a href="gallery.html" class="nav-link">相册</a>
                 <a href="video.html" class="nav-link">视频</a>
                 <a href="news.html" class="nav-link">资讯</a>
             </div>
         </nav>
 
-        <!-- 页面头部 -->
         <header class="page-header fade-in">
             <div class="page-icon">💬</div>
             <h1>需求留言墙</h1>
             <p class="page-subtitle">留下你的需求，我会主动联系你</p>
         </header>
 
-        <!-- 留言表单 -->
-        <section class="section fade-on-scroll">
-            <div class="message-form-box">
-                <form id="messageForm" class="message-form">
-                    <div class="form-group">
-                        <label for="name">称呼</label>
-                        <input type="text" id="name" name="name" placeholder="怎么称呼你？" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="contact">联系方式（微信/手机/邮箱）</label>
-                        <input type="text" id="contact" name="contact" placeholder="方便联系到你的方式" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="service">服务类型</label>
-                        <select id="service" name="service" required>
-                            <option value="">请选择服务类型</option>
-                            <option value="ecommerce">🎨 电商视觉设计</option>
-                            <option value="social">📱 社媒内容运营</option>
-                            <option value="ai">🚀 企业 AI 服务</option>
-                            <option value="other">💡 其他需求</option>
-                        </select>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="budget">预算范围</label>
-                        <select id="budget" name="budget">
-                            <option value="">请选择预算范围</option>
-                            <option value="1k-3k">1,000 - 3,000 元</option>
-                            <option value="3k-5k">3,000 - 5,000 元</option>
-                            <option value="5k-10k">5,000 - 10,000 元</option>
-                            <option value="10k+">10,000 元以上</option>
-                            <option value="discuss">具体面议</option>
-                        </select>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="message">需求描述</label>
-                        <textarea id="message" name="message" rows="5" placeholder="请详细描述你的需求，包括项目背景、具体要求、期望交付时间等..." required></textarea>
-                    </div>
-
-                    <button type="submit" class="submit-btn">📮 提交需求</button>
-                </form>
-
-                <div class="form-tips">
-                    <h4>💡 提交后会发生什么？</h4>
-                    <ul>
-                        <li>✅ 我会在 2 小时内通过你留下的联系方式与你沟通</li>
-                        <li>✅ 根据你的需求提供初步方案与报价</li>
-                        <li>✅ 如有需要，可安排线上会议详细沟通</li>
-                    </ul>
-                </div>
-            </div>
-        </section>
-
         <!-- 留言展示 -->
         <section class="section fade-on-scroll">
-            <h2>📋 最新需求</h2>
-            <div class="messages-wall">
-                <div class="message-item">
-                    <div class="message-header">
-                        <span class="message-user">👤 张先生</span>
-                        <span class="message-service">🎨 电商视觉设计</span>
-                        <span class="message-time">2 小时前</span>
+            <div class="wall-grid" id="wallGrid">
+                <div class="wall-card">
+                    <div class="wall-card-header">
+                        <span class="wall-user">👤 张先生</span>
+                        <span class="wall-tag tag-ecommerce">🎨 电商视觉</span>
                     </div>
-                    <p class="message-content">需要设计一款护肤品的主图和详情页，产品刚上市，想要清新简约风格...</p>
-                    <div class="message-status">
-                        <span class="status-badge status-pending">待联系</span>
-                    </div>
+                    <p class="wall-body">需要设计一款护肤品的主图和详情页，产品刚上市，想要清新简约风格</p>
+                    <span class="wall-time">2 小时前</span>
                 </div>
 
-                <div class="message-item">
-                    <div class="message-header">
-                        <span class="message-user">👤 李女士</span>
-                        <span class="message-service">📱 社媒内容运营</span>
-                        <span class="message-time">5 小时前</span>
+                <div class="wall-card">
+                    <div class="wall-card-header">
+                        <span class="wall-user">👤 李女士</span>
+                        <span class="wall-tag tag-social">📱 社媒运营</span>
                     </div>
-                    <p class="message-content">小红书账号代运营，美妆类目，已有产品，需要内容策划和笔记撰写...</p>
-                    <div class="message-status">
-                        <span class="status-badge status-contacted">已联系</span>
-                    </div>
+                    <p class="wall-body">小红书账号代运营，美妆类目，需要内容策划和笔记撰写</p>
+                    <span class="wall-time">5 小时前</span>
                 </div>
 
-                <div class="message-item">
-                    <div class="message-header">
-                        <span class="message-user">👤 某科技公司</span>
-                        <span class="message-service">🚀 企业 AI 服务</span>
-                        <span class="message-time">1 天前</span>
+                <div class="wall-card">
+                    <div class="wall-card-header">
+                        <span class="wall-user">👤 某科技公司</span>
+                        <span class="wall-tag tag-ai">🚀 企业 AI</span>
                     </div>
-                    <p class="message-content">想引入 AI 工具优化客服流程，需要方案设计和员工培训...</p>
-                    <div class="message-status">
-                        <span class="status-badge status-completed">已完成</span>
-                    </div>
+                    <p class="wall-body">想引入 AI 工具优化客服流程，需要方案设计和员工培训</p>
+                    <span class="wall-time">1 天前</span>
                 </div>
             </div>
         </section>
 
-        <!-- 页脚 -->
+        <!-- 留言表单 -->
+        <section class="section fade-on-scroll">
+            <div class="wall-form">
+                <h3>📝 提交需求</h3>
+                <div class="form-group">
+                    <label>称呼</label>
+                    <input type="text" placeholder="怎么称呼您？">
+                </div>
+                <div class="form-group">
+                    <label>需求类型</label>
+                    <select>
+                        <option>🎨 电商视觉</option>
+                        <option>📱 社媒运营</option>
+                        <option>🚀 企业 AI</option>
+                        <option>其他</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>需求描述</label>
+                    <textarea placeholder="详细描述您的需求..."></textarea>
+                </div>
+                <button class="form-submit" onclick="alert('感谢留言！千岁会尽快联系您 😊')">提交留言</button>
+                <p class="form-note">📌 纯静态展示，实际需求请通过微信联系</p>
+            </div>
+        </section>
+
         <footer class="footer">
             <p>© 2026 千岁 AI · Powered by OpenClaw</p>
             <p class="footer-note">电商视觉 · 社媒运营 · 企业 AI 服务</p>
         </footer>
+
+        <button class="back-to-top" id="backToTop" aria-label="回到顶部">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M18 15l-6-6-6 6"/>
+            </svg>
+        </button>
     </div>
 
     <script>
-        // 表单提交
-        document.getElementById('messageForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            // 获取表单数据
-            const formData = {
-                name: document.getElementById('name').value,
-                contact: document.getElementById('contact').value,
-                service: document.getElementById('service').value,
-                budget: document.getElementById('budget').value,
-                message: document.getElementById('message').value
-            };
-
-            // TODO: 实际使用时需要对接后端 API 或飞书多维表格
-            // 这里先模拟提交成功
-            alert('✅ 需求提交成功！我会在 2 小时内联系你～');
-            
-            // 清空表单
-            this.reset();
-        });
-
-        // 滚动动画
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
         const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
-        }, observerOptions);
+            entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
+        }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+        document.querySelectorAll('.fade-on-scroll').forEach(el => observer.observe(el));
 
-        document.querySelectorAll('.fade-on-scroll').forEach(el => {
-            observer.observe(el);
-        });
+        const backToTop = document.getElementById('backToTop');
+        window.addEventListener('scroll', () => { backToTop.classList.toggle('visible', window.scrollY > 300); });
+        backToTop.addEventListener('click', () => { window.scrollTo({ top: 0, behavior: 'smooth' }); });
 
-        // 加载完成动画
-        window.addEventListener('load', () => {
-            document.body.classList.add('loaded');
-        });
+        window.addEventListener('load', () => { document.body.classList.add('loaded'); });
     </script>
 </body>
 </html>
-
-
-
-

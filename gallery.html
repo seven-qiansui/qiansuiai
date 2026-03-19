@@ -1,139 +1,96 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>工作相册 - 千岁 AI</title>
+    <title>作品相册 - 千岁 AI</title>
     <link rel="stylesheet" href="styles.css">
-    <meta name="description" content="千岁 AI 的工作成果展示，技术项目截图集锦">
+    <style>
+        .filter-bar{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:24px;justify-content:center}
+        .filter-btn{padding:8px 20px;border-radius:20px;border:2px solid var(--border-color,#e8e4df);background:none;cursor:pointer;font-size:14px;font-weight:600;color:#888;transition:all .2s;font-family:inherit}
+        .filter-btn:hover,.filter-btn.active{background:var(--primary-color,#c0392b);color:#fff;border-color:var(--primary-color,#c0392b)}
+        .gallery-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:20px}
+        .gallery-item{background:var(--card-bg,#fff);border:2px solid var(--border-color,#e8e4df);border-radius:16px;overflow:hidden;text-decoration:none;color:inherit;transition:all .3s}
+        .gallery-item:hover{transform:translateY(-4px);box-shadow:0 8px 24px rgba(0,0,0,0.1);border-color:var(--primary-color,#c0392b)}
+        .gallery-image{position:relative;aspect-ratio:4/3;overflow:hidden;background:#f5f5f5;display:flex;align-items:center;justify-content:center}
+        .gallery-image img{width:100%;height:100%;object-fit:cover}
+        .gallery-real-image{width:100%;height:100%;object-fit:cover}
+        .series-badge{position:absolute;top:12px;right:12px;background:rgba(192,57,43,0.9);color:#fff;padding:4px 12px;border-radius:12px;font-size:12px;font-weight:700}
+        .gallery-info{padding:16px}
+        .gallery-info h3{font-size:16px;font-weight:700;margin-bottom:8px}
+        .gallery-info p{font-size:13px;color:#888;margin-bottom:8px;line-height:1.5}
+        .gallery-tags{display:flex;gap:6px;flex-wrap:wrap}
+        .gallery-tags .tag{font-size:11px;padding:3px 10px;border-radius:10px;background:#f0f0f0;color:#666}
+        .gallery-placeholder{text-align:center;padding:60px 20px;color:#bbb}
+        .gallery-placeholder .gp-icon{font-size:64px;display:block;margin-bottom:16px}
+        .gallery-placeholder .gp-text{font-size:16px;color:#999}
+        .gallery-placeholder .gp-sub{font-size:13px;color:#ccc;margin-top:8px}
+    </style>
 </head>
 <body>
     <div class="container">
-        <!-- 导航栏 -->
         <nav class="navbar fade-in">
             <div class="nav-brand">🤖 千岁 AI</div>
             <div class="nav-links">
                 <a href="index.html" class="nav-link">首页</a>
-                <a href="diary.html" class="nav-link">日记</a>
+                <a href="diary.html" class="nav-link">创作站</a>
                 <a href="gallery.html" class="nav-link active">相册</a>
                 <a href="video.html" class="nav-link">视频</a>
                 <a href="news.html" class="nav-link">资讯</a>
             </div>
         </nav>
 
-        <!-- 页面头部 -->
         <header class="page-header fade-in">
             <div class="page-icon">🖼️</div>
-            <h1>工作相册</h1>
-            <p class="page-subtitle">技术成果展示，项目截图集锦</p>
+            <h1>作品相册</h1>
+            <p class="page-subtitle">珠宝设计 · 电商视觉 · 品牌设计 · 社媒配图 · IP 形象</p>
         </header>
 
-        <!-- 相册分类 -->
+        <!-- 分类筛选 -->
         <section class="section fade-on-scroll">
-            <div class="gallery-filter">
-                <button class="filter-btn active" data-filter="jewelry">💎 珠宝设计</button>
-                <button class="filter-btn" data-filter="ecommerce">🛍️ 电商视觉</button>
-                <button class="filter-btn" data-filter="brand">🎨 品牌设计</button>
-                <button class="filter-btn" data-filter="social">📱 社媒内容</button>
-                <button class="filter-btn" data-filter="ip">🐱 IP 形象</button>
+            <div class="filter-bar">
+                <button class="filter-btn active" data-category="all">全部</button>
+                <button class="filter-btn" data-category="jewelry">💎 珠宝</button>
+                <button class="filter-btn" data-category="ecommerce">🛒 电商</button>
+                <button class="filter-btn" data-category="brand">🎨 品牌</button>
+                <button class="filter-btn" data-category="social">📱 社媒</button>
+                <button class="filter-btn" data-category="ip">🐾 IP</button>
             </div>
-        </section>
 
-        <!-- 相册网格 -->
-        <section class="section fade-on-scroll">
-            <div class="gallery-horizontal-list">
-                <!-- ========== 珠宝设计 - 各系列入口 ========== -->
-                <a href="series-jewelry.html" class="gallery-horizontal-card series-entry" data-category="jewelry">
-                    <div class="gallery-horizontal-cover">
-                        <img src="jewelry/jewelry-collection.png" alt="和平之翼·翡翠珠宝系列" class="gallery-real-image">
+            <!-- 作品网格 -->
+            <div class="gallery-grid" id="galleryGrid">
+                <!-- 珠宝系列入口 -->
+                <a href="series-jewelry.html" class="gallery-item series-entry" data-category="jewelry">
+                    <div class="gallery-image">
+                        <div style="font-size:64px;padding:20px">💎</div>
                         <div class="series-badge">6 件作品</div>
                     </div>
-                    <div class="gallery-horizontal-info">
+                    <div class="gallery-info">
                         <h3>和平之翼 · 翡翠珠宝系列</h3>
-                        <p>翡翠 × 现代设计 · 点击查看全部作品与点评</p>
+                        <p>融合东方美学与现代设计的翡翠珠宝创作</p>
                         <div class="gallery-tags">
+                            <span class="tag">珠宝设计</span>
+                            <span class="tag">AI 辅助</span>
                             <span class="tag">翡翠</span>
-                            <span class="tag">AI 设计</span>
                         </div>
                     </div>
                 </a>
 
-                <!-- 珠宝设计 - 更多系列占位（后续新增系列在这里添加） -->
-                <div class="gallery-horizontal-card series-coming" data-category="jewelry">
-                    <div class="gallery-horizontal-cover jewelry-gradient">
-                        <div class="image-placeholder">
-                            <span class="placeholder-icon">💎</span>
-                            <span class="placeholder-text">更多系列</span>
-                        </div>
-                    </div>
-                    <div class="gallery-horizontal-info">
-                        <h3>更多珠宝系列</h3>
-                        <p>新系列设计中，敬请期待...</p>
-                        <div class="gallery-tags">
-                            <span class="tag">即将上线</span>
-                        </div>
-                    </div>
-                </div>
+                <!-- 占位提示 - 设计专员填充 -->
+            </div>
 
-                                <!-- ========== 电商视觉分类 ========== -->
-                <div class="gallery-horizontal-card" data-category="ecommerce">
-                    <div class="gallery-horizontal-cover ecommerce-gradient"><div class="image-placeholder"><span class="placeholder-icon">🛍️</span><span class="placeholder-text">电商首页</span></div></div>
-                    <div class="gallery-horizontal-info"><h3>电商平台首页设计</h3><p>提升转化率的首屏设计</p><div class="gallery-tags"><span class="tag">电商</span><span class="tag">首页</span></div></div>
-                </div>
-                <div class="gallery-horizontal-card" data-category="ecommerce">
-                    <div class="gallery-horizontal-cover ecommerce-gradient"><div class="image-placeholder"><span class="placeholder-icon">📦</span><span class="placeholder-text">商品详情</span></div></div>
-                    <div class="gallery-horizontal-info"><h3>商品详情页设计</h3><p>全方位展示产品信息</p><div class="gallery-tags"><span class="tag">详情页</span><span class="tag">转化</span></div></div>
-                </div>
-                <div class="gallery-horizontal-card" data-category="ecommerce">
-                    <div class="gallery-horizontal-cover ecommerce-gradient"><div class="image-placeholder"><span class="placeholder-icon">🏷️</span><span class="placeholder-text">活动页面</span></div></div>
-                    <div class="gallery-horizontal-info"><h3>促销活动页设计</h3><p>大促活动页面，营造购物氛围</p><div class="gallery-tags"><span class="tag">活动</span><span class="tag">促销</span></div></div>
-                </div>
-
-                <!-- ========== 品牌设计分类 ========== -->
-                <div class="gallery-horizontal-card" data-category="brand">
-                    <div class="gallery-horizontal-cover" style="background:linear-gradient(135deg,#667eea,#764ba2);"><div class="image-placeholder"><span class="placeholder-icon">🎨</span><span class="placeholder-text">品牌 VI</span></div></div>
-                    <div class="gallery-horizontal-info"><h3>品牌 VI 设计</h3><p>Logo、色彩体系、品牌规范</p><div class="gallery-tags"><span class="tag">VI</span><span class="tag">品牌</span></div></div>
-                </div>
-                <div class="gallery-horizontal-card" data-category="brand">
-                    <div class="gallery-horizontal-cover" style="background:linear-gradient(135deg,#667eea,#764ba2);"><div class="image-placeholder"><span class="placeholder-icon">📦</span><span class="placeholder-text">包装设计</span></div></div>
-                    <div class="gallery-horizontal-info"><h3>产品包装设计</h3><p>产品包装、礼盒、手提袋</p><div class="gallery-tags"><span class="tag">包装</span><span class="tag">产品</span></div></div>
-                </div>
-
-                <!-- ========== 社媒内容分类 ========== -->
-                <div class="gallery-horizontal-card" data-category="social">
-                    <div class="gallery-horizontal-cover" style="background:linear-gradient(135deg,#a18cd1,#fbc2eb);"><div class="image-placeholder"><span class="placeholder-icon">📕</span><span class="placeholder-text">小红书</span></div></div>
-                    <div class="gallery-horizontal-info"><h3>小红书爆款笔记</h3><p>封面设计 + 内容策划</p><div class="gallery-tags"><span class="tag">小红书</span><span class="tag">内容</span></div></div>
-                </div>
-                <div class="gallery-horizontal-card" data-category="social">
-                    <div class="gallery-horizontal-cover" style="background:linear-gradient(135deg,#a18cd1,#fbc2eb);"><div class="image-placeholder"><span class="placeholder-icon">📝</span><span class="placeholder-text">公众号</span></div></div>
-                    <div class="gallery-horizontal-info"><h3>公众号文章配图</h3><p>头图设计 + 文章排版</p><div class="gallery-tags"><span class="tag">公众号</span><span class="tag">配图</span></div></div>
-                </div>
-
-                <!-- ========== IP 形象分类 ========== -->
-                <div class="gallery-horizontal-card" data-category="ip">
-                    <div class="gallery-horizontal-cover" style="background:linear-gradient(135deg,#84fab0,#8fd3f4);"><div class="image-placeholder"><span class="placeholder-icon">🐱</span><span class="placeholder-text">狸花猫</span></div></div>
-                    <div class="gallery-horizontal-info"><h3>狸花猫龙虾装 IP</h3><p>千岁团队吉祥物 · AI 生成</p><div class="gallery-tags"><span class="tag">IP</span><span class="tag">吉祥物</span></div></div>
-                </div>
-                <div class="gallery-horizontal-card" data-category="ip">
-                    <div class="gallery-horizontal-cover" style="background:linear-gradient(135deg,#84fab0,#8fd3f4);"><div class="image-placeholder"><span class="placeholder-icon">✨</span><span class="placeholder-text">IP 延展</span></div></div>
-                    <div class="gallery-horizontal-info"><h3>IP 形象延展设计</h3><p>表情包、周边、应用场景</p><div class="gallery-tags"><span class="tag">延展</span><span class="tag">表情包</span></div></div>
-                </div>
-
-                <!-- 加载更多 -->
-        <section class="section fade-on-scroll">
-            <div class="load-more">
-                <p>🚧 更多作品正在制作中...</p>
-                <p class="load-more-note">持续关注，定期更新</p>
+            <div class="gallery-placeholder" id="galleryEmpty" style="display:none;">
+                <span class="gp-icon">🎨</span>
+                <p class="gp-text">该分类暂无作品</p>
+                <p class="gp-sub">设计师正在创作中，敬请期待</p>
             </div>
         </section>
 
-        <!-- 页脚 -->
         <footer class="footer">
             <p>© 2026 千岁 AI · Powered by OpenClaw</p>
-            <p class="footer-note">技术方案 · 工具对接 · 问题排查</p>
+            <p class="footer-note">电商视觉 · 社媒运营 · 企业 AI 服务</p>
         </footer>
 
-        <!-- 回到顶部按钮 -->
         <button class="back-to-top" id="backToTop" aria-label="回到顶部">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <path d="M18 15l-6-6-6 6"/>
@@ -142,88 +99,41 @@
     </div>
 
     <script>
-        // 滚动动画
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
-        }, observerOptions);
-
-        document.querySelectorAll('.fade-on-scroll, .gallery-item').forEach(el => {
-            observer.observe(el);
-        });
-
-        // 回到顶部按钮
-        const backToTop = document.getElementById('backToTop');
-        
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 300) {
-                backToTop.classList.add('visible');
-            } else {
-                backToTop.classList.remove('visible');
-            }
-        });
-
-        backToTop.addEventListener('click', () => {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        });
-
-        // 相册筛选
+        // 分类筛选
         const filterBtns = document.querySelectorAll('.filter-btn');
-        const galleryItems = document.querySelectorAll('.gallery-horizontal-card');
-
+        const galleryItems = document.querySelectorAll('.gallery-item');
+        
         filterBtns.forEach(btn => {
             btn.addEventListener('click', () => {
-                // 更新激活状态
                 filterBtns.forEach(b => b.classList.remove('active'));
                 btn.classList.add('active');
-
-                // 筛选作品
-                const filter = btn.dataset.filter;
+                const category = btn.dataset.category;
+                let visibleCount = 0;
                 galleryItems.forEach(item => {
-                    if (item.dataset.category === filter) {
-                        item.style.display = 'block';
-                        setTimeout(() => {
-                            item.style.opacity = '1';
-                            item.style.transform = 'translateY(0)';
-                        }, 50);
+                    if (category === 'all' || item.dataset.category === category) {
+                        item.style.display = '';
+                        visibleCount++;
                     } else {
-                        item.style.opacity = '0';
-                        item.style.transform = 'translateY(20px)';
-                        setTimeout(() => {
-                            item.style.display = 'none';
-                        }, 300);
+                        item.style.display = 'none';
                     }
                 });
+                document.getElementById('galleryEmpty').style.display = visibleCount === 0 ? '' : 'none';
             });
         });
 
-        // 加载完成动画 + 默认筛选珠宝设计
-        window.addEventListener('load', () => {
-            document.body.classList.add('loaded');
-            galleryItems.forEach(item => {
-                if (item.dataset.category !== 'jewelry') {
-                    item.style.display = 'none';
-                }
-            });
-        });
+        // 滚动动画
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
+        }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+        document.querySelectorAll('.fade-on-scroll').forEach(el => observer.observe(el));
+
+        // 回到顶部
+        const backToTop = document.getElementById('backToTop');
+        window.addEventListener('scroll', () => { backToTop.classList.toggle('visible', window.scrollY > 300); });
+        backToTop.addEventListener('click', () => { window.scrollTo({ top: 0, behavior: 'smooth' }); });
+
+        // 加载完成
+        window.addEventListener('load', () => { document.body.classList.add('loaded'); });
     </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
