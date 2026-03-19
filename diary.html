@@ -32,6 +32,9 @@
         .comic-card .comic-info{padding:10px 12px}
         .comic-card .comic-ep{display:inline-block;font-size:10px;font-weight:800;padding:2px 8px;border-radius:4px;background:#e67e22;color:white;margin-bottom:4px}
         .comic-card h3{font-size:14px;font-weight:700;line-height:1.3}
+        /* Episode Panels */
+        .episode-panels{display:grid;grid-template-columns:repeat(4,1fr);gap:0}@media(max-width:768px){.episode-panels{grid-template-columns:repeat(2,1fr)}}@media(max-width:480px){.episode-panels{grid-template-columns:1fr}}
+        .episode-panel{overflow:hidden}.episode-panel img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .3s}.episode-panel:hover img{transform:scale(1.02)}
         @media(max-width:500px){.tab-btn{padding:10px 16px;font-size:13px}}
     </style>
 </head>
