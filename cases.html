@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>客户案例 - 千岁 AI</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Case Card */
+        .case-card{background:var(--card-bg,#fff);border:2px solid var(--border-color,#e8e4df);border-radius:16px;overflow:hidden;margin-bottom:32px;transition:all .3s}
+        .case-card:hover{box-shadow:0 8px 30px rgba(0,0,0,0.08)}
+        .case-header{padding:24px 28px;border-bottom:1px solid var(--border-color,#e8e4df)}
+        .case-client{display:flex;align-items:center;gap:12px;margin-bottom:12px}
+        .case-avatar{width:48px;height:48px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:24px}
+        .case-avatar.ecommerce{background:linear-gradient(135deg,#f093fb,#f5576c)}
+        .case-avatar.social{background:linear-gradient(135deg,#4facfe,#00f2fe)}
+        .case-avatar.ai{background:linear-gradient(135deg,#f6d365,#fda085)}
+        .case-name{font-size:18px;font-weight:800;color:#222}
+        .case-tags{display:flex;gap:6px;flex-wrap:wrap;margin-top:4px}
+        .case-tags .tag{font-size:11px;padding:2px 8px;border-radius:4px;background:var(--border-color,#e8e4df);color:#666;font-weight:600}
+        /* Story Flow */
+        .case-story{padding:24px 28px;display:grid;grid-template-columns:1fr 1fr 1fr;gap:20px}
+        .story-step{text-align:center;padding:16px}
+        .story-icon{font-size:32px;margin-bottom:8px}
+        .story-label{font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.08em;margin-bottom:6px}
+        .story-label.pain{color:#e74c3c}
+        .story-label.solution{color:#3498db}
+        .story-label.result{color:#27ae60}
+        .story-text{font-size:13px;color:#555;line-height:1.6}
+        .story-stat{font-size:24px;font-weight:900;margin-top:8px}
+        .story-stat.up{color:#27ae60}
+        /* Compare Slider */
+        .compare-section{padding:20px 28px;border-top:1px solid var(--border-color,#e8e4df)}
+        .compare-title{font-size:14px;font-weight:700;color:#888;margin-bottom:12px;text-align:center}
+        .compare-container{position:relative;overflow:hidden;border-radius:12px;border:2px solid var(--border-color,#e8e4df);max-width:100%;aspect-ratio:16/10;background:#f5f3ee}
+        .compare-container img{position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;user-select:none;-webkit-user-drag:none}
+        .compare-after{clip-path:inset(0 0 0 50%)}
+        .compare-slider{position:absolute;top:0;bottom:0;left:50%;width:4px;background:#c0392b;cursor:ew-resize;z-index:10}
+        .compare-slider::after{content:'⟷';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);background:#c0392b;color:#fff;width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:16px;box-shadow:0 2px 8px rgba(0,0,0,0.2)}
+        .compare-label{position:absolute;top:10px;padding:4px 10px;background:rgba(0,0,0,0.6);color:#fff;font-size:11px;font-weight:700;border-radius:4px;z-index:5}
+        .compare-label.old{left:10px}
+        .compare-label.new{right:10px}
+        /* Live Preview */
+        .live-section{padding:20px 28px;border-top:1px solid var(--border-color,#e8e4df)}
+        .live-title{font-size:14px;font-weight:700;color:#888;margin-bottom:12px;text-align:center}
+        .live-frame{width:100%;height:500px;border:2px solid var(--border-color,#e8e4df);border-radius:12px;overflow:hidden}
+        .live-frame iframe{width:100%;height:100%;border:none}
+        .live-link{display:block;text-align:center;margin-top:10px;font-size:13px;color:#c0392b;font-weight:700;text-decoration:none}
+        .live-link:hover{text-decoration:underline}
+        /* Empty State */
+        .cases-empty{text-align:center;padding:60px 20px}
+        .cases-empty .icon{font-size:64px;margin-bottom:16px}
+        .cases-empty h3{font-size:20px;margin-bottom:8px;color:#333}
+        .cases-empty p{color:#888;font-size:14px;line-height:1.6}
+        /* Responsive */
+        @media(max-width:600px){
+            .case-story{grid-template-columns:1fr;gap:12px}
+            .case-header,.case-story,.compare-section,.live-section{padding:16px}
+            .live-frame{height:400px}
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <nav class="navbar fade-in">
+            <div class="nav-brand">🤖 千岁 AI</div>
+            <div class="nav-links">
+                <a href="index.html" class="nav-link">首页</a>
+                <a href="diary.html" class="nav-link">创作站</a>
+                <a href="gallery.html" class="nav-link">相册</a>
+                <a href="video.html" class="nav-link">视频</a>
+                <a href="cases.html" class="nav-link active">案例</a>
+                <a href="news.html" class="nav-link">资讯</a>
+            </div>
+        </nav>
+
+        <header class="page-header fade-in">
+            <div class="page-icon">🏆</div>
+            <h1>客户案例</h1>
+            <p class="page-subtitle">真实客户，真实效果，点击可查看线上详情页</p>
+        </header>
+
+        <!-- 分类筛选 -->
+        <section class="section fade-on-scroll">
+            <div class="news-categories">
+                <button class="category-btn active" data-filter="all">全部</button>
+                <button class="category-btn" data-filter="ecommerce">🎨 电商视觉</button>
+                <button class="category-btn" data-filter="social">📱 社媒运营</button>
+                <button class="category-btn" data-filter="ai">🚀 AI 服务</button>
+            </div>
+        </section>
+
+        <!-- 案例列表 -->
+        <section class="section fade-on-scroll" id="caseList">
+
+            <!-- ====== 示例案例（等素材替换） ====== -->
+            <div class="case-card" data-type="ecommerce">
+                <div class="case-header">
+                    <div class="case-client">
+                        <div class="case-avatar ecommerce">🎨</div>
+                        <div>
+                            <div class="case-name">等待客户素材中...</div>
+                            <div class="case-tags">
+                                <span class="tag">详情页重构</span>
+                                <span class="tag">电商视觉</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- 故事线：痛点 → 方案 → 结果 -->
+                <div class="case-story">
+                    <div class="story-step">
+                        <div class="story-icon">😰</div>
+                        <div class="story-label pain">痛点</div>
+                        <div class="story-text">旧详情页视觉过时，跳出率高，转化率低于行业平均</div>
+                    </div>
+                    <div class="story-step">
+                        <div class="story-icon">💡</div>
+                        <div class="story-label solution">方案</div>
+                        <div class="story-text">AI 辅助重新设计详情页，优化卖点排布、视觉动线、信任感模块</div>
+                    </div>
+                    <div class="story-step">
+                        <div class="story-icon">📈</div>
+                        <div class="story-label result">结果</div>
+                        <div class="story-text">上线后数据提升显著</div>
+                        <div class="story-stat up">等待数据</div>
+                    </div>
+                </div>
+                <!-- 新旧对比滑动器 -->
+                <div class="compare-section">
+                    <div class="compare-title">👆 拖动滑块查看新旧对比</div>
+                    <div class="compare-container" id="compare-1">
+                        <img class="compare-before" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='800' height='500'%3E%3Crect fill='%23ddd' width='800' height='500'/%3E%3Ctext x='400' y='250' text-anchor='middle' fill='%23999' font-size='24'%3E旧详情页截图%3C/text%3E%3C/svg%3E" alt="旧详情页">
+                        <img class="compare-after" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='800' height='500'%3E%3Crect fill='%23f5f3ee' width='800' height='500'/%3E%3Ctext x='400' y='250' text-anchor='middle' fill='%23c0392b' font-size='24'%3E新详情页截图%3C/text%3E%3C/svg%3E" alt="新详情页">
+                        <div class="compare-label old">旧版</div>
+                        <div class="compare-label new">新版</div>
+                        <div class="compare-slider"></div>
+                    </div>
+                </div>
+                <!-- 线上实时预览 -->
+                <div class="live-section">
+                    <div class="live-title">🔗 查看线上真实效果（实时页面）</div>
+                    <div style="text-align:center;padding:40px;color:#bbb;font-size:14px;border:2px dashed #ddd;border-radius:12px">
+                        等待客户店铺链接...
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+        <!-- CTA -->
+        <section class="section fade-on-scroll">
+            <div class="cta-box">
+                <h3>想要同款效果？</h3>
+                <p>联系我，免费诊断你的详情页，给出优化方案</p>
+                <a href="index.html#contact" class="cta-btn">📬 免费诊断</a>
+            </div>
+        </section>
+
+        <footer class="footer">
+            <p>© 2026 千岁 AI · Powered by OpenClaw</p>
+            <p class="footer-note">电商视觉 · 社媒运营 · 企业 AI 服务</p>
+        </footer>
+    </div>
+
+    <script>
+        // ===== Compare Slider =====
+        document.querySelectorAll('.compare-container').forEach(container => {
+            const slider = container.querySelector('.compare-slider');
+            const afterImg = container.querySelector('.compare-after');
+            let isDragging = false;
+
+            function updatePosition(x) {
+                const rect = container.getBoundingClientRect();
+                let pos = (x - rect.left) / rect.width;
+                pos = Math.max(0.05, Math.min(0.95, pos));
+                slider.style.left = (pos * 100) + '%';
+                afterImg.style.clipPath = 'inset(0 0 0 ' + (pos * 100) + '%)';
+            }
+
+            slider.addEventListener('mousedown', () => isDragging = true);
+            slider.addEventListener('touchstart', () => isDragging = true);
+            document.addEventListener('mouseup', () => isDragging = false);
+            document.addEventListener('touchend', () => isDragging = false);
+            container.addEventListener('mousemove', e => { if (isDragging) updatePosition(e.clientX); });
+            container.addEventListener('touchmove', e => { if (isDragging) updatePosition(e.touches[0].clientX); });
+            container.addEventListener('click', e => updatePosition(e.clientX));
+        });
+
+        // ===== Category Filter =====
+        document.querySelectorAll('.category-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.category-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                const filter = btn.dataset.filter;
+                document.querySelectorAll('.case-card').forEach(card => {
+                    if (filter === 'all' || card.dataset.type === filter) {
+                        card.style.display = 'block';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
+        });
+
+        // ===== Scroll Animation =====
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.fade-on-scroll').forEach(el => observer.observe(el));
+        window.addEventListener('load', () => { document.body.classList.add('loaded'); });
+    </script>
+</body>
+</html>
