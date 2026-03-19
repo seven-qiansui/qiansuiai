@@ -1,0 +1,19 @@
+[
+  {
+    "id": "ep001",
+    "ep": "EP001",
+    "title": "龙虾猫第一天用AI写周报",
+    "cover": "comics/ep001/panel_1.jpg",
+    "pages": [
+      "comics/ep001/panel_1.jpg",
+      "comics/ep001/panel_2.jpg",
+      "comics/ep001/panel_3.jpg",
+      "comics/ep001/panel_4.jpg"
+    ],
+    "desc": "周五下午5点，龙虾猫对着空白周报抓头...掏出AI代写，结果翻车了",
+    "date": "2026-03-19",
+    "series": "龙虾猫的AI生存指南",
+    "style": "anime",
+    "tone": "humor"
+  }
+]
