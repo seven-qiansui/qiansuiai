@@ -1,0 +1,16 @@
+[
+  {
+    "id": "demo-001",
+    "client": "等待客户素材中...",
+    "type": "ecommerce",
+    "tags": ["详情页重构", "电商视觉"],
+    "pain": "旧详情页视觉过时，跳出率高，转化率低于行业平均",
+    "solution": "AI 辅助重新设计详情页，优化卖点排布、视觉动线、信任感模块",
+    "result": "等待数据",
+    "stat": "",
+    "before_img": "",
+    "after_img": "",
+    "shop_url": "",
+    "shop_name": ""
+  }
+]
