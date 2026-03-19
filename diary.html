@@ -397,6 +397,8 @@
         }, { threshold: 0.1 });
         document.querySelectorAll('.fade-on-scroll').forEach(el => observer.observe(el));
         window.addEventListener('load', () => { document.body.classList.add('loaded'); });
+        // 兜底：3秒后强制显示，防止白屏
+        setTimeout(() => { document.body.classList.add('loaded'); }, 3000);
     </script>
 </body>
 </html>
