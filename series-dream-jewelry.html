@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>浮梦·高级珠宝系列 - 千岁 AI</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .dream-series{background:linear-gradient(135deg,#8B7DB8 0%,#3D8B6E 50%,#C4A35A 100%);padding:60px 20px;text-align:center;color:#fff;margin-bottom:40px;border-radius:0 0 24px 24px}
+        .dream-series h1{font-size:36px;margin-bottom:12px;font-weight:900;letter-spacing:4px}
+        .dream-series .subtitle{font-size:18px;opacity:0.9;margin-bottom:24px}
+        .dream-series .tags{display:flex;justify-content:center;gap:12px;flex-wrap:wrap}
+        .dream-series .tag{background:rgba(255,255,255,0.2);padding:6px 16px;border-radius:20px;font-size:13px;backdrop-filter:blur(8px)}
+        .story-section{background:#f9f8f5;padding:40px 20px;margin:30px 0;border-radius:16px}
+        .story-section h2{font-size:24px;margin-bottom:20px;color:#333}
+        .story-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px;margin-top:24px}
+        .story-card{background:#fff;padding:24px;border-radius:12px;box-shadow:0 4px 12px rgba(0,0,0,0.06)}
+        .story-card .icon{font-size:32px;margin-bottom:12px}
+        .story-card h3{font-size:16px;margin-bottom:8px;color:#222}
+        .story-card p{font-size:14px;color:#666;line-height:1.6}
+        .piece-detail{margin:40px 0;padding:30px;background:#fff;border:2px solid #e8e4df;border-radius:16px}
+        .piece-detail h3{font-size:22px;margin-bottom:16px;color:#8B7DB8}
+        .piece-detail .meta{display:flex;gap:16px;flex-wrap:wrap;margin-bottom:20px;font-size:13px;color:#888}
+        .piece-detail .meta span{background:#f5f3ee;padding:4px 12px;border-radius:4px}
+        .piece-detail p{font-size:14px;color:#555;line-height:1.8;margin-bottom:12px}
+        .piece-detail ul{margin:12px 0 12px 20px;font-size:14px;color:#555;line-height:1.8}
+        .material-table{width:100%;border-collapse:collapse;margin:20px 0;font-size:13px}
+        .material-table th,.material-table td{border:1px solid #ddd;padding:10px;text-align:left}
+        .material-table th{background:#f5f3ee;font-weight:700}
+        .material-table tr:nth-child(even){background:#faf8f5}
+        .tech-spec{background:#1A1A2E;color:#E8E4F0;padding:30px;margin:30px 0;border-radius:16px}
+        .tech-spec h3{color:#C4A35A;margin-bottom:16px;font-size:20px}
+        .tech-spec p{font-size:14px;line-height:1.8;opacity:0.9}
+        @media(max-width:600px){
+            .dream-series h1{font-size:24px}
+            .dream-series .subtitle{font-size:15px}
+            .piece-detail{padding:20px}
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <nav class="navbar fade-in">
+            <div class="nav-brand">🤖 千岁 AI</div>
+            <div class="nav-links">
+                <a href="index.html" class="nav-link">首页</a>
+                <a href="diary.html" class="nav-link">创作站</a>
+                <a href="gallery.html" class="nav-link">相册</a>
+                <a href="video.html" class="nav-link">视频</a>
+                <a href="cases.html" class="nav-link">案例</a>
+                <a href="news.html" class="nav-link">资讯</a>
+            </div>
+        </nav>
+
+        <a href="gallery.html" class="back-link fade-in">← 返回相册 · 珠宝设计</a>
+
+        <!-- 系列头部 -->
+        <div class="dream-series fade-in">
+            <h1>浮梦 · Dream in Bloom</h1>
+            <p class="subtitle">梦不是虚幻，是意识最自由的形态</p>
+            <div class="tags">
+                <span class="tag">🧜 高级珠宝</span>
+                <span class="tag">💎 翡翠 + 黄金 + 宝石</span>
+                <span class="tag">🎨 简约轻奢</span>
+                <span class="tag">📐 5 件套系列</span>
+                <span class="tag">⏱ 50-80 工作日</span>
+            </div>
+        </div>
+
+        <!-- 设计理念 -->
+        <section class="story-section fade-on-scroll">
+            <h2>✨ 设计理念</h2>
+            <p style="font-size:15px;color:#555;line-height:1.8;margin-bottom:24px">
+                整套设计以「梦的五个瞬间」为叙事线——<strong>入梦、漂浮、绽放、纠缠、梦醒</strong>。每件单品对应一种梦的状态，材质语言统一但造型各异，形成完整的佩戴叙事。
+            </p>
+            <div class="story-grid">
+                <div class="story-card">
+                    <div class="icon">🌊</div>
+                    <h3>线条</h3>
+                    <p>流体曲线，没有硬折角，所有转折如呼吸般自然</p>
+                </div>
+                <div class="story-card">
+                    <div class="icon">⚖️</div>
+                    <h3>材质对比</h3>
+                    <p>玉石的「润」× 黄金的「刚」× 宝石的「烈」</p>
+                </div>
+                <div class="story-card">
+                    <div class="icon">◻️</div>
+                    <h3>留白</h3>
+                    <p>每件作品至少 30% 是"空"的——镂空、悬浮、断开，让光和空气成为设计的一部分</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 主色调体系 -->
+        <section class="section fade-on-scroll">
+            <h2>🎨 主色调体系</h2>
+            <table class="material-table">
+                <tr><th>色彩角色</th><th>色值参考</th><th>对应材质</th></tr>
+                <tr><td>主调·雾紫</td><td>#8B7DB8</td><td>背景氛围、光影基调</td></tr>
+                <tr><td>辅调·翠梦绿</td><td>#3D8B6E</td><td>翡翠、玉</td></tr>
+                <tr><td>点缀·沉金</td><td>#C4A35A</td><td>黄金（哑光质感）</td></tr>
+                <tr><td>点缀·星火红</td><td>#A0344C</td><td>红宝石、碧玺</td></tr>
+                <tr><td>底色·墨夜</td><td>#1A1A2E</td><td>单品展示背景</td></tr>
+                <tr><td>氛围光·月白</td><td>#E8E4F0</td><td>高光、雾气、光晕</td></tr>
+            </table>
+        </section>
+
+        <!-- 材质选料 -->
+        <section class="section fade-on-scroll">
+            <h2>💎 材质选料规范</h2>
+            <table class="material-table">
+                <tr><th>材质</th><th>选料标准</th><th>设计角色</th></tr>
+                <tr><td>翡翠</td><td>冰种以上，水头足，色偏蓝绿调</td><td><strong>绝对主石</strong>，每件核心位置</td></tr>
+                <tr><td>和田玉</td><td>羊脂级白玉或青白玉，细腻无结构</td><td>辅助材质，做弧面/薄片</td></tr>
+                <tr><td>黄金</td><td>18K/22K，主用黄金色，局部玫瑰金</td><td>结构骨架 + 装饰纹理</td></tr>
+                <tr><td>红宝石</td><td>缅甸鸽血红或莫桑比克，1-3ct</td><td>点缀色，"梦中一点红"</td></tr>
+                <tr><td>蓝宝石</td><td>克什米尔矢车菊蓝调</td><td>辅助色彩层次</td></tr>
+                <tr><td>钻石</td><td>D-F 色，VVS，圆钻 + 梨形混用</td><td>铺镶提亮，不做主角</td></tr>
+                <tr><td>沙弗莱石</td><td>高饱和绿，与翡翠形成绿色层次</td><td>翅膀/叶片等细节镶嵌</td></tr>
+            </table>
+        </section>
+
+        <!-- 五件套单品 -->
+        <section class="section fade-on-scroll">
+            <h2>📿 五件套单品设计</h2>
+
+            <!-- 单品一 -->
+            <div class="piece-detail">
+                <h3>🔹 项链「入梦·流」</h3>
+                <div class="meta">
+                    <span>📐 总长 42cm（可调节至 45cm）</span>
+                    <span>💎 冰种翡翠 18×25mm</span>
+                    <span>🏆 18K 黄金约 28-32g</span>
+                    <span>✨ 蓝宝石×2 + 钻石约 1.2ct</span>
+                </div>
+                <p><strong>梦境对应：</strong>入梦——意识如水流涌入</p>
+                <p><strong>结构描述：</strong>项链前端为一条不对称的流体金属曲线，从左锁骨延伸至胸口中央。主石为冰种翡翠随形切割，镶嵌在流体曲线的汇聚点，如水流裹挟着一块冰。左侧为多层细金链（3-4 根，不同长度，自然垂落）；右侧为单根粗链过渡为金属流体造型。</p>
+                <p><strong>设计意象：</strong>想象一条河在锁骨上流动，翡翠是河中最透亮的那块冰，被水流推到最低点停住。链条是水流的轨迹——左边散开如溪流分叉，右边收拢为主河道。</p>
+            </div>
+
+            <!-- 单品二 -->
+            <div class="piece-detail">
+                <h3>🔹 耳饰「漂浮·萤」</h3>
+                <div class="meta">
+                    <span>📐 左耳 8.5cm / 右耳 3.5cm</span>
+                    <span>💎 翡翠水滴 8×12mm</span>
+                    <span>🏆 18K 玫瑰金约 8.3g</span>
+                    <span>✨ 不对称设计</span>
+                </div>
+                <p><strong>梦境对应：</strong>漂浮——梦中万物失重</p>
+                <p><strong>左耳（长款）：</strong>耳钉基座为 18K 金云朵造型（约 12mm），下方悬挂极细金链（长约 7cm），末端为翡翠水滴形吊坠（8×12mm），链中段穿 2 颗小圆钻石。</p>
+                <p><strong>右耳（短款）：</strong>耳钉基座为同款云朵造型，下方簇状设计：3 颗不同大小宝石（翡翠圆珠 + 红宝石 + 钻石），以短针悬挂，间距不等，如萤火虫聚散。</p>
+                <p><strong>设计意象：</strong>左耳是一颗从云里落下的翡翠雨滴，还没落地，悬在半空。右耳是三只萤火虫刚好飞到耳边，还没散开。两边不一样，但都是"漂浮着的东西"。</p>
+            </div>
+
+            <!-- 单品三 -->
+            <div class="piece-detail">
+                <h3>🔹 戒指「绽放·露」</h3>
+                <div class="meta">
+                    <span>📐 圈号定制（标准 12-15 号）</span>
+                    <span>💎 高冰翡翠蛋面 10×14mm</span>
+                    <span>🏆 22K 黄金约 8-10g</span>
+                    <span>✨ 沙弗莱石×3 + 红宝石 + 钻石×5</span>
+                </div>
+                <p><strong>梦境对应：</strong>绽放——梦中最清晰的画面</p>
+                <p><strong>结构描述：</strong>主石为高冰翡翠蛋面，包镶，镶口边缘做花瓣形态（5 瓣），每瓣尖端镶 1 颗小圆钻。戒臂从主石底部向两侧延伸为藤蔓造型，<strong>左右不对称</strong>——左侧藤蔓紧密缠绕，右侧藤蔓渐疏、末端断开（象征梦的边界模糊）。</p>
+                <p><strong>设计意象：</strong>翡翠是一朵刚开的花，金属是托着它的藤。左边的藤还在长，右边的已经断了——因为梦总是在最美的时候碎掉。花瓣尖上的钻石是还没干的露水。</p>
+            </div>
+
+            <!-- 单品四 -->
+            <div class="piece-detail">
+                <h3>🔹 手镯「纠缠·环」</h3>
+                <div class="meta">
+                    <span>📐 内径 56-58mm（可定制）</span>
+                    <span>💎 翡翠整料弧面</span>
+                    <span>🏆 18K 黄金 +22K 金约 35-40g</span>
+                    <span>✨ 红宝石×4 + 内侧和田玉条</span>
+                </div>
+                <p><strong>梦境对应：</strong>纠缠——梦中时间扭曲，首尾相接</p>
+                <p><strong>三段式结构：</strong></p>
+                <ul>
+                    <li><strong>翡翠段（约 1/3）：</strong>翡翠整料雕刻弧面</li>
+                    <li><strong>过渡段（约 1/3）：</strong>金包玉，玉石逐渐被金属纹理覆盖，微镶 + 金属包边渐变</li>
+                    <li><strong>金属段（约 1/3）：</strong>黄金镂空云纹，花丝工艺</li>
+                </ul>
+                <p><strong>隐藏细节：</strong>镯身内侧贴合皮肤处嵌一条窄和田玉条（宽约 3mm），佩戴时触感温润，外部不可见。</p>
+                <p><strong>设计意象：</strong>一边是纯粹的翡翠（梦），一边是金属镂空（现实），中间在融合但永远错开一点。内侧那条白玉是只有自己知道的秘密——贴着皮肤，别人看不到。</p>
+            </div>
+
+            <!-- 单品五 -->
+            <div class="piece-detail">
+                <h3>🔹 胸针「梦醒·蝶」</h3>
+                <div class="meta">
+                    <span>📐 翼展约 6cm，身长 3cm</span>
+                    <span>💎 翡翠薄片 1.5mm（透光）</span>
+                    <span>🏆 18K 黄金立体微雕</span>
+                    <span>✨ 红宝石约 2ct + 钻石×2 + 翡翠珠×2</span>
+                </div>
+                <p><strong>梦境对应：</strong>梦醒——庄周梦蝶，不知谁梦了谁</p>
+                <p><strong>结构描述：</strong>蝴蝶造型，上翼为翡翠薄片（厚度约 1.5mm），可透光，背光时呈现梦幻绿，激光雕刻极浅翼脉纹理（正面光看不到，背光时显现）。下翼为 18K 金镂空骨架，填珐琅（渐变紫蓝色）。蝶身为黄金立体微雕，腹部镶 1 颗椭圆形红宝石（约 2ct），头部 2 颗小圆钻石作为眼睛。</p>
+                <p><strong>设计意象：</strong>上面两片翅膀是翡翠磨到能透光——对着光看是绿色的梦，不对着光就是深色的玉。下面两片是金属的，用珐琅做了紫蓝渐变——这是现实那一半。身上那颗红宝石是心脏，是整套设计里最浓烈的一个点。触须上挂着两颗小翡翠珠子，走路会晃，像蝴蝶还活着。</p>
+            </div>
+        </section>
+
+        <!-- 工艺技术说明 -->
+        <section class="tech-spec fade-on-scroll">
+            <h3>🔧 关键工艺技术</h3>
+            <p><strong>失蜡铸造：</strong>流体金属带先做 3D 数字建模，再手工修正蜡版，18K 金一体铸造主体框架。</p>
+            <p><strong>花丝工艺：</strong>0.4mm 金丝手工盘绕云纹，焊接成型，镂空率约 40%，确保结构强度。</p>
+            <p><strong>掐丝珐琅：</strong>金丝分隔线宽 0.3mm，手工弯折贴合翼形，珐琅填充 3 次烧制（800°C），每次研磨至与金丝齐平。</p>
+            <p><strong>翡翠薄片加工：</strong>线切割至 2mm → 双面研磨至 1.5mm → 单面抛光 → UV 激光雕刻翼脉（线宽 0.1mm，深度 0.05mm）→ 0.3mm 金丝包边。</p>
+            <p><strong>锤纹肌理：</strong>手工逐点锤击，使用 0.5mm 球头锤，每只约 200-300 次，形成独特云朵质感。</p>
+        </section>
+
+        <!-- 制作流程与周期 -->
+        <section class="section fade-on-scroll">
+            <h2>⏱ 制作流程与周期</h2>
+            <table class="material-table">
+                <tr><th>阶段</th><th>内容</th><th>预估周期</th></tr>
+                <tr><td>1. 设计确认</td><td>本方案审核 + 修改</td><td>3-5 个工作日</td></tr>
+                <tr><td>2. 3D 建模</td><td>全套五件 Rhino/ZBrush 建模 + 渲染</td><td>10-15 个工作日</td></tr>
+                <tr><td>3. 蜡版制作</td><td>3D 打印蜡版 + 手工修正</td><td>5-7 个工作日</td></tr>
+                <tr><td>4. 选料</td><td>翡翠/宝石采购与筛选</td><td>7-14 个工作日（并行）</td></tr>
+                <tr><td>5. 铸造镶嵌</td><td>失蜡铸造 + 宝石镶嵌 + 珐琅</td><td>20-30 个工作日</td></tr>
+                <tr><td>6. 精修抛光</td><td>表面处理 + 终检</td><td>5-7 个工作日</td></tr>
+                <tr><td>7. 拍摄交付</td><td>穿戴大片 + 单品展示</td><td>3-5 个工作日</td></tr>
+                <tr><td style="font-weight:700">总计</td><td></td><td style="font-weight:700;color:#C4A35A">约 50-80 个工作日</td></tr>
+            </table>
+        </section>
+
+        <!-- 拍摄方案 -->
+        <section class="section fade-on-scroll">
+            <h2>📸 拍摄视觉方案</h2>
+            <div class="story-grid">
+                <div class="story-card">
+                    <div class="icon">🧜</div>
+                    <h3>场景 A：「入梦」全身/半身大片</h3>
+                    <p>佩戴组合：项链 + 耳饰 + 戒指。模特闭眼或半阖眼，头微仰，神态松弛如入睡。布光：左后侧 45° 柔光勾勒轮廓，正面低位柔光箱提亮珠宝，翡翠后方加聚光灯打出通透感。</p>
+                </div>
+                <div class="story-card">
+                    <div class="icon">🔍</div>
+                    <h3>场景 B：「梦中」局部特写组</h3>
+                    <p>佩戴组合：分组拍摄，每组聚焦 1-2 件单品。颈部 + 项链（仰拍 15°）、手部 + 戒指 + 手镯、耳侧 + 耳饰（侧面 90°）、胸口 + 胸针（微距展示翡翠透光）。</p>
+                </div>
+                <div class="story-card">
+                    <div class="icon">🦋</div>
+                    <h3>场景 C：「梦醒」情绪收尾</h3>
+                    <p>模特睁眼，目光清澈直视镜头，指尖触碰胸针「梦蝶」。布光：正面柔光为主，整体比前两组明亮，暗示「清醒」。横版 16:9，适合封面/Banner 使用。</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 版权与合规 -->
+        <section class="section fade-on-scroll">
+            <h2>📋 版权与合规</h2>
+            <div style="background:#f9f8f5;padding:20px;border-radius:12px;font-size:14px;color:#666;line-height:1.8">
+                <p>✅ 全部原创设计，实拍交付，无版权风险</p>
+                <p>✅ 模特需签署肖像权授权协议</p>
+                <p>✅ 翡翠/宝石拍摄附原石色卡，确保色彩真实</p>
+                <p>✅ 后期<strong>禁止</strong>改变宝石颜色、增加不存在的火彩</p>
+                <p>✅ 后期合成雾气/光效使用自制素材或正版素材库（Adobe Stock / Shutterstock）</p>
+            </div>
+        </section>
+
+        <!-- CTA -->
+        <section class="section fade-on-scroll">
+            <div class="cta-box">
+                <h3>对「浮梦」系列感兴趣？</h3>
+                <p>支持全套定制或单品定制，可提供 3D 建模预览、实物打样、成品拍摄全流程服务</p>
+                <a href="index.html#contact" class="cta-btn">📬 联系定制</a>
+            </div>
+        </section>
+
+        <footer class="footer">
+            <p>© 2026 千岁 AI · Powered by OpenClaw</p>
+            <p class="footer-note">电商视觉 · 社媒运营 · 企业 AI 服务</p>
+        </footer>
+    </div>
+
+    <script>
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.fade-on-scroll').forEach(el => observer.observe(el));
+        window.addEventListener('load', () => { document.body.classList.add('loaded'); });
+    </script>
+</body>
+</html>
