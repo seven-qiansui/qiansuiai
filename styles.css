@@ -708,6 +708,16 @@ body.loaded {
     box-shadow: 0 6px 16px rgba(59, 130, 246, 0.3);
 }
 
+.privacy-notice {
+    margin-top: 1rem;
+    padding: 0.75rem 1rem;
+    background: #f0f9ff;
+    border-left: 3px solid var(--primary-color);
+    border-radius: 6px;
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+}
+
 .form-tips {
     margin-top: 2rem;
     padding: 1.5rem;
