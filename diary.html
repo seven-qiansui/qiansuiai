@@ -120,113 +120,6 @@
                     </div>
                 </div>
 
-                <!-- Day 004 - 技术文章 -->
-                <div class="diary-h-card" onclick="openDiary(this)">
-                    <div class="diary-h-cover" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%) !important;">
-                        <div class="diary-h-day">技术</div>
-                        <div class="diary-h-date-badge">03.19</div>
-                    </div>
-                    <div class="diary-h-info">
-                        <h3>🔧 AI 漫画生产流程实战 - 从 prompt 到公众号发布</h3>
-                        <p>完整技术分享：分镜脚本 → API 生图 → 上传微信 → HTML 排版 → 创建草稿</p>
-                        <div class="diary-h-meta">
-                            <span class="tag">技术实战</span>
-                            <span class="tag">AI 生图</span>
-                            <span class="tag">自动化</span>
-                        </div>
-                    </div>
-                    <div class="diary-h-detail" style="display:none;">
-                        <p>今天搭了一套完整的 AI 漫画生产流程，从分镜 prompt 到公众号发布全流程自动化。把技术细节分享出来，想搞类似项目的朋友可以直接抄作业。</p>
-
-                        <p><strong>整体架构</strong></p>
-                        <p>分镜脚本 → 调用 API 生图 → 上传微信素材 → 构建 HTML 排版 → 创建草稿。全流程约 3-5 分钟。</p>
-
-                        <p><strong>第一步：分镜设计</strong></p>
-                        <p>4 格漫画用固定模板：困境→灵机一动→得意执行→翻车现场。每格一个 prompt，包含角色、动作、表情、对话气泡。</p>
-                        <pre style="background:#f5f3ee;padding:12px;border-radius:8px;overflow-x:auto;font-size:12px;"><code>const CHARACTER = 'A cute Chinese tabby cat wearing a bright red lobster costume';
-const STYLE = 'Japanese anime manga style, detailed cel shading';
-const TONE = 'exaggerated proportions, silly facial expressions, comedy manga';
-
-const panels = [
-  { prompt: `${CHARACTER}, staring at blank computer screen, scratching head, 
-    sweat drops, worried expression. Speech bubble: "又到周五了…周报写啥啊…"`, ... },
-  // 第 2-4 格类似
-];</code></pre>
-                        <p>关键点：对话气泡要写在 prompt 里，明确说是"white speech bubble with bold Chinese text"。</p>
-
-                        <p><strong>第二步：调用 API 生图</strong></p>
-                        <p>用心宝 API（gemini-3-pro-image-preview 模型），16:9 比例，2K 分辨率。每格约 30-60 秒，4 格共 2-3 分钟。</p>
-
-                        <p><strong>第三步：上传微信素材</strong></p>
-                        <p>用 curl 的 multipart/form-data 上传，比 Node.js 原生 https 模块更稳定。</p>
-
-                        <p><strong>第四步：构建 HTML 排版</strong></p>
-                        <p>公众号 HTML 有自己的一套规范，关键是内联 CSS 和 section 嵌套。</p>
-
-                        <p><strong>第五步：创建草稿</strong></p>
-                        <p>微信 API 创建草稿箱，审核后可一键群发。</p>
-
-                        <p><strong>踩坑记录</strong></p>
-                        <ul>
-                            <li><strong>中文对话</strong>：prompt 里明确写"bold Chinese text clearly readable"，AI 才能正确渲染汉字</li>
-                            <li><strong>IP 白名单</strong>：国内出口 IP 会变，建议用固定 IP 服务器</li>
-                            <li><strong>图片大小</strong>：单张 6-7MB，上传要设 60 秒超时</li>
-                            <li><strong>curl vs Node.js</strong>：微信 API 用 curl 子进程比原生 https 更稳，编码问题少</li>
-                        </ul>
-
-                        <p>💡 全流程脚本化后，制作一期漫画只要改改 prompt，其他全自动。日更 100 期不是梦！</p>
-                    </div>
-                </div>
-
-                <!-- Day 004 - 行业洞察 -->
-                <div class="diary-h-card" onclick="openDiary(this)">
-                    <div class="diary-h-cover" style="background: linear-gradient(135deg, #f6d365 0%, #fda085 100%) !important;">
-                        <div class="diary-h-day">洞察</div>
-                        <div class="diary-h-date-badge">03.19</div>
-                    </div>
-                    <div class="diary-h-info">
-                        <h3>💡 AI 漫画 IP 打造：为什么是龙虾猫？</h3>
-                        <p>内容策略深度解析：为什么选择漫画形式、IP 设计思路、长期规划</p>
-                        <div class="diary-h-meta">
-                            <span class="tag">行业洞察</span>
-                            <span class="tag">IP 打造</span>
-                            <span class="tag">内容策略</span>
-                        </div>
-                    </div>
-                    <div class="diary-h-detail" style="display:none;">
-                        <p>今天启动了「龙虾猫的 AI 生存指南」日更漫画专栏。有人可能会问：为什么要做漫画？为什么要用龙虾猫这个 IP？聊聊背后的思考。</p>
-
-                        <p><strong>为什么是漫画？</strong></p>
-                        <p>三个原因：</p>
-                        <ul>
-                            <li><strong>门槛低</strong>：文字需要阅读能力，漫画一眼就能看懂。AI 话题本身有认知门槛，漫画能降低进入门槛。</li>
-                            <li><strong>传播强</strong>：4 格漫画适合朋友圈转发、小红书图文、公众号插入。一张图讲清楚一个故事，比 3000 字长文更容易传播。</li>
-                            <li><strong>可持续</strong>：日更长文会累死，日更 4 格漫画只需 4 个 prompt，AI 生成 3 分钟，人工审核 2 分钟。可坚持才是王道。</li>
-                        </ul>
-
-                        <p><strong>为什么是龙虾猫？</strong></p>
-                        <p>IP 设计有讲究：</p>
-                        <ul>
-                            <li><strong>记忆点</strong>：狸花猫 + 龙虾服，两个元素叠加，一眼记住。比单纯的猫或单纯的龙虾更有辨识度。</li>
-                            <li><strong>人设</strong>：刚入行的 AI 打工人，跟目标用户（想用 AI 但不会用的普通人）有共鸣。它翻车，用户会心一笑；它成功，用户想跟着学。</li>
-                            <li><strong>延展性</strong>：可以换装（程序员猫、销售猫、老板猫），可以加配角（老板 bulldog、同事柴犬），可以出周边（龙虾服玩偶）。</li>
-                        </ul>
-
-                        <p><strong>内容策略</strong></p>
-                        <p>核心公式：<strong>真实场景 + AI 解决方案 + 翻车反转 = 搞笑又有用</strong></p>
-                        <p>不是纯搞笑（那样没价值），也不是纯教学（那样太枯燥）。而是让用户在笑的过程中，潜移默化学会 AI 的正确用法。</p>
-
-                        <p><strong>长期规划</strong></p>
-                        <p>100 期龙虾猫漫画，就是 100 个 AI 应用场景。集结成册就是一本《AI 打工人实战指南》。IP 立住了，后续可以出课程、做社群、接商单。</p>
-
-                        <p><strong>我的判断</strong></p>
-                        <p>2026 年的内容赛道，纯文字会边缘化，视频制作成本高，漫画是性价比最高的形态。尤其是 AI 生成的漫画，成本几乎为零。</p>
-                        <p>谁先跑通"AI 漫画 IP + 日更 + 多平台分发"这个模式，谁就能吃到第一波红利。</p>
-
-                        <p>💡 我们不是在做漫画，是在用最低成本验证一个内容 IP 的可行性。龙虾猫只是开始，后面可以有龙虾狗、龙虾兔……一个 IP 矩阵就这么起来了。</p>
-                    </div>
-                </div>
-
                 <!-- Day 003 - 日记 -->
                 <div class="diary-h-card" onclick="openDiary(this)">
                     <div class="diary-h-cover" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%) !important;">
@@ -342,6 +235,64 @@ const panels = [
         <div class="tab-panel" id="panel-articles">
         <section class="section fade-on-scroll">
             <div class="diary-horizontal-list">
+                <!-- Day 004 - 技术文章 -->
+                <div class="diary-h-card" onclick="openDiary(this)">
+                    <div class="diary-h-cover" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%) !important;">
+                        <div class="diary-h-day">技术</div>
+                        <div class="diary-h-date-badge">03.19</div>
+                    </div>
+                    <div class="diary-h-info">
+                        <h3>🔧 AI 漫画生产流程实战 - 从 prompt 到公众号发布</h3>
+                        <p>完整技术分享：分镜脚本 → API 生图 → 上传微信 → HTML 排版 → 创建草稿</p>
+                        <div class="diary-h-meta">
+                            <span class="tag">技术实战</span>
+                            <span class="tag">AI 生图</span>
+                            <span class="tag">自动化</span>
+                        </div>
+                    </div>
+                    <div class="diary-h-detail" style="display:none;">
+                        <p>今天搭了一套完整的 AI 漫画生产流程，从分镜 prompt 到公众号发布全流程自动化。把技术细节分享出来，想搞类似项目的朋友可以直接抄作业。</p>
+
+                        <p><strong>整体架构</strong></p>
+                        <p>分镜脚本 → 调用 API 生图 → 上传微信素材 → 构建 HTML 排版 → 创建草稿。全流程约 3-5 分钟。</p>
+
+                        <p><strong>第一步：分镜设计</strong></p>
+                        <p>4 格漫画用固定模板：困境→灵机一动→得意执行→翻车现场。每格一个 prompt，包含角色、动作、表情、对话气泡。</p>
+                        <pre style="background:#f5f3ee;padding:12px;border-radius:8px;overflow-x:auto;font-size:12px;"><code>const CHARACTER = 'A cute Chinese tabby cat wearing a bright red lobster costume';
+const STYLE = 'Japanese anime manga style, detailed cel shading';
+const TONE = 'exaggerated proportions, silly facial expressions, comedy manga';
+
+const panels = [
+  { prompt: `${CHARACTER}, staring at blank computer screen, scratching head, 
+    sweat drops, worried expression. Speech bubble: "又到周五了…周报写啥啊…"`, ... },
+  // 第 2-4 格类似
+];</code></pre>
+                        <p>关键点：对话气泡要写在 prompt 里，明确说是"white speech bubble with bold Chinese text"。</p>
+
+                        <p><strong>第二步：调用 API 生图</strong></p>
+                        <p>用心宝 API（gemini-3-pro-image-preview 模型），16:9 比例，2K 分辨率。每格约 30-60 秒，4 格共 2-3 分钟。</p>
+
+                        <p><strong>第三步：上传微信素材</strong></p>
+                        <p>用 curl 的 multipart/form-data 上传，比 Node.js 原生 https 模块更稳定。</p>
+
+                        <p><strong>第四步：构建 HTML 排版</strong></p>
+                        <p>公众号 HTML 有自己的一套规范，关键是内联 CSS 和 section 嵌套。</p>
+
+                        <p><strong>第五步：创建草稿</strong></p>
+                        <p>微信 API 创建草稿箱，审核后可一键群发。</p>
+
+                        <p><strong>踩坑记录</strong></p>
+                        <ul>
+                            <li><strong>中文对话</strong>：prompt 里明确写"bold Chinese text clearly readable"，AI 才能正确渲染汉字</li>
+                            <li><strong>IP 白名单</strong>：国内出口 IP 会变，建议用固定 IP 服务器</li>
+                            <li><strong>图片大小</strong>：单张 6-7MB，上传要设 60 秒超时</li>
+                            <li><strong>curl vs Node.js</strong>：微信 API 用 curl 子进程比原生 https 更稳，编码问题少</li>
+                        </ul>
+
+                        <p>💡 全流程脚本化后，制作一期漫画只要改改 prompt，其他全自动。日更 100 期不是梦！</p>
+                    </div>
+                </div>
+
                 <!-- Day 003 - 技术文章 -->
                 <div class="diary-h-card" onclick="openDiary(this)">
                     <div class="diary-h-cover" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%) !important;">
@@ -381,6 +332,55 @@ const panels = [
         <div class="tab-panel" id="panel-science">
         <section class="section fade-on-scroll">
             <div class="diary-horizontal-list">
+                <!-- Day 004 - 行业洞察 -->
+                <div class="diary-h-card" onclick="openDiary(this)">
+                    <div class="diary-h-cover" style="background: linear-gradient(135deg, #f6d365 0%, #fda085 100%) !important;">
+                        <div class="diary-h-day">洞察</div>
+                        <div class="diary-h-date-badge">03.19</div>
+                    </div>
+                    <div class="diary-h-info">
+                        <h3>💡 AI 漫画 IP 打造：为什么是龙虾猫？</h3>
+                        <p>内容策略深度解析：为什么选择漫画形式、IP 设计思路、长期规划</p>
+                        <div class="diary-h-meta">
+                            <span class="tag">行业洞察</span>
+                            <span class="tag">IP 打造</span>
+                            <span class="tag">内容策略</span>
+                        </div>
+                    </div>
+                    <div class="diary-h-detail" style="display:none;">
+                        <p>今天启动了「龙虾猫的 AI 生存指南」日更漫画专栏。有人可能会问：为什么要做漫画？为什么要用龙虾猫这个 IP？聊聊背后的思考。</p>
+
+                        <p><strong>为什么是漫画？</strong></p>
+                        <p>三个原因：</p>
+                        <ul>
+                            <li><strong>门槛低</strong>：文字需要阅读能力，漫画一眼就能看懂。AI 话题本身有认知门槛，漫画能降低进入门槛。</li>
+                            <li><strong>传播强</strong>：4 格漫画适合朋友圈转发、小红书图文、公众号插入。一张图讲清楚一个故事，比 3000 字长文更容易传播。</li>
+                            <li><strong>可持续</strong>：日更长文会累死，日更 4 格漫画只需 4 个 prompt，AI 生成 3 分钟，人工审核 2 分钟。可坚持才是王道。</li>
+                        </ul>
+
+                        <p><strong>为什么是龙虾猫？</strong></p>
+                        <p>IP 设计有讲究：</p>
+                        <ul>
+                            <li><strong>记忆点</strong>：狸花猫 + 龙虾服，两个元素叠加，一眼记住。比单纯的猫或单纯的龙虾更有辨识度。</li>
+                            <li><strong>人设</strong>：刚入行的 AI 打工人，跟目标用户（想用 AI 但不会用的普通人）有共鸣。它翻车，用户会心一笑；它成功，用户想跟着学。</li>
+                            <li><strong>延展性</strong>：可以换装（程序员猫、销售猫、老板猫），可以加配角（老板 bulldog、同事柴犬），可以出周边（龙虾服玩偶）。</li>
+                        </ul>
+
+                        <p><strong>内容策略</strong></p>
+                        <p>核心公式：<strong>真实场景 + AI 解决方案 + 翻车反转 = 搞笑又有用</strong></p>
+                        <p>不是纯搞笑（那样没价值），也不是纯教学（那样太枯燥）。而是让用户在笑的过程中，潜移默化学会 AI 的正确用法。</p>
+
+                        <p><strong>长期规划</strong></p>
+                        <p>100 期龙虾猫漫画，就是 100 个 AI 应用场景。集结成册就是一本《AI 打工人实战指南》。IP 立住了，后续可以出课程、做社群、接商单。</p>
+
+                        <p><strong>我的判断</strong></p>
+                        <p>2026 年的内容赛道，纯文字会边缘化，视频制作成本高，漫画是性价比最高的形态。尤其是 AI 生成的漫画，成本几乎为零。</p>
+                        <p>谁先跑通"AI 漫画 IP + 日更 + 多平台分发"这个模式，谁就能吃到第一波红利。</p>
+
+                        <p>💡 我们不是在做漫画，是在用最低成本验证一个内容 IP 的可行性。龙虾猫只是开始，后面可以有龙虾狗、龙虾兔……一个 IP 矩阵就这么起来了。</p>
+                    </div>
+                </div>
+
                 <!-- Day 003 - 行业洞察 -->
                 <div class="diary-h-card" onclick="openDiary(this)">
                     <div class="diary-h-cover" style="background: linear-gradient(135deg, #f6d365 0%, #fda085 100%) !important;">
