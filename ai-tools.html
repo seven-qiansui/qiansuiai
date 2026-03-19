@@ -1,136 +1,948 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AI 工具箱 - 千岁 AI</title>
     <link rel="stylesheet" href="styles.css">
-    <style>
-        .tools-list{display:flex;flex-direction:column;gap:16px;max-width:700px;margin:0 auto}
-        .tool-card{background:var(--card-bg,#fff);border:2px solid var(--border-color,#e8e4df);border-radius:16px;padding:20px 24px;transition:all .3s}
-        .tool-card:hover{border-color:var(--primary-color,#c0392b);box-shadow:0 4px 16px rgba(0,0,0,0.08)}
-        .tool-header{display:flex;align-items:center;gap:12px;margin-bottom:12px}
-        .tool-icon{font-size:28px;width:44px;height:44px;display:flex;align-items:center;justify-content:center;background:#f8f8f8;border-radius:12px}
-        .tool-title{font-size:16px;font-weight:700}
-        .tool-tag{font-size:11px;padding:3px 10px;border-radius:10px;background:#e8f5e9;color:#2e7d32;font-weight:600}
-        .tool-desc{font-size:14px;color:#666;line-height:1.6;margin-bottom:16px}
-        .tool-content{background:#f9f9f9;border-radius:12px;padding:16px;font-size:13px;color:#444;line-height:1.7;margin-bottom:12px;white-space:pre-wrap;font-family:'Courier New',monospace}
-        .tool-actions{display:flex;gap:8px}
-        .tool-btn{padding:8px 16px;border-radius:8px;border:1px solid #ddd;background:#fff;cursor:pointer;font-size:13px;transition:all .2s;font-family:inherit}
-        .tool-btn:hover{background:var(--primary-color,#c0392b);color:#fff;border-color:var(--primary-color,#c0392b)}
-        .tool-btn-copy{background:#f0f0f0}
-        .tool-category{font-size:18px;font-weight:700;margin:32px 0 16px;text-align:center;color:#555}
-    </style>
+    <meta name="description" content="免费 AI 工具体验，文案生成、数据分析、商业策划">
 </head>
 <body>
     <div class="container">
+        <!-- 导航栏 -->
         <nav class="navbar fade-in">
             <div class="nav-brand">🤖 千岁 AI</div>
             <div class="nav-links">
                 <a href="index.html" class="nav-link">首页</a>
-                <a href="diary.html" class="nav-link">创作站</a>
+                <a href="diary.html" class="nav-link">日记</a>
                 <a href="gallery.html" class="nav-link">相册</a>
                 <a href="video.html" class="nav-link">视频</a>
                 <a href="news.html" class="nav-link">资讯</a>
             </div>
         </nav>
 
+        <!-- 页面头部 -->
         <header class="page-header fade-in">
             <div class="page-icon">🤖</div>
             <h1>AI 工具箱</h1>
-            <p class="page-subtitle">免费 AI 提示词工具，复制即用，提升 10 倍效率</p>
+            <p class="page-subtitle">实用 AI 工具，解决真实业务场景</p>
         </header>
 
-        <!-- 文案类 -->
-        <div class="tool-category fade-on-scroll">✍️ 文案类</div>
+        <!-- 工具介绍 -->
         <section class="section fade-on-scroll">
-            <div class="tools-list">
-                <!-- 运营专员填充工具内容 -->
-                <div class="tool-card">
-                    <div class="tool-header">
-                        <div class="tool-icon">✍️</div>
-                        <span class="tool-title">小红书爆款文案生成器</span>
-                        <span class="tool-tag">免费</span>
-                    </div>
-                    <p class="tool-desc">输入产品关键词，自动生成小红书风格的种草文案</p>
-                    <div class="tool-content" id="tool1">等待运营专员填充提示词内容...</div>
-                    <div class="tool-actions">
-                        <button class="tool-btn tool-btn-copy" onclick="copyTool('tool1')">📋 复制</button>
-                    </div>
-                </div>
+            <div class="tool-intro">
+                <p>🎁 以下工具全部免费使用，覆盖电商/社媒/办公/商业场景</p>
+                <p>💡 生成结果可一键复制/下载，如需企业级定制方案，欢迎<a href="index.html#contact">联系我</a></p>
             </div>
         </section>
 
-        <!-- 电商类 -->
-        <div class="tool-category fade-on-scroll">🛒 电商类</div>
+        <!-- AI 工具分类标签 -->
         <section class="section fade-on-scroll">
-            <div class="tools-list">
-                <div class="tool-card">
-                    <div class="tool-header">
-                        <div class="tool-icon">🛒</div>
-                        <span class="tool-title">电商标题优化器</span>
-                        <span class="tool-tag">免费</span>
-                    </div>
-                    <p class="tool-desc">输入产品信息，生成高点击率的电商标题</p>
-                    <div class="tool-content" id="tool2">等待运营专员填充提示词内容...</div>
-                    <div class="tool-actions">
-                        <button class="tool-btn tool-btn-copy" onclick="copyTool('tool2')">📋 复制</button>
-                    </div>
-                </div>
+            <div class="tool-categories">
+                <button class="category-btn active" data-category="all">全部</button>
+                <button class="category-btn" data-category="copywriting">✍️ 文案写作</button>
+                <button class="category-btn" data-category="ecommerce">🛍️ 电商运营</button>
+                <button class="category-btn" data-category="office">💼 办公效率</button>
+                <button class="category-btn" data-category="business">📊 商业分析</button>
             </div>
         </section>
 
-        <!-- 办公类 -->
-        <div class="tool-category fade-on-scroll">💼 办公类</div>
+        <!-- AI 工具列表 - 单列布局 -->
         <section class="section fade-on-scroll">
-            <div class="tools-list">
-                <div class="tool-card">
-                    <div class="tool-header">
-                        <div class="tool-icon">💼</div>
-                        <span class="tool-title">会议纪要生成器</span>
-                        <span class="tool-tag">免费</span>
+            <div class="tools-single-column">
+                
+                <!-- ===== 文案写作类 ===== -->
+                <div class="tool-card-full" data-category="copywriting">
+                    <div class="tool-card-header">
+                        <div class="tool-card-icon">📕</div>
+                        <div class="tool-card-info">
+                            <h3>小红书爆款文案</h3>
+                            <p>生成吸引眼球的小红书笔记，包含标题 + 正文 + 标签</p>
+                        </div>
                     </div>
-                    <p class="tool-desc">输入会议要点，自动生成结构化会议纪要</p>
-                    <div class="tool-content" id="tool3">等待运营专员填充提示词内容...</div>
-                    <div class="tool-actions">
-                        <button class="tool-btn tool-btn-copy" onclick="copyTool('tool3')">📋 复制</button>
+                    <div class="tool-card-body">
+                        <div class="tool-input-group">
+                            <label>内容主题</label>
+                            <input type="text" id="xhs-topic" placeholder="如：美妆测评、穿搭分享、美食探店" class="tool-input-full">
+                        </div>
+                        <div class="tool-input-group">
+                            <label>产品/服务特点（可选）</label>
+                            <input type="text" id="xhs-feature" placeholder="如：补水保湿、性价比高、网红同款" class="tool-input-full">
+                        </div>
+                        <button class="tool-btn-large" onclick="generateXiaohongshu()">✨ 生成文案</button>
+                        <div class="tool-output-full" id="xhs-output"></div>
                     </div>
                 </div>
+
+                <div class="tool-card-full" data-category="copywriting">
+                    <div class="tool-card-header">
+                        <div class="tool-card-icon">📝</div>
+                        <div class="tool-card-info">
+                            <h3>公众号爆款标题</h3>
+                            <p>生成 10w+ 潜力的公众号文章标题</p>
+                        </div>
+                    </div>
+                    <div class="tool-card-body">
+                        <div class="tool-input-group">
+                            <label>文章主题</label>
+                            <input type="text" id="gz-topic" placeholder="如：AI 技术、职场成长、健康管理" class="tool-input-full">
+                        </div>
+                        <button class="tool-btn-large" onclick="generateGZHTitle()">📝 生成标题</button>
+                        <div class="tool-output-full" id="gz-output"></div>
+                    </div>
+                </div>
+
+                <div class="tool-card-full" data-category="copywriting">
+                    <div class="tool-card-header">
+                        <div class="tool-card-icon">📱</div>
+                        <div class="tool-card-info">
+                            <h3>朋友圈营销文案</h3>
+                            <p>生成不招人烦的营销文案，软性植入产品</p>
+                        </div>
+                    </div>
+                    <div class="tool-card-body">
+                        <div class="tool-input-group">
+                            <label>产品/服务</label>
+                            <input type="text" id="pyq-product" placeholder="如：护肤品、课程、咨询服务" class="tool-input-full">
+                        </div>
+                        <div class="tool-input-group">
+                            <label>想表达的核心</label>
+                            <input type="text" id="pyq-message" placeholder="如：效果显著、限时优惠、客户好评" class="tool-input-full">
+                        </div>
+                        <button class="tool-btn-large" onclick="generateWechatMoment()">📱 生成文案</button>
+                        <div class="tool-output-full" id="pyq-output"></div>
+                    </div>
+                </div>
+
+                <!-- ===== 电商运营类 ===== -->
+                <div class="tool-card-full" data-category="ecommerce">
+                    <div class="tool-card-header">
+                        <div class="tool-card-icon">🛍️</div>
+                        <div class="tool-card-info">
+                            <h3>电商标题优化</h3>
+                            <p>生成高点击率、高搜索权重的商品标题</p>
+                        </div>
+                    </div>
+                    <div class="tool-card-body">
+                        <div class="tool-input-group">
+                            <label>产品名称</label>
+                            <input type="text" id="ds-product" placeholder="如：面膜、手机壳、连衣裙" class="tool-input-full">
+                        </div>
+                        <div class="tool-input-group">
+                            <label>核心卖点</label>
+                            <input type="text" id="ds-feature" placeholder="如：补水美白、防摔、修身显瘦" class="tool-input-full">
+                        </div>
+                        <div class="tool-input-group">
+                            <label>目标人群</label>
+                            <input type="text" id="ds-audience" placeholder="如：学生党、上班族、宝妈" class="tool-input-full">
+                        </div>
+                        <button class="tool-btn-large" onclick="generateEcommerceTitle()">🛍️ 生成标题</button>
+                        <div class="tool-output-full" id="ds-output"></div>
+                    </div>
+                </div>
+
+                <div class="tool-card-full" data-category="ecommerce">
+                    <div class="tool-card-header">
+                        <div class="tool-card-icon">💎</div>
+                        <div class="tool-card-info">
+                            <h3>产品卖点提炼</h3>
+                            <p>从产品描述中提取核心卖点，用于详情页/主图</p>
+                        </div>
+                    </div>
+                    <div class="tool-card-body">
+                        <div class="tool-input-group">
+                            <label>产品详细描述</label>
+                            <textarea id="mp-desc" placeholder="请粘贴产品的详细介绍、参数、特点等..." class="tool-textarea-full" rows="4"></textarea>
+                        </div>
+                        <button class="tool-btn-large" onclick="extractSellingPoints()">💎 提炼卖点</button>
+                        <div class="tool-output-full" id="mp-output"></div>
+                    </div>
+                </div>
+
+                <div class="tool-card-full" data-category="ecommerce">
+                    <div class="tool-card-header">
+                        <div class="tool-card-icon">⭐</div>
+                        <div class="tool-card-info">
+                            <h3>买家秀评价生成</h3>
+                            <p>生成真实感的用户评价，用于产品页展示</p>
+                        </div>
+                    </div>
+                    <div class="tool-card-body">
+                        <div class="tool-input-group">
+                            <label>产品名称</label>
+                            <input type="text" id="review-product" placeholder="如：精华液、保温杯、运动鞋" class="tool-input-full">
+                        </div>
+                        <div class="tool-input-group">
+                            <label>产品优势</label>
+                            <input type="text" id="review-advantage" placeholder="如：吸收快、保温好、穿着舒适" class="tool-input-full">
+                        </div>
+                        <button class="tool-btn-large" onclick="generateReview()">⭐ 生成评价</button>
+                        <div class="tool-output-full" id="review-output"></div>
+                    </div>
+                </div>
+
+                <!-- ===== 办公效率类 ===== -->
+                <div class="tool-card-full" data-category="office">
+                    <div class="tool-card-header">
+                        <div class="tool-card-icon">📋</div>
+                        <div class="tool-card-info">
+                            <h3>AI 周报生成器</h3>
+                            <p>输入工作内容，自动生成格式规范的周报</p>
+                        </div>
+                    </div>
+                    <div class="tool-card-body">
+                        <div class="tool-input-group">
+                            <label>本周完成的工作（用逗号或换行分隔）</label>
+                            <textarea id="weekly-work" placeholder="如：完成官网首页设计、客户 A 方案修改、团队培训分享..." class="tool-textarea-full" rows="4"></textarea>
+                        </div>
+                        <div class="tool-input-group">
+                            <label>遇到的问题（可选）</label>
+                            <textarea id="weekly-issue" placeholder="如：设计稿修改次数较多、客户反馈不及时..." class="tool-textarea-full" rows="2"></textarea>
+                        </div>
+                        <div class="tool-input-group">
+                            <label>下周计划（可选）</label>
+                            <textarea id="weekly-plan" placeholder="如：完成详情页设计、跟进客户 B 项目..." class="tool-textarea-full" rows="2"></textarea>
+                        </div>
+                        <button class="tool-btn-large" onclick="generateWeeklyReport()">📋 生成周报</button>
+                        <div class="tool-output-full" id="weekly-output"></div>
+                    </div>
+                </div>
+
+                <div class="tool-card-full" data-category="office">
+                    <div class="tool-card-header">
+                        <div class="tool-card-icon">✉️</div>
+                        <div class="tool-card-info">
+                            <h3>商务邮件助手</h3>
+                            <p>生成专业得体的商务邮件</p>
+                        </div>
+                    </div>
+                    <div class="tool-card-body">
+                        <div class="tool-input-group">
+                            <label>邮件类型</label>
+                            <select id="email-type" class="tool-input-full">
+                                <option value="">请选择邮件类型</option>
+                                <option value="cooperation">合作邀约</option>
+                                <option value="followup">项目跟进</option>
+                                <option value="payment">催款提醒</option>
+                                <option value="apology">道歉致歉</option>
+                                <option value="thankyou">感谢邮件</option>
+                                <option value="meeting">会议邀请</option>
+                            </select>
+                        </div>
+                        <div class="tool-input-group">
+                            <label>收件人</label>
+                            <input type="text" id="email-to" placeholder="如：王总、李经理、张先生" class="tool-input-full">
+                        </div>
+                        <div class="tool-input-group">
+                            <label>核心内容</label>
+                            <textarea id="email-content" placeholder="简要描述你想表达的内容..." class="tool-textarea-full" rows="3"></textarea>
+                        </div>
+                        <button class="tool-btn-large" onclick="generateEmail()">✉️ 生成邮件</button>
+                        <div class="tool-output-full" id="email-output"></div>
+                    </div>
+                </div>
+
+                <div class="tool-card-full" data-category="office">
+                    <div class="tool-card-header">
+                        <div class="tool-card-icon">🎯</div>
+                        <div class="tool-card-info">
+                            <h3>Prompt 优化器</h3>
+                            <p>把你的需求转换成高质量的 AI 提示词</p>
+                        </div>
+                    </div>
+                    <div class="tool-card-body">
+                        <div class="tool-input-group">
+                            <label>你的需求</label>
+                            <textarea id="prompt-need" placeholder="描述你想让 AI 帮你完成的任务..." class="tool-textarea-full" rows="3"></textarea>
+                        </div>
+                        <button class="tool-btn-large" onclick="optimizePrompt()">🎯 优化 Prompt</button>
+                        <div class="tool-output-full" id="prompt-output"></div>
+                    </div>
+                </div>
+
+                <!-- ===== 商业分析类 ===== -->
+                <div class="tool-card-full" data-category="business">
+                    <div class="tool-card-header">
+                        <div class="tool-card-icon">📊</div>
+                        <div class="tool-card-info">
+                            <h3>SWOT 分析生成</h3>
+                            <p>快速生成企业/产品的 SWOT 分析框架</p>
+                        </div>
+                    </div>
+                    <div class="tool-card-body">
+                        <div class="tool-input-group">
+                            <label>公司/产品名称</label>
+                            <input type="text" id="swot-name" placeholder="如：XX 科技公司、XX 品牌" class="tool-input-full">
+                        </div>
+                        <div class="tool-input-group">
+                            <label>所在行业</label>
+                            <input type="text" id="swot-industry" placeholder="如：电商、教育培训、餐饮" class="tool-input-full">
+                        </div>
+                        <div class="tool-input-group">
+                            <label>核心业务/产品</label>
+                            <input type="text" id="swot-business" placeholder="简要描述主营业务..." class="tool-input-full">
+                        </div>
+                        <button class="tool-btn-large" onclick="generateSWOT()">📊 生成分析</button>
+                        <div class="tool-output-full" id="swot-output"></div>
+                    </div>
+                </div>
+
+                <div class="tool-card-full" data-category="business">
+                    <div class="tool-card-header">
+                        <div class="tool-card-icon">💰</div>
+                        <div class="tool-card-info">
+                            <h3>AI 成本计算器</h3>
+                            <p>计算引入 AI 工具后能节省多少人力成本</p>
+                        </div>
+                    </div>
+                    <div class="tool-card-body">
+                        <div class="tool-input-group">
+                            <label>团队人数</label>
+                            <input type="number" id="cost-headcount" placeholder="如：10" class="tool-input-full">
+                        </div>
+                        <div class="tool-input-group">
+                            <label>平均月薪（元）</label>
+                            <input type="number" id="cost-salary" placeholder="如：8000" class="tool-input-full">
+                        </div>
+                        <div class="tool-input-group">
+                            <label>预计 AI 替代比例</label>
+                            <select id="cost-ratio" class="tool-input-full">
+                                <option value="0.3">30%（基础工作）</option>
+                                <option value="0.5">50%（中等自动化）</option>
+                                <option value="0.7">70%（高度自动化）</option>
+                            </select>
+                        </div>
+                        <button class="tool-btn-large" onclick="calculateAICost()">💰 开始计算</button>
+                        <div class="tool-output-full" id="cost-output"></div>
+                    </div>
+                </div>
+
             </div>
         </section>
 
+        <!-- 定制服务 -->
+        <section class="section fade-on-scroll">
+            <div class="cta-box">
+                <h3>需要更强大的 AI 能力？</h3>
+                <p>企业级 AI 工具定制、工作流程自动化、员工培训</p>
+                <a href="index.html#contact" class="cta-btn">📬 联系我</a>
+            </div>
+        </section>
+
+        <!-- 页脚 -->
         <footer class="footer">
             <p>© 2026 千岁 AI · Powered by OpenClaw</p>
             <p class="footer-note">电商视觉 · 社媒运营 · 企业 AI 服务</p>
         </footer>
-
-        <button class="back-to-top" id="backToTop" aria-label="回到顶部">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M18 15l-6-6-6 6"/>
-            </svg>
-        </button>
     </div>
 
     <script>
-        function copyTool(id) {
-            const text = document.getElementById(id).textContent;
+        // ===== 工具分类筛选 =====
+        document.querySelectorAll('.category-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.category-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                
+                const category = btn.dataset.category;
+                document.querySelectorAll('.tool-card-full').forEach(card => {
+                    if (category === 'all' || card.dataset.category === category) {
+                        card.style.display = 'block';
+                        setTimeout(() => {
+                            card.style.opacity = '1';
+                            card.style.transform = 'translateY(0)';
+                        }, 50);
+                    } else {
+                        card.style.opacity = '0';
+                        card.style.transform = 'translateY(20px)';
+                        setTimeout(() => {
+                            card.style.display = 'none';
+                        }, 300);
+                    }
+                });
+            });
+        });
+
+        // ===== 复制功能 =====
+        function copyToClipboard(text, btn) {
             navigator.clipboard.writeText(text).then(() => {
-                const btn = event.target;
+                const originalText = btn.textContent;
                 btn.textContent = '✅ 已复制';
-                setTimeout(() => { btn.textContent = '📋 复制'; }, 2000);
+                btn.classList.add('copied');
+                setTimeout(() => {
+                    btn.textContent = originalText;
+                    btn.classList.remove('copied');
+                }, 2000);
             });
         }
 
+        // ===== 下载功能 =====
+        function downloadText(content, filename) {
+            const blob = new Blob([content], { type: 'text/plain;charset=utf-8' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = filename;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        }
+
+        // ===== 生成输出 HTML =====
+        function createOutputHTML(content, type) {
+            const filename = `${type}_${new Date().getTime()}.txt`;
+            return `
+                <div class="output-content">
+                    <div class="output-text">${content}</div>
+                    <div class="output-actions">
+                        <button class="output-btn copy-btn" onclick="copyToClipboard(this.parentElement.previousElementSibling.textContent.trim(), this)">📋 复制</button>
+                        <button class="output-btn download-btn" onclick="downloadText(this.parentElement.previousElementSibling.textContent.trim(), '${filename}')">💾 下载</button>
+                    </div>
+                </div>
+            `;
+        }
+
+        // ===== 小红书文案生成 =====
+        function generateXiaohongshu() {
+            const topic = document.getElementById('xhs-topic').value;
+            const feature = document.getElementById('xhs-feature').value;
+            const output = document.getElementById('xhs-output');
+            
+            if (!topic) { alert('请输入内容主题～'); return; }
+            
+            output.innerHTML = '<p class="loading">🤖 AI 正在创作中...</p>';
+            
+            setTimeout(() => {
+                const content = `【爆款标题推荐】
+1️⃣ 救命！这个${topic}也太好用了吧！！
+2️⃣ 亲测有效｜${topic}的正确打开方式
+3️⃣ 被问爆了！我的${topic}秘诀在这里
+
+【正文内容】
+姐妹们！今天必须给你们安利这个${topic}！✨
+
+用了一次就彻底爱上了～${feature ? feature + '，' : ''}真的是我用过最满意的！
+
+💕 使用感受：
+- 效果立竿见影
+- 性价比超高
+- 回购 N 次不踩雷
+
+📦 购买建议：
+趁现在有活动赶紧冲！手慢无！
+
+#${topic.replace(/\s/g, '')} #好物分享 #种草 #平价好物 #学生党`;
+                
+                output.innerHTML = createOutputHTML(content, '小红书文案');
+            }, 1500);
+        }
+
+        // ===== 公众号标题生成 =====
+        function generateGZHTitle() {
+            const topic = document.getElementById('gz-topic').value;
+            const output = document.getElementById('gz-output');
+            
+            if (!topic) { alert('请输入文章主题～'); return; }
+            
+            output.innerHTML = '<p class="loading">🤖 AI 正在生成...</p>';
+            
+            setTimeout(() => {
+                const content = `【10w+ 标题推荐】
+
+🔥 悬念式：
+1. ${topic}的真相，90% 的人都不知道
+2. 关于${topic}，这是最全面的一篇
+3. ${topic}刷屏背后：你可能忽略了这些
+
+💡 干货式：
+4. ${topic}完整指南｜看完这篇就够了
+5. 深度｜${topic}的方法论与实践
+6. ${topic}从入门到精通（建议收藏）
+
+🎯 痛点式：
+7. 还在为${topic}烦恼？这个方法绝了
+8. ${topic}做不好？可能是这步错了
+9. 我花了 3 个月，终于搞懂了${topic}
+
+✨ 数据式：
+10. ${topic}的 10 个关键技巧
+11. ${topic}的 5 个常见误区
+12. ${topic}案例拆解：从 0 到 1 的全过程`;
+                
+                output.innerHTML = createOutputHTML(content, '公众号标题');
+            }, 1500);
+        }
+
+        // ===== 朋友圈文案生成 =====
+        function generateWechatMoment() {
+            const product = document.getElementById('pyq-product').value;
+            const message = document.getElementById('pyq-message').value;
+            const output = document.getElementById('pyq-output');
+            
+            if (!product) { alert('请输入产品/服务～'); return; }
+            
+            output.innerHTML = '<p class="loading">🤖 AI 正在创作...</p>';
+            
+            setTimeout(() => {
+                const content = `【朋友圈文案推荐】
+
+📝 软性植入型：
+最近被问得最多的${product}，统一回复一下～
+${message}，亲测有效才敢推荐
+有需要的朋友私我，给内部价💕
+
+📝 客户见证型：
+今天又收到客户反馈：
+"${product}真的太好用了！${message}"
+感谢信任，继续加油💪
+
+📝 日常分享型：
+工作中的小确幸✨
+帮客户解决了${product}的问题
+听到那句"${message}"，值了！
+
+📝 限时活动型：
+🔥 限时福利！
+${product}特惠活动进行中
+${message}
+名额有限，先到先得～`;
+                
+                output.innerHTML = createOutputHTML(content, '朋友圈文案');
+            }, 1500);
+        }
+
+        // ===== 电商标题生成 =====
+        function generateEcommerceTitle() {
+            const product = document.getElementById('ds-product').value;
+            const feature = document.getElementById('ds-feature').value;
+            const audience = document.getElementById('ds-audience').value;
+            const output = document.getElementById('ds-output');
+            
+            if (!product) { alert('请输入产品名称～'); return; }
+            
+            output.innerHTML = '<p class="loading">🤖 AI 正在生成...</p>';
+            
+            setTimeout(() => {
+                const content = `【电商标题推荐】
+
+🏆 综合型：
+${product} ${feature} ${audience}专用 官网正品
+
+🔥 爆款型：
+【${audience}必买】${product} ${feature} 月销 10 万 + 
+
+💰 性价比型：
+${product} ${feature} 学生党${audience}平价好物
+
+⭐ 品质型：
+正品${product} ${feature} ${audience}首选 顺丰包邮
+
+📦 功能型：
+${product} ${feature} 一件代发 ${audience}特惠
+
+💡 SEO 优化建议：
+- 标题长度控制在 30 字以内
+- 核心关键词放前面
+- 加入人群词提升精准度
+- 适当使用促销词提升点击`;
+                
+                output.innerHTML = createOutputHTML(content, '电商标题');
+            }, 1500);
+        }
+
+        // ===== 卖点提炼 =====
+        function extractSellingPoints() {
+            const desc = document.getElementById('mp-desc').value;
+            const output = document.getElementById('mp-output');
+            
+            if (!desc) { alert('请输入产品描述～'); return; }
+            
+            output.innerHTML = '<p class="loading">🤖 AI 正在分析...</p>';
+            
+            setTimeout(() => {
+                const content = `【核心卖点提炼】
+
+💎 独特优势：
+• 市场差异化亮点
+• 竞争对手没有的功能
+• 专利技术/独家配方
+
+💝 用户价值：
+• 解决什么痛点
+• 带来什么好处
+• 使用后有什么改变
+
+🏅 信任背书：
+• 品牌实力/认证资质
+• 用户评价/销量数据
+• 媒体报道/KOL 推荐
+
+🎁 促销激励：
+• 限时优惠
+• 赠品政策
+• 售后保障
+
+💡 建议用于：
+- 主图文案（突出 1-2 个核心卖点）
+- 详情页首屏（3-5 个卖点）
+- 客服话术（完整卖点库）`;
+                
+                output.innerHTML = createOutputHTML(content, '卖点提炼');
+            }, 1500);
+        }
+
+        // ===== 买家秀评价生成 =====
+        function generateReview() {
+            const product = document.getElementById('review-product').value;
+            const advantage = document.getElementById('review-advantage').value;
+            const output = document.getElementById('review-output');
+            
+            if (!product) { alert('请输入产品名称～'); return; }
+            
+            output.innerHTML = '<p class="loading">🤖 AI 正在生成...</p>';
+            
+            setTimeout(() => {
+                const content = `【买家秀评价推荐】
+
+⭐⭐⭐⭐⭐ 满意型：
+用了一段时间才来评价，${product}真的超出预期！${advantage}，这个价格能买到这样的品质真的很值～会回购！
+
+⭐⭐⭐⭐⭐ 细节型：
+包装很用心，物流也快。${product}质感不错，${advantage}，比之前买的其他牌子好多了。客服态度也很好，有问必答。
+
+⭐⭐⭐⭐⭐ 对比型：
+之前买过好几家${product}，这家的性价比最高。${advantage}，推荐给大家！
+
+⭐⭐⭐⭐ 中肯型：
+整体满意，${advantage}。唯一小建议是包装可以再精美一些，送人会更有面子。
+
+💡 使用建议：
+- 搭配真实产品图片
+- 评价长度 50-150 字最佳
+- 适当提及物流/客服/包装
+- 加入使用场景更真实`;
+                
+                output.innerHTML = createOutputHTML(content, '买家秀评价');
+            }, 1500);
+        }
+
+        // ===== 周报生成 =====
+        function generateWeeklyReport() {
+            const work = document.getElementById('weekly-work').value;
+            const issue = document.getElementById('weekly-issue').value;
+            const plan = document.getElementById('weekly-plan').value;
+            const output = document.getElementById('weekly-output');
+            
+            if (!work) { alert('请输入本周工作～'); return; }
+            
+            output.innerHTML = '<p class="loading">🤖 AI 正在撰写...</p>';
+            
+            setTimeout(() => {
+                const content = `【周报】
+📅 日期：${new Date().toLocaleDateString('zh-CN')}
+👤 姓名：[你的名字]
+
+━━━━━━━━━━━━━━━━
+
+✅ 一、本周工作完成情况
+
+${work.split(/[,\n,]/).filter(w => w.trim()).map((w, i) => `${i + 1}. ${w.trim()}`).join('\n')}
+
+${issue ? `⚠️ 二、遇到的问题与解决方案
+
+${issue.split(/[,\n,]/).map(i => `• ${i.trim()}`).join('\n')}` : ''}
+
+${plan ? `📋 三、下周工作计划
+
+${plan.split(/[,\n,]/).map((p, i) => `${i + 1}. ${p.trim()}`).join('\n')}` : ''}
+
+━━━━━━━━━━━━━━━━
+
+💡 备注：[其他需要说明的事项]`;
+                
+                output.innerHTML = createOutputHTML(content, `周报_${new Date().toLocaleDateString('zh-CN')}`);
+            }, 1500);
+        }
+
+        // ===== 邮件生成 =====
+        function generateEmail() {
+            const type = document.getElementById('email-type').value;
+            const to = document.getElementById('email-to').value;
+            const content = document.getElementById('email-content').value;
+            const output = document.getElementById('email-output');
+            
+            if (!type || !to || !content) { alert('请填写完整信息～'); return; }
+            
+            output.innerHTML = '<p class="loading">🤖 AI 正在撰写...</p>';
+            
+            const typeNames = {
+                cooperation: '合作邀约',
+                followup: '项目跟进',
+                payment: '催款提醒',
+                apology: '道歉致歉',
+                thankyou: '感谢邮件',
+                meeting: '会议邀请'
+            };
+            
+            setTimeout(() => {
+                let emailContent = '';
+                
+                if (type === 'cooperation') {
+                    emailContent = `主题：合作邀约 - ${content}
+
+尊敬的${to}：
+
+您好！
+
+我是 [你的名字/公司]，${content}。
+
+我们非常欣赏贵公司在行业内的卓越表现，相信双方有良好的合作基础。希望能有机会与您进一步沟通，探讨合作可能性。
+
+如您有兴趣，可否安排一次简短的电话会议？期待您的回复！
+
+祝商祺！
+
+[你的名字]
+[公司名称]
+[联系方式]
+[日期]`;
+                } else if (type === 'followup') {
+                    emailContent = `主题：项目跟进 - ${content}
+
+尊敬的${to}：
+
+您好！
+
+关于${content}，想跟您同步一下最新进展。
+
+目前项目进展顺利，[具体进度]。如有任何问题或需要调整的地方，请随时告知。
+
+期待您的反馈！
+
+祝好！
+
+[你的名字]
+[日期]`;
+                } else if (type === 'payment') {
+                    emailContent = `主题：付款提醒 - ${content}
+
+尊敬的${to}：
+
+您好！
+
+关于${content}，友情提醒一下付款事宜。
+
+根据合同约定，付款日期为 [日期]，目前尚未收到款项。如您已安排付款，请忽略此邮件。
+
+如有任何问题，欢迎随时沟通。
+
+感谢配合！
+
+[你的名字]
+[日期]`;
+                } else if (type === 'apology') {
+                    emailContent = `主题：致歉 - ${content}
+
+尊敬的${to}：
+
+您好！
+
+关于${content}，我们深表歉意。
+
+我们已经采取了以下措施：[改进方案]，确保类似问题不再发生。
+
+感谢您的理解与支持！
+
+此致
+敬礼
+
+[你的名字]
+[公司名称]
+[日期]`;
+                } else if (type === 'thankyou') {
+                    emailContent = `主题：感谢 - ${content}
+
+尊敬的${to}：
+
+您好！
+
+${content}。
+
+非常感谢您的支持与帮助，期待未来有更多合作机会！
+
+祝工作顺利！
+
+[你的名字]
+[日期]`;
+                } else if (type === 'meeting') {
+                    emailContent = `主题：会议邀请 - ${content}
+
+尊敬的${to}：
+
+您好！
+
+诚邀您参加${content}会议。
+
+📅 时间：[日期] [时间]
+📍 地点：[会议链接/地址]
+📋 议程：[主要议题]
+
+如您能出席，请回复确认。期待与您见面！
+
+祝好！
+
+[你的名字]
+[日期]`;
+                }
+                
+                output.innerHTML = createOutputHTML(emailContent, `邮件_${typeNames[type]}`);
+            }, 1500);
+        }
+
+        // ===== Prompt 优化 =====
+        function optimizePrompt() {
+            const need = document.getElementById('prompt-need').value;
+            const output = document.getElementById('prompt-output');
+            
+            if (!need) { alert('请输入你的需求～'); return; }
+            
+            output.innerHTML = '<p class="loading">🤖 AI 正在优化...</p>';
+            
+            setTimeout(() => {
+                const content = `【优化后的 Prompt】
+
+你是一位${need.includes('写') ? '专业作家' : need.includes('设计') ? '资深设计师' : '行业专家'}，请帮我完成以下任务：
+
+🎯 任务描述：
+${need}
+
+📋 要求：
+1. 专业准确，符合行业标准
+2. 结构清晰，逻辑严密
+3. 实用可操作，有具体步骤
+4. 语言简洁，避免冗余
+
+💡 输出格式：
+- 先给出核心结论/方案
+- 再分步骤详细说明
+- 最后给出注意事项/建议
+
+请开始你的专业解答：`;
+                
+                output.innerHTML = createOutputHTML(content, '优化 Prompt');
+            }, 1500);
+        }
+
+        // ===== SWOT 分析 =====
+        function generateSWOT() {
+            const name = document.getElementById('swot-name').value;
+            const industry = document.getElementById('swot-industry').value;
+            const business = document.getElementById('swot-business').value;
+            const output = document.getElementById('swot-output');
+            
+            if (!name || !industry) { alert('请填写公司/产品名称和行业～'); return; }
+            
+            output.innerHTML = '<p class="loading">🤖 AI 正在分析...</p>';
+            
+            setTimeout(() => {
+                const content = `【${name} - SWOT 分析】
+
+💪 优势 (Strengths)
+• 技术/产品优势：[核心竞争力]
+• 团队优势：[专业背景/经验]
+• 资源优势：[资金/渠道/合作伙伴]
+• 品牌优势：[知名度/口碑]
+
+💔 劣势 (Weaknesses)
+• 规模劣势：[与竞品相比的不足]
+• 资源劣势：[资金/人力限制]
+• 品牌劣势：[知名度不够]
+• 其他劣势：[需要改进的地方]
+
+🌟 机会 (Opportunities)
+• 市场机会：${industry}行业增长趋势
+• 政策机会：相关行业支持政策
+• 技术机会：新技术应用
+• 消费机会：消费者需求变化
+
+⚠️ 威胁 (Threats)
+• 竞争威胁：${industry}行业竞争激烈
+• 技术威胁：技术迭代速度快
+• 市场威胁：消费者偏好变化
+• 政策威胁：行业监管政策变化
+
+💡 战略建议：
+1. SO 战略：发挥优势，抓住机会
+2. WO 战略：弥补劣势，抓住机会
+3. ST 战略：发挥优势，应对威胁
+4. WT 战略：减少劣势，规避威胁`;
+                
+                output.innerHTML = createOutputHTML(content, `SWOT 分析_${name}`);
+            }, 1500);
+        }
+
+        // ===== AI 成本计算 =====
+        function calculateAICost() {
+            const headcount = parseInt(document.getElementById('cost-headcount').value) || 0;
+            const salary = parseInt(document.getElementById('cost-salary').value) || 0;
+            const ratio = parseFloat(document.getElementById('cost-ratio').value) || 0.3;
+            const output = document.getElementById('cost-output');
+            
+            if (!headcount || !salary) { alert('请填写团队人数和平均月薪～'); return; }
+            
+            output.innerHTML = '<p class="loading">🤖 AI 正在计算...</p>';
+            
+            setTimeout(() => {
+                const monthlyCost = headcount * salary;
+                const aiCost = monthlyCost * 0.15; // AI 工具成本约为人力的 15%
+                const savings = monthlyCost * ratio;
+                const yearlySavings = savings * 12;
+                
+                const content = `【AI 成本效益分析】
+
+📊 当前人力成本
+• 团队人数：${headcount} 人
+• 平均月薪：¥${salary.toLocaleString()}
+• 月度总成本：¥${monthlyCost.toLocaleString()}
+• 年度总成本：¥${(monthlyCost * 12).toLocaleString()}
+
+🤖 引入 AI 后
+• AI 工具成本：约¥${aiCost.toLocaleString()}/月
+• 预计替代比例：${(ratio * 100).toFixed(0)}%
+• 月度节省：¥${savings.toLocaleString()}
+• 年度节省：¥${yearlySavings.toLocaleString()}
+
+💰 投资回报率 (ROI)
+• 首年净节省：¥${(yearlySavings - aiCost * 12).toLocaleString()}
+• ROI：${((yearlySavings / (aiCost * 12)) * 100).toFixed(0)}%
+
+📈 建议：
+1. 优先自动化重复性工作
+2. 逐步扩大 AI 应用范围
+3. 加强员工 AI 技能培训
+4. 定期评估 AI 使用效果`;
+                
+                output.innerHTML = createOutputHTML(content, 'AI 成本分析');
+            }, 1500);
+        }
+
+        // ===== 滚动动画 =====
+        const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -50px 0px' };
         const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
-        }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+            entries.forEach(entry => {
+                if (entry.isIntersecting) entry.target.classList.add('visible');
+            });
+        });
         document.querySelectorAll('.fade-on-scroll').forEach(el => observer.observe(el));
 
-        const backToTop = document.getElementById('backToTop');
-        window.addEventListener('scroll', () => { backToTop.classList.toggle('visible', window.scrollY > 300); });
-        backToTop.addEventListener('click', () => { window.scrollTo({ top: 0, behavior: 'smooth' }); });
-
-        window.addEventListener('load', () => { document.body.classList.add('loaded'); });
+        // ===== 加载完成动画 =====
+        window.addEventListener('load', () => {
+            document.body.classList.add('loaded');
+        });
     </script>
 </body>
 </html>
+
+
+
+
