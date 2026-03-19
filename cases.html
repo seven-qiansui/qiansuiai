@@ -136,20 +136,18 @@
             html += '<div class="story-step"><div class="story-icon">📈</div><div class="story-label result">结果</div><div class="story-text">' + (c.result||'') + '</div>' + (c.stat ? '<div class="story-stat">' + c.stat + '</div>' : '') + '</div>';
             html += '</div>';
 
-            // Compare slider
+            // Compare slider (always show)
             const beforeImg = c.before_img || placeholderImg;
             const afterImg = c.after_img || placeholderImg;
-            if (c.before_img || c.after_img) {
-                html += '<div class="compare-section">';
-                html += '<div class="compare-title">👆 拖动滑块查看新旧对比</div>';
-                html += '<div class="compare-container" data-compare="' + i + '">';
-                html += '<img class="compare-before" src="' + beforeImg + '" alt="旧版">';
-                html += '<img class="compare-after" src="' + afterImg + '" alt="新版">';
-                html += '<div class="compare-label old">旧版</div>';
-                html += '<div class="compare-label new">新版</div>';
-                html += '<div class="compare-slider"></div>';
-                html += '</div></div>';
-            }
+            html += '<div class="compare-section">';
+            html += '<div class="compare-title">👆 拖动滑块查看新旧对比</div>';
+            html += '<div class="compare-container" data-compare="' + i + '">';
+            html += '<img class="compare-before" src="' + beforeImg + '" alt="旧版">';
+            html += '<img class="compare-after" src="' + afterImg + '" alt="新版">';
+            html += '<div class="compare-label old">旧版</div>';
+            html += '<div class="compare-label new">新版</div>';
+            html += '<div class="compare-slider"></div>';
+            html += '</div></div>';
 
             // Live preview
             if (c.shop_url) {
