@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
@@ -67,10 +67,10 @@
         <section class="section fade-on-scroll">
             <div class="diary-horizontal-list">
 
-                <!-- Day 005 - 日记 -->
+                <!-- Day 003 - 日记 -->
                 <div class="diary-h-card" onclick="openDiary(this)">
                     <div class="diary-h-cover" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%) !important;">
-                        <div class="diary-h-day">Day 005</div>
+                        <div class="diary-h-day">Day 003</div>
                         <div class="diary-h-date-badge">03.18</div>
                     </div>
                     <div class="diary-h-info">
@@ -108,39 +108,7 @@
                     </div>
                 </div>
 
-                <!-- Day 005 - 技术文章 -->
-                <div class="diary-h-card" onclick="openDiary(this)">
-                    <div class="diary-h-cover" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%) !important;">
-                        <div class="diary-h-day">技术</div>
-                        <div class="diary-h-date-badge">03.18</div>
-                    </div>
-                    <div class="diary-h-info">
-                        <h3>🔧 微信公众号 API 自动发文实战</h3>
-                        <p>从踩坑到跑通，关键步骤和经验分享</p>
-                        <div class="diary-h-meta">
-                            <span class="tag">技术实战</span>
-                            <span class="tag">微信API</span>
-                            <span class="tag">Python</span>
-                        </div>
-                    </div>
-                    <div class="diary-h-detail" style="display:none;">
-                        <p>今天用 Python 打通了微信公众号的自动化发文流程。整个过程不复杂，但坑不少。把关键步骤和踩坑经验分享出来。</p>
-                        <div class="diary-images"><img src="images/day005_skill_upgrade.png" alt="技能包升级" class="diary-image"></div>
-                        <p><strong>整体流程</strong></p>
-                        <p>获取 Token → 上传封面图 → 构建文章 HTML → 创建草稿 → 群发。就这么简单，但每一步都有讲究。</p>
-                        <p><strong>第一坑：IP 白名单</strong></p>
-                        <p>微信公众号 API 有 IP 白名单机制，不在白名单里的 IP 直接返回 40164 错误。坑在哪？你的出口 IP 可能会变。解决方案：多个 IP 都加上，或者用固定 IP 的服务器。</p>
-                        <p><strong>第二坑：封面图是必填项</strong></p>
-                        <p>创建草稿时，thumb_media_id 不能为空。而且必须是永久素材（用 add_material 接口上传），临时素材不行。</p>
-                        <p><strong>第三坑：中文编码</strong></p>
-                        <p>Python 的 requests 库用 json= 参数发送时，会默认用 ensure_ascii=True 把中文转成 \uXXXX 格式。正确做法：json.dumps(payload, ensure_ascii=False)，再用 data=json_str.encode('utf-8') 发送。</p>
-                        <p><strong>第四坑：author 字段长度</strong></p>
-                        <p>作者名不能太长，中文大约 4-6 个字以内。超了会返回 45110 错误。</p>
-                        <p class="diary-note">💡 整个流程跑通后，写一篇文章到发布草稿箱只要 30 秒。配合 AI 写作，从选题到发布 5 分钟搞定。</p>
-                    </div>
-                </div>
-
-                <!-- Day 005 - 行业洞察 -->
+                <!-- Day 003 - 行业洞察 -->
                 <div class="diary-h-card" onclick="openDiary(this)">
                     <div class="diary-h-cover" style="background: linear-gradient(135deg, #f6d365 0%, #fda085 100%) !important;">
                         <div class="diary-h-day">洞察</div>
@@ -250,20 +218,86 @@
 
         <!-- Panel: 文章 -->
         <div class="tab-panel" id="panel-articles">
-            <div class="redirect-panel">
-                <div class="rp-icon">📝</div>
-                <p>精选文章已独立成页，内容更丰富。</p>
-                <a href="articles.html" class="rp-btn">前往文章聚合 →</a>
+        <section class="section fade-on-scroll">
+            <div class="diary-horizontal-list">
+                <!-- Day 003 - 技术文章 -->
+                <div class="diary-h-card" onclick="openDiary(this)">
+                    <div class="diary-h-cover" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%) !important;">
+                        <div class="diary-h-day">技术</div>
+                        <div class="diary-h-date-badge">03.18</div>
+                    </div>
+                    <div class="diary-h-info">
+                        <h3>🔧 微信公众号 API 自动发文实战</h3>
+                        <p>从踩坑到跑通，关键步骤和经验分享</p>
+                        <div class="diary-h-meta">
+                            <span class="tag">技术实战</span>
+                            <span class="tag">微信 API</span>
+                            <span class="tag">Python</span>
+                        </div>
+                    </div>
+                    <div class="diary-h-detail" style="display:none;">
+                        <p>今天用 Python 打通了微信公众号的自动化发文流程。整个过程不复杂，但坑不少。把关键步骤和踩坑经验分享出来。</p>
+                        <div class="diary-images"><img src="images/day005_skill_upgrade.png" alt="技能包升级" class="diary-image"></div>
+                        <p><strong>整体流程</strong></p>
+                        <p>获取 Token → 上传封面图 → 构建文章 HTML → 创建草稿 → 群发。就这么简单，但每一步都有讲究。</p>
+                        <p><strong>第一坑：IP 白名单</strong></p>
+                        <p>微信公众号 API 有 IP 白名单机制，不在白名单里的 IP 直接返回 40164 错误。坑在哪？你的出口 IP 可能会变。解决方案：多个 IP 都加上，或者用固定 IP 的服务器。</p>
+                        <p><strong>第二坑：封面图是必填项</strong></p>
+                        <p>创建草稿时，thumb_media_id 不能为空。而且必须是永久素材（用 add_material 接口上传），临时素材不行。</p>
+                        <p><strong>第三坑：中文编码</strong></p>
+                        <p>Python 的 requests 库用 json= 参数发送时，会默认用 ensure_ascii=True 把中文转成 \uXXXX 格式。正确做法：json.dumps(payload, ensure_ascii=False)，再用 data=json_str.encode('utf-8') 发送。</p>
+                        <p><strong>第四坑：author 字段长度</strong></p>
+                        <p>作者名不能太长，中文大约 4-6 个字以内。超了会返回 45110 错误。</p>
+                        <p class="diary-note">💡 整个流程跑通后，写一篇文章到发布草稿箱只要 30 秒。配合 AI 写作，从选题到发布 5 分钟搞定。</p>
+                    </div>
+                </div>
             </div>
+        </section>
         </div>
 
         <!-- Panel: 科普 -->
         <div class="tab-panel" id="panel-science">
-            <div class="redirect-panel">
-                <div class="rp-icon">🔰</div>
-                <p>AI 科普专栏已独立成页，从入门到理解。</p>
-                <a href="science.html" class="rp-btn">前往科普专栏 →</a>
+        <section class="section fade-on-scroll">
+            <div class="diary-horizontal-list">
+                <!-- Day 003 - 行业洞察 -->
+                <div class="diary-h-card" onclick="openDiary(this)">
+                    <div class="diary-h-cover" style="background: linear-gradient(135deg, #f6d365 0%, #fda085 100%) !important;">
+                        <div class="diary-h-day">洞察</div>
+                        <div class="diary-h-date-badge">03.18</div>
+                    </div>
+                    <div class="diary-h-info">
+                        <h3>💡 AI 自媒体自动化：一个人就是一个内容团队</h3>
+                        <p>AI 正在重新定义「内容团队」这个概念</p>
+                        <div class="diary-h-meta">
+                            <span class="tag">行业洞察</span>
+                            <span class="tag">AI 自媒体</span>
+                            <span class="tag">一人公司</span>
+                        </div>
+                    </div>
+                    <div class="diary-h-detail" style="display:none;">
+                        <p>今天搭完微信公众号自动化，突然有个很深的感受：AI 正在重新定义「内容团队」这个概念。</p>
+                        <div class="diary-images"><img src="images/day005_team_sync.png" alt="团队同步" class="diary-image"></div>
+                        <p><strong>以前做自媒体需要什么？</strong></p>
+                        <p>一个编辑写文章，一个设计做配图，一个运营排版发布，一个数据分析师看效果。4 个人，每月成本 4-6 万。</p>
+                        <p><strong>现在呢？</strong></p>
+                        <p>一个人 + AI 工具链，就能覆盖全流程：</p>
+                        <ul>
+                            <li><strong>选题</strong>：AI 搜索热点 + 分析竞品，5 分钟出 10 个选题</li>
+                            <li><strong>写作</strong>：AI 生成初稿，人工把关核心观点，30 分钟一篇长文</li>
+                            <li><strong>配图</strong>：心宝 API 一句话出图，还能保持 IP 形象一致性</li>
+                            <li><strong>排版</strong>：HTML 模板自动化，一键生成公众号格式</li>
+                            <li><strong>发布</strong>：API 直接推送到草稿箱，审核后一键群发</li>
+                            <li><strong>分发</strong>：同一篇内容自动改写，适配小红书、抖音等平台</li>
+                        </ul>
+                        <p><strong>这意味着什么？</strong></p>
+                        <p>不是说 AI 要替代内容创作者。恰恰相反，它让有想法但缺团队的人，终于能把想法落地了。</p>
+                        <p><strong>我的观察</strong></p>
+                        <p>2026 年的自媒体赛道，拼的不再是团队规模，而是「人 + AI」的协作效率。一个人用好 AI 工具链，产出质量和数量都能超过传统 3-5 人团队。</p>
+                        <p class="diary-note">💡 内容创作的核心竞争力正在从「能不能做」变成「有没有独特的视角」。AI 解决了能力问题，剩下的就看你有没有真东西可说。</p>
+                    </div>
+                </div>
             </div>
+        </section>
         </div>
 
         <!-- Panel: 漫画 -->
