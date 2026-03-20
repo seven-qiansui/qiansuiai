@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>龙虾猫的 AI 生存指南 - 千岁 AI</title>
+    <link rel="stylesheet" href="styles.css">
+    <meta name="description" content="龙虾猫的 AI 生存指南 4 格漫画连载">
+</head>
+<body>
+    <div class="container">
+        <!-- 导航栏 -->
+        <nav class="navbar fade-in">
+            <div class="nav-brand">🤖 千岁 AI</div>
+            <div class="nav-links">
+                <a href="index.html" class="nav-link">首页</a>
+                <a href="diary.html" class="nav-link">创作站</a>
+                <a href="gallery.html" class="nav-link">相册</a>
+                <a href="video.html" class="nav-link">视频</a>
+                <a href="cases.html" class="nav-link">案例</a>
+                <a href="news.html" class="nav-link">资讯</a>
+            </div>
+        </nav>
+
+        <!-- 页面头部 -->
+        <header class="page-header fade-in">
+            <div class="page-icon">🦞</div>
+            <h1>龙虾猫的 AI 生存指南</h1>
+            <p class="page-subtitle">一只龙虾猫的 AI 日常 · 4 格漫画连载</p>
+        </header>
+
+        <!-- 漫画列表 -->
+        <section class="section fade-on-scroll">
+            <div class="comic-list">
+                
+                <!-- EP002 -->
+                <div class="comic-card">
+                    <div class="comic-header">
+                        <span class="comic-episode">EP002</span>
+                        <span class="comic-date">2026-03-20</span>
+                    </div>
+                    <h2>龙虾猫让 AI 帮它写情书</h2>
+                    <div class="comic-panels">
+                        <div class="comic-panel">
+                            <img src="comics/lobster-cat/EP002/panel_1.png" alt="第 1 格：想表白但不会写情书" loading="lazy">
+                            <p class="comic-dialog">怎么表白啊...</p>
+                        </div>
+                        <div class="comic-panel">
+                            <img src="comics/lobster-cat/EP002/panel_2_v2.png" alt="第 2 格：想到让 AI 代写" loading="lazy">
+                            <p class="comic-dialog">让 AI 帮我写！</p>
+                        </div>
+                        <div class="comic-panel">
+                            <img src="comics/lobster-cat/EP002/panel_3.png" alt="第 3 格：AI 生成超文艺情书" loading="lazy">
+                            <p class="comic-dialog">亲爱的，你是我的小太阳...</p>
+                        </div>
+                        <div class="comic-panel">
+                            <img src="comics/lobster-cat/EP002/panel_4.png" alt="第 4 格：对方回复" loading="lazy">
+                            <p class="comic-dialog">这封...我也收到 5 份了</p>
+                        </div>
+                    </div>
+                    <div class="comic-footer">
+                        <span class="comic-tag">🐱 龙虾猫</span>
+                        <span class="comic-tag">🤖 AI 日常</span>
+                        <span class="comic-tag">😂 翻车现场</span>
+                    </div>
+                </div>
+
+                <!-- EP001 -->
+                <div class="comic-card comic-placeholder">
+                    <div class="comic-header">
+                        <span class="comic-episode">EP001</span>
+                        <span class="comic-date">敬请期待</span>
+                    </div>
+                    <h2>首刊筹备中...</h2>
+                    <p class="comic-placeholder-text">🚧 龙虾猫的 AI 冒险即将开始，敬请期待！</p>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- 回到顶部 -->
+        <button class="back-to-top" id="backToTop" aria-label="回到顶部">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M18 15l-6-6-6 6"/>
+            </svg>
+        </button>
+
+        <!-- 页脚 -->
+        <footer class="footer">
+            <p>© 2026 千岁 AI · Powered by OpenClaw</p>
+            <p class="footer-note">电商视觉 · 社媒运营 · 企业 AI 服务</p>
+        </footer>
+    </div>
+
+    <style>
+        /* 漫画列表样式 */
+        .comic-list {
+            display: flex;
+            flex-direction: column;
+            gap: 48px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .comic-card {
+            background: #fff;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .comic-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 32px rgba(0,0,0,0.12);
+        }
+
+        .comic-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 24px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: #fff;
+        }
+
+        .comic-episode {
+            font-size: 18px;
+            font-weight: bold;
+            background: rgba(255,255,255,0.2);
+            padding: 4px 12px;
+            border-radius: 20px;
+        }
+
+        .comic-date {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+
+        .comic-card h2 {
+            padding: 20px 24px 16px;
+            margin: 0;
+            font-size: 22px;
+            color: #1a1a2e;
+        }
+
+        .comic-panels {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 12px;
+            padding: 0 24px 24px;
+        }
+
+        .comic-panel {
+            position: relative;
+            background: #f8f9fa;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 2px solid #e9ecef;
+        }
+
+        .comic-panel img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .comic-dialog {
+            padding: 12px;
+            text-align: center;
+            font-size: 15px;
+            color: #495057;
+            background: #fff;
+            margin: 0;
+            border-top: 1px solid #e9ecef;
+            font-weight: 500;
+        }
+
+        .comic-footer {
+            display: flex;
+            gap: 8px;
+            padding: 16px 24px;
+            background: #f8f9fa;
+            border-top: 1px solid #e9ecef;
+            flex-wrap: wrap;
+        }
+
+        .comic-tag {
+            font-size: 13px;
+            padding: 4px 10px;
+            background: #e9ecef;
+            border-radius: 12px;
+            color: #495057;
+        }
+
+        .comic-placeholder {
+            opacity: 0.6;
+        }
+
+        .comic-placeholder-text {
+            padding: 40px 24px;
+            text-align: center;
+            color: #6c757d;
+            font-size: 16px;
+        }
+
+        /* 移动端适配 */
+        @media (max-width: 768px) {
+            .comic-panels {
+                grid-template-columns: 1fr;
+            }
+            .comic-card h2 {
+                font-size: 18px;
+            }
+        }
+    </style>
+
+    <script>
+        // 回到顶部按钮
+        const backToTop = document.getElementById('backToTop');
+        
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                backToTop.classList.add('visible');
+            } else {
+                backToTop.classList.remove('visible');
+            }
+        });
+
+        backToTop.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // 加载完成动画
+        window.addEventListener('load', () => {
+            document.body.classList.add('loaded');
+        });
+    </script>
+</body>
+</html>
