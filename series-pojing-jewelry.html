@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>破镜·珠宝设计系列 - 千岁 AI</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <nav class="navbar fade-in">
+            <div class="nav-brand">🤖 千岁 AI</div>
+            <div class="nav-links">
+                <a href="index.html" class="nav-link">首页</a>
+                <a href="diary.html" class="nav-link">创作站</a>
+                <a href="gallery.html" class="nav-link">相册</a>
+                <a href="video.html" class="nav-link">视频</a>
+                <a href="cases.html" class="nav-link">案例</a>
+                <a href="news.html" class="nav-link">资讯</a>
+            </div>
+        </nav>
+
+        <a href="gallery.html" class="back-link fade-in">← 返回相册 · 珠宝设计</a>
+
+        <!-- 系列头部 -->
+        <header class="detail-header fade-in">
+            <h1>破镜 · 珠宝设计系列</h1>
+            <p class="detail-desc">简约现代风格的珠宝设计套图，包含 3 套完整方案。每套方案涵盖封面主图、佩戴效果展示、完整套图展示，适用于电商平台商品主图、详情页等场景。</p>
+            <div class="detail-tags">
+                <span class="tag">电商主图</span>
+                <span class="tag">佩戴展示</span>
+                <span class="tag">套图设计</span>
+                <span class="tag">简约现代</span>
+            </div>
+        </header>
+
+        <!-- 封面方案 -->
+        <section class="section fade-on-scroll">
+            <h2>📐 封面方案（3 套）</h2>
+            <div class="singles-grid">
+                <div class="single-item">
+                    <img src="jewelry/pojing-cover_A.jpg" alt="封面方案 A">
+                    <span>方案 A</span>
+                </div>
+                <div class="single-item">
+                    <img src="jewelry/pojing-cover_B.jpg" alt="封面方案 B">
+                    <span>方案 B</span>
+                </div>
+                <div class="single-item">
+                    <img src="jewelry/pojing-cover_C.jpg" alt="封面方案 C">
+                    <span>方案 C</span>
+                </div>
+            </div>
+            <p class="section-note">💡 封面主图：简约现代风格，适合电商商品主图展示</p>
+        </section>
+
+        <!-- 佩戴展示 -->
+        <section class="section fade-on-scroll">
+            <h2>👤 可穿戴展示（3 套）</h2>
+            <div class="singles-grid">
+                <div class="single-item">
+                    <img src="jewelry/pojing-wearable_A.jpg" alt="佩戴效果 A">
+                    <span>方案 A</span>
+                </div>
+                <div class="single-item">
+                    <img src="jewelry/pojing-wearable_B.jpg" alt="佩戴效果 B">
+                    <span>方案 B</span>
+                </div>
+                <div class="single-item">
+                    <img src="jewelry/pojing-wearable_C.jpg" alt="佩戴效果 C">
+                    <span>方案 C</span>
+                </div>
+            </div>
+            <p class="section-note">💡 佩戴效果：模特佩戴展示，直观呈现珠宝上身效果</p>
+        </section>
+
+        <!-- 完整套图 -->
+        <section class="section fade-on-scroll">
+            <h2>💎 完整套图（3 套）</h2>
+            <div class="singles-grid">
+                <div class="single-item">
+                    <img src="jewelry/pojing-set_A.jpg" alt="完整套图 A">
+                    <span>方案 A</span>
+                </div>
+                <div class="single-item">
+                    <img src="jewelry/pojing-set_B.jpg" alt="完整套图 B">
+                    <span>方案 B</span>
+                </div>
+                <div class="single-item">
+                    <img src="jewelry/pojing-set_C.jpg" alt="完整套图 C">
+                    <span>方案 C</span>
+                </div>
+            </div>
+            <p class="section-note">💡 完整套图：多件珠宝组合展示，适合系列商品推广</p>
+        </section>
+
+        <!-- 技术说明 -->
+        <section class="section fade-on-scroll">
+            <h2>📋 技术说明</h2>
+            <div class="tech-specs">
+                <div class="spec-item">
+                    <span class="spec-label">输出格式</span>
+                    <span class="spec-value">JPG（Web 优化）</span>
+                </div>
+                <div class="spec-item">
+                    <span class="spec-label">文件大小</span>
+                    <span class="spec-value">单张 75-280KB</span>
+                </div>
+                <div class="spec-item">
+                    <span class="spec-label">适用场景</span>
+                    <span class="spec-value">电商主图/详情页/社媒推广</span>
+                </div>
+                <div class="spec-item">
+                    <span class="spec-label">版权状态</span>
+                    <span class="spec-value">✅ 版权合规</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- 统一点评区 -->
+        <section class="section fade-on-scroll">
+            <h2>💬 点评</h2>
+            <div class="comments-section">
+                <div class="comment-list" id="commentList"></div>
+                <div class="comment-form">
+                    <input type="text" id="commentName" placeholder="昵称" class="comment-name">
+                    <textarea id="commentText" placeholder="说说你对这个系列的看法..." class="comment-text" rows="3"></textarea>
+                    <button class="comment-btn" onclick="addComment()">💬 发表点评</button>
+                </div>
+            </div>
+        </section>
+
+        <footer class="footer">
+            <p>© 2026 千岁 AI · Powered by OpenClaw</p>
+        </footer>
+
+        <button class="back-to-top" id="backToTop" aria-label="回到顶部">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M18 15l-6-6-6 6"/>
+            </svg>
+        </button>
+    </div>
+
+    <script>
+        const COMMENT_KEY = 'series-pojing-jewelry-comments';
+
+        function loadComments() {
+            const comments = JSON.parse(localStorage.getItem(COMMENT_KEY) || '[]');
+            const list = document.getElementById('commentList');
+            if (comments.length === 0) {
+                list.innerHTML = '<p class="no-comment">暂无点评，来说说你的看法～</p>';
+            } else {
+                list.innerHTML = comments.map(c => `
+                    <div class="comment-item">
+                        <div class="comment-header">
+                            <span class="comment-author">👤 ${c.name}</span>
+                            <span class="comment-time">${c.time}</span>
+                        </div>
+                        <p class="comment-body">${c.text}</p>
+                    </div>
+                `).join('');
+            }
+        }
+
+        function addComment() {
+            const name = document.getElementById('commentName').value.trim() || '匿名用户';
+            const text = document.getElementById('commentText').value.trim();
+            if (!text) {
+                alert('请输入点评内容');
+                return;
+            }
+            const now = new Date();
+            const time = `${now.getFullYear()}-${String(now.getMonth()+1).padStart(2,'0')}-${String(now.getDate()).padStart(2,'0')} ${String(now.getHours()).padStart(2,'0')}:${String(now.getMinutes()).padStart(2,'0')}`;
+            const comments = JSON.parse(localStorage.getItem(COMMENT_KEY) || '[]');
+            comments.unshift({ name, text, time });
+            localStorage.setItem(COMMENT_KEY, JSON.stringify(comments));
+            document.getElementById('commentName').value = '';
+            document.getElementById('commentText').value = '';
+            loadComments();
+        }
+
+        const backToTop = document.getElementById('backToTop');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                backToTop.classList.add('visible');
+            } else {
+                backToTop.classList.remove('visible');
+            }
+        });
+        backToTop.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.fade-on-scroll, .single-item').forEach(el => observer.observe(el));
+        window.addEventListener('load', () => { document.body.classList.add('loaded'); loadComments(); });
+    </script>
+</body>
+</html>
