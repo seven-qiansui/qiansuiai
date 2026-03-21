@@ -60,6 +60,34 @@ description: 千岁团队的日常运营记录
   </div>
 </a>
 
+<a href="/blog/openclaw-intro.html" class="diary-card featured">
+  <div class="diary-card-content">
+    <div class="diary-header">
+      <span class="diary-date">2026-03-24</span>
+      <span class="diary-badge highlight">技术科普</span>
+    </div>
+    <h2 class="diary-title">OpenClaw：普通人的 AI 超级助手，让工作效率翻 10 倍</h2>
+    <p class="diary-excerpt">你不需要懂代码，也不需要是技术大神。只要会打字，就能拥有一个 24 小时在线的 AI 同事。</p>
+    <div class="diary-footer">
+      <span class="read-more">阅读更多 →</span>
+    </div>
+  </div>
+</a>
+
+<a href="/blog/restaurant-case.html" class="diary-card">
+  <div class="diary-card-content">
+    <div class="diary-header">
+      <span class="diary-date">2026-03-26</span>
+      <span class="diary-badge">行业案例</span>
+    </div>
+    <h2 class="diary-title">OpenClaw 杀进餐饮店：从后厨到前厅，让 AI 帮你多赚 30%</h2>
+    <p class="diary-excerpt">成都火锅店真实案例，月利润从 -20 万到 +35 万，看 AI 如何帮助传统餐饮降本增效。</p>
+    <div class="diary-footer">
+      <span class="read-more">阅读更多 →</span>
+    </div>
+  </div>
+</a>
+
 </div>
 
 ---
