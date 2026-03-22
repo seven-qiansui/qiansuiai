@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>分销中心 - 锦汉食品批发</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .distribution-header {
+            background: linear-gradient(135deg, #9b59b6, #8e44ad);
+            color: white;
+            padding: 30px 20px 80px;
+            border-radius: 0 0 30px 30px;
+        }
+        .user-level {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        .avatar {
+            width: 60px;
+            height: 60px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+        }
+        .level-badge {
+            background: rgba(255,255,255,0.2);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 13px;
+        }
+        .stats-cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            padding: 0 20px;
+            margin-top: -50px;
+            position: relative;
+            z-index: 10;
+        }
+        .stat-card {
+            background: white;
+            border-radius: 15px;
+            padding: 20px 15px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        .stat-value {
+            font-size: 24px;
+            font-weight: 700;
+            color: #8e44ad;
+            margin-bottom: 5px;
+        }
+        .stat-label {
+            font-size: 12px;
+            color: #666;
+        }
+        .section-title {
+            padding: 20px 20px 10px;
+            font-size: 16px;
+            font-weight: 600;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .section-title a {
+            color: #8e44ad;
+            font-size: 13px;
+            text-decoration: none;
+        }
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+            padding: 15px 20px;
+            background: white;
+            margin: 10px 20px;
+            border-radius: 15px;
+        }
+        .menu-item {
+            text-align: center;
+            padding: 15px 10px;
+        }
+        .menu-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            margin: 0 auto 8px;
+        }
+        .menu-icon.purple { background: linear-gradient(135deg, #a8e6cf, #88d8b0); }
+        .menu-icon.blue { background: linear-gradient(135deg, #a1c4fd, #c2e9fb); }
+        .menu-icon.orange { background: linear-gradient(135deg, #f6d365, #fda085); }
+        .menu-icon.pink { background: linear-gradient(135deg, #ff9a9e, #fecfef); }
+        .menu-label {
+            font-size: 12px;
+            color: #333;
+        }
+        .team-list {
+            padding: 0 20px;
+        }
+        .team-member {
+            background: white;
+            border-radius: 12px;
+            padding: 15px;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        .member-avatar {
+            width: 45px;
+            height: 45px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+        }
+        .member-info {
+            flex: 1;
+        }
+        .member-name {
+            font-weight: 600;
+            margin-bottom: 3px;
+        }
+        .member-stats {
+            font-size: 12px;
+            color: #666;
+        }
+        .member-level {
+            background: #f39c12;
+            color: white;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 11px;
+        }
+        .commission-card {
+            background: linear-gradient(135deg, #11998e, #38ef7d);
+            border-radius: 15px;
+            padding: 20px;
+            margin: 0 20px 20px;
+            color: white;
+        }
+        .commission-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+        .commission-row:last-child {
+            margin-bottom: 0;
+        }
+        .commission-label {
+            opacity: 0.9;
+            font-size: 14px;
+        }
+        .commission-value {
+            font-weight: 600;
+            font-size: 16px;
+        }
+        .btn-withdraw {
+            width: 100%;
+            background: white;
+            color: #11998e;
+            border: none;
+            padding: 12px;
+            border-radius: 25px;
+            font-weight: 600;
+            margin-top: 15px;
+            cursor: pointer;
+        }
+        .nav-bottom {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: white;
+            border-top: 1px solid #eee;
+            display: flex;
+            justify-content: space-around;
+            padding: 8px 0;
+            z-index: 100;
+        }
+        .nav-item {
+            text-align: center;
+            font-size: 11px;
+            color: #666;
+        }
+        .nav-item.active {
+            color: #8e44ad;
+        }
+        .nav-icon {
+            font-size: 20px;
+            display: block;
+            margin-bottom: 2px;
+        }
+    </style>
+</head>
+<body>
+    <!-- 头部 -->
+    <div class="distribution-header fade-in">
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+            <h1 style="margin: 0; font-size: 20px;">👥 分销中心</h1>
+            <span class="level-badge">👑 金牌分销商</span>
+        </div>
+        <div class="user-level">
+            <div class="avatar">👤</div>
+            <div>
+                <div style="font-weight: 600;">我的分销店铺</div>
+                <div style="font-size: 12px; opacity: 0.9;">已加入 30 天 · 累计收益 ¥2,580</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 统计数据 -->
+    <div class="stats-cards fade-on-scroll">
+        <div class="stat-card">
+            <div class="stat-value">¥1,256</div>
+            <div class="stat-label">可提现佣金</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-value">48</div>
+            <div class="stat-label">推广订单</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-value">156</div>
+            <div class="stat-label">下级分销商</div>
+        </div>
+    </div>
+
+    <!-- 功能菜单 -->
+    <section class="fade-on-scroll">
+        <div class="section-title">
+            <span>📋 分销管理</span>
+            <a href="#">查看全部 →</a>
+        </div>
+        <div class="menu-grid">
+            <div class="menu-item">
+                <div class="menu-icon purple">📊</div>
+                <div class="menu-label">分销数据</div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-icon blue">🔗</div>
+                <div class="menu-label">推广链接</div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-icon orange">📱</div>
+                <div class="menu-label">海报素材</div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-icon pink">📖</div>
+                <div class="menu-label">分销教程</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 佣金钱包 -->
+    <section class="fade-on-scroll">
+        <div class="section-title">
+            <span>💰 我的佣金</span>
+            <a href="wallet.html">明细 →</a>
+        </div>
+        <div class="commission-card">
+            <div class="commission-row">
+                <span class="commission-label">累计佣金</span>
+                <span class="commission-value">¥2,580.00</span>
+            </div>
+            <div class="commission-row">
+                <span class="commission-label">已提现</span>
+                <span class="commission-value">¥1,324.00</span>
+            </div>
+            <div class="commission-row">
+                <span class="commission-label">待结算</span>
+                <span class="commission-value">¥456.00</span>
+            </div>
+            <button class="btn-withdraw">💸 申请提现</button>
+        </div>
+    </section>
+
+    <!-- 我的团队 -->
+    <section class="fade-on-scroll">
+        <div class="section-title">
+            <span>👥 我的团队</span>
+            <a href="distribution-points.html">分销点管理 →</a>
+        </div>
+        <div class="team-list">
+            <div class="team-member">
+                <div class="member-avatar">张</div>
+                <div class="member-info">
+                    <div class="member-name">张三 <span class="member-level">金牌分销商</span></div>
+                    <div class="member-stats">累计订单 128 单 · 贡献佣金 ¥856</div>
+                </div>
+            </div>
+            <div class="team-member">
+                <div class="member-avatar" style="background: linear-gradient(135deg, #f093fb, #f5576c);">李</div>
+                <div class="member-info">
+                    <div class="member-name">李四 <span class="member-level">银牌分销商</span></div>
+                    <div class="member-stats">累计订单 64 单 · 贡献佣金 ¥423</div>
+                </div>
+            </div>
+            <div class="team-member">
+                <div class="member-avatar" style="background: linear-gradient(135deg, #4facfe, #00f2fe);">王</div>
+                <div class="member-info">
+                    <div class="member-name">王五 <span class="member-level">铜牌分销商</span></div>
+                    <div class="member-stats">累计订单 32 单 · 贡献佣金 ¥198</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 底部留白 -->
+    <div style="height: 80px;"></div>
+
+    <!-- 底部导航 -->
+    <nav class="nav-bottom">
+        <div class="nav-item">
+            <span class="nav-icon">🏪</span>
+            商城
+        </div>
+        <div class="nav-item">
+            <span class="nav-icon">📦</span>
+            订单
+        </div>
+        <div class="nav-item active">
+            <span class="nav-icon">👥</span>
+            分销
+        </div>
+        <div class="nav-item">
+            <span class="nav-icon">👤</span>
+            我的
+        </div>
+    </nav>
+
+    <script>
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) entry.target.classList.add('visible');
+            });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.fade-on-scroll').forEach(el => observer.observe(el));
+        window.addEventListener('load', () => { document.body.classList.add('loaded'); });
+    </script>
+</body>
+</html>
