@@ -3,124 +3,69 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>来点好水 · 商家管理后台</title>
+<title>来点好水 · 商家后台</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-:root{
-  --blue:#3B82F6;--blue-d:#1D4ED8;--blue-l:#EFF6FF;--blue-g:linear-gradient(135deg,#60A5FA,#2563EB);
-  --green:#10B981;--orange:#F59E0B;--red:#EF4444;--purple:#8B5CF6;
-  --bg:#F1F5F9;--card:#FFF;--text:#1E293B;--sub:#64748B;--mute:#94A3B8;--line:#E2E8F0;
-  --side:#0F172A;--side-h:rgba(255,255,255,.06);
-  --r:12px;--shadow:0 1px 3px rgba(0,0,0,.06),0 4px 16px rgba(0,0,0,.04);
-}
-body{font-family:-apple-system,'PingFang SC','Segoe UI',sans-serif;background:var(--bg);color:var(--text)}
-
-/* Layout */
+:root{--b:#3B82F6;--bd:#1D4ED8;--bl:#EFF6FF;--bg:linear-gradient(135deg,#60A5FA,#2563EB);--g:#10B981;--o:#F59E0B;--r:#EF4444;--f:#F1F5F9;--w:#FFF;--t:#1E293B;--s:#64748B;--m:#94A3B8;--ln:#E2E8F0;--side:#0F172A;--rd:12px;--sh:0 1px 3px rgba(0,0,0,.06),0 4px 16px rgba(0,0,0,.04)}
+body{font-family:-apple-system,'PingFang SC','Segoe UI',sans-serif;background:var(--f);color:var(--t)}
 .lay{display:flex;min-height:100vh}
-.side{width:240px;background:var(--side);color:#fff;position:fixed;top:0;left:0;bottom:0;z-index:100;overflow-y:auto}
-.side::-webkit-scrollbar{width:0}
-.s-logo{height:64px;display:flex;align-items:center;justify-content:center;gap:10px;font-size:18px;font-weight:800;border-bottom:1px solid rgba(255,255,255,.06);letter-spacing:.5px}
-.s-menu{padding:12px 0}
-.s-group{padding:20px 20px 8px;font-size:10px;color:rgba(255,255,255,.3);text-transform:uppercase;letter-spacing:2px;font-weight:700}
+.side{width:240px;background:var(--side);color:#fff;position:fixed;top:0;left:0;bottom:0;z-index:100;overflow-y:auto}.side::-webkit-scrollbar{width:0}
+.s-logo{height:64px;display:flex;align-items:center;justify-content:center;gap:10px;font-size:18px;font-weight:800;border-bottom:1px solid rgba(255,255,255,.06)}
+.s-menu{padding:12px 0}.s-group{padding:20px 20px 8px;font-size:10px;color:rgba(255,255,255,.3);text-transform:uppercase;letter-spacing:2px;font-weight:700}
 .s-item{display:flex;align-items:center;gap:10px;padding:11px 24px;cursor:pointer;color:rgba(255,255,255,.55);transition:.2s;font-size:14px;position:relative;border-radius:0 8px 8px 0;margin-right:12px}
-.s-item:hover{color:#fff;background:var(--side-h)}
-.s-item.on{color:#fff;background:var(--blue);box-shadow:0 4px 12px rgba(59,130,246,.3)}
-.s-item .ic{font-size:16px;width:20px;text-align:center}
-.s-item .bd{position:absolute;right:20px;background:var(--red);color:#fff;font-size:10px;min-width:18px;height:18px;border-radius:9px;display:flex;align-items:center;justify-content:center;padding:0 5px;font-weight:700}
+.s-item:hover{color:#fff;background:rgba(255,255,255,.06)}.s-item.on{color:#fff;background:var(--b);box-shadow:0 4px 12px rgba(59,130,246,.3)}
+.s-item .ic{font-size:16px;width:20px;text-align:center}.s-item .bd{position:absolute;right:20px;background:var(--r);color:#fff;font-size:10px;min-width:18px;height:18px;border-radius:9px;display:flex;align-items:center;justify-content:center;padding:0 5px;font-weight:700}
 .mn{margin-left:240px;flex:1}
-.hdr{height:64px;background:rgba(255,255,255,.8);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);display:flex;align-items:center;justify-content:space-between;padding:0 28px;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:50}
-.hdr-t{font-size:16px;font-weight:700}.hdr-r{display:flex;align-items:center;gap:16px}
-.hdr-time{font-size:13px;color:var(--mute)}.hdr-user{display:flex;align-items:center;gap:8px;font-size:14px;font-weight:500}
-.notif{position:relative;cursor:pointer;font-size:20px}.notif-d{position:absolute;top:-1px;right:-3px;width:8px;height:8px;border-radius:50%;background:var(--red)}
+.hdr{height:64px;background:rgba(255,255,255,.8);backdrop-filter:blur(16px);display:flex;align-items:center;justify-content:space-between;padding:0 28px;border-bottom:1px solid var(--ln);position:sticky;top:0;z-index:50}
+.hdr-t{font-size:16px;font-weight:700}.hdr-r{display:flex;align-items:center;gap:16px}.hdr-time{font-size:13px;color:var(--m)}
+.notif{position:relative;cursor:pointer;font-size:20px}.notif-d{position:absolute;top:-1px;right:-3px;width:8px;height:8px;border-radius:50%;background:var(--r)}
 .cnt{padding:28px}
-
-/* Sections */
 .pg-s{display:none}.pg-s.on{display:block}
-
-/* Stat Cards */
+/* Stats */
 .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:28px}
-.st{background:var(--card);border-radius:var(--r);padding:22px 20px;box-shadow:var(--shadow);position:relative;overflow:hidden}
+.st{background:var(--w);border-radius:var(--rd);padding:22px 20px;box-shadow:var(--sh);position:relative;overflow:hidden}
 .st::before{content:'';position:absolute;top:-20px;right:-20px;width:80px;height:80px;border-radius:50%;opacity:.08}
-.st.c1::before{background:var(--blue)}.st.c2::before{background:var(--green)}.st.c3::before{background:var(--orange)}.st.c4::before{background:var(--red)}
-.st-l{font-size:13px;color:var(--mute);font-weight:500}
-.st-v{font-size:34px;font-weight:800;margin:8px 0 4px;letter-spacing:-.5px}
-.st.c1 .st-v{color:var(--blue)}.st.c2 .st-v{color:var(--green)}.st.c3 .st-v{color:var(--orange)}.st.c4 .st-v{color:var(--red)}
-.st-c{font-size:12px;color:var(--green);font-weight:600}.st-c.dn{color:var(--red)}
-
-/* Card */
-.cd{background:var(--card);border-radius:var(--r);box-shadow:var(--shadow);overflow:hidden}
-.cd-h{padding:18px 22px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between}
-.cd-t{font-size:15px;font-weight:700}.cd-b{padding:22px}
-
-/* Chart */
-.chart{height:220px;display:flex;align-items:flex-end;gap:10px;padding:0 8px}
-.bar{border-radius:6px 6px 0 0;transition:height .6s cubic-bezier(.4,0,.2,1);position:relative;flex:1;min-width:0}
-.bar::after{content:attr(data-v);position:absolute;top:-22px;left:50%;transform:translateX(-50%);font-size:11px;color:var(--mute);font-weight:600}
-.bar-lb{position:absolute;bottom:-22px;left:50%;transform:translateX(-50%);font-size:11px;color:var(--mute);white-space:nowrap}
-
-/* Table */
-.tw{overflow-x:auto}
-table{width:100%;border-collapse:collapse;font-size:13px}
-th{background:#F8FAFC;font-weight:700;text-align:left;padding:13px 18px;border-bottom:1px solid var(--line);white-space:nowrap;color:var(--sub);font-size:12px;text-transform:uppercase;letter-spacing:.5px}
-td{padding:13px 18px;border-bottom:1px solid var(--line)}
-tr:hover td{background:#FAFBFC}
+.st.c1::before{background:var(--b)}.st.c2::before{background:var(--g)}.st.c3::before{background:var(--o)}.st.c4::before{background:var(--r)}
+.st-l{font-size:13px;color:var(--m);font-weight:500}.st-v{font-size:34px;font-weight:800;margin:8px 0 4px}
+.st.c1 .st-v{color:var(--b)}.st.c2 .st-v{color:var(--g)}.st.c3 .st-v{color:var(--o)}.st.c4 .st-v{color:var(--r)}
+.st-c{font-size:12px;color:var(--g);font-weight:600}.st-c.dn{color:var(--r)}
+/* Card, Table */
+.cd{background:var(--w);border-radius:var(--rd);box-shadow:var(--sh);overflow:hidden;margin-bottom:16px}
+.cd-h{padding:18px 22px;border-bottom:1px solid var(--ln);display:flex;align-items:center;justify-content:space-between}.cd-t{font-size:15px;font-weight:700}.cd-b{padding:22px}
+.tw{overflow-x:auto}table{width:100%;border-collapse:collapse;font-size:13px}
+th{background:#F8FAFC;font-weight:700;text-align:left;padding:13px 18px;border-bottom:1px solid var(--ln);white-space:nowrap;color:var(--s);font-size:12px;text-transform:uppercase;letter-spacing:.5px}
+td{padding:13px 18px;border-bottom:1px solid var(--ln)}tr:hover td{background:#FAFBFC}
 .tag{display:inline-block;padding:3px 12px;border-radius:20px;font-size:11px;font-weight:700}
-.tag-pend{background:#FEF3C7;color:#92400E}.tag-del{background:var(--blue-l);color:var(--blue-d)}.tag-done{background:#D1FAE5;color:#065F46}.tag-cancel{background:#FEE2E2;color:#991B1B}.tag-on{background:#D1FAE5;color:#065F46}.tag-off{background:#F1F5F9;color:#94A3B8}
-
-/* Btn */
-.btn{display:inline-flex;align-items:center;gap:4px;padding:7px 16px;border-radius:8px;font-size:13px;font-weight:600;border:none;cursor:pointer;transition:.15s}
-.btn:active{transform:scale(.96)}
-.btn-p{background:var(--blue-g);color:#fff;box-shadow:0 2px 8px rgba(59,130,246,.2)}
-.btn-g{background:var(--green);color:#fff}.btn-w{background:var(--orange);color:#fff}.btn-d{background:var(--red);color:#fff}
-.btn-o{background:transparent;border:1.5px solid var(--line);color:var(--sub)}.btn-o:hover{border-color:var(--blue);color:var(--blue)}
+.tag-pend{background:#FEF3C7;color:#92400E}.tag-del{background:var(--bl);color:var(--bd)}.tag-done{background:#D1FAE5;color:#065F46}.tag-cancel{background:#FEE2E2;color:#991B1B}
+.btn{display:inline-flex;align-items:center;gap:4px;padding:7px 16px;border-radius:8px;font-size:13px;font-weight:600;border:none;cursor:pointer;transition:.15s}.btn:active{transform:scale(.96)}
+.btn-p{background:var(--bg);color:#fff;box-shadow:0 2px 8px rgba(59,130,246,.2)}.btn-g{background:var(--g);color:#fff}.btn-d{background:var(--r);color:#fff}.btn-o{background:transparent;border:1.5px solid var(--ln);color:var(--s)}.btn-o:hover{border-color:var(--b);color:var(--b)}
 .btn-s{padding:5px 12px;font-size:12px}
-
-/* Toolbar */
-.tlb{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px;flex-wrap:wrap;gap:12px}
-.tlb-l,.tlb-r{display:flex;align-items:center;gap:8px}
-.sel{padding:8px 14px;border:1.5px solid var(--line);border-radius:8px;font-size:13px;background:var(--card);outline:none;font-weight:500;color:var(--text)}
-.ipt{padding:8px 14px;border:1.5px solid var(--line);border-radius:8px;font-size:13px;width:220px;outline:none;font-weight:500}
-.sel:focus,.ipt:focus{border-color:var(--blue);box-shadow:0 0 0 3px rgba(59,130,246,.1)}
-
-/* Rank */
-.rk-i{display:flex;align-items:center;gap:14px;padding:11px 0;border-bottom:1px solid var(--line)}.rk-i:last-child{border:none}
-.rk-n{width:26px;height:26px;border-radius:50%;font-size:12px;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0;background:#F1F5F9;color:#94A3B8}
-.rk-i:nth-child(1) .rk-n{background:#FBBF24;color:#fff}.rk-i:nth-child(2) .rk-n{background:#94A3B8;color:#fff}.rk-i:nth-child(3) .rk-n{background:#CD7F32;color:#fff}
-.rk-info{flex:1}.rk-nm{font-size:13px;font-weight:600}.rk-sl{font-size:12px;color:var(--mute)}
-
-/* Modal */
-.mm{display:none;position:fixed;inset:0;background:rgba(15,23,42,.45);z-index:200;backdrop-filter:blur(2px)}
-.mm.show{display:flex;align-items:center;justify-content:center}
-.md{background:var(--card);border-radius:16px;width:580px;max-height:82vh;overflow-y:auto;box-shadow:0 20px 60px rgba(0,0,0,.15)}
-.md-h{padding:18px 24px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between}
-.md-h h3{font-size:16px;font-weight:700}
-.md-x{font-size:20px;cursor:pointer;color:var(--mute);background:none;border:none;width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;transition:.15s}
-.md-x:hover{background:var(--bg)}
-.md-b{padding:24px}.md-f{padding:16px 24px;border-top:1px solid var(--line);display:flex;justify-content:flex-end;gap:8px}
-.info-r{display:flex;padding:9px 0;font-size:14px}.info-l{width:100px;color:var(--mute);flex-shrink:0;font-weight:500}.info-v{flex:1}
-
-/* Form */
-.fg{display:grid;grid-template-columns:1fr 1fr;gap:16px}.fg-full{grid-column:1/-1}
-.fm-g{margin-bottom:0}.fm-lb{font-size:12px;color:var(--sub);margin-bottom:6px;display:block;font-weight:600}
-.fm-i,.fm-ta,.fm-sl{width:100%;padding:9px 14px;border:1.5px solid var(--line);border-radius:8px;font-size:14px;outline:none;transition:.15s}
-.fm-i:focus,.fm-ta:focus,.fm-sl:focus{border-color:var(--blue);box-shadow:0 0 0 3px rgba(59,130,246,.1)}
-.fm-ta{resize:vertical;min-height:80px}
-
+.sel{padding:8px 14px;border:1.5px solid var(--ln);border-radius:8px;font-size:13px;background:var(--w);outline:none;font-weight:500}
+.sel:focus{border-color:var(--b)}
+.tlb{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px;flex-wrap:wrap;gap:12px}.tlb-l,.tlb-r{display:flex;align-items:center;gap:8px}
 /* Alert */
 @keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.01)}}
-.alert{background:linear-gradient(135deg,#FCA5A5,#EF4444);color:#fff;padding:14px 22px;border-radius:var(--r);margin-bottom:20px;display:flex;align-items:center;justify-content:space-between;animation:pulse 2.5s infinite;box-shadow:0 4px 16px rgba(239,68,68,.2)}
-.alert.hide{display:none}
-.alert-t{font-size:14px;font-weight:700}
-
+.alert{background:linear-gradient(135deg,#FCA5A5,#EF4444);color:#fff;padding:14px 22px;border-radius:var(--rd);margin-bottom:20px;display:none;align-items:center;justify-content:space-between;animation:pulse 2.5s infinite;box-shadow:0 4px 16px rgba(239,68,68,.2)}
+.alert.show{display:flex}.alert-t{font-size:14px;font-weight:700}
 /* Grid */
-.g2{display:grid;grid-template-columns:2fr 1fr;gap:16px}
-.g22{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:20px}
-
+.g2{display:grid;grid-template-columns:2fr 1fr;gap:16px}.g22{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:20px}
+/* Rank */
+.rk-i{display:flex;align-items:center;gap:14px;padding:11px 0;border-bottom:1px solid var(--ln)}.rk-i:last-child{border:none}
+.rk-n{width:26px;height:26px;border-radius:50%;font-size:12px;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0;background:#F1F5F9;color:#94A3B8}
+.rk-i:nth-child(1) .rk-n{background:#FBBF24;color:#fff}.rk-i:nth-child(2) .rk-n{background:#94A3B8;color:#fff}.rk-i:nth-child(3) .rk-n{background:#CD7F32;color:#fff}
+.rk-info{flex:1}.rk-nm{font-size:13px;font-weight:600}.rk-sl{font-size:12px;color:var(--m)}
+/* Chart */
+.chart{height:220px;display:flex;align-items:flex-end;gap:10px;padding:0 8px}
+.bar{border-radius:6px 6px 0 0;transition:height .6s;position:relative;flex:1}
+.bar::after{content:attr(data-v);position:absolute;top:-22px;left:50%;transform:translateX(-50%);font-size:11px;color:var(--m);font-weight:600}
+.bar-lb{position:absolute;bottom:-22px;left:50%;transform:translateX(-50%);font-size:11px;color:var(--m);white-space:nowrap}
+.info-r{display:flex;padding:9px 0;font-size:14px}.info-l{width:100px;color:var(--m);flex-shrink:0;font-weight:500}.info-v{flex:1}
 /* Toast */
-.toast{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);background:rgba(15,23,42,.82);color:#fff;padding:14px 28px;border-radius:12px;font-size:14px;font-weight:500;z-index:999;opacity:0;transition:opacity .25s;pointer-events:none;backdrop-filter:blur(8px)}
-
+.toast{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);background:rgba(15,23,42,.82);color:#fff;padding:14px 28px;border-radius:12px;font-size:14px;z-index:999;opacity:0;transition:opacity .25s;pointer-events:none;backdrop-filter:blur(8px)}
+/* Sound */
+.ring{display:none}
 @media(max-width:1200px){.stats{grid-template-columns:repeat(2,1fr)}.g2,.g22{grid-template-columns:1fr}}
-@media(max-width:768px){.side{width:64px}.s-logo span,.s-item .tx,.s-group,.s-item .bd{display:none}.mn{margin-left:64px}.stats{grid-template-columns:1fr}.fg{grid-template-columns:1fr}}
+@media(max-width:768px){.side{width:64px}.s-logo span,.s-item .tx,.s-group,.s-item .bd{display:none}.mn{margin-left:64px}.stats{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
@@ -131,249 +76,126 @@ tr:hover td{background:#FAFBFC}
       <div class="s-group">概览</div>
       <div class="s-item on" onclick="sp('dash',this)"><span class="ic">📊</span><span class="tx">数据看板</span></div>
       <div class="s-group">业务</div>
-      <div class="s-item" onclick="sp('ord',this)"><span class="ic">📋</span><span class="tx">订单管理</span><span class="bd">3</span></div>
-      <div class="s-item" onclick="sp('prod',this)"><span class="ic">📦</span><span class="tx">商品管理</span></div>
-      <div class="s-item" onclick="sp('tk',this)"><span class="ic">🎫</span><span class="tx">水票管理</span></div>
-      <div class="s-item" onclick="sp('cust',this)"><span class="ic">👥</span><span class="tx">客户管理</span></div>
+      <div class="s-item" onclick="sp('ord',this)" id="ordMenuItem"><span class="ic">📋</span><span class="tx">订单管理</span><span class="bd" id="oBadge">0</span></div>
       <div class="s-item" onclick="sp('drv',this)"><span class="ic">🚚</span><span class="tx">配送管理</span></div>
       <div class="s-group">运营</div>
-      <div class="s-item" onclick="sp('mkt',this)"><span class="ic">🏷️</span><span class="tx">营销活动</span></div>
       <div class="s-item" onclick="sp('set',this)"><span class="ic">⚙️</span><span class="tx">系统设置</span></div>
     </div>
   </div>
   <div class="mn">
-    <div class="hdr">
-      <div class="hdr-t" id="pgT">数据看板</div>
-      <div class="hdr-r"><div class="hdr-time" id="clock"></div><div class="notif" onclick="sp('ord',document.querySelector('.s-item:nth-child(4)'))">🔔<div class="notif-d"></div></div><div class="hdr-user">👤 管理员</div></div>
-    </div>
+    <div class="hdr"><div class="hdr-t" id="pgT">数据看板</div><div class="hdr-r"><div class="hdr-time" id="clock"></div><div class="notif" onclick="sp('ord',document.getElementById('ordMenuItem'))">🔔<div class="notif-d" id="notifDot"></div></div><div>👤 管理员</div></div></div>
     <div class="cnt">
-      <div class="alert" id="alertBox"><span class="alert-t">🔔 您有 3 笔新订单待处理！</span><button class="btn btn-o" style="color:#fff;border-color:rgba(255,255,255,.5)" onclick="sp('ord',document.querySelector('.s-item:nth-child(4)'));this.parentElement.classList.add('hide')">立即处理</button></div>
-
+      <div class="alert" id="alertBox"><span class="alert-t" id="alertText">🔔 有新订单待处理！</span><button class="btn btn-o" style="color:#fff;border-color:rgba(255,255,255,.5)" onclick="sp('ord',document.getElementById('ordMenuItem'));this.parentElement.classList.remove('show')">立即处理</button></div>
       <!-- Dashboard -->
       <div class="pg-s on" id="s-dash">
         <div class="stats">
-          <div class="st c1"><div class="st-l">今日订单</div><div class="st-v">47</div><div class="st-c">↑ 12% 较昨日</div></div>
-          <div class="st c2"><div class="st-l">今日营收</div><div class="st-v">¥2,860</div><div class="st-c">↑ 8% 较昨日</div></div>
-          <div class="st c3"><div class="st-l">水票售出</div><div class="st-v">12</div><div class="st-c">↑ 25% 较昨日</div></div>
-          <div class="st c4"><div class="st-l">待处理订单</div><div class="st-v">3</div><div class="st-c dn">需尽快处理</div></div>
+          <div class="st c1"><div class="st-l">今日订单</div><div class="st-v" id="dTotalOrd">0</div><div class="st-c">实时更新</div></div>
+          <div class="st c2"><div class="st-l">今日营收</div><div class="st-v" id="dTotalRev">¥0</div><div class="st-c">实时更新</div></div>
+          <div class="st c3"><div class="st-l">已完成</div><div class="st-v" id="dDoneOrd">0</div><div class="st-c">配送完成</div></div>
+          <div class="st c4"><div class="st-l">待处理</div><div class="st-v" id="dPendOrd">0</div><div class="st-c dn" id="dPendTip">需尽快处理</div></div>
         </div>
         <div class="g2">
-          <div class="cd"><div class="cd-h"><span class="cd-t">📈 近 7 日订单趋势</span></div><div class="cd-b"><div class="chart" id="chartEl"></div></div></div>
+          <div class="cd"><div class="cd-h"><span class="cd-t">📈 近 7 日趋势</span></div><div class="cd-b"><div class="chart" id="chartEl"></div></div></div>
           <div class="cd"><div class="cd-h"><span class="cd-t">🏆 热销 Top 5</span></div><div class="cd-b" id="rankEl"></div></div>
         </div>
         <div class="g22">
-          <div class="cd"><div class="cd-h"><span class="cd-t">🚚 配送时效</span></div><div class="cd-b">
-            <div class="info-r"><span class="info-l">平均时长</span><span class="info-v" style="font-weight:800;color:var(--green)">38 分钟</span></div>
-            <div class="info-r"><span class="info-l">达标率</span><span class="info-v" style="font-weight:700">87.2%</span></div>
-            <div class="info-r"><span class="info-l">今日配送</span><span class="info-v">44 单</span></div>
-            <div class="info-r"><span class="info-l">在线配送员</span><span class="info-v">6 人</span></div>
-          </div></div>
-          <div class="cd"><div class="cd-h"><span class="cd-t">👥 客户概览</span></div><div class="cd-b">
-            <div class="info-r"><span class="info-l">总客户数</span><span class="info-v" style="font-weight:800">1,286</span></div>
-            <div class="info-r"><span class="info-l">本月新增</span><span class="info-v" style="color:var(--green);font-weight:700">+89</span></div>
-            <div class="info-r"><span class="info-l">月复购率</span><span class="info-v" style="font-weight:700">63.5%</span></div>
-            <div class="info-r"><span class="info-l">水票用户</span><span class="info-v">342 人</span></div>
-          </div></div>
+          <div class="cd"><div class="cd-h"><span class="cd-t">🚚 配送时效</span></div><div class="cd-b"><div class="info-r"><span class="info-l">平均时长</span><span class="info-v" style="font-weight:800;color:var(--g)">38 分钟</span></div><div class="info-r"><span class="info-l">达标率</span><span class="info-v" style="font-weight:700">87.2%</span></div><div class="info-r"><span class="info-l">在线配送员</span><span class="info-v">3 人</span></div></div></div>
+          <div class="cd"><div class="cd-h"><span class="cd-t">👥 客户概览</span></div><div class="cd-b"><div class="info-r"><span class="info-l">总客户</span><span class="info-v" style="font-weight:800">1,286</span></div><div class="info-r"><span class="info-l">月复购率</span><span class="info-v" style="font-weight:700">63.5%</span></div></div></div>
         </div>
       </div>
-
       <!-- Orders -->
       <div class="pg-s" id="s-ord">
-        <div class="tlb"><div class="tlb-l"><select class="sel" id="oFlt" onchange="rOrd()"><option value="all">全部订单</option><option value="pending">待接单</option><option value="delivering">配送中</option><option value="done">已完成</option><option value="cancelled">已取消</option></select><input class="ipt" placeholder="搜索订单号 / 客户名"></div><div class="tlb-r"><span style="font-size:13px;color:var(--mute)">共 <b id="oCnt">0</b> 笔</span><button class="btn btn-o">📥 导出</button></div></div>
-        <div class="cd"><div class="tw"><table><thead><tr><th>订单号</th><th>客户</th><th>商品</th><th>数量</th><th>金额</th><th>时间</th><th>状态</th><th>配送员</th><th>操作</th></tr></thead><tbody id="oTb"></tbody></table></div></div>
+        <div class="tlb"><div class="tlb-l"><select class="sel" id="oFlt" onchange="rOrd()"><option value="all">全部订单</option><option value="pending">待接单</option><option value="delivering">配送中</option><option value="done">已完成</option></select></div><div class="tlb-r"><span style="font-size:13px;color:var(--m)">共 <b id="oCnt">0</b> 笔</span></div></div>
+        <div class="cd"><div class="tw"><table><thead><tr><th>订单号</th><th>客户</th><th>商品</th><th>金额</th><th>时间</th><th>状态</th><th>配送员</th><th>操作</th></tr></thead><tbody id="oTb"></tbody></table></div></div>
       </div>
-
-      <!-- Products -->
-      <div class="pg-s" id="s-prod">
-        <div class="tlb"><div class="tlb-l"><select class="sel"><option>全部分类</option><option>桶装水</option><option>瓶装水</option><option>饮水设备</option><option>健康功能水</option></select><select class="sel"><option>全部状态</option><option>上架中</option><option>已下架</option></select></div><div class="tlb-r"><button class="btn btn-p" onclick="document.getElementById('pMo').classList.add('show')">➕ 新增商品</button></div></div>
-        <div class="cd"><div class="tw"><table><thead><tr><th>商品</th><th>分类</th><th>规格</th><th>售价</th><th>库存</th><th>月销</th><th>状态</th><th>操作</th></tr></thead><tbody id="pTb"></tbody></table></div></div>
-      </div>
-
-      <!-- Tickets -->
-      <div class="pg-s" id="s-tk">
-        <div class="stats" style="grid-template-columns:repeat(3,1fr)">
-          <div class="st c1"><div class="st-l">水票总销售额</div><div class="st-v">¥48,600</div><div class="st-c">本月 ¥12,400</div></div>
-          <div class="st c2"><div class="st-l">持有用户</div><div class="st-v">342</div><div class="st-c">↑ 15%</div></div>
-          <div class="st c3"><div class="st-l">未使用(桶)</div><div class="st-v">1,856</div><div class="st-c">待履约 ¥27,840</div></div>
-        </div>
-        <div class="cd" style="margin-bottom:16px"><div class="cd-h"><span class="cd-t">套餐销售</span></div><div class="tw"><table><thead><tr><th>套餐</th><th>桶数</th><th>售价</th><th>单价</th><th>有效期</th><th>本月</th><th>累计</th><th>操作</th></tr></thead><tbody>
-          <tr><td>🗓️ 月度</td><td>10桶</td><td>¥180</td><td>¥18</td><td>30天</td><td>42</td><td>386</td><td><button class="btn btn-s btn-o">编辑</button></td></tr>
-          <tr><td>📦 季度</td><td>30桶</td><td>¥480</td><td>¥16</td><td>90天</td><td>18</td><td>156</td><td><button class="btn btn-s btn-o">编辑</button></td></tr>
-          <tr><td>🏆 年度</td><td>100桶</td><td>¥1,400</td><td>¥14</td><td>365天</td><td>6</td><td>42</td><td><button class="btn btn-s btn-o">编辑</button></td></tr>
-        </tbody></table></div></div>
-      </div>
-
-      <!-- Customers -->
-      <div class="pg-s" id="s-cust">
-        <div class="tlb"><div class="tlb-l"><select class="sel"><option>全部标签</option><option>家庭</option><option>企业</option><option>VIP</option><option>新客</option></select><input class="ipt" placeholder="搜索客户"></div><div class="tlb-r"><button class="btn btn-p">📩 群发消息</button></div></div>
-        <div class="cd"><div class="tw"><table><thead><tr><th>客户</th><th>手机号</th><th>标签</th><th>订单</th><th>消费</th><th>水票</th><th>最近下单</th><th>操作</th></tr></thead><tbody id="cTb"></tbody></table></div></div>
-      </div>
-
       <!-- Delivery -->
       <div class="pg-s" id="s-drv">
-        <div class="stats"><div class="st c1"><div class="st-l">在线配送员</div><div class="st-v">6</div></div><div class="st c2"><div class="st-l">今日完成</div><div class="st-v">44</div></div><div class="st c3"><div class="st-l">平均时长</div><div class="st-v">38<span style="font-size:14px">min</span></div></div><div class="st c4"><div class="st-l">空桶回收</div><div class="st-v">32</div></div></div>
-        <div class="cd"><div class="cd-h"><span class="cd-t">配送员列表</span><button class="btn btn-p btn-s">➕ 添加</button></div><div class="tw"><table><thead><tr><th>姓名</th><th>手机</th><th>状态</th><th>今日单</th><th>收入</th><th>均时</th><th>回收桶</th><th>操作</th></tr></thead><tbody id="dTb"></tbody></table></div></div>
+        <div class="cd"><div class="cd-h"><span class="cd-t">配送员列表</span></div><div class="tw"><table><thead><tr><th>姓名</th><th>手机</th><th>状态</th><th>今日单数</th></tr></thead><tbody id="dTb"></tbody></table></div></div>
       </div>
-
-      <!-- Marketing -->
-      <div class="pg-s" id="s-mkt">
-        <div class="g22" style="margin-top:0">
-          <div class="cd"><div class="cd-h"><span class="cd-t">🏷️ 优惠券</span><button class="btn btn-p btn-s">创建</button></div><div class="cd-b">
-            <div style="border:1.5px solid var(--line);border-radius:var(--r);padding:16px;margin-bottom:12px;display:flex;justify-content:space-between;align-items:center"><div><div style="font-weight:700">新人首单立减 5 元</div><div style="font-size:12px;color:var(--mute);margin-top:4px">满 20 元 · 新用户 · 剩 486 张</div></div><span class="tag tag-on">进行中</span></div>
-            <div style="border:1.5px solid var(--line);border-radius:var(--r);padding:16px;margin-bottom:12px;display:flex;justify-content:space-between;align-items:center"><div><div style="font-weight:700">满 3 桶减 8 元</div><div style="font-size:12px;color:var(--mute);margin-top:4px">满 3 桶 · 所有用户 · 剩 200 张</div></div><span class="tag tag-on">进行中</span></div>
-            <div style="border:1.5px solid var(--line);border-radius:var(--r);padding:16px;display:flex;justify-content:space-between;align-items:center"><div><div style="font-weight:700">老客回馈 10 元</div><div style="font-size:12px;color:var(--mute);margin-top:4px">满 50 元 · 30天未下单 · 剩 150 张</div></div><span class="tag tag-pend">待启用</span></div>
-          </div></div>
-          <div class="cd"><div class="cd-h"><span class="cd-t">📢 营销文案</span><button class="btn btn-p btn-s">新增</button></div><div class="cd-b">
-            <div style="border:1.5px solid var(--line);border-radius:var(--r);padding:16px;margin-bottom:12px"><div style="font-weight:700;margin-bottom:6px">🚀 功能体验</div><div style="font-size:13px;color:var(--sub);line-height:1.8">「告别等待，好水一点就到」<br>「你的专属送水智能管家」</div></div>
-            <div style="border:1.5px solid var(--line);border-radius:var(--r);padding:16px;margin-bottom:12px"><div style="font-weight:700;margin-bottom:6px">💚 健康理念</div><div style="font-size:13px;color:var(--sub);line-height:1.8">「为家人选好水，从这一桶开始」<br>「看得见的纯净，喝得到的安心」</div></div>
-            <div style="border:1.5px solid var(--line);border-radius:var(--r);padding:16px"><div style="font-weight:700;margin-bottom:6px">🧡 情感温度</div><div style="font-size:13px;color:var(--sub);line-height:1.8">「记忆中的甜，就是小时候那口井水」<br>「生活的重量，我们帮你提」</div></div>
-          </div></div>
-        </div>
-      </div>
-
       <!-- Settings -->
       <div class="pg-s" id="s-set">
         <div class="g22" style="margin-top:0">
-          <div class="cd"><div class="cd-h"><span class="cd-t">🏪 店铺信息</span></div><div class="cd-b">
-            <div class="fm-g" style="margin-bottom:14px"><label class="fm-lb">店铺名称</label><input class="fm-i" value="来点好水"></div>
-            <div class="fm-g" style="margin-bottom:14px"><label class="fm-lb">联系电话</label><input class="fm-i" value="0571-88888888"></div>
-            <div class="fm-g" style="margin-bottom:14px"><label class="fm-lb">营业时间</label><input class="fm-i" value="07:00 - 21:00"></div>
-            <button class="btn btn-p">保存</button>
-          </div></div>
-          <div class="cd"><div class="cd-h"><span class="cd-t">💰 费用设置</span></div><div class="cd-b">
-            <div class="fm-g" style="margin-bottom:14px"><label class="fm-lb">配送费(元)</label><input class="fm-i" value="5"></div>
-            <div class="fm-g" style="margin-bottom:14px"><label class="fm-lb">免配送费门槛(桶)</label><input class="fm-i" value="2"></div>
-            <div class="fm-g" style="margin-bottom:14px"><label class="fm-lb">桶押金(元)</label><input class="fm-i" value="10"></div>
-            <button class="btn btn-p">保存</button>
-          </div></div>
-          <div class="cd"><div class="cd-h"><span class="cd-t">🔔 通知设置</span></div><div class="cd-b">
-            <div class="info-r"><span class="info-l">新订单提醒</span><span class="info-v"><input type="checkbox" checked> 声音+弹窗</span></div>
-            <div class="info-r"><span class="info-l">配送超时</span><span class="info-v"><input type="checkbox" checked> 超60分钟</span></div>
-            <div class="info-r"><span class="info-l">库存预警</span><span class="info-v"><input type="checkbox" checked> 低于10桶</span></div>
-            <button class="btn btn-p" style="margin-top:12px">保存</button>
-          </div></div>
-          <div class="cd"><div class="cd-h"><span class="cd-t">📍 配送区域</span></div><div class="cd-b">
-            <div style="background:var(--bg);border-radius:var(--r);height:160px;display:flex;align-items:center;justify-content:center;color:var(--mute);margin-bottom:12px">🗺️ 配送范围地图</div>
-            <div class="info-r"><span class="info-l">已覆盖</span><span class="info-v">翠苑、文新、古荡街道</span></div>
-            <button class="btn btn-p" style="margin-top:12px">编辑区域</button>
-          </div></div>
+          <div class="cd"><div class="cd-h"><span class="cd-t">🏪 店铺信息</span></div><div class="cd-b"><div style="margin-bottom:14px"><label style="font-size:12px;color:var(--s);font-weight:600;display:block;margin-bottom:6px">店铺名称</label><input style="width:100%;padding:9px 14px;border:1.5px solid var(--ln);border-radius:8px;font-size:14px" value="来点好水"></div><div style="margin-bottom:14px"><label style="font-size:12px;color:var(--s);font-weight:600;display:block;margin-bottom:6px">营业时间</label><input style="width:100%;padding:9px 14px;border:1.5px solid var(--ln);border-radius:8px;font-size:14px" value="07:00 - 21:00"></div><button class="btn btn-p" onclick="toast('已保存')">保存</button></div></div>
+          <div class="cd"><div class="cd-h"><span class="cd-t">💰 费用设置</span></div><div class="cd-b"><div style="margin-bottom:14px"><label style="font-size:12px;color:var(--s);font-weight:600;display:block;margin-bottom:6px">配送费(元)</label><input style="width:100%;padding:9px 14px;border:1.5px solid var(--ln);border-radius:8px;font-size:14px" value="5"></div><div style="margin-bottom:14px"><label style="font-size:12px;color:var(--s);font-weight:600;display:block;margin-bottom:6px">免配送费门槛(桶)</label><input style="width:100%;padding:9px 14px;border:1.5px solid var(--ln);border-radius:8px;font-size:14px" value="2"></div><button class="btn btn-p" onclick="toast('已保存')">保存</button></div></div>
         </div>
       </div>
     </div>
   </div>
 </div>
-
-<!-- Order detail modal -->
-<div class="mm" id="odMo"><div class="md"><div class="md-h"><h3 id="odT">订单详情</h3><button class="md-x" onclick="cm('odMo')">✕</button></div><div class="md-b" id="odB"></div><div class="md-f" id="odF"></div></div></div>
-<!-- Product modal -->
-<div class="mm" id="pMo"><div class="md" style="width:640px"><div class="md-h"><h3>新增商品</h3><button class="md-x" onclick="cm('pMo')">✕</button></div><div class="md-b"><div class="fg">
-  <div class="fm-g"><label class="fm-lb">商品名称</label><input class="fm-i" placeholder="农夫山泉 饮用天然水"></div>
-  <div class="fm-g"><label class="fm-lb">品牌</label><input class="fm-i" placeholder="农夫山泉"></div>
-  <div class="fm-g"><label class="fm-lb">分类</label><select class="fm-sl"><option>桶装水</option><option>瓶装水</option><option>饮水设备</option><option>健康功能水</option></select></div>
-  <div class="fm-g"><label class="fm-lb">规格</label><input class="fm-i" placeholder="18.9L/桶"></div>
-  <div class="fm-g"><label class="fm-lb">售价</label><input class="fm-i" type="number" placeholder="20"></div>
-  <div class="fm-g"><label class="fm-lb">原价</label><input class="fm-i" type="number" placeholder="25"></div>
-  <div class="fm-g"><label class="fm-lb">库存</label><input class="fm-i" type="number" placeholder="100"></div>
-  <div class="fm-g"><label class="fm-lb">功能标签</label><input class="fm-i" placeholder="富硒、弱碱性"></div>
-  <div class="fm-g fg-full"><label class="fm-lb">描述</label><textarea class="fm-ta" placeholder="商品描述..."></textarea></div>
-</div></div><div class="md-f"><button class="btn btn-o" onclick="cm('pMo')">取消</button><button class="btn btn-p" onclick="cm('pMo');toast('商品已保存')">保存</button></div></div></div>
 <div class="toast" id="toastEl"></div>
-
+<script src="shared.js"></script>
 <script>
-const orders=[
-  {id:'WO20260324001',c:'张先生',ph:'138****8888',p:'农夫山泉 18.9L',q:3,am:60,t:'17:05',s:'pending',d:'-',ad:'翠苑一区18号楼3-502'},
-  {id:'WO20260324002',c:'李女士',ph:'139****6666',p:'百岁山 18.9L',q:2,am:44,t:'16:48',s:'pending',d:'-',ad:'翠苑二区5号楼1-301'},
-  {id:'WO20260324003',c:'杭州XX科技',ph:'0571-88****',p:'怡宝 18.9L',q:10,am:180,t:'16:30',s:'pending',d:'-',ad:'文三路478号华星大厦8F'},
-  {id:'WO20260324004',c:'王先生',ph:'137****5555',p:'娃哈哈 18.9L',q:2,am:32,t:'15:20',s:'delivering',d:'小陈',ad:'古荡新村西区12-201'},
-  {id:'WO20260324005',c:'赵女士',ph:'136****4444',p:'农夫山泉 18.9L',q:1,am:20,t:'14:55',s:'delivering',d:'老周',ad:'文新路288号3-1502'},
-  {id:'WO20260324006',c:'陈先生',ph:'135****3333',p:'景田 18.9L',q:4,am:96,t:'14:10',s:'done',d:'小李',ad:'翠苑四区2号楼5-601'},
-  {id:'WO20260324007',c:'刘女士',ph:'134****2222',p:'怡宝 18.9L',q:2,am:36,t:'13:30',s:'done',d:'小陈',ad:'文二路125号1-802'},
-  {id:'WO20260324008',c:'吴先生',ph:'133****1111',p:'百岁山 18.9L',q:5,am:110,t:'11:20',s:'done',d:'老周',ad:'古荡街道18号3-301'},
-  {id:'WO20260324009',c:'孙女士',ph:'132****9999',p:'昆仑山 18.9L',q:2,am:56,t:'10:40',s:'done',d:'小李',ad:'翠苑三区9号楼2-1001'},
-  {id:'WO20260324010',c:'周先生',ph:'131****8888',p:'农夫山泉 550ml×24',q:3,am:96,t:'09:15',s:'cancelled',d:'-',ad:'文一路66号2-503'}
-];
-const prods=[
-  {n:'农夫山泉 饮用天然水',ct:'桶装水',sp:'18.9L/桶',pr:20,sk:186,sl:3826,st:'on'},
-  {n:'百岁山 天然矿泉水',ct:'桶装水',sp:'18.9L/桶',pr:22,sk:142,sl:2914,st:'on'},
-  {n:'怡宝 纯净水',ct:'桶装水',sp:'18.9L/桶',pr:18,sk:210,sl:4210,st:'on'},
-  {n:'娃哈哈 纯净水',ct:'桶装水',sp:'18.9L/桶',pr:16,sk:258,sl:5102,st:'on'},
-  {n:'景田 百岁山矿泉水',ct:'桶装水',sp:'18.9L/桶',pr:24,sk:98,sl:1856,st:'on'},
-  {n:'昆仑山 雪山矿泉水',ct:'桶装水',sp:'18.9L/桶',pr:28,sk:76,sl:1320,st:'on'},
-  {n:'富硒矿泉水',ct:'健康功能水',sp:'18.9L/桶',pr:38,sk:45,sl:320,st:'on',tg:['富硒']},
-  {n:'弱碱性饮用水',ct:'健康功能水',sp:'18.9L/桶',pr:35,sk:52,sl:280,st:'on',tg:['弱碱性']},
-  {n:'美的 饮水机',ct:'饮水设备',sp:'立式冷热',pr:399,sk:18,sl:320,st:'on'},
-  {n:'饮水机清洗服务',ct:'饮水设备',sp:'上门服务',pr:68,sk:999,sl:560,st:'on'}
-];
-const drivers=[
-  {n:'小陈',ph:'158****1234',st:'on',od:12,ic:36,at:35,bt:8},
-  {n:'老周',ph:'159****5678',st:'on',od:10,ic:30,at:40,bt:7},
-  {n:'小李',ph:'157****9012',st:'on',od:9,ic:27,at:38,bt:6},
-  {n:'小王',ph:'156****3456',st:'on',od:8,ic:24,at:42,bt:5},
-  {n:'老张',ph:'155****7890',st:'on',od:5,ic:15,at:36,bt:4},
-  {n:'小刘',ph:'154****2345',st:'off',od:0,ic:0,at:'-',bt:2}
-];
-const custs=[
-  {n:'张先生',ph:'138****8888',tg:'家庭',od:24,sp:1280,tk:6,lt:'今天 17:05'},
-  {n:'杭州XX科技',ph:'0571-88****',tg:'企业',od:86,sp:12800,tk:42,lt:'今天 16:30'},
-  {n:'李女士',ph:'139****6666',tg:'VIP',od:52,sp:3600,tk:12,lt:'今天 16:48'},
-  {n:'王先生',ph:'137****5555',tg:'家庭',od:18,sp:860,tk:0,lt:'今天 15:20'},
-  {n:'赵女士',ph:'136****4444',tg:'新客',od:3,sp:120,tk:0,lt:'今天 14:55'}
-];
-const ttl={dash:'数据看板',ord:'订单管理',prod:'商品管理',tk:'水票管理',cust:'客户管理',drv:'配送管理',mkt:'营销活动',set:'系统设置'};
-const sMap={pending:['待接单','tag-pend'],delivering:['配送中','tag-del'],done:['已完成','tag-done'],cancelled:['已取消','tag-cancel']};
-const tgCol={'家庭':'#EFF6FF;color:#1D4ED8','企业':'#FEF3C7;color:#92400E','VIP':'#FCE7F3;color:#9D174D','新客':'#D1FAE5;color:#065F46'};
+const ttl={dash:'数据看板',ord:'订单管理',drv:'配送管理',set:'系统设置'};
+const sMap={pending:['待接单','tag-pend'],delivering:['配送中','tag-del'],done:['已完成','tag-done']};
 
-function sp(p,el){
-  document.querySelectorAll('.pg-s').forEach(s=>s.classList.remove('on'));
-  document.getElementById('s-'+p).classList.add('on');
-  document.querySelectorAll('.s-item').forEach(m=>m.classList.remove('on'));
-  if(el)el.classList.add('on');
-  document.getElementById('pgT').textContent=ttl[p]||p;
-}
-function cm(id){document.getElementById(id).classList.remove('show')}
+function sp(p,el){document.querySelectorAll('.pg-s').forEach(s=>s.classList.remove('on'));document.getElementById('s-'+p).classList.add('on');document.querySelectorAll('.s-item').forEach(m=>m.classList.remove('on'));if(el)el.classList.add('on');document.getElementById('pgT').textContent=ttl[p]||p;if(p==='ord')rOrd();if(p==='dash')rDash();if(p==='drv')rDrv()}
 function toast(m){const t=document.getElementById('toastEl');t.textContent=m;t.style.opacity=1;setTimeout(()=>t.style.opacity=0,1500)}
 
+function rDash(){
+  const data=loadData();
+  const ords=data.orders;
+  const total=ords.length,rev=ords.reduce((s,o)=>s+o.amount,0),done=ords.filter(o=>o.status==='done').length,pend=ords.filter(o=>o.status==='pending').length;
+  document.getElementById('dTotalOrd').textContent=total;
+  document.getElementById('dTotalRev').textContent='¥'+rev.toLocaleString();
+  document.getElementById('dDoneOrd').textContent=done;
+  document.getElementById('dPendOrd').textContent=pend;
+  document.getElementById('dPendTip').textContent=pend?'需尽快处理':'全部已处理 ✅';
+  document.getElementById('dPendTip').className='st-c'+(pend?' dn':'');
+  // Badge
+  document.getElementById('oBadge').textContent=pend;
+  document.getElementById('oBadge').style.display=pend?'flex':'none';
+  document.getElementById('notifDot').style.display=pend?'block':'none';
+  // Alert
+  const al=document.getElementById('alertBox');
+  if(pend>0){document.getElementById('alertText').textContent=`🔔 您有 ${pend} 笔新订单待处理！`;al.classList.add('show')}else{al.classList.remove('show')}
+  rChart();rRank()
+}
+
 function rOrd(){
-  const f=document.getElementById('oFlt').value;
-  const l=f==='all'?orders:orders.filter(o=>o.s===f);
-  document.getElementById('oCnt').textContent=l.length;
-  document.getElementById('oTb').innerHTML=l.map(o=>{
-    const[lb,cl]=sMap[o.s];
+  const data=loadData();const f=document.getElementById('oFlt').value;
+  const list=f==='all'?data.orders:data.orders.filter(o=>o.status===f);
+  document.getElementById('oCnt').textContent=list.length;
+  document.getElementById('oTb').innerHTML=list.map(o=>{
+    const[lb,cl]=sMap[o.status]||['未知',''];
+    const prods=getOrderProducts(o);
+    const prodText=prods.map(p=>p.name+'×'+p.qty).join(', ');
+    const driver=o.driver?getDriver(o.driver):null;
     let ac='';
-    if(o.s==='pending')ac=`<button class="btn btn-s btn-g" onclick="aOrd('${o.id}')">接单</button> <button class="btn btn-s btn-d" onclick="rjOrd('${o.id}')">拒单</button>`;
-    else ac=`<button class="btn btn-s btn-o" onclick="vOrd('${o.id}')">查看</button>`;
-    return`<tr><td style="font-weight:600">${o.id}</td><td>${o.c}</td><td>${o.p}</td><td>${o.q}</td><td style="font-weight:700">¥${o.am}</td><td>${o.t}</td><td><span class="tag ${cl}">${lb}</span></td><td>${o.d}</td><td>${ac}</td></tr>`;
+    if(o.status==='pending')ac=`<button class="btn btn-s btn-g" onclick="acceptOrd('${o.id}')">接单</button> <button class="btn btn-s btn-d" onclick="rejectOrd('${o.id}')">拒单</button>`;
+    else if(o.status==='delivering')ac=`<span style="font-size:12px;color:var(--b)">配送中</span>`;
+    else ac=`<span style="font-size:12px;color:var(--g)">✅</span>`;
+    return`<tr><td style="font-weight:600">${o.id}</td><td>${o.customer}</td><td style="max-width:200px">${prodText}</td><td style="font-weight:700">¥${o.amount}</td><td>${o.time}</td><td><span class="tag ${cl}">${lb}</span></td><td>${driver?driver.name:'-'}</td><td>${ac}</td></tr>`
   }).join('')}
-function aOrd(id){const o=orders.find(x=>x.id===id);if(o){o.s='delivering';o.d='小陈';rOrd();toast('✅ 已接单并派单给小陈')}}
-function rjOrd(id){const o=orders.find(x=>x.id===id);if(o){o.s='cancelled';rOrd();toast('已拒单')}}
-function vOrd(id){
-  const o=orders.find(x=>x.id===id);if(!o)return;
-  const[lb]=sMap[o.s];
-  document.getElementById('odB').innerHTML=`<div class="info-r"><span class="info-l">订单号</span><span class="info-v" style="font-weight:700">${o.id}</span></div><div class="info-r"><span class="info-l">客户</span><span class="info-v">${o.c} ${o.ph}</span></div><div class="info-r"><span class="info-l">地址</span><span class="info-v">${o.ad}</span></div><div class="info-r"><span class="info-l">商品</span><span class="info-v">${o.p} × ${o.q}</span></div><div class="info-r"><span class="info-l">金额</span><span class="info-v" style="color:var(--red);font-weight:800">¥${o.am}</span></div><div class="info-r"><span class="info-l">时间</span><span class="info-v">2026-03-24 ${o.t}</span></div><div class="info-r"><span class="info-l">状态</span><span class="info-v">${lb}</span></div><div class="info-r"><span class="info-l">配送员</span><span class="info-v">${o.d}</span></div>`;
-  document.getElementById('odF').innerHTML=`<button class="btn btn-o" onclick="cm('odMo')">关闭</button>`;
-  document.getElementById('odMo').classList.add('show')}
 
-function rProd(){
-  document.getElementById('pTb').innerHTML=prods.map((p,i)=>{
-    const tgs=p.tg?p.tg.map(t=>`<span style="background:#D1FAE5;color:#065F46;padding:2px 8px;border-radius:6px;font-size:10px;font-weight:700;margin-left:4px">#${t}</span>`).join(''):'';
-    return`<tr><td style="font-weight:600">${p.n}${tgs}</td><td>${p.ct}</td><td>${p.sp}</td><td style="font-weight:700;color:var(--red)">¥${p.pr}</td><td>${p.sk<50?'<span style="color:var(--red)">'+p.sk+' ⚠️</span>':p.sk}</td><td>${p.sl}</td><td><span class="tag ${p.st==='on'?'tag-on':'tag-off'}">${p.st==='on'?'上架':'下架'}</span></td><td><button class="btn btn-s btn-o">编辑</button> <button class="btn btn-s btn-o" onclick="prods[${i}].st=prods[${i}].st==='on'?'off':'on';rProd();toast(prods[${i}].st==='on'?'已上架':'已下架')">${p.st==='on'?'下架':'上架'}</button></td></tr>`}).join('')}
+function acceptOrd(id){
+  // 接单 + 自动派单给小陈
+  updateOrderStatus(id,'delivering',{driver:'d1'});
+  rOrd();rDash();toast('✅ 已接单，派单给小陈')
+}
+function rejectOrd(id){
+  updateOrderStatus(id,'done',{});
+  rOrd();rDash();toast('已拒单')
+}
 
-function rDrv(){document.getElementById('dTb').innerHTML=drivers.map(d=>`<tr><td style="font-weight:600">${d.n}</td><td>${d.ph}</td><td><span class="tag ${d.st==='on'?'tag-on':'tag-off'}">${d.st==='on'?'在线':'离线'}</span></td><td>${d.od}</td><td>¥${d.ic}</td><td>${d.at}min</td><td>${d.bt}</td><td><button class="btn btn-s btn-o">详情</button></td></tr>`).join('')}
-function rCust(){document.getElementById('cTb').innerHTML=custs.map(c=>`<tr><td style="font-weight:600">${c.n}</td><td>${c.ph}</td><td><span style="background:${tgCol[c.tg]};padding:3px 10px;border-radius:6px;font-size:11px;font-weight:700">${c.tg}</span></td><td>${c.od}</td><td>¥${c.sp.toLocaleString()}</td><td>${c.tk}桶</td><td>${c.lt}</td><td><button class="btn btn-s btn-o">详情</button></td></tr>`).join('')}
+function rDrv(){
+  const data=loadData();
+  document.getElementById('dTb').innerHTML=DRIVERS.map(d=>{
+    const cnt=data.orders.filter(o=>o.driver===d.id&&o.status==='done').length;
+    const delivering=data.orders.filter(o=>o.driver===d.id&&o.status==='delivering').length;
+    const status=delivering>0?'配送中':'空闲';
+    const stCl=delivering>0?'tag-del':'tag-done';
+    return`<tr><td style="font-weight:600">${d.name}</td><td>${d.phone}</td><td><span class="tag ${stCl}">${status}</span></td><td>${cnt}单</td></tr>`
+  }).join('')}
 
-function rChart(){
-  const d=[32,28,45,38,42,35,47],lb=['周一','周二','周三','周四','周五','周六','周日'],mx=Math.max(...d);
-  document.getElementById('chartEl').innerHTML=d.map((v,i)=>{
-    const h=v/mx*180;const cl=i===d.length-1?'var(--blue-g)':'linear-gradient(180deg,#93C5FD,#BFDBFE)';
-    return`<div class="bar" style="height:${h}px;background:${cl}" data-v="${v}"><span class="bar-lb">${lb[i]}</span></div>`}).join('')}
-function rRank(){
-  const top=[{n:'娃哈哈 纯净水',s:5102},{n:'怡宝 纯净水',s:4210},{n:'农夫山泉 天然水',s:3826},{n:'百岁山 矿泉水',s:2914},{n:'怡宝 555ml×24',s:2100}];
-  document.getElementById('rankEl').innerHTML=top.map((r,i)=>`<div class="rk-i"><div class="rk-n">${i+1}</div><div class="rk-info"><div class="rk-nm">${r.n}</div><div class="rk-sl">累计 ${r.s} 件</div></div></div>`).join('')}
+function rChart(){const d=[32,28,45,38,42,35,loadData().orders.length],lb=['周一','周二','周三','周四','周五','周六','今日'],mx=Math.max(...d);document.getElementById('chartEl').innerHTML=d.map((v,i)=>{const h=v/mx*180;const cl=i===d.length-1?'var(--bg)':'linear-gradient(180deg,#93C5FD,#BFDBFE)';return`<div class="bar" style="height:${h}px;background:${cl}" data-v="${v}"><span class="bar-lb">${lb[i]}</span></div>`}).join('')}
+function rRank(){const top=[{n:'娃哈哈 纯净水',s:5102},{n:'怡宝 纯净水',s:4210},{n:'农夫山泉 天然水',s:3826},{n:'百岁山 矿泉水',s:2914},{n:'怡宝 555ml×24',s:2100}];document.getElementById('rankEl').innerHTML=top.map((r,i)=>`<div class="rk-i"><div class="rk-n">${i+1}</div><div class="rk-info"><div class="rk-nm">${r.n}</div><div class="rk-sl">累计 ${r.s} 件</div></div></div>`).join('')}
 
 function tick(){document.getElementById('clock').textContent=new Date().toLocaleString('zh-CN',{month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit',second:'2-digit'})}
 
-rOrd();rProd();rDrv();rCust();rChart();rRank();tick();setInterval(tick,1000);
-document.querySelectorAll('.mm').forEach(m=>m.addEventListener('click',function(e){if(e.target===this)this.classList.remove('show')}));
+// Sync: when user places order, auto-refresh
+onDataChange(function(){rDash();if(document.getElementById('s-ord').classList.contains('on'))rOrd();if(document.getElementById('s-drv').classList.contains('on'))rDrv()});
+
+rDash();rOrd();rDrv();tick();setInterval(tick,1000)
 </script>
 </body>
 </html>
