@@ -2,524 +2,299 @@
 <html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
 <title>来点好水 · 配送员端</title>
 <style>
-:root {
-  --primary: #2196F3;
-  --primary-dark: #1565C0;
-  --primary-light: #E3F2FD;
-  --success: #4CAF50;
-  --warning: #FF9800;
-  --danger: #FF5722;
-  --bg: #F5F7FA;
-  --white: #FFFFFF;
-  --text: #333;
-  --text-light: #999;
-  --border: #EEEEEE;
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+:root{
+  --blue:#3B82F6;--blue-d:#2563EB;--blue-l:#EFF6FF;--blue-g:linear-gradient(135deg,#60A5FA,#2563EB);
+  --green:#10B981;--green-g:linear-gradient(135deg,#34D399,#059669);--orange:#F59E0B;--red:#EF4444;
+  --bg:#F1F5F9;--card:#FFF;--text:#1E293B;--sub:#64748B;--mute:#94A3B8;--line:#E2E8F0;
+  --r:14px;--shadow:0 2px 12px rgba(0,0,0,.05);
 }
-* { margin: 0; padding: 0; box-sizing: border-box; }
-body {
-  font-family: -apple-system, 'PingFang SC', sans-serif;
-  background: var(--bg); color: var(--text);
-  max-width: 430px; margin: 0 auto;
-  min-height: 100vh;
-}
+body{font-family:-apple-system,'PingFang SC',sans-serif;background:var(--bg);color:var(--text);max-width:430px;margin:0 auto;min-height:100vh;overflow-x:hidden}
 
-/* ===== Header ===== */
-.app-header {
-  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
-  padding: 16px; color: white;
-}
-.header-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; }
-.driver-info { display: flex; align-items: center; gap: 10px; }
-.driver-avatar {
-  width: 40px; height: 40px; border-radius: 50%;
-  background: rgba(255,255,255,0.2);
-  display: flex; align-items: center; justify-content: center; font-size: 20px;
-}
-.driver-name { font-size: 16px; font-weight: 600; }
-.driver-status { font-size: 12px; opacity: 0.8; }
-.online-toggle {
-  padding: 6px 16px; border-radius: 16px; font-size: 13px;
-  border: none; cursor: pointer; font-weight: 600;
-}
-.online-toggle.on { background: var(--success); color: white; }
-.online-toggle.off { background: rgba(255,255,255,0.2); color: white; }
+/* Header */
+.hd{background:var(--blue-g);padding:16px 20px 22px;position:relative;overflow:hidden}
+.hd::after{content:'';position:absolute;top:-30px;right:-30px;width:140px;height:140px;border-radius:50%;background:rgba(255,255,255,.06)}
+.hd-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px}
+.hd-info{display:flex;align-items:center;gap:12px;color:#fff}
+.hd-av{width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,.15);display:flex;align-items:center;justify-content:center;font-size:22px;backdrop-filter:blur(4px)}
+.hd-nm{font-size:16px;font-weight:700}.hd-sub{font-size:12px;opacity:.75;margin-top:2px}
+.on-btn{padding:8px 18px;border-radius:20px;font-size:13px;border:none;cursor:pointer;font-weight:700;transition:.2s}
+.on-btn.on{background:var(--green);color:#fff;box-shadow:0 2px 10px rgba(16,185,129,.3)}
+.on-btn.off{background:rgba(255,255,255,.15);color:rgba(255,255,255,.8)}
+.hd-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.hs{text-align:center;color:#fff}
+.hs-n{font-size:24px;font-weight:800}.hs-l{font-size:11px;opacity:.75;margin-top:2px}
 
-/* Stats */
-.driver-stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
-.stat-item { text-align: center; }
-.stat-num { font-size: 22px; font-weight: 700; }
-.stat-label { font-size: 11px; opacity: 0.8; margin-top: 2px; }
+/* Tabs */
+.tabs{display:flex;background:var(--card);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:10}
+.tab{flex:1;text-align:center;padding:14px 0;font-size:14px;color:var(--mute);cursor:pointer;position:relative;transition:.2s;font-weight:500}
+.tab.on{color:var(--blue);font-weight:700}
+.tab.on::after{content:'';position:absolute;bottom:0;left:30%;right:30%;height:3px;background:var(--blue);border-radius:2px}
+.tab .bd{display:inline-block;background:var(--red);color:#fff;font-size:9px;min-width:16px;height:16px;border-radius:8px;line-height:16px;margin-left:4px;padding:0 4px;font-weight:700;vertical-align:top}
 
-/* ===== Tabs ===== */
-.order-tabs {
-  display: flex; background: var(--white);
-  border-bottom: 1px solid var(--border);
-  position: sticky; top: 0; z-index: 10;
-}
-.order-tab {
-  flex: 1; text-align: center; padding: 12px 0;
-  font-size: 14px; color: var(--text-light);
-  cursor: pointer; position: relative; transition: all 0.2s;
-}
-.order-tab.active { color: var(--primary); font-weight: 600; }
-.order-tab.active::after {
-  content: ''; position: absolute; bottom: 0; left: 30%; right: 30%;
-  height: 3px; background: var(--primary); border-radius: 2px;
-}
-.order-tab .tab-badge {
-  display: inline-block; background: var(--danger); color: white;
-  font-size: 10px; min-width: 16px; height: 16px; border-radius: 8px;
-  line-height: 16px; margin-left: 4px; padding: 0 4px;
-}
+/* Order list */
+.olist{padding:12px}
+.oc{background:var(--card);border-radius:var(--r);margin-bottom:12px;overflow:hidden;box-shadow:var(--shadow)}
+.oc-urg{background:linear-gradient(135deg,#FEF3C7,#FDE68A);padding:8px 16px;font-size:12px;color:#92400E;font-weight:600;display:flex;align-items:center;gap:4px}
+.oc-hd{padding:12px 16px;display:flex;align-items:center;justify-content:space-between}
+.oc-id{font-size:13px;color:var(--mute);font-weight:500}.oc-time{font-size:12px;color:var(--mute)}
+.oc-bd{padding:0 16px 14px}
+.oc-cust{display:flex;align-items:center;gap:8px;margin-bottom:8px}
+.oc-nm{font-size:15px;font-weight:700}
+.oc-ph{background:var(--blue-l);color:var(--blue-d);padding:3px 10px;border-radius:6px;font-size:11px;font-weight:600;cursor:pointer}
+.oc-addr{font-size:13px;color:var(--sub);margin-bottom:10px;display:flex;align-items:flex-start;gap:4px;line-height:1.5}
+.oc-prods{background:#F8FAFC;border-radius:10px;padding:12px;margin-bottom:10px}
+.oc-pr{display:flex;justify-content:space-between;font-size:13px;padding:2px 0}
+.oc-pr-n{color:var(--sub)}.oc-pr-q{font-weight:700}
+.oc-pr.total{margin-top:6px;padding-top:6px;border-top:1px dashed var(--line)}
+.oc-pr.total span:last-child{color:var(--red);font-weight:800}
+.oc-note{background:#FEF3C7;border-radius:8px;padding:10px 12px;font-size:12px;color:#92400E;font-weight:500;margin-bottom:10px}
+.oc-ft{padding:12px 16px;border-top:1px solid var(--line);display:flex;gap:8px}
+.ob{flex:1;padding:11px;border-radius:10px;font-size:14px;font-weight:700;border:none;cursor:pointer;text-align:center;transition:.15s}
+.ob:active{transform:scale(.96)}
+.ob-nav{background:#D1FAE5;color:#065F46}.ob-call{background:var(--blue-l);color:var(--blue-d)}
+.ob-go{background:var(--blue-g);color:#fff;box-shadow:0 2px 10px rgba(59,130,246,.2)}
+.ob-done{background:var(--green-g);color:#fff;box-shadow:0 2px 10px rgba(16,185,129,.2)}
+.ob-gray{background:#F1F5F9;color:var(--mute);flex:1}
 
-/* ===== Order Cards ===== */
-.order-list { padding: 12px; }
-.d-order-card {
-  background: var(--white); border-radius: 12px;
-  margin-bottom: 12px; overflow: hidden;
-  box-shadow: 0 1px 4px rgba(0,0,0,0.06);
-}
-.d-order-urgent {
-  background: #FFF3E0; padding: 6px 16px;
-  font-size: 12px; color: #E65100;
-  display: flex; align-items: center; gap: 4px;
-}
-.d-order-header {
-  padding: 12px 16px; display: flex;
-  align-items: center; justify-content: space-between;
-}
-.d-order-id { font-size: 13px; color: var(--text-light); }
-.d-order-time { font-size: 12px; color: var(--text-light); }
-.d-order-body { padding: 0 16px 12px; }
-.d-order-customer {
-  display: flex; align-items: center; gap: 8px;
-  margin-bottom: 8px;
-}
-.d-order-name { font-size: 15px; font-weight: 600; }
-.d-order-phone {
-  background: var(--primary-light); color: var(--primary);
-  padding: 2px 8px; border-radius: 4px; font-size: 12px;
-  cursor: pointer;
-}
-.d-order-addr {
-  font-size: 13px; color: #666; margin-bottom: 10px;
-  display: flex; align-items: flex-start; gap: 4px;
-}
-.d-order-products {
-  background: #FAFAFA; border-radius: 8px; padding: 10px;
-  margin-bottom: 10px;
-}
-.d-product-row {
-  display: flex; justify-content: space-between;
-  font-size: 13px; padding: 2px 0;
-}
-.d-product-name { color: #555; }
-.d-product-qty { font-weight: 600; }
-.d-order-note {
-  background: #FFF8E1; border-radius: 6px; padding: 8px 10px;
-  font-size: 12px; color: #F57F17; margin-bottom: 10px;
-}
-.d-order-footer {
-  padding: 12px 16px; border-top: 1px solid var(--border);
-  display: flex; gap: 8px;
-}
-.d-btn {
-  flex: 1; padding: 10px; border-radius: 8px;
-  font-size: 14px; font-weight: 600; border: none;
-  cursor: pointer; text-align: center; transition: all 0.2s;
-}
-.d-btn:active { transform: scale(0.97); }
-.d-btn-primary { background: var(--primary); color: white; }
-.d-btn-success { background: var(--success); color: white; }
-.d-btn-warning { background: var(--warning); color: white; }
-.d-btn-outline { background: transparent; border: 1px solid var(--border); color: var(--text); }
-.d-btn-call { background: var(--primary-light); color: var(--primary); }
-.d-btn-nav { background: #E8F5E9; color: #2E7D32; }
+/* Empty */
+.empty{display:flex;flex-direction:column;align-items:center;padding:60px 16px;color:var(--mute)}
+.empty .ic{font-size:48px;margin-bottom:12px;opacity:.5}.empty .tx{font-size:14px}
 
-/* ===== Empty ===== */
-.empty-state {
-  display: flex; flex-direction: column; align-items: center;
-  padding: 60px 16px; color: var(--text-light);
-}
-.empty-state .icon { font-size: 48px; margin-bottom: 12px; }
-.empty-state .text { font-size: 14px; }
+/* Confirm modal */
+.cmo{display:none;position:fixed;inset:0;background:rgba(15,23,42,.5);z-index:100;max-width:430px;margin:0 auto;backdrop-filter:blur(2px)}
+.cmo.show{display:flex;align-items:flex-end}
+.cmo-c{width:100%;background:var(--card);border-radius:20px 20px 0 0;padding:28px 20px 36px;animation:su .3s cubic-bezier(.4,0,.2,1)}
+@keyframes su{from{transform:translateY(100%)}to{transform:translateY(0)}}
+.cmo-t{font-size:18px;font-weight:800;margin-bottom:20px;text-align:center}
+.cmo-sec{margin-bottom:20px}
+.cmo-lb{font-size:13px;color:var(--sub);margin-bottom:10px;font-weight:600}
+.btl-c{display:flex;align-items:center;gap:20px;justify-content:center}
+.btl-b{width:40px;height:40px;border-radius:50%;border:1.5px solid var(--line);background:var(--card);font-size:20px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:.15s;font-weight:700}
+.btl-b:active{background:var(--bg);transform:scale(.9)}
+.btl-n{font-size:32px;font-weight:800;min-width:40px;text-align:center}
+.photo-up{border:2px dashed var(--line);border-radius:var(--r);height:90px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;cursor:pointer;color:var(--mute);font-size:13px;transition:.15s}
+.photo-up:active{background:var(--bg)}
+.photo-up .ic{font-size:28px}
+.cmo-btns{display:flex;gap:10px;margin-top:24px}
 
-/* ===== 送达确认弹窗 ===== */
-.confirm-modal {
-  display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0;
-  background: rgba(0,0,0,0.5); z-index: 100;
-  max-width: 430px; margin: 0 auto;
-}
-.confirm-modal.show { display: flex; align-items: flex-end; }
-.confirm-content {
-  width: 100%; background: var(--white);
-  border-radius: 16px 16px 0 0; padding: 24px 16px 32px;
-  animation: slideUp 0.3s ease;
-}
-@keyframes slideUp { from { transform: translateY(100%); } to { transform: translateY(0); } }
-.confirm-title { font-size: 17px; font-weight: 700; margin-bottom: 16px; text-align: center; }
-.confirm-section { margin-bottom: 16px; }
-.confirm-label { font-size: 13px; color: #666; margin-bottom: 8px; }
-.bottle-counter {
-  display: flex; align-items: center; gap: 16px;
-  justify-content: center;
-}
-.bottle-btn {
-  width: 36px; height: 36px; border-radius: 50%;
-  border: 1px solid var(--border); background: var(--white);
-  font-size: 20px; cursor: pointer;
-  display: flex; align-items: center; justify-content: center;
-}
-.bottle-num { font-size: 28px; font-weight: 700; min-width: 40px; text-align: center; }
-.photo-upload {
-  border: 2px dashed var(--border); border-radius: 12px;
-  height: 100px; display: flex; flex-direction: column;
-  align-items: center; justify-content: center; gap: 4px;
-  cursor: pointer; color: var(--text-light); font-size: 13px;
-}
-.photo-upload .icon { font-size: 28px; }
-.confirm-btns { display: flex; gap: 10px; margin-top: 20px; }
-
-/* ===== Toast ===== */
-.toast {
-  position: fixed; top: 50%; left: 50%; transform: translate(-50%,-50%);
-  background: rgba(0,0,0,0.75); color: white; padding: 12px 24px;
-  border-radius: 8px; font-size: 14px; z-index: 999;
-  opacity: 0; transition: opacity 0.3s; pointer-events: none;
-}
-.toast.show { opacity: 1; }
-
-/* ===== Bottom nav ===== */
-.bottom-nav {
-  position: fixed; bottom: 0; left: 50%; transform: translateX(-50%);
-  width: 100%; max-width: 430px; height: 56px;
-  background: var(--white); display: flex;
-  box-shadow: 0 -2px 10px rgba(0,0,0,0.06); z-index: 50;
-}
-.nav-item {
-  flex: 1; display: flex; flex-direction: column;
-  align-items: center; justify-content: center; gap: 2px;
-  cursor: pointer; color: var(--text-light); font-size: 10px;
-}
-.nav-item.active { color: var(--primary); }
-.nav-item .icon { font-size: 20px; }
+/* Bottom nav */
+.bnav{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:430px;height:60px;background:rgba(255,255,255,.92);backdrop-filter:blur(16px);display:flex;box-shadow:0 -1px 16px rgba(0,0,0,.06);z-index:50;padding-bottom:env(safe-area-inset-bottom)}
+.bn{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;cursor:pointer;color:var(--mute);font-size:10px;transition:.2s}
+.bn.on{color:var(--blue)}.bn.on .ic{transform:scale(1.1)}
+.bn .ic{font-size:20px;transition:.2s}
 
 /* Pages */
-.d-page { display: none; padding-bottom: 56px; }
-.d-page.active { display: block; }
+.dp{display:none;padding-bottom:60px}.dp.on{display:block}
 
-/* ===== 收入页 ===== */
-.income-header {
-  background: linear-gradient(135deg, var(--success), #2E7D32);
-  padding: 24px 16px; color: white; text-align: center;
-}
-.income-today-label { font-size: 13px; opacity: 0.8; }
-.income-today { font-size: 42px; font-weight: 700; margin: 8px 0; }
-.income-today .unit { font-size: 16px; font-weight: 400; }
-.income-detail { display: flex; justify-content: center; gap: 32px; margin-top: 8px; }
-.income-detail-item { text-align: center; }
-.income-detail-num { font-size: 18px; font-weight: 600; }
-.income-detail-label { font-size: 11px; opacity: 0.8; }
-.income-list { padding: 16px; }
-.income-item {
-  background: var(--white); border-radius: 10px; padding: 14px;
-  margin-bottom: 8px; display: flex; justify-content: space-between;
-  align-items: center;
-}
-.income-item-left { }
-.income-item-order { font-size: 13px; color: var(--text-light); }
-.income-item-info { font-size: 14px; margin-top: 4px; }
-.income-item-amount { font-size: 16px; font-weight: 700; color: var(--success); }
+/* Income */
+.inc-hd{background:var(--green-g);padding:28px 20px;color:#fff;text-align:center;position:relative;overflow:hidden}
+.inc-hd::after{content:'';position:absolute;bottom:-20px;left:-20px;width:100px;height:100px;border-radius:50%;background:rgba(255,255,255,.06)}
+.inc-tl{font-size:13px;opacity:.8}.inc-v{font-size:46px;font-weight:800;margin:8px 0}.inc-v .u{font-size:16px;font-weight:400}
+.inc-det{display:flex;justify-content:center;gap:36px;margin-top:8px}
+.inc-di{text-align:center}.inc-di-n{font-size:18px;font-weight:700}.inc-di-l{font-size:11px;opacity:.75}
+.inc-list{padding:16px}
+.inc-item{background:var(--card);border-radius:12px;padding:14px 16px;margin-bottom:8px;display:flex;justify-content:space-between;align-items:center;box-shadow:0 1px 4px rgba(0,0,0,.03)}
+.inc-item-l{}.inc-item-id{font-size:12px;color:var(--mute)}.inc-item-info{font-size:14px;margin-top:4px;font-weight:500}
+.inc-item-am{font-size:16px;font-weight:800;color:var(--green)}
+
+/* My */
+.my-menu{margin:16px;background:var(--card);border-radius:var(--r);overflow:hidden;box-shadow:var(--shadow)}
+.my-mi{display:flex;align-items:center;padding:15px 18px;border-bottom:1px solid var(--line);cursor:pointer;font-size:14px;transition:.15s}
+.my-mi:last-child{border:none}.my-mi:active{background:#F8FAFC}
+.my-mi .ic{font-size:18px;margin-right:12px;width:24px;text-align:center}.my-mi .tx{flex:1}.my-mi .ar{color:var(--mute);font-size:12px}
+
+/* Toast */
+.toast{position:fixed;top:45%;left:50%;transform:translate(-50%,-50%);background:rgba(15,23,42,.82);color:#fff;padding:14px 28px;border-radius:12px;font-size:14px;font-weight:500;z-index:999;opacity:0;transition:opacity .25s;pointer-events:none;backdrop-filter:blur(8px)}
+.toast.show{opacity:1}
 </style>
 </head>
 <body>
 
 <!-- ===== 配送页 ===== -->
-<div class="d-page active" id="dpage-delivery">
-  <div class="app-header">
-    <div class="header-top">
-      <div class="driver-info">
-        <div class="driver-avatar">🚚</div>
-        <div>
-          <div class="driver-name">小陈</div>
-          <div class="driver-status">配送员 · 翠苑片区</div>
-        </div>
-      </div>
-      <button class="online-toggle on" id="onlineBtn" onclick="toggleOnline()">● 在线接单</button>
+<div class="dp on" id="dp-del">
+  <div class="hd">
+    <div class="hd-top">
+      <div class="hd-info"><div class="hd-av">🚚</div><div><div class="hd-nm">小陈</div><div class="hd-sub">配送员 · 翠苑片区</div></div></div>
+      <button class="on-btn on" id="onBtn" onclick="togOn()">● 在线接单</button>
     </div>
-    <div class="driver-stats">
-      <div class="stat-item"><div class="stat-num" id="statPending">3</div><div class="stat-label">待配送</div></div>
-      <div class="stat-item"><div class="stat-num" id="statDone">9</div><div class="stat-label">已完成</div></div>
-      <div class="stat-item"><div class="stat-num" id="statBottles">6</div><div class="stat-label">回收桶</div></div>
-      <div class="stat-item"><div class="stat-num" id="statIncome">¥36</div><div class="stat-label">今日收入</div></div>
+    <div class="hd-stats">
+      <div class="hs"><div class="hs-n" id="sPend">3</div><div class="hs-l">待配送</div></div>
+      <div class="hs"><div class="hs-n" id="sDone">2</div><div class="hs-l">已完成</div></div>
+      <div class="hs"><div class="hs-n" id="sBtl">6</div><div class="hs-l">回收桶</div></div>
+      <div class="hs"><div class="hs-n" id="sInc">¥6</div><div class="hs-l">今日收入</div></div>
     </div>
   </div>
-
-  <div class="order-tabs">
-    <div class="order-tab active" onclick="switchOrderTab(0)">待配送<span class="tab-badge" id="pendingBadge">3</span></div>
-    <div class="order-tab" onclick="switchOrderTab(1)">配送中</div>
-    <div class="order-tab" onclick="switchOrderTab(2)">已完成</div>
+  <div class="tabs">
+    <div class="tab on" onclick="sTab(0)">待配送<span class="bd" id="pBd">3</span></div>
+    <div class="tab" onclick="sTab(1)">配送中</div>
+    <div class="tab" onclick="sTab(2)">已完成</div>
   </div>
-
-  <div class="order-list" id="deliveryOrderList"></div>
+  <div class="olist" id="oList"></div>
 </div>
 
 <!-- ===== 收入页 ===== -->
-<div class="d-page" id="dpage-income">
-  <div class="income-header">
-    <div class="income-today-label">今日收入</div>
-    <div class="income-today"><span class="unit">¥</span>36</div>
-    <div class="income-detail">
-      <div class="income-detail-item"><div class="income-detail-num">12</div><div class="income-detail-label">配送单数</div></div>
-      <div class="income-detail-item"><div class="income-detail-num">¥3</div><div class="income-detail-label">每单提成</div></div>
-      <div class="income-detail-item"><div class="income-detail-num">6</div><div class="income-detail-label">回收空桶</div></div>
+<div class="dp" id="dp-inc">
+  <div class="inc-hd">
+    <div class="inc-tl">今日收入</div>
+    <div class="inc-v"><span class="u">¥</span><span id="incTotal">6</span></div>
+    <div class="inc-det">
+      <div class="inc-di"><div class="inc-di-n" id="incOrd">2</div><div class="inc-di-l">配送单数</div></div>
+      <div class="inc-di"><div class="inc-di-n">¥3</div><div class="inc-di-l">每单提成</div></div>
+      <div class="inc-di"><div class="inc-di-n" id="incBtl">6</div><div class="inc-di-l">回收空桶</div></div>
     </div>
   </div>
-  <div class="income-list" id="incomeList"></div>
+  <div class="inc-list" id="incList"></div>
 </div>
 
 <!-- ===== 我的页 ===== -->
-<div class="d-page" id="dpage-mine">
-  <div class="app-header" style="padding-bottom:24px">
-    <div style="display:flex;align-items:center;gap:14px">
-      <div class="driver-avatar" style="width:56px;height:56px;font-size:28px">🚚</div>
+<div class="dp" id="dp-my">
+  <div class="hd" style="padding-bottom:28px">
+    <div style="display:flex;align-items:center;gap:14px;color:#fff">
+      <div class="hd-av" style="width:60px;height:60px;font-size:28px">🚚</div>
       <div>
-        <div class="driver-name" style="font-size:18px">小陈</div>
-        <div class="driver-status">工号: PS-006 · 翠苑片区</div>
-        <div class="driver-status">入职: 2025-06-15 · 服务 284 天</div>
+        <div class="hd-nm" style="font-size:19px">小陈</div>
+        <div class="hd-sub">工号 PS-006 · 翠苑片区</div>
+        <div class="hd-sub">入职 2025-06-15 · 服务 284 天</div>
       </div>
     </div>
   </div>
   <div style="padding:16px">
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px">
-      <div style="background:var(--white);border-radius:10px;padding:16px;text-align:center">
-        <div style="font-size:28px;font-weight:700;color:var(--primary)">2,846</div>
-        <div style="font-size:12px;color:#999;margin-top:4px">累计配送(单)</div>
+      <div style="background:var(--card);border-radius:var(--r);padding:18px;text-align:center;box-shadow:var(--shadow)">
+        <div style="font-size:30px;font-weight:800;color:var(--blue)">2,846</div>
+        <div style="font-size:12px;color:var(--mute);margin-top:4px">累计配送(单)</div>
       </div>
-      <div style="background:var(--white);border-radius:10px;padding:16px;text-align:center">
-        <div style="font-size:28px;font-weight:700;color:var(--success)">¥8,538</div>
-        <div style="font-size:12px;color:#999;margin-top:4px">累计收入</div>
+      <div style="background:var(--card);border-radius:var(--r);padding:18px;text-align:center;box-shadow:var(--shadow)">
+        <div style="font-size:30px;font-weight:800;color:var(--green)">¥8,538</div>
+        <div style="font-size:12px;color:var(--mute);margin-top:4px">累计收入</div>
       </div>
     </div>
-    <div style="background:var(--white);border-radius:10px;overflow:hidden">
-      <div style="padding:14px 16px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:10px;cursor:pointer">
-        <span>📊</span><span style="flex:1">配送统计</span><span style="color:#999">▸</span>
-      </div>
-      <div style="padding:14px 16px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:10px;cursor:pointer">
-        <span>💰</span><span style="flex:1">收入明细</span><span style="color:#999">▸</span>
-      </div>
-      <div style="padding:14px 16px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:10px;cursor:pointer">
-        <span>🪣</span><span style="flex:1">空桶回收记录</span><span style="color:#999">▸</span>
-      </div>
-      <div style="padding:14px 16px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:10px;cursor:pointer">
-        <span>📍</span><span style="flex:1">我的片区</span><span style="color:#999">▸</span>
-      </div>
-      <div style="padding:14px 16px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:10px;cursor:pointer">
-        <span>📞</span><span style="flex:1">联系商家</span><span style="color:#999">▸</span>
-      </div>
-      <div style="padding:14px 16px;display:flex;align-items:center;gap:10px;cursor:pointer">
-        <span>⚙️</span><span style="flex:1">设置</span><span style="color:#999">▸</span>
-      </div>
+    <div class="my-menu">
+      <div class="my-mi"><span class="ic">📊</span><span class="tx">配送统计</span><span class="ar">▸</span></div>
+      <div class="my-mi"><span class="ic">💰</span><span class="tx">收入明细</span><span class="ar">▸</span></div>
+      <div class="my-mi"><span class="ic">🪣</span><span class="tx">空桶回收记录</span><span class="ar">▸</span></div>
+      <div class="my-mi"><span class="ic">📍</span><span class="tx">我的片区</span><span class="ar">▸</span></div>
+      <div class="my-mi"><span class="ic">📞</span><span class="tx">联系商家</span><span class="ar">▸</span></div>
+      <div class="my-mi"><span class="ic">⚙️</span><span class="tx">设置</span><span class="ar">▸</span></div>
     </div>
   </div>
 </div>
 
-<!-- ===== 送达确认弹窗 ===== -->
-<div class="confirm-modal" id="confirmModal">
-  <div class="confirm-content">
-    <div class="confirm-title">确认送达</div>
-    <div class="confirm-section">
-      <div class="confirm-label">🪣 回收空桶数量</div>
-      <div class="bottle-counter">
-        <button class="bottle-btn" onclick="changeBottle(-1)">−</button>
-        <div class="bottle-num" id="bottleNum">0</div>
-        <button class="bottle-btn" onclick="changeBottle(1)">+</button>
-      </div>
+<!-- Confirm modal -->
+<div class="cmo" id="cfmMo">
+  <div class="cmo-c">
+    <div class="cmo-t">确认送达</div>
+    <div class="cmo-sec">
+      <div class="cmo-lb">🪣 回收空桶数量</div>
+      <div class="btl-c"><button class="btl-b" onclick="chgBtl(-1)">−</button><div class="btl-n" id="btlN">0</div><button class="btl-b" onclick="chgBtl(1)">+</button></div>
     </div>
-    <div class="confirm-section">
-      <div class="confirm-label">📷 拍照凭证（可选）</div>
-      <div class="photo-upload" onclick="showToast('📷 拍照功能开发中')">
-        <span class="icon">📸</span>
-        <span>点击拍照</span>
-      </div>
+    <div class="cmo-sec">
+      <div class="cmo-lb">📷 拍照凭证（可选）</div>
+      <div class="photo-up" onclick="toast('📷 拍照功能开发中')"><span class="ic">📸</span><span>点击拍照</span></div>
     </div>
-    <div class="confirm-btns">
-      <button class="d-btn d-btn-outline" style="flex:1" onclick="closeConfirm()">取消</button>
-      <button class="d-btn d-btn-success" style="flex:2" onclick="confirmDelivery()">✅ 确认送达</button>
+    <div class="cmo-btns">
+      <button class="ob ob-gray" onclick="closeCfm()">取消</button>
+      <button class="ob ob-done" style="flex:2" onclick="cfmDel()">✅ 确认送达</button>
     </div>
   </div>
 </div>
 
-<!-- Toast -->
-<div class="toast" id="toast"></div>
+<div class="toast" id="toastEl"></div>
 
-<!-- ===== 底部导航 ===== -->
-<div class="bottom-nav">
-  <div class="nav-item active" onclick="switchPage(0)"><span class="icon">📋</span>配送</div>
-  <div class="nav-item" onclick="switchPage(1)"><span class="icon">💰</span>收入</div>
-  <div class="nav-item" onclick="switchPage(2)"><span class="icon">👤</span>我的</div>
+<!-- Bottom nav -->
+<div class="bnav">
+  <div class="bn on" onclick="sPage(0)"><span class="ic">📋</span>配送</div>
+  <div class="bn" onclick="sPage(1)"><span class="ic">💰</span>收入</div>
+  <div class="bn" onclick="sPage(2)"><span class="ic">👤</span>我的</div>
 </div>
 
 <script>
-// ===== 配送订单数据 =====
-let deliveryOrders = [
-  { id: 'WO20260324001', customer: '张先生', phone: '13800008888', addr: '翠苑一区18号楼3单元502', products: [{ name: '农夫山泉 18.9L', qty: 3 }], amount: 60, time: '17:05', status: 'pending', note: '放门口即可', urgent: true },
-  { id: 'WO20260324002', customer: '李女士', phone: '13900006666', addr: '翠苑二区5号楼1单元301', products: [{ name: '百岁山 18.9L', qty: 2 }], amount: 44, time: '16:48', status: 'pending', note: '' },
-  { id: 'WO20260324003', customer: '杭州XX科技', phone: '057188001234', addr: '文三路478号华星大厦8楼', products: [{ name: '怡宝 18.9L', qty: 8 }, { name: '百岁山 18.9L', qty: 2 }], amount: 180, time: '16:30', status: 'pending', note: '送到前台，联系行政小王' },
-  { id: 'WO20260324004', customer: '王先生', phone: '13700005555', addr: '古荡新村西区12幢201', products: [{ name: '娃哈哈 18.9L', qty: 2 }], amount: 32, time: '15:20', status: 'delivering' },
-  { id: 'WO20260324005', customer: '赵女士', phone: '13600004444', addr: '文新路288号创意大厦3-1502', products: [{ name: '农夫山泉 18.9L', qty: 1 }], amount: 20, time: '14:55', status: 'delivering' },
-  { id: 'WO20260324006', customer: '陈先生', phone: '13500003333', addr: '翠苑四区2号楼5-601', products: [{ name: '景田 18.9L', qty: 4 }], amount: 96, time: '14:10', status: 'done', bottles: 4 },
-  { id: 'WO20260324007', customer: '刘女士', phone: '13400002222', addr: '文二路125号锦绣大厦1-802', products: [{ name: '怡宝 18.9L', qty: 2 }], amount: 36, time: '13:30', status: 'done', bottles: 2 },
+let dOrds=[
+  {id:'WO20260324001',c:'张先生',ph:'13800008888',ad:'翠苑一区18号楼3单元502',ps:[{n:'农夫山泉 18.9L',q:3}],am:60,t:'17:05',s:'pending',nt:'放门口即可',urg:true},
+  {id:'WO20260324002',c:'李女士',ph:'13900006666',ad:'翠苑二区5号楼1单元301',ps:[{n:'百岁山 18.9L',q:2}],am:44,t:'16:48',s:'pending',nt:''},
+  {id:'WO20260324003',c:'杭州XX科技',ph:'057188001234',ad:'文三路478号华星大厦8楼',ps:[{n:'怡宝 18.9L',q:8},{n:'百岁山 18.9L',q:2}],am:180,t:'16:30',s:'pending',nt:'送到前台，联系行政小王'},
+  {id:'WO20260324004',c:'王先生',ph:'13700005555',ad:'古荡新村西区12幢201',ps:[{n:'娃哈哈 18.9L',q:2}],am:32,t:'15:20',s:'delivering',nt:''},
+  {id:'WO20260324005',c:'赵女士',ph:'13600004444',ad:'文新路288号创意大厦3-1502',ps:[{n:'农夫山泉 18.9L',q:1}],am:20,t:'14:55',s:'delivering',nt:''},
+  {id:'WO20260324006',c:'陈先生',ph:'13500003333',ad:'翠苑四区2号楼5-601',ps:[{n:'景田 18.9L',q:4}],am:96,t:'14:10',s:'done',btl:4},
+  {id:'WO20260324007',c:'刘女士',ph:'13400002222',ad:'文二路125号锦绣大厦1-802',ps:[{n:'怡宝 18.9L',q:2}],am:36,t:'13:30',s:'done',btl:2}
 ];
 
-let activeTab = 0;
-let currentDeliveryId = null;
-let bottleCount = 0;
+let aTab=0,curId=null,btlCnt=0;
 
-function switchOrderTab(i) {
-  activeTab = i;
-  document.querySelectorAll('.order-tab').forEach((t, idx) => t.classList.toggle('active', idx === i));
-  renderDeliveryOrders();
-}
+function sTab(i){aTab=i;document.querySelectorAll('.tab').forEach((t,x)=>t.classList.toggle('on',x===i));rList()}
 
-function renderDeliveryOrders() {
-  const statusMap = { 0: 'pending', 1: 'delivering', 2: 'done' };
-  const list = deliveryOrders.filter(o => o.status === statusMap[activeTab]);
-  const container = document.getElementById('deliveryOrderList');
-
-  if (list.length === 0) {
-    container.innerHTML = `<div class="empty-state"><div class="icon">${activeTab===2?'✅':'📭'}</div><div class="text">${activeTab===2?'暂无已完成订单':'暂无待处理订单'}</div></div>`;
-    return;
-  }
-
-  container.innerHTML = list.map(o => {
-    let footer = '';
-    if (o.status === 'pending') {
-      footer = `
-        <button class="d-btn d-btn-nav" onclick="navigate('${o.addr}')">🗺️ 导航</button>
-        <button class="d-btn d-btn-call" onclick="callCustomer('${o.phone}')">📞 联系</button>
-        <button class="d-btn d-btn-primary" onclick="startDelivery('${o.id}')">开始配送</button>`;
-    } else if (o.status === 'delivering') {
-      footer = `
-        <button class="d-btn d-btn-nav" onclick="navigate('${o.addr}')">🗺️ 导航</button>
-        <button class="d-btn d-btn-call" onclick="callCustomer('${o.phone}')">📞 联系</button>
-        <button class="d-btn d-btn-success" onclick="showConfirm('${o.id}')">✅ 确认送达</button>`;
-    } else {
-      footer = `<button class="d-btn d-btn-outline" style="flex:1">回收空桶: ${o.bottles || 0} 个</button>`;
-    }
-
-    return `
-    <div class="d-order-card">
-      ${o.urgent && o.status === 'pending' ? '<div class="d-order-urgent">⚡ 用户催单，请优先配送</div>' : ''}
-      <div class="d-order-header">
-        <span class="d-order-id">${o.id}</span>
-        <span class="d-order-time">下单 ${o.time}</span>
+function rList(){
+  const sm={0:'pending',1:'delivering',2:'done'};
+  const list=dOrds.filter(o=>o.s===sm[aTab]);
+  const el=document.getElementById('oList');
+  if(!list.length){el.innerHTML=`<div class="empty"><div class="ic">${aTab===2?'✅':'📭'}</div><div class="tx">${aTab===2?'暂无已完成订单':'暂无待处理订单'}</div></div>`;return}
+  el.innerHTML=list.map(o=>{
+    let ft='';
+    if(o.s==='pending')ft=`<button class="ob ob-nav" onclick="nav('${o.ad}')">🗺️ 导航</button><button class="ob ob-call" onclick="call('${o.ph}')">📞 联系</button><button class="ob ob-go" onclick="startD('${o.id}')">开始配送</button>`;
+    else if(o.s==='delivering')ft=`<button class="ob ob-nav" onclick="nav('${o.ad}')">🗺️ 导航</button><button class="ob ob-call" onclick="call('${o.ph}')">📞 联系</button><button class="ob ob-done" onclick="showCfm('${o.id}')">✅ 确认送达</button>`;
+    else ft=`<button class="ob ob-gray">回收空桶: ${o.btl||0} 个</button>`;
+    return`<div class="oc">
+      ${o.urg&&o.s==='pending'?'<div class="oc-urg">⚡ 用户催单，请优先配送</div>':''}
+      <div class="oc-hd"><span class="oc-id">${o.id}</span><span class="oc-time">下单 ${o.t}</span></div>
+      <div class="oc-bd">
+        <div class="oc-cust"><span class="oc-nm">${o.c}</span><span class="oc-ph" onclick="call('${o.ph}')">📞 ${o.ph.replace(/(\d{3})\d{4}(\d{4})/,'$1****$2')}</span></div>
+        <div class="oc-addr">📍 ${o.ad}</div>
+        <div class="oc-prods">${o.ps.map(p=>`<div class="oc-pr"><span class="oc-pr-n">${p.n}</span><span class="oc-pr-q">×${p.q}</span></div>`).join('')}<div class="oc-pr total"><span>订单金额</span><span>¥${o.am}</span></div></div>
+        ${o.nt?`<div class="oc-note">📝 备注：${o.nt}</div>`:''}
       </div>
-      <div class="d-order-body">
-        <div class="d-order-customer">
-          <span class="d-order-name">${o.customer}</span>
-          <span class="d-order-phone" onclick="callCustomer('${o.phone}')">📞 ${o.phone.replace(/(\d{3})\d{4}(\d{4})/, '$1****$2')}</span>
-        </div>
-        <div class="d-order-addr">📍 ${o.addr}</div>
-        <div class="d-order-products">
-          ${o.products.map(p => `<div class="d-product-row"><span class="d-product-name">${p.name}</span><span class="d-product-qty">×${p.qty}</span></div>`).join('')}
-          <div class="d-product-row" style="margin-top:4px;padding-top:4px;border-top:1px dashed #eee"><span style="color:#999">订单金额</span><span style="font-weight:700;color:var(--danger)">¥${o.amount}</span></div>
-        </div>
-        ${o.note ? `<div class="d-order-note">📝 备注：${o.note}</div>` : ''}
-      </div>
-      <div class="d-order-footer">${footer}</div>
-    </div>`;
-  }).join('');
+      <div class="oc-ft">${ft}</div>
+    </div>`}).join('');
+  updStats()}
 
-  // 更新badge
-  const pending = deliveryOrders.filter(o => o.status === 'pending').length;
-  document.getElementById('pendingBadge').textContent = pending;
-  document.getElementById('pendingBadge').style.display = pending > 0 ? 'inline' : 'none';
-  document.getElementById('statPending').textContent = pending;
-  document.getElementById('statDone').textContent = deliveryOrders.filter(o => o.status === 'done').length;
-}
+function updStats(){
+  const pn=dOrds.filter(o=>o.s==='pending').length;
+  const dn=dOrds.filter(o=>o.s==='done').length;
+  const tb=dOrds.filter(o=>o.s==='done').reduce((s,o)=>s+(o.btl||0),0);
+  document.getElementById('sPend').textContent=pn;
+  document.getElementById('sDone').textContent=dn;
+  document.getElementById('sBtl').textContent=tb;
+  document.getElementById('sInc').textContent='¥'+(dn*3);
+  const bd=document.getElementById('pBd');bd.textContent=pn;bd.style.display=pn?'inline':'none'}
 
-function startDelivery(id) {
-  const o = deliveryOrders.find(x => x.id === id);
-  if (o) { o.status = 'delivering'; renderDeliveryOrders(); showToast('🚚 开始配送'); }
-}
+function startD(id){const o=dOrds.find(x=>x.id===id);if(o){o.s='delivering';rList();toast('🚚 开始配送')}}
+function showCfm(id){curId=id;btlCnt=0;document.getElementById('btlN').textContent=0;document.getElementById('cfmMo').classList.add('show')}
+function closeCfm(){document.getElementById('cfmMo').classList.remove('show')}
+function chgBtl(d){btlCnt=Math.max(0,btlCnt+d);document.getElementById('btlN').textContent=btlCnt}
+function cfmDel(){
+  const o=dOrds.find(x=>x.id===curId);
+  if(o){o.s='done';o.btl=btlCnt}
+  closeCfm();rList();toast('✅ 已确认送达，回收 '+btlCnt+' 个空桶')}
 
-function showConfirm(id) {
-  currentDeliveryId = id;
-  bottleCount = 0;
-  document.getElementById('bottleNum').textContent = 0;
-  document.getElementById('confirmModal').classList.add('show');
-}
-function closeConfirm() { document.getElementById('confirmModal').classList.remove('show'); }
-function changeBottle(d) {
-  bottleCount = Math.max(0, bottleCount + d);
-  document.getElementById('bottleNum').textContent = bottleCount;
-}
-function confirmDelivery() {
-  const o = deliveryOrders.find(x => x.id === currentDeliveryId);
-  if (o) {
-    o.status = 'done';
-    o.bottles = bottleCount;
-    const totalBottles = deliveryOrders.filter(x => x.status === 'done').reduce((s, x) => s + (x.bottles || 0), 0);
-    document.getElementById('statBottles').textContent = totalBottles;
-    const doneCount = deliveryOrders.filter(x => x.status === 'done').length;
-    document.getElementById('statIncome').textContent = '¥' + (doneCount * 3);
-  }
-  closeConfirm();
-  renderDeliveryOrders();
-  showToast('✅ 已确认送达，回收 ' + bottleCount + ' 个空桶');
-}
+function nav(ad){toast('🗺️ 导航至: '+ad)}
+function call(ph){toast('📞 拨打: '+ph)}
 
-function navigate(addr) { showToast('🗺️ 正在打开导航至: ' + addr); }
-function callCustomer(phone) { showToast('📞 正在拨打: ' + phone); }
+// Income
+function rInc(){
+  const dn=dOrds.filter(o=>o.s==='done');
+  const tb=dn.reduce((s,o)=>s+(o.btl||0),0);
+  document.getElementById('incTotal').textContent=dn.length*3;
+  document.getElementById('incOrd').textContent=dn.length;
+  document.getElementById('incBtl').textContent=tb;
+  document.getElementById('incList').innerHTML=dn.map(o=>`<div class="inc-item"><div class="inc-item-l"><div class="inc-item-id">${o.id}</div><div class="inc-item-info">${o.c} · ${o.ps.map(p=>p.n).join('、')}</div></div><div class="inc-item-am">+¥3.00</div></div>`).join('')||'<div class="empty"><div class="ic">💰</div><div class="tx">今日暂无收入</div></div>'}
 
-// ===== 收入列表 =====
-function renderIncome() {
-  const done = deliveryOrders.filter(o => o.status === 'done');
-  document.getElementById('incomeList').innerHTML = done.map(o => `
-    <div class="income-item">
-      <div class="income-item-left">
-        <div class="income-item-order">${o.id}</div>
-        <div class="income-item-info">${o.customer} · ${o.products.map(p=>p.name).join('、')}</div>
-      </div>
-      <div class="income-item-amount">+¥3.00</div>
-    </div>`).join('') || '<div class="empty-state"><div class="icon">💰</div><div class="text">今日暂无收入</div></div>';
-}
+// Pages
+const dps=['dp-del','dp-inc','dp-my'];
+function sPage(i){dps.forEach((p,x)=>document.getElementById(p).classList.toggle('on',x===i));document.querySelectorAll('.bn').forEach((n,x)=>n.classList.toggle('on',x===i));if(i===1)rInc()}
 
-// ===== 页面切换 =====
-function switchPage(i) {
-  const pages = ['dpage-delivery', 'dpage-income', 'dpage-mine'];
-  pages.forEach((p, idx) => document.getElementById(p).classList.toggle('active', idx === i));
-  document.querySelectorAll('.nav-item').forEach((n, idx) => n.classList.toggle('active', idx === i));
-  if (i === 1) renderIncome();
-}
+// Online toggle
+let isOn=true;
+function togOn(){isOn=!isOn;const b=document.getElementById('onBtn');b.className='on-btn '+(isOn?'on':'off');b.textContent=isOn?'● 在线接单':'○ 离线';toast(isOn?'已上线，可接收新订单':'已离线')}
 
-// ===== 在线切换 =====
-let isOnline = true;
-function toggleOnline() {
-  isOnline = !isOnline;
-  const btn = document.getElementById('onlineBtn');
-  btn.className = 'online-toggle ' + (isOnline ? 'on' : 'off');
-  btn.textContent = isOnline ? '● 在线接单' : '○ 离线';
-  showToast(isOnline ? '已上线，可接收新订单' : '已离线');
-}
+// Toast
+function toast(m){const t=document.getElementById('toastEl');t.textContent=m;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),1600)}
 
-// ===== Toast =====
-function showToast(msg) {
-  const t = document.getElementById('toast');
-  t.textContent = msg; t.classList.add('show');
-  setTimeout(() => t.classList.remove('show'), 1500);
-}
-
-// ===== Init =====
-renderDeliveryOrders();
-
-document.getElementById('confirmModal').addEventListener('click', function(e) {
-  if (e.target === this) closeConfirm();
-});
+// Init
+rList();
+document.getElementById('cfmMo').onclick=function(e){if(e.target===this)closeCfm()};
 </script>
 </body>
 </html>
