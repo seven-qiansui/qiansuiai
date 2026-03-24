@@ -1,0 +1,895 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>来点好水 · 商家管理后台</title>
+<style>
+:root {
+  --primary: #2196F3;
+  --primary-dark: #1565C0;
+  --primary-light: #E3F2FD;
+  --accent: #FF9800;
+  --price: #FF5722;
+  --success: #4CAF50;
+  --warning: #FF9800;
+  --danger: #F44336;
+  --bg: #F0F2F5;
+  --white: #FFFFFF;
+  --text: #333;
+  --text-light: #999;
+  --border: #E8E8E8;
+  --sidebar-bg: #001529;
+  --sidebar-active: #1890FF;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: -apple-system, 'PingFang SC', 'Segoe UI', sans-serif; background: var(--bg); color: var(--text); }
+
+/* ===== Layout ===== */
+.layout { display: flex; min-height: 100vh; }
+.sidebar {
+  width: 220px; background: var(--sidebar-bg); color: #fff;
+  position: fixed; top: 0; left: 0; bottom: 0; z-index: 100;
+  overflow-y: auto; transition: width 0.3s;
+}
+.sidebar-logo {
+  height: 64px; display: flex; align-items: center; justify-content: center;
+  font-size: 18px; font-weight: 700; border-bottom: 1px solid rgba(255,255,255,0.1);
+  gap: 8px;
+}
+.sidebar-menu { padding: 8px 0; }
+.menu-group-title {
+  padding: 16px 16px 8px; font-size: 11px; color: rgba(255,255,255,0.35);
+  text-transform: uppercase; letter-spacing: 1px;
+}
+.menu-item {
+  display: flex; align-items: center; gap: 10px;
+  padding: 12px 24px; cursor: pointer; color: rgba(255,255,255,0.65);
+  transition: all 0.2s; font-size: 14px; position: relative;
+}
+.menu-item:hover { color: #fff; background: rgba(255,255,255,0.06); }
+.menu-item.active {
+  color: #fff; background: var(--sidebar-active);
+}
+.menu-item .icon { font-size: 16px; width: 20px; text-align: center; }
+.menu-item .badge {
+  position: absolute; right: 16px;
+  background: var(--danger); color: #fff; font-size: 10px;
+  min-width: 18px; height: 18px; border-radius: 9px;
+  display: flex; align-items: center; justify-content: center; padding: 0 5px;
+}
+.main { margin-left: 220px; flex: 1; }
+.header {
+  height: 64px; background: var(--white); display: flex; align-items: center;
+  justify-content: space-between; padding: 0 24px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.08); position: sticky; top: 0; z-index: 50;
+}
+.header-left { display: flex; align-items: center; gap: 16px; }
+.header-title { font-size: 16px; font-weight: 600; }
+.header-right { display: flex; align-items: center; gap: 16px; }
+.header-time { font-size: 13px; color: var(--text-light); }
+.header-user { display: flex; align-items: center; gap: 8px; font-size: 14px; }
+.content { padding: 24px; }
+
+/* ===== Page sections ===== */
+.page-section { display: none; }
+.page-section.active { display: block; }
+
+/* ===== Dashboard ===== */
+.stat-cards { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 24px; }
+.stat-card {
+  background: var(--white); border-radius: 8px; padding: 20px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.06); position: relative; overflow: hidden;
+}
+.stat-card::after {
+  content: ''; position: absolute; top: 0; right: 0;
+  width: 80px; height: 80px; border-radius: 50%;
+  transform: translate(20px, -20px); opacity: 0.1;
+}
+.stat-card.c1::after { background: var(--primary); }
+.stat-card.c2::after { background: var(--success); }
+.stat-card.c3::after { background: var(--accent); }
+.stat-card.c4::after { background: var(--danger); }
+.stat-label { font-size: 13px; color: var(--text-light); }
+.stat-value { font-size: 32px; font-weight: 700; margin: 8px 0 4px; }
+.stat-card.c1 .stat-value { color: var(--primary); }
+.stat-card.c2 .stat-value { color: var(--success); }
+.stat-card.c3 .stat-value { color: var(--accent); }
+.stat-card.c4 .stat-value { color: var(--danger); }
+.stat-change { font-size: 12px; color: var(--success); }
+.stat-change.down { color: var(--danger); }
+
+.dashboard-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 16px; }
+.card {
+  background: var(--white); border-radius: 8px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.06); overflow: hidden;
+}
+.card-header {
+  padding: 16px 20px; border-bottom: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: space-between;
+}
+.card-title { font-size: 15px; font-weight: 600; }
+.card-body { padding: 20px; }
+
+/* ===== Chart placeholder ===== */
+.chart-placeholder {
+  height: 240px; display: flex; flex-direction: column;
+  align-items: center; justify-content: center; position: relative;
+}
+.chart-bars { display: flex; align-items: flex-end; gap: 8px; height: 180px; }
+.chart-bar {
+  width: 32px; border-radius: 4px 4px 0 0; transition: height 0.5s;
+  position: relative;
+}
+.chart-bar::after {
+  content: attr(data-val); position: absolute; top: -20px; left: 50%;
+  transform: translateX(-50%); font-size: 11px; color: var(--text-light);
+}
+.chart-bar-label {
+  position: absolute; bottom: -20px; left: 50%;
+  transform: translateX(-50%); font-size: 11px; color: var(--text-light);
+  white-space: nowrap;
+}
+
+/* ===== Tables ===== */
+.table-wrap { overflow-x: auto; }
+table { width: 100%; border-collapse: collapse; font-size: 13px; }
+th { background: #FAFAFA; font-weight: 600; text-align: left; padding: 12px 16px; border-bottom: 1px solid var(--border); white-space: nowrap; }
+td { padding: 12px 16px; border-bottom: 1px solid var(--border); }
+tr:hover td { background: #FAFAFA; }
+.status-tag {
+  display: inline-block; padding: 2px 10px; border-radius: 10px;
+  font-size: 12px; font-weight: 500;
+}
+.status-pending { background: #FFF3E0; color: #E65100; }
+.status-delivering { background: #E3F2FD; color: #1565C0; }
+.status-done { background: #E8F5E9; color: #2E7D32; }
+.status-cancelled { background: #FFEBEE; color: #C62828; }
+.status-on { background: #E8F5E9; color: #2E7D32; }
+.status-off { background: #F5F5F5; color: #999; }
+
+/* ===== Buttons ===== */
+.btn {
+  display: inline-flex; align-items: center; gap: 4px;
+  padding: 6px 14px; border-radius: 6px; font-size: 13px;
+  border: none; cursor: pointer; transition: all 0.2s;
+}
+.btn-primary { background: var(--primary); color: #fff; }
+.btn-primary:hover { background: var(--primary-dark); }
+.btn-success { background: var(--success); color: #fff; }
+.btn-warning { background: var(--warning); color: #fff; }
+.btn-danger { background: var(--danger); color: #fff; }
+.btn-outline { background: transparent; border: 1px solid var(--border); color: var(--text); }
+.btn-outline:hover { border-color: var(--primary); color: var(--primary); }
+.btn-sm { padding: 4px 10px; font-size: 12px; }
+
+/* ===== Toolbar ===== */
+.toolbar {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-bottom: 16px; flex-wrap: wrap; gap: 12px;
+}
+.toolbar-left { display: flex; align-items: center; gap: 8px; }
+.toolbar-right { display: flex; align-items: center; gap: 8px; }
+.filter-select {
+  padding: 6px 12px; border: 1px solid var(--border); border-radius: 6px;
+  font-size: 13px; background: var(--white); outline: none;
+}
+.search-input {
+  padding: 6px 12px; border: 1px solid var(--border); border-radius: 6px;
+  font-size: 13px; width: 200px; outline: none;
+}
+.search-input:focus, .filter-select:focus { border-color: var(--primary); }
+
+/* ===== Hot products ranking ===== */
+.rank-list { }
+.rank-item {
+  display: flex; align-items: center; gap: 12px; padding: 10px 0;
+  border-bottom: 1px solid var(--border);
+}
+.rank-item:last-child { border: none; }
+.rank-num {
+  width: 24px; height: 24px; border-radius: 50%; font-size: 12px; font-weight: 700;
+  display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+  background: #F0F0F0; color: #999;
+}
+.rank-item:nth-child(1) .rank-num { background: #FFD700; color: #fff; }
+.rank-item:nth-child(2) .rank-num { background: #C0C0C0; color: #fff; }
+.rank-item:nth-child(3) .rank-num { background: #CD7F32; color: #fff; }
+.rank-info { flex: 1; }
+.rank-name { font-size: 13px; }
+.rank-sales { font-size: 12px; color: var(--text-light); }
+
+/* ===== Order detail modal ===== */
+.modal-mask {
+  display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.45); z-index: 200;
+}
+.modal-mask.show { display: flex; align-items: center; justify-content: center; }
+.modal {
+  background: var(--white); border-radius: 12px; width: 560px;
+  max-height: 80vh; overflow-y: auto; box-shadow: 0 8px 40px rgba(0,0,0,0.15);
+}
+.modal-header {
+  padding: 16px 24px; border-bottom: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: space-between;
+}
+.modal-header h3 { font-size: 16px; }
+.modal-close { font-size: 20px; cursor: pointer; color: var(--text-light); background: none; border: none; }
+.modal-body { padding: 24px; }
+.modal-footer { padding: 16px 24px; border-top: 1px solid var(--border); display: flex; justify-content: flex-end; gap: 8px; }
+.info-row { display: flex; padding: 8px 0; font-size: 14px; }
+.info-label { width: 100px; color: var(--text-light); flex-shrink: 0; }
+.info-value { flex: 1; }
+
+/* ===== Product form ===== */
+.form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.form-group { margin-bottom: 16px; }
+.form-group.full { grid-column: 1 / -1; }
+.form-label { font-size: 13px; color: #666; margin-bottom: 6px; display: block; }
+.form-input, .form-textarea, .form-select {
+  width: 100%; padding: 8px 12px; border: 1px solid var(--border);
+  border-radius: 6px; font-size: 14px; outline: none;
+}
+.form-input:focus, .form-textarea:focus, .form-select:focus { border-color: var(--primary); }
+.form-textarea { resize: vertical; min-height: 80px; }
+
+/* ===== Notification bell ===== */
+.notif-bell {
+  position: relative; cursor: pointer; font-size: 20px;
+}
+.notif-dot {
+  position: absolute; top: -2px; right: -4px;
+  width: 8px; height: 8px; border-radius: 50%;
+  background: var(--danger);
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 1200px) {
+  .stat-cards { grid-template-columns: repeat(2, 1fr); }
+  .dashboard-grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 768px) {
+  .sidebar { width: 60px; }
+  .sidebar-logo span, .menu-item .text, .menu-group-title, .menu-item .badge { display: none; }
+  .main { margin-left: 60px; }
+  .stat-cards { grid-template-columns: 1fr; }
+  .form-grid { grid-template-columns: 1fr; }
+}
+
+/* ===== New order alert animation ===== */
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+.new-order-alert {
+  background: linear-gradient(135deg, #FF6B6B, #FF5722);
+  color: white; padding: 12px 20px; border-radius: 8px;
+  margin-bottom: 16px; display: flex; align-items: center;
+  justify-content: space-between; animation: pulse 2s infinite;
+  display: none;
+}
+.new-order-alert.show { display: flex; }
+.new-order-alert .text { font-size: 14px; font-weight: 600; }
+</style>
+</head>
+<body>
+<div class="layout">
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <div class="sidebar-logo">💧 <span>来点好水</span></div>
+    <div class="sidebar-menu">
+      <div class="menu-group-title">概览</div>
+      <div class="menu-item active" onclick="showPage('dashboard')">
+        <span class="icon">📊</span><span class="text">数据看板</span>
+      </div>
+      <div class="menu-group-title">业务管理</div>
+      <div class="menu-item" onclick="showPage('orders')">
+        <span class="icon">📋</span><span class="text">订单管理</span>
+        <span class="badge" id="orderBadge">3</span>
+      </div>
+      <div class="menu-item" onclick="showPage('products')">
+        <span class="icon">📦</span><span class="text">商品管理</span>
+      </div>
+      <div class="menu-item" onclick="showPage('tickets')">
+        <span class="icon">🎫</span><span class="text">水票管理</span>
+      </div>
+      <div class="menu-item" onclick="showPage('customers')">
+        <span class="icon">👥</span><span class="text">客户管理</span>
+      </div>
+      <div class="menu-item" onclick="showPage('delivery')">
+        <span class="icon">🚚</span><span class="text">配送管理</span>
+      </div>
+      <div class="menu-group-title">运营</div>
+      <div class="menu-item" onclick="showPage('marketing')">
+        <span class="icon">🏷️</span><span class="text">营销活动</span>
+      </div>
+      <div class="menu-item" onclick="showPage('settings')">
+        <span class="icon">⚙️</span><span class="text">系统设置</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main -->
+  <div class="main">
+    <div class="header">
+      <div class="header-left">
+        <div class="header-title" id="pageTitle">数据看板</div>
+      </div>
+      <div class="header-right">
+        <div class="header-time" id="headerTime"></div>
+        <div class="notif-bell" onclick="showPage('orders')">🔔<div class="notif-dot"></div></div>
+        <div class="header-user">👤 管理员</div>
+      </div>
+    </div>
+    <div class="content">
+
+      <!-- ===== 新订单提醒 ===== -->
+      <div class="new-order-alert show" id="newOrderAlert">
+        <span class="text">🔔 您有 3 笔新订单待处理！</span>
+        <button class="btn btn-outline" style="color:#fff;border-color:#fff" onclick="showPage('orders');this.parentElement.classList.remove('show')">立即处理</button>
+      </div>
+
+      <!-- ===== 数据看板 ===== -->
+      <div class="page-section active" id="sec-dashboard">
+        <div class="stat-cards">
+          <div class="stat-card c1">
+            <div class="stat-label">今日订单</div>
+            <div class="stat-value">47</div>
+            <div class="stat-change">↑ 12% 较昨日</div>
+          </div>
+          <div class="stat-card c2">
+            <div class="stat-label">今日营收</div>
+            <div class="stat-value">¥2,860</div>
+            <div class="stat-change">↑ 8% 较昨日</div>
+          </div>
+          <div class="stat-card c3">
+            <div class="stat-label">水票售出</div>
+            <div class="stat-value">12</div>
+            <div class="stat-change">↑ 25% 较昨日</div>
+          </div>
+          <div class="stat-card c4">
+            <div class="stat-label">待处理订单</div>
+            <div class="stat-value">3</div>
+            <div class="stat-change down">需尽快处理</div>
+          </div>
+        </div>
+
+        <div class="dashboard-grid">
+          <div class="card">
+            <div class="card-header">
+              <span class="card-title">📈 近 7 日订单趋势</span>
+              <select class="filter-select" style="font-size:12px">
+                <option>近7日</option><option>近30日</option>
+              </select>
+            </div>
+            <div class="card-body">
+              <div class="chart-placeholder">
+                <div class="chart-bars" id="chartBars"></div>
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header"><span class="card-title">🏆 热销 Top 5</span></div>
+            <div class="card-body">
+              <div class="rank-list" id="rankList"></div>
+            </div>
+          </div>
+        </div>
+
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:16px">
+          <div class="card">
+            <div class="card-header"><span class="card-title">🚚 配送时效</span></div>
+            <div class="card-body">
+              <div class="info-row"><span class="info-label">平均配送时长</span><span class="info-value" style="font-weight:700;color:var(--success)">38 分钟</span></div>
+              <div class="info-row"><span class="info-label">45分钟达标率</span><span class="info-value" style="font-weight:700">87.2%</span></div>
+              <div class="info-row"><span class="info-label">今日配送单数</span><span class="info-value">44 单</span></div>
+              <div class="info-row"><span class="info-label">在线配送员</span><span class="info-value">6 人</span></div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header"><span class="card-title">👥 客户概览</span></div>
+            <div class="card-body">
+              <div class="info-row"><span class="info-label">总客户数</span><span class="info-value" style="font-weight:700">1,286</span></div>
+              <div class="info-row"><span class="info-label">本月新增</span><span class="info-value" style="color:var(--success)">+89</span></div>
+              <div class="info-row"><span class="info-label">月复购率</span><span class="info-value" style="font-weight:700">63.5%</span></div>
+              <div class="info-row"><span class="info-label">水票持有用户</span><span class="info-value">342 人</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===== 订单管理 ===== -->
+      <div class="page-section" id="sec-orders">
+        <div class="toolbar">
+          <div class="toolbar-left">
+            <select class="filter-select" id="orderFilter" onchange="renderOrders()">
+              <option value="all">全部订单</option>
+              <option value="pending">待接单</option>
+              <option value="accepted">已接单</option>
+              <option value="delivering">配送中</option>
+              <option value="done">已完成</option>
+              <option value="cancelled">已取消</option>
+            </select>
+            <input class="search-input" placeholder="搜索订单号/客户名" oninput="renderOrders()">
+          </div>
+          <div class="toolbar-right">
+            <span style="font-size:13px;color:var(--text-light)">共 <b id="orderCount">0</b> 笔订单</span>
+            <button class="btn btn-outline" onclick="exportData()">📥 导出</button>
+          </div>
+        </div>
+        <div class="card">
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr><th>订单号</th><th>客户</th><th>商品</th><th>数量</th><th>金额</th><th>下单时间</th><th>状态</th><th>配送员</th><th>操作</th></tr>
+              </thead>
+              <tbody id="orderTableBody"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===== 商品管理 ===== -->
+      <div class="page-section" id="sec-products">
+        <div class="toolbar">
+          <div class="toolbar-left">
+            <select class="filter-select">
+              <option>全部分类</option><option>桶装水</option><option>瓶装水</option><option>饮水设备</option><option>健康功能水</option>
+            </select>
+            <select class="filter-select">
+              <option>全部状态</option><option>上架中</option><option>已下架</option>
+            </select>
+          </div>
+          <div class="toolbar-right">
+            <button class="btn btn-primary" onclick="showProductModal()">➕ 新增商品</button>
+          </div>
+        </div>
+        <div class="card">
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr><th>商品</th><th>分类</th><th>规格</th><th>售价</th><th>库存</th><th>月销量</th><th>状态</th><th>操作</th></tr>
+              </thead>
+              <tbody id="productTableBody"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===== 水票管理 ===== -->
+      <div class="page-section" id="sec-tickets">
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:24px">
+          <div class="stat-card c1">
+            <div class="stat-label">水票总销售额</div>
+            <div class="stat-value">¥48,600</div>
+            <div class="stat-change">本月 ¥12,400</div>
+          </div>
+          <div class="stat-card c2">
+            <div class="stat-label">水票持有用户</div>
+            <div class="stat-value">342</div>
+            <div class="stat-change">↑ 15% 较上月</div>
+          </div>
+          <div class="stat-card c3">
+            <div class="stat-label">未使用水票(桶)</div>
+            <div class="stat-value">1,856</div>
+            <div class="stat-change">待履约金额 ¥27,840</div>
+          </div>
+        </div>
+        <div class="card" style="margin-bottom:16px">
+          <div class="card-header"><span class="card-title">套餐销售明细</span></div>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>套餐名称</th><th>桶数</th><th>售价</th><th>折合单价</th><th>有效期</th><th>本月售出</th><th>累计售出</th><th>操作</th></tr></thead>
+              <tbody>
+                <tr><td>🗓️ 月度套餐</td><td>10桶</td><td>¥180</td><td>¥18/桶</td><td>30天</td><td>42份</td><td>386份</td><td><button class="btn btn-sm btn-outline">编辑</button></td></tr>
+                <tr><td>📦 季度套餐</td><td>30桶</td><td>¥480</td><td>¥16/桶</td><td>90天</td><td>18份</td><td>156份</td><td><button class="btn btn-sm btn-outline">编辑</button></td></tr>
+                <tr><td>🏆 年度套餐</td><td>100桶</td><td>¥1,400</td><td>¥14/桶</td><td>365天</td><td>6份</td><td>42份</td><td><button class="btn btn-sm btn-outline">编辑</button></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header">
+            <span class="card-title">用户水票余额查询</span>
+            <input class="search-input" placeholder="搜索客户姓名/手机号" style="width:250px">
+          </div>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>客户</th><th>手机号</th><th>持有套餐</th><th>剩余(桶)</th><th>已使用</th><th>到期时间</th><th>操作</th></tr></thead>
+              <tbody id="ticketUserBody"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===== 客户管理 ===== -->
+      <div class="page-section" id="sec-customers">
+        <div class="toolbar">
+          <div class="toolbar-left">
+            <select class="filter-select"><option>全部标签</option><option>家庭用户</option><option>企业用户</option><option>VIP</option><option>新客</option></select>
+            <input class="search-input" placeholder="搜索客户姓名/手机号">
+          </div>
+          <div class="toolbar-right">
+            <button class="btn btn-outline">📥 导出</button>
+            <button class="btn btn-primary">📩 群发消息</button>
+          </div>
+        </div>
+        <div class="card">
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>客户</th><th>手机号</th><th>标签</th><th>累计订单</th><th>累计消费</th><th>水票余额</th><th>最近下单</th><th>操作</th></tr></thead>
+              <tbody id="customerTableBody"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===== 配送管理 ===== -->
+      <div class="page-section" id="sec-delivery">
+        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:24px">
+          <div class="stat-card c1"><div class="stat-label">在线配送员</div><div class="stat-value">6</div></div>
+          <div class="stat-card c2"><div class="stat-label">今日完成配送</div><div class="stat-value">44</div></div>
+          <div class="stat-card c3"><div class="stat-label">平均配送时长</div><div class="stat-value">38<span style="font-size:14px">分钟</span></div></div>
+          <div class="stat-card c4"><div class="stat-label">空桶回收</div><div class="stat-value">32<span style="font-size:14px">个</span></div></div>
+        </div>
+        <div class="card">
+          <div class="card-header">
+            <span class="card-title">配送员列表</span>
+            <button class="btn btn-primary btn-sm">➕ 添加配送员</button>
+          </div>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>姓名</th><th>手机号</th><th>状态</th><th>今日单数</th><th>今日收入</th><th>平均时长</th><th>空桶回收</th><th>操作</th></tr></thead>
+              <tbody id="deliveryTableBody"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===== 营销活动 ===== -->
+      <div class="page-section" id="sec-marketing">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
+          <div class="card">
+            <div class="card-header"><span class="card-title">🏷️ 优惠券管理</span><button class="btn btn-primary btn-sm">创建优惠券</button></div>
+            <div class="card-body">
+              <div style="border:1px solid var(--border);border-radius:8px;padding:16px;margin-bottom:12px;display:flex;justify-content:space-between;align-items:center">
+                <div><div style="font-weight:600">新人首单立减 5 元</div><div style="font-size:12px;color:#999;margin-top:4px">满 20 元可用 · 仅限新用户 · 剩余 486 张</div></div>
+                <span class="status-tag status-on">进行中</span>
+              </div>
+              <div style="border:1px solid var(--border);border-radius:8px;padding:16px;margin-bottom:12px;display:flex;justify-content:space-between;align-items:center">
+                <div><div style="font-weight:600">满 3 桶减 8 元</div><div style="font-size:12px;color:#999;margin-top:4px">满 3 桶可用 · 所有用户 · 剩余 200 张</div></div>
+                <span class="status-tag status-on">进行中</span>
+              </div>
+              <div style="border:1px solid var(--border);border-radius:8px;padding:16px;display:flex;justify-content:space-between;align-items:center">
+                <div><div style="font-weight:600">老客回馈 10 元券</div><div style="font-size:12px;color:#999;margin-top:4px">满 50 元可用 · 30 天以上未下单 · 剩余 150 张</div></div>
+                <span class="status-tag status-pending">待启用</span>
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header"><span class="card-title">📢 营销文案</span><button class="btn btn-primary btn-sm">新增文案</button></div>
+            <div class="card-body">
+              <div style="border:1px solid var(--border);border-radius:8px;padding:16px;margin-bottom:12px">
+                <div style="font-weight:600;margin-bottom:4px">🚀 功能体验类</div>
+                <div style="font-size:13px;color:#666">「告别等待，好水一点就到」</div>
+                <div style="font-size:13px;color:#666">「你的专属送水智能管家」</div>
+              </div>
+              <div style="border:1px solid var(--border);border-radius:8px;padding:16px;margin-bottom:12px">
+                <div style="font-weight:600;margin-bottom:4px">💚 健康理念类</div>
+                <div style="font-size:13px;color:#666">「为家人选好水，从这一桶开始」</div>
+                <div style="font-size:13px;color:#666">「看得见的纯净，喝得到的安心」</div>
+              </div>
+              <div style="border:1px solid var(--border);border-radius:8px;padding:16px">
+                <div style="font-weight:600;margin-bottom:4px">🧡 情感温度类</div>
+                <div style="font-size:13px;color:#666">「记忆中的甜，就是小时候那口井水」</div>
+                <div style="font-size:13px;color:#666">「生活的重量，我们帮你提」</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===== 系统设置 ===== -->
+      <div class="page-section" id="sec-settings">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
+          <div class="card">
+            <div class="card-header"><span class="card-title">🏪 店铺信息</span></div>
+            <div class="card-body">
+              <div class="form-group"><label class="form-label">店铺名称</label><input class="form-input" value="来点好水"></div>
+              <div class="form-group"><label class="form-label">联系电话</label><input class="form-input" value="0571-88888888"></div>
+              <div class="form-group"><label class="form-label">营业时间</label><input class="form-input" value="07:00 - 21:00"></div>
+              <div class="form-group"><label class="form-label">配送范围(km)</label><input class="form-input" value="5"></div>
+              <button class="btn btn-primary">保存</button>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header"><span class="card-title">💰 费用设置</span></div>
+            <div class="card-body">
+              <div class="form-group"><label class="form-label">配送费(元)</label><input class="form-input" value="5"></div>
+              <div class="form-group"><label class="form-label">免配送费门槛(桶)</label><input class="form-input" value="2"></div>
+              <div class="form-group"><label class="form-label">桶押金(元/桶)</label><input class="form-input" value="10"></div>
+              <div class="form-group"><label class="form-label">配送员每单提成(元)</label><input class="form-input" value="3"></div>
+              <button class="btn btn-primary">保存</button>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header"><span class="card-title">🔔 通知设置</span></div>
+            <div class="card-body">
+              <div class="info-row"><span class="info-label">新订单提醒</span><span class="info-value"><input type="checkbox" checked> 声音 + 弹窗</span></div>
+              <div class="info-row"><span class="info-label">配送超时提醒</span><span class="info-value"><input type="checkbox" checked> 超过 60 分钟提醒</span></div>
+              <div class="info-row"><span class="info-label">库存预警</span><span class="info-value"><input type="checkbox" checked> 低于 10 桶提醒</span></div>
+              <div class="info-row"><span class="info-label">客户评价提醒</span><span class="info-value"><input type="checkbox"> 新评价通知</span></div>
+              <button class="btn btn-primary" style="margin-top:12px">保存</button>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header"><span class="card-title">📍 配送区域</span></div>
+            <div class="card-body">
+              <div style="background:#F5F7FA;border-radius:8px;height:200px;display:flex;align-items:center;justify-content:center;color:#999;margin-bottom:12px">🗺️ 配送范围地图（接入腾讯地图）</div>
+              <div class="info-row"><span class="info-label">已覆盖</span><span class="info-value">翠苑街道、文新街道、古荡街道</span></div>
+              <div class="info-row"><span class="info-label">配送半径</span><span class="info-value">5 公里</span></div>
+              <button class="btn btn-primary" style="margin-top:12px">编辑区域</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ===== 订单详情弹窗 ===== -->
+<div class="modal-mask" id="orderDetailModal">
+  <div class="modal">
+    <div class="modal-header"><h3 id="modalOrderTitle">订单详情</h3><button class="modal-close" onclick="closeModal('orderDetailModal')">✕</button></div>
+    <div class="modal-body" id="modalOrderBody"></div>
+    <div class="modal-footer" id="modalOrderFooter"></div>
+  </div>
+</div>
+
+<!-- ===== 新增商品弹窗 ===== -->
+<div class="modal-mask" id="productModal">
+  <div class="modal" style="width:640px">
+    <div class="modal-header"><h3>新增商品</h3><button class="modal-close" onclick="closeModal('productModal')">✕</button></div>
+    <div class="modal-body">
+      <div class="form-grid">
+        <div class="form-group"><label class="form-label">商品名称</label><input class="form-input" placeholder="如：农夫山泉 饮用天然水"></div>
+        <div class="form-group"><label class="form-label">品牌</label><input class="form-input" placeholder="如：农夫山泉"></div>
+        <div class="form-group"><label class="form-label">分类</label>
+          <select class="form-select"><option>桶装水</option><option>瓶装水</option><option>饮水设备</option><option>健康功能水</option></select>
+        </div>
+        <div class="form-group"><label class="form-label">规格</label><input class="form-input" placeholder="如：18.9L/桶"></div>
+        <div class="form-group"><label class="form-label">售价(元)</label><input class="form-input" type="number" placeholder="20"></div>
+        <div class="form-group"><label class="form-label">原价(元)</label><input class="form-input" type="number" placeholder="25"></div>
+        <div class="form-group"><label class="form-label">库存</label><input class="form-input" type="number" placeholder="100"></div>
+        <div class="form-group"><label class="form-label">功能标签</label><input class="form-input" placeholder="如：富硒、弱碱性、母婴"></div>
+        <div class="form-group full"><label class="form-label">商品描述</label><textarea class="form-textarea" placeholder="商品详细描述..."></textarea></div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-outline" onclick="closeModal('productModal')">取消</button>
+      <button class="btn btn-primary" onclick="closeModal('productModal');showToast('商品已保存')">保存</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast" style="position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);background:rgba(0,0,0,0.75);color:#fff;padding:12px 24px;border-radius:8px;font-size:14px;z-index:999;opacity:0;transition:opacity 0.3s;pointer-events:none"></div>
+
+<script>
+// ===== 模拟数据 =====
+const orders = [
+  { id: 'WO20260324001', customer: '张先生', phone: '138****8888', product: '农夫山泉 18.9L', qty: 3, amount: 60, time: '17:05', status: 'pending', driver: '-', addr: '翠苑一区18号楼3-502' },
+  { id: 'WO20260324002', customer: '李女士', phone: '139****6666', product: '百岁山 18.9L', qty: 2, amount: 44, time: '16:48', status: 'pending', driver: '-', addr: '翠苑二区5号楼1-301' },
+  { id: 'WO20260324003', customer: '杭州XX科技', phone: '0571-88****', product: '怡宝 18.9L', qty: 10, amount: 180, time: '16:30', status: 'pending', driver: '-', addr: '文三路478号华星大厦8F' },
+  { id: 'WO20260324004', customer: '王先生', phone: '137****5555', product: '娃哈哈 18.9L', qty: 2, amount: 32, time: '15:20', status: 'delivering', driver: '小陈', addr: '古荡新村西区12-201' },
+  { id: 'WO20260324005', customer: '赵女士', phone: '136****4444', product: '农夫山泉 18.9L', qty: 1, amount: 20, time: '14:55', status: 'delivering', driver: '老周', addr: '文新路288号3-1502' },
+  { id: 'WO20260324006', customer: '陈先生', phone: '135****3333', product: '景田 18.9L', qty: 4, amount: 96, time: '14:10', status: 'done', driver: '小李', addr: '翠苑四区2号楼5-601' },
+  { id: 'WO20260324007', customer: '刘女士', phone: '134****2222', product: '怡宝 18.9L', qty: 2, amount: 36, time: '13:30', status: 'done', driver: '小陈', addr: '文二路125号1-802' },
+  { id: 'WO20260324008', customer: '吴先生', phone: '133****1111', product: '百岁山 18.9L', qty: 5, amount: 110, time: '11:20', status: 'done', driver: '老周', addr: '古荡街道18号3-301' },
+  { id: 'WO20260324009', customer: '孙女士', phone: '132****9999', product: '昆仑山 18.9L', qty: 2, amount: 56, time: '10:40', status: 'done', driver: '小李', addr: '翠苑三区9号楼2-1001' },
+  { id: 'WO20260324010', customer: '周先生', phone: '131****8888', product: '农夫山泉 550ml×24', qty: 3, amount: 96, time: '09:15', status: 'cancelled', driver: '-', addr: '文一路66号2-503' },
+];
+
+const productList = [
+  { name: '农夫山泉 饮用天然水', cat: '桶装水', spec: '18.9L/桶', price: 20, stock: 186, sales: 3826, status: 'on' },
+  { name: '百岁山 天然矿泉水', cat: '桶装水', spec: '18.9L/桶', price: 22, stock: 142, sales: 2914, status: 'on' },
+  { name: '怡宝 纯净水', cat: '桶装水', spec: '18.9L/桶', price: 18, stock: 210, sales: 4210, status: 'on' },
+  { name: '娃哈哈 纯净水', cat: '桶装水', spec: '18.9L/桶', price: 16, stock: 258, sales: 5102, status: 'on' },
+  { name: '景田 百岁山矿泉水', cat: '桶装水', spec: '18.9L/桶', price: 24, stock: 98, sales: 1856, status: 'on' },
+  { name: '昆仑山 雪山矿泉水', cat: '桶装水', spec: '18.9L/桶', price: 28, stock: 76, sales: 1320, status: 'on' },
+  { name: '农夫山泉 饮用水', cat: '瓶装水', spec: '550ml×24瓶', price: 32, stock: 120, sales: 1560, status: 'on' },
+  { name: '怡宝 纯净水', cat: '瓶装水', spec: '555ml×24瓶', price: 28, stock: 95, sales: 2100, status: 'on' },
+  { name: '富硒矿泉水', cat: '健康功能水', spec: '18.9L/桶', price: 38, stock: 45, sales: 320, status: 'on', tags: ['富硒'] },
+  { name: '弱碱性饮用水', cat: '健康功能水', spec: '18.9L/桶', price: 35, stock: 52, sales: 280, status: 'on', tags: ['弱碱性'] },
+  { name: '美的 饮水机', cat: '饮水设备', spec: '立式冷热', price: 399, stock: 18, sales: 320, status: 'on' },
+  { name: '饮水机清洗服务', cat: '饮水设备', spec: '上门服务', price: 68, stock: 999, sales: 560, status: 'on' },
+];
+
+const drivers = [
+  { name: '小陈', phone: '158****1234', status: 'online', orders: 12, income: 36, avgTime: 35, bottles: 8 },
+  { name: '老周', phone: '159****5678', status: 'online', orders: 10, income: 30, avgTime: 40, bottles: 7 },
+  { name: '小李', phone: '157****9012', status: 'online', orders: 9, income: 27, avgTime: 38, bottles: 6 },
+  { name: '小王', phone: '156****3456', status: 'online', orders: 8, income: 24, avgTime: 42, bottles: 5 },
+  { name: '老张', phone: '155****7890', status: 'online', orders: 5, income: 15, avgTime: 36, bottles: 4 },
+  { name: '小刘', phone: '154****2345', status: 'offline', orders: 0, income: 0, avgTime: '-', bottles: 2 },
+];
+
+const customers = [
+  { name: '张先生', phone: '138****8888', tag: '家庭用户', orders: 24, spent: 1280, tickets: 6, lastOrder: '今天 17:05' },
+  { name: '杭州XX科技', phone: '0571-88****', tag: '企业用户', orders: 86, spent: 12800, tickets: 42, lastOrder: '今天 16:30' },
+  { name: '李女士', phone: '139****6666', tag: 'VIP', orders: 52, spent: 3600, tickets: 12, lastOrder: '今天 16:48' },
+  { name: '王先生', phone: '137****5555', tag: '家庭用户', orders: 18, spent: 860, tickets: 0, lastOrder: '今天 15:20' },
+  { name: '赵女士', phone: '136****4444', tag: '新客', orders: 3, spent: 120, tickets: 0, lastOrder: '今天 14:55' },
+  { name: '陈先生', phone: '135****3333', tag: '家庭用户', orders: 36, spent: 2400, tickets: 8, lastOrder: '今天 14:10' },
+];
+
+const ticketUsers = [
+  { name: '张先生', phone: '138****8888', plan: '月度套餐', remain: 6, used: 4, expire: '2026-04-20' },
+  { name: '杭州XX科技', phone: '0571-88****', plan: '年度套餐', remain: 42, used: 58, expire: '2026-12-15' },
+  { name: '李女士', phone: '139****6666', plan: '季度套餐', remain: 12, used: 18, expire: '2026-05-30' },
+  { name: '陈先生', phone: '135****3333', plan: '月度套餐', remain: 8, used: 2, expire: '2026-04-15' },
+];
+
+// ===== 页面切换 =====
+function showPage(page) {
+  document.querySelectorAll('.page-section').forEach(s => s.classList.remove('active'));
+  document.getElementById('sec-' + page).classList.add('active');
+  document.querySelectorAll('.menu-item').forEach(m => m.classList.remove('active'));
+  event.currentTarget?.classList.add('active');
+  const titles = { dashboard:'数据看板', orders:'订单管理', products:'商品管理', tickets:'水票管理', customers:'客户管理', delivery:'配送管理', marketing:'营销活动', settings:'系统设置' };
+  document.getElementById('pageTitle').textContent = titles[page] || page;
+}
+
+// ===== 订单渲染 =====
+function renderOrders() {
+  const filter = document.getElementById('orderFilter').value;
+  const list = filter === 'all' ? orders : orders.filter(o => o.status === filter);
+  document.getElementById('orderCount').textContent = list.length;
+  const statusMap = { pending: ['待接单','status-pending'], accepted: ['已接单','status-pending'], delivering: ['配送中','status-delivering'], done: ['已完成','status-done'], cancelled: ['已取消','status-cancelled'] };
+  document.getElementById('orderTableBody').innerHTML = list.map(o => {
+    const [label, cls] = statusMap[o.status];
+    let actions = '';
+    if (o.status === 'pending') actions = `<button class="btn btn-sm btn-success" onclick="acceptOrder('${o.id}')">接单</button> <button class="btn btn-sm btn-danger" onclick="rejectOrder('${o.id}')">拒单</button>`;
+    else if (o.status === 'accepted') actions = `<button class="btn btn-sm btn-primary" onclick="dispatchOrder('${o.id}')">派单</button>`;
+    else actions = `<button class="btn btn-sm btn-outline" onclick="viewOrder('${o.id}')">查看</button>`;
+    return `<tr>
+      <td style="font-weight:500">${o.id}</td><td>${o.customer}</td><td>${o.product}</td>
+      <td>${o.qty}</td><td style="font-weight:600">¥${o.amount}</td><td>${o.time}</td>
+      <td><span class="status-tag ${cls}">${label}</span></td><td>${o.driver}</td><td>${actions}</td>
+    </tr>`;
+  }).join('');
+}
+
+function acceptOrder(id) {
+  const o = orders.find(x => x.id === id);
+  if (o) { o.status = 'accepted'; renderOrders(); showToast('✅ 已接单'); }
+}
+function rejectOrder(id) {
+  const o = orders.find(x => x.id === id);
+  if (o) { o.status = 'cancelled'; renderOrders(); showToast('已拒单'); }
+}
+function dispatchOrder(id) {
+  const o = orders.find(x => x.id === id);
+  if (o) {
+    o.status = 'delivering';
+    o.driver = '小陈';
+    renderOrders();
+    showToast('🚚 已派单给小陈');
+  }
+}
+function viewOrder(id) {
+  const o = orders.find(x => x.id === id);
+  if (!o) return;
+  const statusMap = { pending:'待接单', accepted:'已接单', delivering:'配送中', done:'已完成', cancelled:'已取消' };
+  document.getElementById('modalOrderBody').innerHTML = `
+    <div class="info-row"><span class="info-label">订单号</span><span class="info-value" style="font-weight:600">${o.id}</span></div>
+    <div class="info-row"><span class="info-label">客户</span><span class="info-value">${o.customer} ${o.phone}</span></div>
+    <div class="info-row"><span class="info-label">地址</span><span class="info-value">${o.addr}</span></div>
+    <div class="info-row"><span class="info-label">商品</span><span class="info-value">${o.product} × ${o.qty}</span></div>
+    <div class="info-row"><span class="info-label">金额</span><span class="info-value" style="color:var(--price);font-weight:700">¥${o.amount}</span></div>
+    <div class="info-row"><span class="info-label">下单时间</span><span class="info-value">2026-03-24 ${o.time}</span></div>
+    <div class="info-row"><span class="info-label">状态</span><span class="info-value">${statusMap[o.status]}</span></div>
+    <div class="info-row"><span class="info-label">配送员</span><span class="info-value">${o.driver}</span></div>`;
+  document.getElementById('modalOrderFooter').innerHTML = `<button class="btn btn-outline" onclick="closeModal('orderDetailModal')">关闭</button>`;
+  document.getElementById('orderDetailModal').classList.add('show');
+}
+
+// ===== 商品渲染 =====
+function renderProducts() {
+  document.getElementById('productTableBody').innerHTML = productList.map((p, i) => {
+    const tags = p.tags ? p.tags.map(t => `<span style="background:#E8F5E9;color:#2E7D32;padding:1px 6px;border-radius:4px;font-size:11px;margin-left:4px">#${t}</span>`).join('') : '';
+    return `<tr>
+      <td style="font-weight:500">${p.name}${tags}</td><td>${p.cat}</td><td>${p.spec}</td>
+      <td style="font-weight:600;color:var(--price)">¥${p.price}</td>
+      <td>${p.stock < 50 ? '<span style="color:var(--danger)">'+p.stock+'⚠️</span>' : p.stock}</td>
+      <td>${p.sales}</td>
+      <td><span class="status-tag ${p.status==='on'?'status-on':'status-off'}">${p.status==='on'?'上架中':'已下架'}</span></td>
+      <td><button class="btn btn-sm btn-outline">编辑</button> <button class="btn btn-sm btn-outline" onclick="toggleProduct(${i})">${p.status==='on'?'下架':'上架'}</button></td>
+    </tr>`;
+  }).join('');
+}
+function toggleProduct(i) {
+  productList[i].status = productList[i].status === 'on' ? 'off' : 'on';
+  renderProducts();
+  showToast(productList[i].status === 'on' ? '已上架' : '已下架');
+}
+function showProductModal() { document.getElementById('productModal').classList.add('show'); }
+
+// ===== 其他渲染 =====
+function renderDrivers() {
+  document.getElementById('deliveryTableBody').innerHTML = drivers.map(d => `<tr>
+    <td style="font-weight:500">${d.name}</td><td>${d.phone}</td>
+    <td><span class="status-tag ${d.status==='online'?'status-on':'status-off'}">${d.status==='online'?'在线':'离线'}</span></td>
+    <td>${d.orders}</td><td>¥${d.income}</td><td>${d.avgTime}分钟</td><td>${d.bottles}个</td>
+    <td><button class="btn btn-sm btn-outline">详情</button></td>
+  </tr>`).join('');
+}
+function renderCustomers() {
+  document.getElementById('customerTableBody').innerHTML = customers.map(c => {
+    const tagColors = { '家庭用户':'#E3F2FD;color:#1565C0', '企业用户':'#FFF3E0;color:#E65100', 'VIP':'#FCE4EC;color:#C62828', '新客':'#E8F5E9;color:#2E7D32' };
+    return `<tr>
+      <td style="font-weight:500">${c.name}</td><td>${c.phone}</td>
+      <td><span style="background:${tagColors[c.tag]};padding:2px 8px;border-radius:4px;font-size:12px">${c.tag}</span></td>
+      <td>${c.orders}单</td><td>¥${c.spent.toLocaleString()}</td><td>${c.tickets}桶</td><td>${c.lastOrder}</td>
+      <td><button class="btn btn-sm btn-outline">详情</button> <button class="btn btn-sm btn-outline">发消息</button></td>
+    </tr>`;
+  }).join('');
+}
+function renderTicketUsers() {
+  document.getElementById('ticketUserBody').innerHTML = ticketUsers.map(t => `<tr>
+    <td style="font-weight:500">${t.name}</td><td>${t.phone}</td><td>${t.plan}</td>
+    <td style="font-weight:600;color:var(--primary)">${t.remain}桶</td><td>${t.used}桶</td><td>${t.expire}</td>
+    <td><button class="btn btn-sm btn-outline">详情</button></td>
+  </tr>`).join('');
+}
+
+// ===== 图表 =====
+function renderChart() {
+  const data = [32,28,45,38,42,35,47];
+  const labels = ['周一','周二','周三','周四','周五','周六','周日'];
+  const max = Math.max(...data);
+  document.getElementById('chartBars').innerHTML = data.map((v,i) => {
+    const h = (v / max * 160);
+    const color = i === data.length - 1 ? 'var(--primary)' : '#90CAF9';
+    return `<div class="chart-bar" style="height:${h}px;background:${color}" data-val="${v}"><span class="chart-bar-label">${labels[i]}</span></div>`;
+  }).join('');
+}
+function renderRank() {
+  const top = [
+    { name: '娃哈哈 纯净水 18.9L', sales: 5102 },
+    { name: '怡宝 纯净水 18.9L', sales: 4210 },
+    { name: '农夫山泉 天然水 18.9L', sales: 3826 },
+    { name: '百岁山 矿泉水 18.9L', sales: 2914 },
+    { name: '怡宝 555ml×24瓶', sales: 2100 },
+  ];
+  document.getElementById('rankList').innerHTML = top.map((r,i) => `
+    <div class="rank-item">
+      <div class="rank-num">${i+1}</div>
+      <div class="rank-info"><div class="rank-name">${r.name}</div><div class="rank-sales">累计销量 ${r.sales} 件</div></div>
+    </div>`).join('');
+}
+
+// ===== Utils =====
+function closeModal(id) { document.getElementById(id).classList.remove('show'); }
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg; t.style.opacity = 1;
+  setTimeout(() => t.style.opacity = 0, 1500);
+}
+function exportData() { showToast('📥 导出功能开发中'); }
+function updateTime() {
+  const now = new Date();
+  document.getElementById('headerTime').textContent = now.toLocaleString('zh-CN', { month:'2-digit', day:'2-digit', hour:'2-digit', minute:'2-digit', second:'2-digit' });
+}
+
+// ===== Init =====
+renderOrders(); renderProducts(); renderDrivers(); renderCustomers(); renderTicketUsers(); renderChart(); renderRank();
+updateTime(); setInterval(updateTime, 1000);
+
+// 点击遮罩关闭
+document.querySelectorAll('.modal-mask').forEach(m => {
+  m.addEventListener('click', function(e) { if (e.target === this) this.classList.remove('show'); });
+});
+</script>
+</body>
+</html>
