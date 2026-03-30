@@ -1,0 +1,21 @@
+# OS
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Log
+*.log
+
+# Temporary
+*.tmp
+*.temp
+
+# Images (keep but could add size limits)
+# jewelry/
+# *.jpg
+# *.png
