@@ -314,15 +314,15 @@ body {
 /* 区块 */
 .section {
     margin-bottom: 2.5rem;
-    /* opacity: 0;
+    opacity: 0;
     transform: translateY(30px);
-    transition: opacity 0.6s ease, transform 0.6s ease; */
+    transition: opacity 0.6s ease, transform 0.6s ease;
 }
 
-/* .section.visible {
+.section.visible {
     opacity: 1;
     transform: translateY(0);
-} */
+}
 
 .section h2 {
     font-size: 1.5rem;
@@ -1166,14 +1166,14 @@ body {
 /* 探索更多 - 一排三个 */
 .explore-row {
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    gap: 0.75rem;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
 }
 
 .explore-item {
     background: var(--card-bg);
     border-radius: 12px;
-    padding: 1rem 0.5rem;
+    padding: 1.5rem 1rem;
     box-shadow: var(--shadow);
     text-decoration: none;
     color: var(--text-primary);
@@ -3005,7 +3005,7 @@ body {
     }
 
     .explore-row {
-        grid-template-columns: repeat(3, 1fr);
+        grid-template-columns: repeat(2, 1fr);
     }
 
     .news-categories {
