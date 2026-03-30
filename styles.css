@@ -1166,14 +1166,14 @@ body {
 /* 探索更多 - 一排三个 */
 .explore-row {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 1rem;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 0.75rem;
 }
 
 .explore-item {
     background: var(--card-bg);
     border-radius: 12px;
-    padding: 1.5rem 1rem;
+    padding: 1rem 0.5rem;
     box-shadow: var(--shadow);
     text-decoration: none;
     color: var(--text-primary);
@@ -3005,7 +3005,7 @@ body {
     }
 
     .explore-row {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(3, 1fr);
     }
 
     .news-categories {
