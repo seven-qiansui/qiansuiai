@@ -6,27 +6,28 @@
 }
 
 :root {
-    --primary-color: #3b82f6;
-    --primary-dark: #2563eb;
-    --primary-light: #60a5fa;
-    --secondary-color: #10b981;
+    /* 高级配色方案 */
+    --primary-color: #1e40af;
+    --primary-dark: #1e3a8a;
+    --primary-light: #3b82f6;
+    --secondary-color: #059669;
     --bg-color: #f8fafc;
     --card-bg: #ffffff;
-    --text-primary: #1e293b;
-    --text-secondary: #64748b;
+    --text-primary: #0f172a;
+    --text-secondary: #475569;
     --border-color: #e2e8f0;
-    --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-    --shadow-hover: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-    --gradient-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    --gradient-blue: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
-    --gradient-jewelry: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-    --gradient-ecommerce: linear-gradient(135deg, #f6d365 0%, #fda085 100%);
-    --gradient-tech: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    --gradient-automation: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
-    --gradient-integration: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
-    --gradient-service-1: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%);
-    --gradient-service-2: linear-gradient(135deg, #a18cd1 0%, #fbc2eb 100%);
-    --gradient-service-3: linear-gradient(135deg, #84fab0 0%, #8fd3f4 100%);
+    --shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.05), 0 1px 2px -1px rgba(0, 0, 0, 0.03);
+    --shadow-hover: 0 20px 25px -5px rgba(0, 0, 0, 0.08), 0 8px 10px -6px rgba(0, 0, 0, 0.04);
+    --gradient-primary: linear-gradient(135deg, #1e40af 0%, #7c3aed 100%);
+    --gradient-blue: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
+    --gradient-jewelry: linear-gradient(135deg, #ec4899 0%, #8b5cf6 100%);
+    --gradient-ecommerce: linear-gradient(135deg, #f59e0b 0%, #ef4444 100%);
+    --gradient-tech: linear-gradient(135deg, #1e40af 0%, #7c3aed 100%);
+    --gradient-automation: linear-gradient(135deg, #059669 0%, #10b981 100%);
+    --gradient-integration: linear-gradient(135deg, #0ea5e9 0%, #06b6d4 100%);
+    --gradient-service-1: linear-gradient(135deg, #f43f5e 0%, #fb7185 100%);
+    --gradient-service-2: linear-gradient(135deg, #8b5cf6 0%, #a78bfa 100%);
+    --gradient-service-3: linear-gradient(135deg, #14b8a6 0%, #2dd4bf 100%);
 }
 
 body {
@@ -55,14 +56,17 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background: var(--card-bg);
-    padding: 1rem 1.5rem;
-    border-radius: 12px;
-    box-shadow: var(--shadow);
-    margin-bottom: 2rem;
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    padding: 0.8rem 2rem;
+    border-radius: 16px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04), 0 6px 16px rgba(0, 0, 0, 0.04);
+    margin-bottom: 3rem;
     position: sticky;
     top: 1rem;
     z-index: 100;
+    border: 1px solid rgba(0, 0, 0, 0.04);
 }
 
 .nav-brand {
