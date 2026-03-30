@@ -1165,57 +1165,66 @@ body {
 
 /* 探索更多 - 一排三个 */
 .explore-row {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 1rem;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 0.5rem;
 }
 
 .explore-item {
     background: var(--card-bg);
-    border-radius: 12px;
-    padding: 1.5rem 1rem;
-    box-shadow: var(--shadow);
+    border-radius: 50px;
+    padding: 0.6rem 1rem;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
     text-decoration: none;
     color: var(--text-primary);
     transition: all 0.3s ease;
     text-align: center;
     display: flex;
-    flex-direction: column;
     align-items: center;
-    border: 2px solid transparent;
+    gap: 0.4rem;
+    border: 1px solid var(--border-color);
+    font-size: 0.9rem;
 }
 
 .explore-item:hover {
-    transform: translateY(-6px);
-    box-shadow: var(--shadow-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 16px rgba(59,130,246,0.2);
     border-color: var(--primary-color);
+    color: var(--primary-color);
 }
 
 .explore-icon {
-    font-size: 2.5rem;
-    margin-bottom: 0.75rem;
+    font-size: 1rem;
 }
 
 .explore-item h3 {
-    font-size: 1.1rem;
-    font-weight: 600;
-    margin-bottom: 0.4rem;
-}
-
-.explore-item p {
-    font-size: 0.85rem;
-    color: var(--text-secondary);
+    font-size: 0.9rem;
+    font-weight: 500;
+    margin: 0;
 }
 
 .explore-arrow {
-    margin-top: 0.75rem;
-    font-size: 1.2rem;
-    color: var(--primary-color);
-    transition: transform 0.3s ease;
+    font-size: 0.8rem;
+    opacity: 0;
+    transition: opacity 0.3s ease;
 }
 
 .explore-item:hover .explore-arrow {
-    transform: translateX(5px);
+    opacity: 1;
+}
+
+@media (max-width: 768px) {
+    .explore-row {
+        gap: 0.4rem;
+    }
+    .explore-item {
+        padding: 0.5rem 0.7rem;
+        font-size: 0.75rem;
+    }
+    .explore-icon {
+        font-size: 0.9rem;
+    }
 }
 
 /* 快速入口（保留兼容） */
