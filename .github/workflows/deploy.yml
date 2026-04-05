@@ -1,85 +1,38 @@
-name: CD - 自动部署到阿里云
+name: Deploy to GitHub Pages
 
 on:
   push:
-    branches: [main]
+    branches:
+      - main
   workflow_dispatch:
-    inputs:
-      environment:
-        description: '部署环境'
-        required: true
-        default: 'production'
-        type: choice
-        options:
-          - production
-          - staging
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
 
 jobs:
   deploy:
-    runs-on: ubuntu-latest
     environment:
-      name: production
-      url: https://qiansuiai.cn
-    
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
+      - name: Checkout
         uses: actions/checkout@v4
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
         with:
-          fetch-depth: 2
+          path: '.'
 
-      - name: Setup SSH key
-        run: |
-          mkdir -p ~/.ssh
-          echo "${{ secrets.ALIYUN_SSH_KEY }}" > ~/.ssh/id_ed25519
-          chmod 600 ~/.ssh/id_ed25519
-          ssh-keyscan -H ${{ secrets.ALIYUN_HOST }} >> ~/.ssh/known_hosts
-          echo "✅ SSH key configured"
-
-      - name: Deploy to Aliyun
-        run: |
-          echo "🚀 开始部署到 ${{ secrets.ALIYUN_HOST }}"
-          
-          # 备份当前版本
-          echo "💾 创建备份..."
-          ssh ${{ secrets.ALIYUN_USER }}@${{ secrets.ALIYUN_HOST }} "
-            echo '📦 开始部署 - \$(date)'
-            if [ -d '/var/www/qiansuiai.cn' ]; then
-              BACKUP_NAME='backup-\$(date +%Y%m%d-%H%M%S)'
-              cp -r /var/www/qiansuiai.cn /var/www/qiansuiai.cn.\$BACKUP_NAME
-              echo '✅ 备份完成：\$BACKUP_NAME'
-              cd /var/www && ls -dt qiansuiai.cn.backup-* 2>/dev/null | tail -n +4 | xargs -r rm -rf
-              echo '🧹 已清理旧备份'
-            fi
-          "
-          
-          # 同步文件
-          echo "📦 同步文件..."
-          rsync -avzr --delete ./ ${{ secrets.ALIYUN_USER }}@${{ secrets.ALIYUN_HOST }}:/var/www/qiansuiai.cn/
-          
-          # 验证部署
-          echo "🔍 验证部署..."
-          ssh ${{ secrets.ALIYUN_USER }}@${{ secrets.ALIYUN_HOST }} "
-            if [ -f '/var/www/qiansuiai.cn/index.html' ]; then
-              echo '✅ 部署验证通过'
-            else
-              echo '❌ 部署验证失败'
-              exit 1
-            fi
-          "
-          
-          echo "🔄 部署完成 - \$(date)"
-
-      - name: Health check
-        run: |
-          echo "🏥 开始健康检查..."
-          for i in {1..5}; do
-            response=$(curl -s -o /dev/null -w "%{http_code}" https://qiansuiai.cn)
-            if [ "$response" = "200" ]; then
-              echo "✅ 健康检查通过 (HTTP $response)"
-              exit 0
-            fi
-            echo "⏳ 等待服务启动... ($i/5)"
-            sleep 10
-          done
-          echo "❌ 健康检查失败"
-          exit 1
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
