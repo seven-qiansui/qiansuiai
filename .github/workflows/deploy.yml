@@ -27,48 +27,45 @@ jobs:
         with:
           fetch-depth: 2
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-          cache: 'npm'
+      - name: Setup SSH key
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.ALIYUN_SSH_KEY }}" > ~/.ssh/id_ed25519
+          chmod 600 ~/.ssh/id_ed25519
+          ssh-keyscan -H ${{ secrets.ALIYUN_HOST }} >> ~/.ssh/known_hosts
 
-      - name: Install dependencies
-        run: npm ci
-
-      - name: Build
-        run: npm run build
-        continue-on-error: true
-
-      - name: Deploy to Aliyun via SSH
-        uses: easingthemes/ssh-deploy@v4
-        env:
-          SSH_PRIVATE_KEY: ${{ secrets.ALIYUN_SSH_KEY }}
-          REMOTE_HOST: ${{ secrets.ALIYUN_HOST }}
-          REMOTE_USER: ${{ secrets.ALIYUN_USER }}
-          SOURCE: "."
-          TARGET: /var/www/qiansuiai.cn
-          ARGS: "-avzr --delete"
-          SCRIPT_BEFORE: |
-            echo "📦 开始部署 - $(date)"
-            # 创建备份
-            if [ -d "/var/www/qiansuiai.cn" ]; then
-              BACKUP_NAME="backup-$(date +%Y%m%d-%H%M%S)"
-              cp -r /var/www/qiansuiai.cn /var/www/qiansuiai.cn.$BACKUP_NAME
-              echo "✅ 备份完成：$BACKUP_NAME"
-              # 保留最近 3 个备份
+      - name: Deploy to Aliyun
+        run: |
+          echo "🚀 开始部署到 ${{ secrets.ALIYUN_HOST }}"
+          
+          # 备份当前版本
+          ssh ${{ secrets.ALIYUN_USER }}@${{ secrets.ALIYUN_HOST }} "
+            echo '📦 开始部署 - \$(date)'
+            if [ -d '/var/www/qiansuiai.cn' ]; then
+              BACKUP_NAME='backup-\$(date +%Y%m%d-%H%M%S)'
+              cp -r /var/www/qiansuiai.cn /var/www/qiansuiai.cn.\$BACKUP_NAME
+              echo '✅ 备份完成：\$BACKUP_NAME'
               cd /var/www && ls -dt qiansuiai.cn.backup-* 2>/dev/null | tail -n +4 | xargs -r rm -rf
-              echo "🧹 已清理旧备份"
+              echo '🧹 已清理旧备份'
             fi
-          SCRIPT_AFTER: |
-            echo "🔄 部署完成 - $(date)"
-            # 验证部署
-            if [ -f "/var/www/qiansuiai.cn/index.html" ]; then
-              echo "✅ 部署验证通过"
+          "
+          
+          # 同步文件
+          echo "📦 同步文件..."
+          rsync -avzr --delete ./ ${{ secrets.ALIYUN_USER }}@${{ secrets.ALIYUN_HOST }}:/var/www/qiansuiai.cn/
+          
+          # 验证部署
+          echo "🔍 验证部署..."
+          ssh ${{ secrets.ALIYUN_USER }}@${{ secrets.ALIYUN_HOST }} "
+            if [ -f '/var/www/qiansuiai.cn/index.html' ]; then
+              echo '✅ 部署验证通过'
             else
-              echo "❌ 部署验证失败"
+              echo '❌ 部署验证失败'
               exit 1
             fi
+          "
+          
+          echo "🔄 部署完成 - \$(date)"
 
       - name: Health check
         run: |
@@ -84,57 +81,3 @@ jobs:
           done
           echo "❌ 健康检查失败"
           exit 1
-
-      - name: Notify success
-        if: success()
-        uses: fjogeleit/http-request-action@v1
-        with:
-          url: ${{ secrets.FEISHU_WEBHOOK_URL }}
-          method: 'POST'
-          contentType: 'application/json'
-          data: |
-            {
-              "msg_type": "interactive",
-              "card": {
-                "header": {
-                  "title": {
-                    "tag": "plain_text",
-                    "content": "✅ 部署成功"
-                  },
-                  "template": "green"
-                },
-                "elements": [
-                  {
-                    "tag": "markdown",
-                    "content": "**项目**: qiansuiai.cn\n**分支**: ${{ github.ref_name }}\n**提交**: ${{ github.sha }}\n**提交者**: ${{ github.actor }}\n**时间**: ${{ github.event.head_commit.timestamp }}"
-                  }
-                ]
-              }
-            }
-
-      - name: Notify failure
-        if: failure()
-        uses: fjogeleit/http-request-action@v1
-        with:
-          url: ${{ secrets.FEISHU_WEBHOOK_URL }}
-          method: 'POST'
-          contentType: 'application/json'
-          data: |
-            {
-              "msg_type": "interactive",
-              "card": {
-                "header": {
-                  "title": {
-                    "tag": "plain_text",
-                    "content": "❌ 部署失败"
-                  },
-                  "template": "red"
-                },
-                "elements": [
-                  {
-                    "tag": "markdown",
-                    "content": "**项目**: qiansuiai.cn\n**分支**: ${{ github.ref_name }}\n**提交**: ${{ github.sha }}\n**请检查**: [GitHub Actions 日志](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }})"
-                  }
-                ]
-              }
-            }
