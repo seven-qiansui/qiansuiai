@@ -33,12 +33,14 @@ jobs:
           echo "${{ secrets.ALIYUN_SSH_KEY }}" > ~/.ssh/id_ed25519
           chmod 600 ~/.ssh/id_ed25519
           ssh-keyscan -H ${{ secrets.ALIYUN_HOST }} >> ~/.ssh/known_hosts
+          echo "✅ SSH key configured"
 
       - name: Deploy to Aliyun
         run: |
           echo "🚀 开始部署到 ${{ secrets.ALIYUN_HOST }}"
           
           # 备份当前版本
+          echo "💾 创建备份..."
           ssh ${{ secrets.ALIYUN_USER }}@${{ secrets.ALIYUN_HOST }} "
             echo '📦 开始部署 - \$(date)'
             if [ -d '/var/www/qiansuiai.cn' ]; then
