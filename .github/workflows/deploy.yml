@@ -1,38 +1,140 @@
-name: Deploy to GitHub Pages
+name: CD - 自动部署到阿里云
 
 on:
   push:
-    branches:
-      - main
+    branches: [main]
   workflow_dispatch:
-
-permissions:
-  contents: read
-  pages: write
-  id-token: write
-
-concurrency:
-  group: "pages"
-  cancel-in-progress: false
+    inputs:
+      environment:
+        description: '部署环境'
+        required: true
+        default: 'production'
+        type: choice
+        options:
+          - production
+          - staging
 
 jobs:
   deploy:
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
+    environment:
+      name: production
+      url: https://qiansuiai.cn
+    
     steps:
-      - name: Checkout
+      - name: Checkout code
         uses: actions/checkout@v4
-
-      - name: Setup Pages
-        uses: actions/configure-pages@v5
-
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
         with:
-          path: '.'
+          fetch-depth: 2
 
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build
+        run: npm run build
+        continue-on-error: true
+
+      - name: Deploy to Aliyun via SSH
+        uses: easingthemes/ssh-deploy@v4
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.ALIYUN_SSH_KEY }}
+          REMOTE_HOST: ${{ secrets.ALIYUN_HOST }}
+          REMOTE_USER: ${{ secrets.ALIYUN_USER }}
+          SOURCE: "."
+          TARGET: /var/www/qiansuiai.cn
+          ARGS: "-avzr --delete"
+          SCRIPT_BEFORE: |
+            echo "📦 开始部署 - $(date)"
+            # 创建备份
+            if [ -d "/var/www/qiansuiai.cn" ]; then
+              BACKUP_NAME="backup-$(date +%Y%m%d-%H%M%S)"
+              cp -r /var/www/qiansuiai.cn /var/www/qiansuiai.cn.$BACKUP_NAME
+              echo "✅ 备份完成：$BACKUP_NAME"
+              # 保留最近 3 个备份
+              cd /var/www && ls -dt qiansuiai.cn.backup-* 2>/dev/null | tail -n +4 | xargs -r rm -rf
+              echo "🧹 已清理旧备份"
+            fi
+          SCRIPT_AFTER: |
+            echo "🔄 部署完成 - $(date)"
+            # 验证部署
+            if [ -f "/var/www/qiansuiai.cn/index.html" ]; then
+              echo "✅ 部署验证通过"
+            else
+              echo "❌ 部署验证失败"
+              exit 1
+            fi
+
+      - name: Health check
+        run: |
+          echo "🏥 开始健康检查..."
+          for i in {1..5}; do
+            response=$(curl -s -o /dev/null -w "%{http_code}" https://qiansuiai.cn)
+            if [ "$response" = "200" ]; then
+              echo "✅ 健康检查通过 (HTTP $response)"
+              exit 0
+            fi
+            echo "⏳ 等待服务启动... ($i/5)"
+            sleep 10
+          done
+          echo "❌ 健康检查失败"
+          exit 1
+
+      - name: Notify success
+        if: success()
+        uses: fjogeleit/http-request-action@v1
+        with:
+          url: ${{ secrets.FEISHU_WEBHOOK_URL }}
+          method: 'POST'
+          contentType: 'application/json'
+          data: |
+            {
+              "msg_type": "interactive",
+              "card": {
+                "header": {
+                  "title": {
+                    "tag": "plain_text",
+                    "content": "✅ 部署成功"
+                  },
+                  "template": "green"
+                },
+                "elements": [
+                  {
+                    "tag": "markdown",
+                    "content": "**项目**: qiansuiai.cn\n**分支**: ${{ github.ref_name }}\n**提交**: ${{ github.sha }}\n**提交者**: ${{ github.actor }}\n**时间**: ${{ github.event.head_commit.timestamp }}"
+                  }
+                ]
+              }
+            }
+
+      - name: Notify failure
+        if: failure()
+        uses: fjogeleit/http-request-action@v1
+        with:
+          url: ${{ secrets.FEISHU_WEBHOOK_URL }}
+          method: 'POST'
+          contentType: 'application/json'
+          data: |
+            {
+              "msg_type": "interactive",
+              "card": {
+                "header": {
+                  "title": {
+                    "tag": "plain_text",
+                    "content": "❌ 部署失败"
+                  },
+                  "template": "red"
+                },
+                "elements": [
+                  {
+                    "tag": "markdown",
+                    "content": "**项目**: qiansuiai.cn\n**分支**: ${{ github.ref_name }}\n**提交**: ${{ github.sha }}\n**请检查**: [GitHub Actions 日志](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }})"
+                  }
+                ]
+              }
+            }

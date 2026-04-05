@@ -29,9 +29,9 @@
         <!-- 资讯分类 -->
         <section class="section fade-on-scroll">
             <div class="news-categories">
-                <button class="category-btn active" data-filter="all">全部</button>
-                <button class="category-btn" data-filter="industry">🌐 行业动态</button>
-                <button class="category-btn" data-filter="article">📝 原创文章</button>
+                <button class="category-btn active" data-filter="all" onclick="filterNews('all', this)">全部</button>
+                <button class="category-btn" data-filter="industry" onclick="filterNews('industry', this)">🌐 行业动态</button>
+                <button class="category-btn" data-filter="article" onclick="filterNews('article', this)">📝 原创文章</button>
             </div>
         </section>
 
@@ -101,7 +101,7 @@
                 </a>
 
                 <!-- 原创文章 -->
-                <a href="diary.html#panel-articles" class="news-card" data-category="article">
+                <div class="news-card" data-category="article" onclick="window.location.href='diary.html#panel-articles'">
                     <div class="news-content">
                         <div class="news-header">
                             <span class="news-tag article-tag">📝 原创文章</span>
@@ -111,9 +111,9 @@
                         <h3>普通人用 AI 做自媒体，一个月能走多远？</h3>
                         <p>从零开始的一人公司实验：7天建站、10天日更、15天公众号自动化。</p>
                     </div>
-                </a>
+                </div>
 
-                <a href="diary.html#panel-articles" class="news-card" data-category="article">
+                <div class="news-card" data-category="article" onclick="window.location.href='diary.html#panel-articles'">
                     <div class="news-content">
                         <div class="news-header">
                             <span class="news-tag article-tag">📝 原创文章</span>
@@ -123,9 +123,9 @@
                         <h3>2026 年最值得用的 5 个 AI 工具</h3>
                         <p>从 15 个技能包里精选出来的 5 个，每个都在实际业务中验证过。</p>
                     </div>
-                </a>
+                </div>
 
-                <a href="diary.html#panel-articles" class="news-card" data-category="article">
+                <div class="news-card" data-category="article" onclick="window.location.href='diary.html#panel-articles'">
                     <div class="news-content">
                         <div class="news-header">
                             <span class="news-tag article-tag">📝 原创文章</span>
@@ -135,9 +135,9 @@
                         <h3>一人公司的秘密：一个人干一个团队的活</h3>
                         <p>AI 时代的个体户，到底能走多远？秘密就两个字：流程。</p>
                     </div>
-                </a>
+                </div>
 
-                <a href="diary.html#panel-articles" class="news-card" data-category="article">
+                <div class="news-card" data-category="article" onclick="window.location.href='diary.html#panel-articles'">
                     <div class="news-content">
                         <div class="news-header">
                             <span class="news-tag article-tag">📝 原创文章</span>
@@ -147,7 +147,7 @@
                         <h3>当 AI 开始帮人送水</h3>
                         <p>给送水店设计了一套小程序方案，从用户流程到技术选型全拆解。</p>
                     </div>
-                </a>
+                </div>
 
                 <a href="https://www.qbitai.com/" target="_blank" class="news-card" data-category="industry">
                     <div class="news-content">
@@ -172,5 +172,75 @@
                         <p>国内多家企业发布大模型更新版本，在垂直领域应用取得显著进展。</p>
                     </div>
                 </a>
+            </div>
+        </section>
+
+        <!-- 来源备注 -->
+        <section class="section fade-on-scroll">
+            <div class="source-note">
+                <p>每日 5 条 AI 行业资讯，自动更新。</p>
+            </div>
+        </section>
+
+        <footer class="footer">
+            <p>© 2026 千岁 AI · Powered by OpenClaw</p>
+            <p class="footer-note">公开资讯 | 原创内容 | 技术交流</p>
+        </footer>
+    </div>
+
+<script>
+// 资讯分类筛选 - 直接全局函数，确保能点击
+function filterNews(filter, btn) {
+    // 移除所有 active
+    document.querySelectorAll('.category-btn').forEach(b => b.classList.remove('active'));
+    // 添加当前 active
+    if (btn) btn.classList.add('active');
+    
+    // 筛选新闻卡片
+    document.querySelectorAll('.news-card').forEach(card => {
+        const category = card.getAttribute('data-category');
+        if (filter === 'all' || category === filter) {
+            card.style.display = 'block';
+            setTimeout(() => {
+                card.style.opacity = '1';
+                card.style.transform = 'translateY(0)';
+            }, 50);
+        } else {
+            card.style.display = 'none';
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(20px)';
+        }
+    });
+}
+
+// DOM 加载完成后初始化
+function initNewsFilter() {
+    // 默认全部显示，初始化 active 状态
+    filterNews('all', document.querySelector('.category-btn.active'));
+}
+
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initNewsFilter);
+} else {
+    initNewsFilter();
+}
+
+// 滚动动画
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('loaded');
+        }
+    });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.fade-on-scroll').forEach(el => observer.observe(el));
+
+window.addEventListener('load', () => {
+    document.body.classList.add('loaded');
+});
+</script>
+</body>
+</html>
 </content>
 </function></seed:tool_call>
