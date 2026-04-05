@@ -1,0 +1,63 @@
+name: Auto Deploy Website
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '*.html'
+      - '*.css'
+      - '*.js'
+      - 'images/**'
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      
+      - name: Setup SSH
+        uses: webfactory/ssh-agent@v0.5.3
+        with:
+          ssh-private-key: ${{ secrets.ALIYUN_SSH_KEY }}
+      
+      - name: Deploy to Aliyun
+        run: |
+          echo "🚀 开始部署到阿里云..."
+          
+          # 禁用 SSH 主机密钥检查
+          mkdir -p ~/.ssh
+          echo "Host *" >> ~/.ssh/config
+          echo "  StrictHostKeyChecking no" >> ~/.ssh/config
+          chmod 600 ~/.ssh/config
+          
+          # 上传文件
+          scp -r *.html root@8.163.68.155:/var/www/html/
+          scp -r *.css root@8.163.68.155:/var/www/html/
+          scp -r *.js root@8.163.68.155:/var/www/html/
+          scp -r images/ root@8.163.68.155:/var/www/html/
+          
+          # 设置权限
+          ssh root@8.163.68.155 "chown -R www-data:www-data /var/www/html/"
+          
+          # 清理 Nginx 缓存
+          ssh root@8.163.68.155 "rm -rf /var/cache/nginx/* && systemctl reload nginx"
+          
+          echo "✅ 部署完成！"
+      
+      - name: Notify success
+        if: success()
+        run: |
+          echo "部署成功通知" > deploy-notification.txt
+          echo "时间：$(date)" >> deploy-notification.txt
+          echo "提交：${{ github.sha }}" >> deploy-notification.txt
+          echo "作者：${{ github.actor }}" >> deploy-notification.txt
+      
+      - name: Notify failure
+        if: failure()
+        run: |
+          echo "部署失败通知" > deploy-notification.txt
+          echo "时间：$(date)" >> deploy-notification.txt
+          echo "提交：${{ github.sha }}" >> deploy-notification.txt
+          echo "请检查：https://github.com/${{ github.repository }}/actions" >> deploy-notification.txt
