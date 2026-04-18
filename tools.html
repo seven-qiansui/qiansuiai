@@ -295,8 +295,7 @@ clickableCards.forEach(function(card){
 
 // AI 调用 - 阿里通义千问
 var API_KEY='sk-sp-ce509375e54843adbbda43ba218ef139';
-// 通过本地代理绕过 CORS 限制 (使用 proxy-server.js)
-var API_URL='/api/v1/chat/completions';
+var API_URL='https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions';
 
 // 模型映射 - coding 端点可用模型：qwen3.6-plus（强）、qwen3.5-plus（快）
 var modelMap={
