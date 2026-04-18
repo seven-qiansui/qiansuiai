@@ -150,22 +150,67 @@ function renderNewsCards(newsItems){
   },100);
 }
 
-// 加载真实新闻
+// 加载前沿新闻 - 通过 AI API 每日生成
 function loadFrontierNews(){
-  fetch('/api/news').then(function(r){return r.json();}).then(function(data){
-    if(data&&data.news&&data.news.length>0){
-      data.news.forEach(function(n,i){
-        articleData['fw-dynamic-'+i]={
-          cat:n.cat,title:n.title,
-          date:data.date||'今日',readTime:'约 3 分钟',
-          cover:'<div class="article-cover-placeholder">'+n.title.substring(0,20)+'</div>',
-          body:n.body||'<p>'+n.summary+'</p><p>更多内容请关注后续更新。</p>'
-        };
-      });
-      renderNewsCards(data.news);
-    }
-  }).catch(function(){
-    // 加载失败，使用默认新闻
+  var cacheKey='frontier_cache';
+  var cacheDateKey='frontier_cache_date';
+  var cached=localStorage.getItem(cacheKey);
+  var cacheDate=localStorage.getItem(cacheDateKey);
+  var today=new Date().toISOString().slice(0,10); // YYYY-MM-DD
+
+  // 检查缓存是否今天有效
+  if(cached&&cacheDate===today){
+    try{
+      var news=JSON.parse(cached);
+      renderNewsCards(news);
+      return;
+    }catch(e){}
+  }
+
+  // 缓存过期或无缓存，调用 AI 生成
+  var API_URL='https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions';
+  var API_KEY='sk-sp-ce509375e54843adbbda43ba218ef139';
+
+  var prompt='今天是'+today+'。请生成今天最新的 AI 行业资讯，共 14 条。要求：\n';
+  prompt+='1. 包含 4 个分类：news(快讯)、model(模型更新)、update(行业动态)、observe(观察分析)\n';
+  prompt+='2. 每个分类至少 3 条\n';
+  prompt+='3. 内容要真实可信，反映 2026 年 4 月 AI 行业真实进展\n';
+  prompt+='4. 标题要有吸引力但不夸张\n';
+  prompt+='5. 摘要 20-40 字\n';
+  prompt+='6. 阅读量数据合理（500-5000 之间）\n';
+  prompt+='请严格按以下 JSON 格式输出，不要输出任何其他内容：\n';
+  prompt+='[\n{"cat":"news","title":"标题","summary":"摘要","reads":"1.2k"},\n...\n]';
+
+  fetch(API_URL,{
+    method:'POST',
+    headers:{'Content-Type':'application/json','Authorization':'Bearer '+API_KEY},
+    body:JSON.stringify({
+      model:'qwen3.6-plus',
+      messages:[
+        {role:'system',content:'你是一个 AI 行业资讯编辑。每天收集最新的 AI 行业动态、模型发布、政策变化和行业分析。输出纯 JSON 格式。'},
+        {role:'user',content:prompt}
+      ],
+      temperature:0.8
+    })
+  })
+  .then(function(r){
+    if(!r.ok)throw new Error('API 请求失败');
+    return r.json();
+  })
+  .then(function(data){
+    var content=data.choices[0].message.content;
+    // 提取 JSON
+    var start=content.indexOf('[');
+    var end=content.lastIndexOf(']');
+    if(start===-1||end===-1)throw new Error('JSON 解析失败');
+    var news=JSON.parse(content.slice(start,end+1));
+    // 缓存
+    localStorage.setItem(cacheKey,JSON.stringify(news));
+    localStorage.setItem(cacheDateKey,today);
+    renderNewsCards(news);
+  })
+  .catch(function(err){
+    console.warn('AI 资讯加载失败，使用默认数据:',err);
     renderNewsCards(getDefaultNews());
   });
 }
