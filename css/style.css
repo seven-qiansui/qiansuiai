@@ -1025,12 +1025,18 @@ body > .scroll-progress {
 .count-up { display: inline-block; }
 
 /* ==================== Footer ==================== */
-.spacer { flex: 1; }
 .site-footer {
-  padding: 24px 0;
-  background: transparent;
-  border-top: none;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 16px 0;
+  background: rgba(0, 0, 0, 0.8);
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+  border-top: 1px solid var(--border);
   text-align: center;
+  z-index: 1;
 }
 .site-footer p { font-size: 0.72rem; color: var(--text-muted); }
 .footer-grid {
