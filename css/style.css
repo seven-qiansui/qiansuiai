@@ -1025,6 +1025,7 @@ body > .scroll-progress {
 .count-up { display: inline-block; }
 
 /* ==================== Footer ==================== */
+.spacer { flex: 1; }
 .site-footer {
   padding: 24px 0;
   background: transparent;
