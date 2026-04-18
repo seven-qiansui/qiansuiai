@@ -168,8 +168,8 @@ function loadFrontierNews(){
   }
 
   // 缓存过期或无缓存，调用 AI 生成
-  var API_URL='https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions';
-  var API_KEY='sk-sp-ce509375e54843adbbda43ba218ef139';
+  var API_URL='/api/v1/chat/completions';
+  var API_KEY=''; // Key is handled by Nginx proxy
 
   var prompt='今天是'+today+'。请生成今天最新的 AI 行业资讯，共 14 条。要求：\n';
   prompt+='1. 包含 4 个分类：news(快讯)、model(模型更新)、update(行业动态)、observe(观察分析)\n';
@@ -183,7 +183,7 @@ function loadFrontierNews(){
 
   fetch(API_URL,{
     method:'POST',
-    headers:{'Content-Type':'application/json','Authorization':'Bearer '+API_KEY},
+    headers:{'Content-Type':'application/json'},
     body:JSON.stringify({
       model:'qwen3.6-plus',
       messages:[

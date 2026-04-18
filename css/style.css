@@ -45,7 +45,19 @@ body {
   line-height: 1.6;
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  -moz-osx-text-smoothing: grayscale;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+body > main,
+body > .bg-glow,
+body > .scroll-progress {
+  flex-shrink: 0;
+}
+.site-footer {
+  margin-top: auto;
+  flex-shrink: 0;
 }
 
 /* 鼠标跟随 */
