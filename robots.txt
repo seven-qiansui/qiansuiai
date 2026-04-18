@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://qiansuiai.cn/sitemap.xml
+Sitemap: https://www.qiansuiai.cn/sitemap.xml

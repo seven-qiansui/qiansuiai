@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>创意 - 千岁 AI</title>
+  <meta name="description" content="千岁 AI 创意 - 设计实验、视觉探索、AI 漫画创作">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div class="scroll-progress" id="scrollProgress"></div>
+<div class="bg-glow"><div class="bg-glow-g3"></div><div class="bg-glow-g4"></div><div class="bg-glow-g5"></div></div>
+
+<nav class="navbar" id="navbar">
+  <div class="container">
+    <a href="index.html" class="nav-brand">
+      <svg class="logo-mark" viewBox="0 0 32 32" fill="none">
+        <path d="M16 2L4 9v14l12 7 12-7V9L16 2z" stroke="url(#logoGrad)" stroke-width="1.5" fill="none"/>
+        <path d="M16 8l-5 3v6l5 3 5-3v-6l-5-3z" fill="url(#logoGrad)" opacity="0.15"/>
+        <path d="M16 8l-5 3v6l5 3 5-3v-6l-5-3z" stroke="url(#logoGrad)" stroke-width="1.2"/>
+        <path d="M16 11l-2 1.2v2.6L16 16l2-1.2v-2.6L16 11z" fill="url(#logoGrad)"/>
+        <defs>
+          <linearGradient id="logoGrad" x1="0" y1="0" x2="32" y2="32">
+            <stop offset="0%" stop-color="#c9a96e"/>
+            <stop offset="100%" stop-color="#dfc08a"/>
+          </linearGradient>
+        </defs>
+      </svg>
+      千岁 AI
+    </a>
+    <div class="nav-links" id="navLinks">
+      <a href="index.html" class="nav-link">首页</a>
+      <a href="services.html" class="nav-link">服务</a>
+      <a href="cases.html" class="nav-link">案例</a>
+      <a href="riluo.html" class="nav-link">随记</a>
+      <a href="creative.html" class="nav-link active">创意</a>
+      <a href="tools.html" class="nav-link">工具</a>
+      <a href="frontier.html" class="nav-link">前沿</a>
+      <a href="contact.html" class="nav-cta">联系</a>
+    </div>
+    <button class="nav-toggle" id="navToggle" aria-label="菜单"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<header class="page-hero">
+  <div class="container" style="max-width:700px">
+    <div class="reveal"><span class="section-label">创意</span></div>
+    <h2 class="section-title reveal">AI <span class="hl">创意实验室</span></h2>
+    <p class="section-desc reveal" style="margin:16px auto 0">设计实验 · 视觉探索 · AI 漫画创作</p>
+  </div>
+</header>
+
+<section class="creative-section">
+  <div class="container">
+    <div class="log-filters reveal">
+      <button class="filter-btn active" data-filter="design">设计</button>
+      <button class="filter-btn" data-filter="visual">视觉</button>
+      <button class="filter-btn" data-filter="manga">漫画</button>
+      <button class="filter-btn" data-filter="special">专题</button>
+    </div>
+
+    <div class="creative-grid" id="creativeGrid">
+
+      <!-- 设计 × 6：包装 / KV / VI / IP / 电商 / 活动 -->
+      <div class="creative-card reveal reveal-d1 clickable" data-category="design" data-article-id="cr-pkg-1">
+        <div class="creative-thumb"><div class="creative-thumb-placeholder">护肤品极简包装设计</div></div>
+        <div class="creative-body">          <h4>护肤品极简包装设计系列</h4>
+          <p>AI 生成的极简风护肤品包装方案，白底 + 低饱和配色，适合高端品牌定位。</p>
+        </div>
+      </div>
+
+      <div class="creative-card reveal reveal-d2 clickable" data-category="design" data-article-id="cr-kv-1">
+        <div class="creative-thumb"><div class="creative-thumb-placeholder">618 大促主视觉设计</div></div>
+        <div class="creative-body">          <h4>618 大促主视觉 KV 设计</h4>
+          <p>多平台适配的大促主视觉方案，涵盖首页、详情页、社交媒体等全渠道。</p>
+        </div>
+      </div>
+
+      <div class="creative-card reveal reveal-d3 clickable" data-category="design" data-article-id="cr-vi-1">
+        <div class="creative-thumb"><div class="creative-thumb-placeholder">品牌 VI 视觉提案</div></div>
+        <div class="creative-body">          <h4>新锐美妆品牌 VI 视觉提案</h4>
+          <p>为新兴美妆品牌设计的完整视觉体系，含 logo、色彩、字体、应用场景。</p>
+        </div>
+      </div>
+
+      <div class="creative-card reveal reveal-d1 clickable" data-category="design" data-article-id="cr-ip-1">
+        <div class="creative-thumb"><div class="creative-thumb-placeholder">宠物品牌 IP 设计</div></div>
+        <div class="creative-body">          <h4>宠物食品品牌 IP 形象设计</h4>
+          <p>IP 形象 + 包装一体化设计，打造有温度的宠物品牌形象。</p>
+        </div>
+      </div>
+
+      <div class="creative-card reveal reveal-d2 clickable" data-category="design" data-article-id="cr-ec-1">
+        <div class="creative-thumb"><div class="creative-thumb-placeholder">母婴 ins 风电商视觉</div></div>
+        <div class="creative-body">          <h4>母婴用品 ins 风电商视觉</h4>
+          <p>温馨柔和的 ins 风视觉方案，多 SKU 统一风格输出。</p>
+        </div>
+      </div>
+
+      <div class="creative-card reveal reveal-d3 clickable" data-category="design" data-article-id="cr-ev-1">
+        <div class="creative-thumb"><div class="creative-thumb-placeholder">运动品牌活动视觉</div></div>
+        <div class="creative-body">          <h4>运动户外品牌视觉全案</h4>
+          <p>从 logo 到产品图到活动海报，运动品牌视觉体系的一次完整搭建。</p>
+        </div>
+      </div>
+
+      <!-- 视觉 × 6：场景 / 风格 / 插画 / 海报 / 光影 / 概念 -->
+      <div class="creative-card reveal reveal-d1 clickable" data-category="visual" data-article-id="cr-scene-1">
+        <div class="creative-thumb"><div class="creative-thumb-placeholder">日系家居场景海报</div></div>
+        <div class="creative-body">          <h4>日系家居场景海报</h4>
+          <p>木质调 + 自然光，为家居品牌打造的温暖日系风格场景图。</p>
+        </div>
+      </div>
+
+      <div class="creative-card reveal reveal-d2 clickable" data-category="visual" data-article-id="cr-style-1">
+        <div class="creative-thumb"><div class="creative-thumb-placeholder">赛博朋克风产品海报</div></div>
+        <div class="creative-body">          <h4>赛博朋克风 3C 产品海报</h4>
+          <p>霓虹色调 + 几何光效，为数码产品打造的赛博朋克风格宣传海报。</p>
+        </div>
+      </div>
+
+      <div class="creative-card reveal reveal-d3 clickable" data-category="visual" data-article-id="cr-ill-1">
+        <div class="creative-thumb"><div class="creative-thumb-placeholder">国潮风食品插画</div></div>
+        <div class="creative-body">          <h4>国潮风零食品牌插画</h4>
+          <p>传统中国元素 + 现代扁平化风格，为零食品牌设计的系列插画作品。</p>
+        </div>
+      </div>
+
+      <div class="creative-card reveal reveal-d1 clickable" data-category="visual" data-article-id="cr-poster-1">
+        <div class="creative-thumb"><div class="creative-thumb-placeholder">科幻风产品海报</div></div>
+        <div class="creative-body">          <h4>科幻风科技产品海报</h4>
+          <p>太空感 + 全息投影效果，为智能硬件打造的未来主义视觉风格。</p>
+        </div>
+      </div>
+
+      <div class="creative-card reveal reveal-d2 clickable" data-category="visual" data-article-id="cr-light-1">
+        <div class="creative-thumb"><div class="creative-thumb-placeholder">手绘风光影实验</div></div>
+        <div class="creative-body">          <h4>手绘风光影实验</h4>
+          <p>水彩手绘风格 + 光影层次探索，为儿童品牌创作的温暖视觉。</p>
+        </div>
+      </div>
+
+      <div class="creative-card reveal reveal-d3 clickable" data-category="visual" data-article-id="cr-concept-1">
+        <div class="creative-thumb"><div class="creative-thumb-placeholder">抽象概念视觉</div></div>
+        <div class="creative-body">          <h4>抽象概念视觉探索</h4>
+          <p>AI 生成的抽象艺术实验，探索机器理解"美"的边界。</p>
+        </div>
+      </div>
+
+      <!-- 漫画 × 6：故事 / 日常 / 趣味 / 科普 / 生活 / 职场 -->
+      <div class="creative-card reveal reveal-d1 clickable" data-category="manga" data-article-id="cr-story-1">
+        <div class="creative-thumb"><div class="creative-thumb-placeholder">创业故事漫画 EP.1</div></div>
+        <div class="creative-body">          <h4>「一人公司」创业故事漫画 EP.1</h4>
+          <p>用 AI 漫画讲述一人公司的创业日常，从接到第一个订单到交付的全过程。</p>
+        </div>
+      </div>
+
+      <div class="creative-card reveal reveal-d2 clickable" data-category="manga" data-article-id="cr-life-1">
+        <div class="creative-thumb"><div class="creative-thumb-placeholder">自由职业者的日常</div></div>
+        <div class="creative-body">          <h4>自由职业者的一天</h4>
+          <p>早上 10 点起床、下午开始工作、凌晨 3 点交稿——自由职业者的真实日常。</p>
+        </div>
+      </div>
+
+      <div class="creative-card reveal reveal-d3 clickable" data-category="manga" data-article-id="cr-fun-1">
+        <div class="creative-thumb"><div class="creative-thumb-placeholder">客户沟通常见场景</div></div>
+        <div class="creative-body">          <h4>客户沟通常见场景漫画</h4>
+          <p>"再改一版"、"感觉不对"、"预算不够"——用漫画还原真实沟通过程。</p>
+        </div>
+      </div>
+
+      <div class="creative-card reveal reveal-d1 clickable" data-category="manga" data-article-id="cr-sci-1">
+        <div class="creative-thumb"><div class="creative-thumb-placeholder">AI 行业科普漫画</div></div>
+        <div class="creative-body">          <h4>3 分钟看懂 AI 绘画原理</h4>
+          <p>用漫画解释扩散模型、LoRA、ControlNet 等 AI 绘画核心概念。</p>
+        </div>
+      </div>
+
+      <div class="creative-card reveal reveal-d2 clickable" data-category="manga" data-article-id="cr-living-1">
+        <div class="creative-thumb"><div class="creative-thumb-placeholder">独居生活漫画</div></div>
+        <div class="creative-body">          <h4>独居生活的 10 个小确幸</h4>
+          <p>一个人住、一个人吃饭、一个人工作——独居生活的温暖与自由。</p>
+        </div>
+      </div>
+
+      <div class="creative-card reveal reveal-d3 clickable" data-category="manga" data-article-id="cr-work-1">
+        <div class="creative-thumb"><div class="creative-thumb-placeholder">自由职场观察</div></div>
+        <div class="creative-body">          <h4>自由职业的 5 个真相</h4>
+          <p>自由不等于轻松、收入不稳定但上限高、需要很强的自律能力……</p>
+        </div>
+      </div>
+
+      <!-- 专题 × 6：节日 / 城市 / 公益 / 联名 / 跨界 / 文化 -->
+      <div class="creative-card reveal reveal-d1 clickable" data-category="special" data-article-id="cr-festival-1">
+        <div class="creative-thumb"><div class="creative-thumb-placeholder">二十四节气电商海报系列</div></div>
+        <div class="creative-body">          <h4>「二十四节气」电商海报专题</h4>
+          <p>以二十四节气为主题，为电商品牌设计的系列节日营销海报。</p>
+        </div>
+      </div>
+
+      <div class="creative-card reveal reveal-d2 clickable" data-category="special" data-article-id="cr-city-1">
+        <div class="creative-thumb"><div class="creative-thumb-placeholder">城市地标联名视觉</div></div>
+        <div class="creative-body">          <h4>城市地标 × 品牌联名视觉</h4>
+          <p>以北京、上海、广州等城市地标为灵感，为品牌打造的联名系列视觉。</p>
+        </div>
+      </div>
+
+      <div class="creative-card reveal reveal-d3 clickable" data-category="special" data-article-id="cr-charity-1">
+        <div class="creative-thumb"><div class="creative-thumb-placeholder">环保公益广告视觉</div></div>
+        <div class="creative-body">          <h4>环保公益广告视觉设计</h4>
+          <p>关注海洋保护、减少塑料等环保主题，用 AI 创作的公益广告系列。</p>
+        </div>
+      </div>
+
+      <div class="creative-card reveal reveal-d1 clickable" data-category="special" data-article-id="cr-collab-1">
+        <div class="creative-thumb"><div class="creative-thumb-placeholder">十二生肖品牌联名</div></div>
+        <div class="creative-body">          <h4>「十二生肖」品牌联名专题</h4>
+          <p>以十二生肖为主题，为不同行业品牌设计的系列联名视觉。</p>
+        </div>
+      </div>
+
+      <div class="creative-card reveal reveal-d2 clickable" data-category="special" data-article-id="cr-cross-1">
+        <div class="creative-thumb"><div class="creative-thumb-placeholder">音乐 × 视觉跨界</div></div>
+        <div class="creative-body">          <h4>音乐 × 视觉跨界实验</h4>
+          <p>把音乐的节奏和旋律转化为视觉元素，探索跨感官的艺术表达。</p>
+        </div>
+      </div>
+
+      <div class="creative-card reveal reveal-d3 clickable" data-category="special" data-article-id="cr-culture-1">
+        <div class="creative-thumb"><div class="creative-thumb-placeholder">东方美学文化探索</div></div>
+        <div class="creative-body">          <h4>东方美学文化探索</h4>
+          <p>从宋代瓷器到日本浮世绘，用 AI 重新演绎东方美学传统。</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="qr-modal" id="qrModal">
+  <button class="qr-close" onclick="closeQRModal()">&#10005;</button>
+  <div class="qr-modal-content">
+    <img id="qrImage" src="" alt="二维码"><p id="qrText"></p>
+  </div>
+</div>
+
+<div class="article-modal" id="articleModal">
+  <button class="qr-close" onclick="closeArticleModal()">&#10005;</button>
+  <div class="article-modal-content">
+    <div class="article-header">
+      <span class="article-cat" id="articleCat"></span>
+      <h2 id="articleTitle"></h2>
+      <div class="article-meta" id="articleMeta"></div>
+    </div>
+    <div class="article-cover" id="articleCover"></div>
+    <div class="article-body" id="articleBody"></div>
+  </div>
+</div>
+
+<footer class="site-footer">
+  <div class="container text-center">
+    <p>&copy; 2026 千岁 AI 保留所有权利 &middot; Powered by OpenClaw</p>
+    <p style="margin-top:4px">电商视觉 视频制作 社媒运营 企业 AI</p>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+<script>
+// 筛选
+(function(){
+  var btns=document.querySelectorAll('.log-filters .filter-btn');
+  var cards=document.querySelectorAll('.creative-card[data-category]');
+  if(!btns.length||!cards.length)return;
+  var defaultFilter='design';
+  cards.forEach(function(c){
+    var cat=c.getAttribute('data-category');
+    if(cat!==defaultFilter){c.style.display='none';}
+  });
+  btns.forEach(function(b){b.addEventListener('click',function(){
+    var f=b.getAttribute('data-filter');
+    btns.forEach(function(x){x.classList.remove('active')});b.classList.add('active');
+    cards.forEach(function(c){
+      var cat=c.getAttribute('data-category');
+      if(f==='all'||cat===f){c.style.display='';c.classList.remove('visible');requestAnimationFrame(function(){c.classList.add('visible')});}
+      else{c.style.display='none';}
+    });
+  });});
+})();
+
+// 文章弹窗
+var articleModal=document.getElementById('articleModal');
+var articleCat=document.getElementById('articleCat');
+var articleTitle=document.getElementById('articleTitle');
+var articleMeta=document.getElementById('articleMeta');
+var articleCover=document.getElementById('articleCover');
+var articleBody=document.getElementById('articleBody');
+
+function openArticleModal(id){
+  var d=articleData[id];
+  if(!d||!articleModal)return;
+  var catLabel={design:'设计',visual:'视觉',manga:'漫画',special:'专题'}[d.cat]||'创意';
+  articleCat.textContent=catLabel;
+  articleCat.className='article-cat '+d.cat;
+  articleTitle.textContent=d.title;
+  articleMeta.textContent=d.date+' · '+d.readTime;
+  articleCover.innerHTML=d.cover?d.cover:'';
+  articleBody.innerHTML=d.body;
+  articleModal.classList.add('active');
+  document.body.style.overflow='hidden';
+}
+function closeArticleModal(){
+  if(!articleModal)return;
+  articleModal.classList.remove('active');
+  document.body.style.overflow='';
+}
+if(articleModal){
+  articleModal.addEventListener('click',function(e){
+    if(e.target===articleModal)closeArticleModal();
+  });
+}
+document.addEventListener('keydown',function(e){
+  if(e.key==='Escape')closeArticleModal();
+});
+
+var clickableCards=document.querySelectorAll('.creative-card[data-article-id]');
+clickableCards.forEach(function(card){
+  card.style.cursor='pointer';
+  card.addEventListener('click',function(){
+    openArticleModal(this.getAttribute('data-article-id'));
+  });
+});
+
+var articleData={
+
+  // ===== 设计 × 6 =====
+  'cr-pkg-1':{
+    cat:'design',
+    title:'护肤品极简包装设计系列',
+    date:'2026 年 4 月',
+    readTime:'约 4 分钟',
+    cover:'<div class="article-cover-placeholder">护肤品极简包装设计</div>',
+    body:'<p>这组设计为一个新锐护肤品牌做极简包装方案，核心思路是"少即是多"。</p><h3>设计理念</h3><p>去掉多余的装饰元素，用纯白瓶身 + 低饱和度标签配色，营造高级感和纯净感。当前护肤品包装的趋势是回归自然和极简，过度设计反而会让消费者觉得廉价。</p><h3>AI 辅助过程</h3><p>用 Midjourney 生成了 50+ 张极简包装参考图，涵盖日系、北欧、法式三种风格方向。客户最终选择了偏日系的方案——大面积留白 + 纤细的无衬线字体 + 极淡的莫兰迪色点缀。</p><h3>输出内容</h3><p>· 精华液瓶身设计（正面 + 侧面 + 背面）</p><p>· 面霜罐体设计</p><p>· 外包装盒展开图</p><p>· 产品组合场景图</p><h3>效果</h3><p>客户上线后反馈，新包装在货架上的辨识度很高，消费者普遍认为"看起来比较贵"。这正是极简设计想要的效果。</p>'
+  },
+  'cr-kv-1':{
+    cat:'design',
+    title:'618 大促主视觉 KV 设计',
+    date:'2026 年 5 月',
+    readTime:'约 5 分钟',
+    cover:'<div class="article-cover-placeholder">618 大促主视觉设计</div>',
+    body:'<p>618 大促需要一套能覆盖全渠道的主视觉方案。</p><h3>需求梳理</h3><p>· 主 KV 1 张（横版 1920×600）</p><p>· 竖版适配 3 张（手机海报、小红书、抖音）</p><p>· 产品主图模板 4 套</p><p>· 详情页活动头图 1 张</p><p>· 社交媒体封面 2 张</p><h3>视觉方向</h3><p>今年 618 的视觉趋势是"科技感 + 活力感"。用了渐变紫 + 荧光绿的配色方案，搭配 3D 立体几何图形，营造年轻化氛围。</p><h3>AI 参与环节</h3><p>用 SD 生成了 3D 几何元素和光效背景，人工排版整合文案和产品信息。AI 在生成背景元素方面效率很高，但排版整合和色彩把控还是需要人来判断。</p><h3>多平台适配</h3><p>一套 KV 需要适配：PC 端首页、移动端首页、天猫/京东/拼多多、小红书、抖音、微信公众号。每个平台的尺寸和视觉规范不同，需要逐一调整。</p><p>最终交付了 12 张不同尺寸的适配图，客户一次性全部用上了。</p>'
+  },
+  'cr-vi-1':{
+    cat:'design',
+    title:'新锐美妆品牌 VI 视觉提案',
+    date:'2026 年 3 月',
+    readTime:'约 5 分钟',
+    cover:'<div class="article-cover-placeholder">美妆品牌 VI 提案</div>',
+    body:'<p>为一个新成立的美妆品牌做完整 VI 视觉体系设计。</p><h3>品牌定位</h3><p>目标人群：18-28 岁女性。品牌关键词：自然、纯净、自信。产品定价：中端（¥80-300）。</p><h3>视觉体系</h3><p><strong>Logo</strong>：极简线条风格，用抽象的植物轮廓作为核心图形，传达天然成分理念。主色采用低饱和的薄荷绿。</p><p><strong>色彩体系</strong>：主色薄荷绿 + 辅色奶白 + 点缀玫瑰金。整套色彩方案经过对比度测试，确保可读性和无障碍友好。</p><p><strong>字体</strong>：标题用思源宋体，正文用思源黑体，英文字用 Inter。三套字体组合覆盖所有场景。</p><p><strong>应用场景</strong>：产品包装、名片、信封、社交媒体头像、官网 header、购物袋等 15 个常用触点。</p><h3>交付</h3><p>· VI 手册 PDF（含规范说明）</p><p>· Logo 源文件（AI + PNG）</p><p>· 色彩代码（RGB/CMYK/HEX）</p><p>· 15 个场景应用效果图</p><p>客户看完提案当场定稿，没有大改。前期沟通充分是关键。</p>'
+  },
+  'cr-ip-1':{
+    cat:'design',
+    title:'宠物食品品牌 IP 形象设计',
+    date:'2026 年 2 月',
+    readTime:'约 4 分钟',
+    cover:'<div class="article-cover-placeholder">宠物品牌 IP 设计</div>',
+    body:'<p>为宠物食品品牌设计的 IP + 包装一体化方案。</p><h3>IP 角色</h3><p>品牌 IP 是一只柯基犬，名字"小满"。设定：爱吃、阳光、有点小调皮。用 SD + LoRA 训练了这个固定角色，确保在不同姿态和表情下保持一致性。</p><h3>包装设计</h3><p>· 狗粮包装：小满在草地上奔跑的场景插画</p><p>· 猫粮包装：小满和猫咪朋友的互动画面</p><p>· 零食包装：小满叼着零食的可爱表情</p><p>每种产品线的包装都有统一的 IP 角色，但场景和配色不同，方便消费者在货架上快速区分。</p><h3>色彩体系</h3><p>狗粮用暖橙色（活力），猫粮用蓝紫色（优雅），零食用草绿色（健康）。三套色系既区分品类，又保持整体协调。</p><h3>效果</h3><p>这套包装在宠物展会上引起了很好的反响，消费者普遍认为"可爱"、"有辨识度"。品牌方反馈上线后销售额提升了 30%。</p>'
+  },
+  'cr-ec-1':{
+    cat:'design',
+    title:'母婴用品 ins 风电商视觉',
+    date:'2026 年 4 月',
+    readTime:'约 3 分钟',
+    cover:'<div class="article-cover-placeholder">母婴 ins 风视觉</div>',
+    body:'<p>为母婴品牌设计的 ins 风格视觉方案。</p><h3>风格定位</h3><p>温馨、柔和、自然。配色以米白 + 浅粉 + 薄荷绿为主，营造妈妈和宝宝都感觉舒服的氛围。</p><h3>AI 生成环节</h3><p>用 MJ 生成了 100+ 张 ins 风格的生活场景图：宝宝在床上睡觉、妈妈喂辅食、宝宝玩玩具等。从这些参考图中选了最符合品牌调性的 12 张作为基础，合成产品图。</p><h3>输出</h3><p>· 产品主图 20 张（5 个 SKU × 4 张主图）</p><p>· 场景海报 12 张</p><p>· 社交媒体配图 15 张</p><p>· 店铺首页装修素材包</p><h3>多 SKU 统一风格</h3><p>客户有 5 个不同的 SKU，每个需要独立的视觉方案但又要保持统一风格。做法是先确定一套模板（构图 + 配色 + 文案排版），然后替换产品和场景元素。</p><p>这套方案上线后，店铺的点击率和停留时长都有明显提升。妈妈群体对 ins 风的接受度很高。</p>'
+  },
+  'cr-ev-1':{
+    cat:'design',
+    title:'运动户外品牌视觉全案',
+    date:'2026 年 3 月',
+    readTime:'约 4 分钟',
+    cover:'<div class="article-cover-placeholder">运动品牌视觉全案</div>',
+    body:'<p>为一个运动户外品牌做从 0 到 1 的视觉体系搭建。</p><h3>品牌定位</h3><p>目标人群：25-40 岁户外运动爱好者。产品：帐篷、登山装备、户外服装。品牌关键词：专业、可靠、自由。</p><h3>Logo 设计</h3><p>用山峰和指南针的抽象组合作为核心图形，传达"方向"和"探险"理念。配色采用墨绿 + 橙色，既有户外感又有活力。</p><h3>产品视觉</h3><p>· 帐篷场景图：在山顶、湖边、森林中展示产品</p><p>· 装备细节图：材质、工艺、功能性展示</p><p>· 服装穿搭图：户外运动场景中的穿搭效果</p><h3>活动海报</h3><p>设计了 3 套活动海报：新品上市、户外挑战赛、会员日。每套含横版 + 竖版 + 正方形 3 种尺寸。</p><h3>AI 辅助</h3><p>用 MJ 生成了大量户外场景参考图，用 SD 生成了产品合成背景。户外场景的 AI 生成难度较大，需要多次尝试才能获得真实的自然环境效果。</p>'
+  },
+
+  // ===== 视觉 × 6 =====
+  'cr-scene-1':{
+    cat:'visual',
+    title:'日系家居场景海报',
+    date:'2026 年 3 月',
+    readTime:'约 3 分钟',
+    cover:'<div class="article-cover-placeholder">日系家居场景</div>',
+    body:'<p>为家居品牌打造的温暖日系风格场景图。</p><h3>视觉特征</h3><p>木质调 + 自然光 + 低饱和度。画面中有原木家具、亚麻织物、绿植、温暖的午后阳光。整体氛围是"回到家就放松下来"的感觉。</p><h3>AI 生成过程</h3><p>用 SD 生成了 40+ 张日系室内场景，选了最自然的 8 张作为底图。产品（客户提供的 3D 模型）合成到场景中，调整光影和材质反射，确保产品融入环境而不突兀。</p><h3>应用场景</h3><p>· 电商首页 Banner</p><p>· 产品详情页场景图</p><p>· 小红书种草图</p><p>· 线下门店墙面海报</p><p>这种风格在家居品类中很受欢迎，消费者反馈"看起来就是想要的家的感觉"。</p>'
+  },
+  'cr-style-1':{
+    cat:'visual',
+    title:'赛博朋克风 3C 产品海报',
+    date:'2026 年 4 月',
+    readTime:'约 3 分钟',
+    cover:'<div class="article-cover-placeholder">赛博朋克风产品海报</div>',
+    body:'<p>为一组 3C 数码产品设计赛博朋克风格的宣传海报。</p><h3>视觉风格</h3><p>霓虹紫 + 荧光蓝的主色调，搭配暗色背景和高对比度光效。产品置于画面中心，周围环绕几何光带和城市夜景元素。</p><h3>AI 生成过程</h3><p>用 SD + ControlNet 精确控制产品位置和角度，确保产品在生成图中保持原样。背景部分由 AI 生成赛博朋克城市景观，后期用 PS 合成光效和文字。</p><h3>输出</h3><p>· 横版海报 3 张（PC 端用）</p><p>· 竖版海报 3 张（移动端用）</p><p>· 正方形 2 张（社交媒体用）</p><p>这套风格在年轻群体中反响很好，点击率比常规风格高 35%。</p>'
+  },
+  'cr-ill-1':{
+    cat:'visual',
+    title:'国潮风零食品牌插画',
+    date:'2026 年 3 月',
+    readTime:'约 3 分钟',
+    cover:'<div class="article-cover-placeholder">国潮风零食插画</div>',
+    body:'<p>为国潮零食品牌设计了一套插画作品，融合中国传统元素和现代扁平化风格。</p><h3>主题</h3><p>选了中国传统建筑的飞檐、窗花、石狮等元素，用现代扁平化插画手法重新演绎。配色以朱红 + 金色 + 墨绿为主，既有传统韵味又不失时尚感。</p><h3>应用场景</h3><p>· 产品包装插画</p><p>· 品牌公众号配图</p><p>· 线下门店墙面装饰</p><p>· 周边产品（帆布袋、贴纸、明信片）</p><h3>制作过程</h3><p>先用 AI 生成基础构图和配色方案，人工精修线条和细节，调整传统元素的比例和呈现方式。AI 能快速产出多种风格方向，但国潮特有的"韵"和"气"需要人工把控。</p><p>客户反馈这套插画让品牌形象更有"中国味"了，年轻消费者很喜欢。</p>'
+  },
+  'cr-poster-1':{
+    cat:'visual',
+    title:'科幻风科技产品海报',
+    date:'2026 年 4 月',
+    readTime:'约 3 分钟',
+    cover:'<div class="article-cover-placeholder">科幻风科技产品</div>',
+    body:'<p>为智能硬件品牌打造的未来主义视觉风格。</p><h3>视觉方向</h3><p>太空感 + 全息投影 + 深蓝色调。画面中有发光的线条、悬浮的粒子效果、暗色背景。产品像是来自未来的科技设备。</p><h3>AI 实现</h3><p>用 SD + ControlNet 精确控制产品位置和角度，生成科幻风格的背景环境。光效和粒子效果部分用 MJ 辅助生成，后期用 PS 合成和精修。</p><h3>输出</h3><p>· 产品主视觉 3 张</p><p>· 功能演示图 5 张（每个功能一个场景）</p><p>· 横版海报 2 张</p><p>这套视觉风格在科技类展会中反响很好，参观者普遍认为"有未来感"、"像科幻电影"。</p>'
+  },
+  'cr-light-1':{
+    cat:'visual',
+    title:'手绘风光影实验',
+    date:'2026 年 4 月',
+    readTime:'约 3 分钟',
+    cover:'<div class="article-cover-placeholder">手绘风光影实验</div>',
+    body:'<p>为儿童品牌创作的水彩手绘风格系列插画，重点探索光影层次的表现。</p><h3>风格定位</h3><p>水彩手绘 + 童趣配色。画面中有小动物、彩虹、花朵、云朵等儿童喜欢的元素。色彩柔和明快，给人"童话世界"的感觉。</p><h3>光影探索</h3><p>重点尝试了水彩画特有的光影表现方式：用 AI 模拟水彩颜料的自然扩散效果、笔触方向对光影的影响、色彩透明度叠加产生的层次感。</p><h3>应用</h3><p>· 产品包装插画</p><p>· 品牌公众号头图</p><p>· 儿童房墙面贴画设计稿</p><p>· 周边产品（贴纸、贺卡）</p><p>消费者反馈这套插画"很治愈"，很多妈妈在社交媒体上晒出了贴画的实际使用效果。</p>'
+  },
+  'cr-concept-1':{
+    cat:'visual',
+    title:'抽象概念视觉探索',
+    date:'2026 年 4 月',
+    readTime:'约 3 分钟',
+    cover:'<div class="article-cover-placeholder">抽象概念视觉</div>',
+    body:'<p>一组纯粹的 AI 抽象艺术实验，探索机器理解"美"的边界。</p><h3>灵感</h3><p>受到康定斯基、蒙德里安等抽象艺术大师的启发，用 AI 重新演绎"抽象构成"这一艺术形式。但不是简单模仿，而是让 AI 在大量训练数据的基础上，生成它自己理解的"美"。</p><h3>过程</h3><p>用 SD 的纯抽象模式（不输入具体物体描述），只给色彩倾向、构图方向、情绪关键词。让 AI 自由生成，我负责筛选和后期调色。</p><h3>发现</h3><p>AI 生成的抽象画有几个有趣的特点：线条比人类更"完美"，反而少了一些"人味"；色彩搭配出乎意料地和谐；构图倾向于对称和黄金分割。</p><p>这组作品虽然不直接用于商业项目，但对提升审美和理解 AI 创作边界很有帮助。</p>'
+  },
+
+  // ===== 漫画 × 6 =====
+  'cr-story-1':{
+    cat:'manga',
+    title:'「一人公司」创业故事漫画 EP.1',
+    date:'2026 年 4 月',
+    readTime:'约 6 分钟阅读',
+    cover:'<div class="article-cover-placeholder">创业故事漫画 EP.1</div>',
+    body:'<p>用漫画记录一人公司的创业日常。这是第一集——接到第一个订单的故事。</p><h3>EP.1 剧情</h3><p>主角是一个独自做 AI 视觉设计的自由职业者。某天深夜，收到了一条陌生客户发来的消息："能帮我做一套产品图吗？预算不高……"</p><p>从沟通需求、AI 初稿生成、客户修改意见到最终交付，完整记录了第一单的全过程。有紧张、有修改的无奈、也有交付后收到好评的喜悦。</p><h3>为什么做漫画</h3><p>文字和视频教程很多，但漫画是另一种表达方式。用画面讲故事，更容易引发共鸣。而且用 AI 做漫画这件事本身就有话题性。</p><h3>制作工具</h3><p>· 角色设定：SD + LoRA 训练固定角色</p><p>· 分镜：手动规划，AI 生成每格画面</p><p>· 文字气泡：PS 后期添加</p><p>· 排版：Canva</p><p>后续会持续更新 EP.2、EP.3……记录更多真实的项目故事。</p>'
+  },
+  'cr-life-1':{
+    cat:'manga',
+    title:'自由职业者的一天',
+    date:'2026 年 4 月',
+    readTime:'约 3 分钟',
+    cover:'<div class="article-cover-placeholder">自由职业者日常</div>',
+    body:'<p>漫画记录自由职业者的真实一天。</p><h3>上午</h3><p>10:00 起床，不需要赶早高峰。泡一杯咖啡，打开电脑，先看一下昨晚收到的客户需求。回复消息，确认项目细节。</p><h3>下午</h3><p>14:00 开始工作。今天的任务是生成一批产品图。AI 在跑，我去做了一顿饭——自由职业者最大的好处就是可以自己安排时间。</p><p>16:00 精修图片。AI 生成的结果需要人工调整细节：色彩、光影、文案排版。这是最花时间的环节。</p><h3>深夜</h3><p>23:00 把改好的图发给客户。然后继续做一些创意实验——这是自己的时间，做一些有趣的、不一定能赚钱的项目。</p><p>02:00 睡觉。没有打卡、没有开会、没有通勤——这就是自由职业者的日常。</p>'
+  },
+  'cr-fun-1':{
+    cat:'manga',
+    title:'客户沟通常见场景漫画',
+    date:'2026 年 4 月',
+    readTime:'约 4 分钟',
+    cover:'<div class="article-cover-placeholder">客户沟通场景漫画</div>',
+    body:'<p>用漫画还原自由职业者与客户沟通的真实场景。</p><h3>场景 1："感觉不对"</h3><p>客户看完初稿："感觉不对，但具体哪里不对说不上来。"主角内心：最怕的就是这种感觉。</p><h3>场景 2："再改一版"</h3><p>改了 3 版后，客户："还是第一版比较好吧。"主角：……但已经花了 3 倍的工时。</p><h3>场景 3："预算不够"</h3><p>客户："这个价格有点超预算，能不能便宜点？"主角解释：AI 只是辅助工具，最终质量取决于人工精修。</p><h3>场景 4："能不能今天交付"</h3><p>周五下午接到需求："能不能今天交付？很急。"主角：好的好的，周末又没了。</p><h3>为什么做这个</h3><p>这些场景每个自由职业者都遇到过。用漫画表达出来，既是自嘲也是共鸣。希望客户看了也能理解我们的工作状态——不是 AI 一键出图那么简单。</p>'
+  },
+  'cr-sci-1':{
+    cat:'manga',
+    title:'3 分钟看懂 AI 绘画原理',
+    date:'2026 年 4 月',
+    readTime:'约 5 分钟',
+    cover:'<div class="article-cover-placeholder">AI 绘画科普漫画</div>',
+    body:'<p>用漫画解释 AI 绘画的核心原理，零基础也能看懂。</p><h3>什么是扩散模型</h3><p>漫画比喻：就像把一杯清水慢慢滴入墨水，整杯水变浑浊了。扩散模型反过来——从浑浊中慢慢还原出清晰的画面。这就是 AI 从噪声中"画"出图片的原理。</p><h3>什么是 LoRA</h3><p>漫画比喻：AI 是一个什么都会画的学生，LoRA 就是给它上的"专业课"。训练一个角色风格的 LoRA，就像让 AI 专门练习画某个人物，越练越像。</p><h3>什么是 ControlNet</h3><p>漫画比喻：AI 画画很自由但不听指挥。ControlNet 就像给它画了"草稿线稿"——你告诉它构图和姿态，它在这个框架内发挥创意。</p><h3>总结</h3><p>AI 绘画 = 扩散模型（核心能力）+ LoRA（风格定制）+ ControlNet（精准控制）。这三个技术组合起来，就是当前 AI 绘画的完整工具箱。</p>'
+  },
+  'cr-living-1':{
+    cat:'manga',
+    title:'独居生活的 10 个小确幸',
+    date:'2026 年 4 月',
+    readTime:'约 3 分钟',
+    cover:'<div class="article-cover-placeholder">独居生活漫画</div>',
+    body:'<p>一个人住、一个人吃饭、一个人工作——独居生活的温暖与自由。</p><h3>小确幸清单</h3><p>1. 凌晨 2 点想吃泡面，没人管你</p><p>2. 沙发上躺着看一整天的剧，不用收拾</p><p>3. 洗澡的时候可以大声唱歌</p><p>4. 周末不用约会，不用化妆</p><p>5. 房间想怎么摆就怎么摆</p><p>6. 一个人做饭，做多少吃多少</p><p>7. 不用迁就别人的作息时间</p><p>8. 有自己的空间安静思考</p><p>9. 养一只宠物不用跟任何人商量</p><p>10. 回家的路上，看到万家灯火，知道自己有一盏</p><h3>感受</h3><p>独居不是孤独，而是一种选择。选择一个人待着，选择按自己的节奏生活。漫画记录了这些微小但真实的幸福瞬间。</p>'
+  },
+  'cr-work-1':{
+    cat:'manga',
+    title:'自由职业的 5 个真相',
+    date:'2026 年 4 月',
+    readTime:'约 4 分钟',
+    cover:'<div class="article-cover-placeholder">自由职场观察</div>',
+    body:'<p>关于自由职业，有一些残酷但真实的真相。</p><h3>真相 1：自由不等于轻松</h3><p>没有老板管你，但客户就是你的老板。而且你可能同时有 5 个老板，每个都觉得自己最重要。</p><h3>真相 2：收入不稳定</h3><p>好的月份可能月入 3 万，差的月份只有 5 千。自由职业者需要学会理财和存钱，为淡季做准备。</p><h3>真相 3：需要很强的自律</h3><p>没有打卡、没有考勤，没有人监督你工作。自律能力差的人很容易变成"自由失业"。</p><h3>真相 4：社交圈子变小</h3><p>没有同事、没有办公室闲聊，每天大部分时间一个人。需要主动维护社交关系，否则会与社会脱节。</p><h3>真相 5：上限很高</h3><p>但收入上限确实比打工高。打工的工资有天花板，自由职业者的收入取决于能力和接单量。做得好的人，月入 5 万以上并不罕见。</p><p>漫画形式呈现这些真相，既幽默又真实。适合正在考虑自由职业的人参考。</p>'
+  },
+
+  // ===== 专题 × 6 =====
+  'cr-festival-1':{
+    cat:'special',
+    title:'「二十四节气」电商海报专题',
+    date:'2026 年',
+    readTime:'约 4 分钟',
+    cover:'<div class="article-cover-placeholder">二十四节气海报专题</div>',
+    body:'<p>以二十四节气为主题，为电商品牌设计的系列节日营销海报。</p><h3>设计思路</h3><p>每个节气一张海报，全年 24 张。统一的设计风格：传统水墨 + 现代极简排版。每张海报包含：节气名称、物候描述、品牌产品融入场景。</p><h3>AI 参与环节</h3><p>用 AI 生成了 24 张不同节气的山水背景和水墨元素，人工整合产品图和文案。AI 在传统风格的图像生成上表现很好，但需要大量 prompt 调试才能达到理想效果。</p><h3>效果</h3><p>这套海报在全年持续发布，形成了品牌的内容资产。每个节气发布当天，社交媒体的互动量明显高于日常。消费者反馈"有文化感"、"跟普通促销海报不一样"。</p><p>节日营销的关键是提前准备，不能临时赶工。这 24 张海报是一次性设计完成的，按节气排期发布。</p>'
+  },
+  'cr-city-1':{
+    cat:'special',
+    title:'城市地标 × 品牌联名视觉',
+    date:'2026 年 3 月',
+    readTime:'约 4 分钟',
+    cover:'<div class="article-cover-placeholder">城市地标联名视觉</div>',
+    body:'<p>以城市地标为灵感，为品牌打造的联名系列视觉。</p><h3>概念</h3><p>每个城市选 2 个标志性元素，融入品牌视觉中。让消费者看到海报就想到那个城市。</p><h3>北京系列</h3><p>· 故宫红墙 × 美妆品牌：红墙背景中的口红和粉饼，中国风配色。</p><p>· 天坛 × 茶叶品牌：天坛剪影与茶叶包装的结合，古典与现代的碰撞。</p><h3>上海系列</h3><p>· 外滩夜景 × 智能手表：外滩天际线 + 手表的科技感。</p><p>· 石库门 × 咖啡品牌：老上海风情 + 现代咖啡文化。</p><h3>广州系列</h3><p>· 广州塔 × 运动品牌：小蛮腰的曲线与运动姿态融合。</p><p>· 荔湾 × 餐饮品牌：岭南园林中的餐桌场景。</p><h3>制作</h3><p>AI 生成了各城市的建筑和环境素材，人工整合产品图和文案。每个城市的海报都保持了品牌统一的视觉规范，但融入了地方特色。</p>'
+  },
+  'cr-charity-1':{
+    cat:'special',
+    title:'环保公益广告视觉设计',
+    date:'2026 年 4 月',
+    readTime:'约 4 分钟',
+    cover:'<div class="article-cover-placeholder">环保公益广告</div>',
+    body:'<p>用 AI 创作的环保主题公益广告系列。</p><h3>主题</h3><p><strong>海洋保护</strong>：被塑料垃圾包围的海龟，对比清洁海洋中的海龟。配文："它的世界，取决于我们的选择。"</p><p><strong>减少塑料</strong>：一个装满塑料瓶的海浪场景。配文："每分钟有相当于一卡车的塑料进入海洋。"</p><p><strong>森林保护</strong>：砍伐前后的森林对比。配文："地球上每分钟有 27 片森林消失。"</p><h3>视觉风格</h3><p>写实风格 + 强烈对比。用 AI 生成高质量的自然场景，对比画面中的人为破坏元素。视觉冲击力强，引发观者思考。</p><h3>AI 实现</h3><p>用 SD 生成了自然场景和对比画面，用 ControlNet 精确控制构图。这类公益广告的视觉要求很高——太粗糙会削弱信息的力量，太精美又会让人忽略背后的严肃性。</p><h3>社会反响</h3><p>这组公益广告在社交媒体发布后，获得了 5 万+ 转发。很多品牌联系希望合作类似项目。公益和商业视觉的结合，是一个值得探索的方向。</p>'
+  },
+  'cr-collab-1':{
+    cat:'special',
+    title:'「十二生肖」品牌联名专题',
+    date:'2026 年 1 月',
+    readTime:'约 4 分钟',
+    cover:'<div class="article-cover-placeholder">十二生肖品牌联名</div>',
+    body:'<p>以十二生肖为主题，为不同行业品牌设计的系列联名视觉。</p><h3>设计理念</h3><p>每个生肖一张海报，用现代插画风格重新演绎传统生肖形象。不是简单的动物卡通，而是融入了品牌元素和行业特征。</p><h3>部分作品</h3><p><strong>龙 × 科技公司</strong>：龙的鳞片变成电路板纹理，龙的姿态充满力量感。</p><p><strong>兔 × 美妆品牌</strong>：兔子拿着化妆刷，画面可爱清新。</p><p><strong>虎 × 运动品牌</strong>：虎奔跑的剪影与运动鞋融合，动感十足。</p><p><strong>蛇 × 珠宝品牌</strong>：蛇缠绕在珠宝上，营造神秘感。</p><h3>AI 实现</h3><p>用 MJ 生成了大量生肖角色的创意方向，选了最符合品牌调性的方案，然后用 SD 精修和控制细节。</p><p>这套专题的价值在于：节日营销需要持续的内容储备，一次性设计好全年的生肖海报，按月份发布，形成品牌的内容节奏。</p>'
+  },
+  'cr-cross-1':{
+    cat:'special',
+    title:'音乐 × 视觉跨界实验',
+    date:'2026 年 4 月',
+    readTime:'约 4 分钟',
+    cover:'<div class="article-cover-placeholder">音乐视觉跨界</div>',
+    body:'<p>把音乐的节奏和旋律转化为视觉元素，探索跨感官的艺术表达。</p><h3>概念</h3><p>每首歌都有自己独特的节奏、旋律和情绪。能不能把这些抽象的感受"翻译"成视觉画面？我做了一组实验。</p><h3>实验过程</h3><p><strong>古典乐 × 抽象画</strong>：选了贝多芬的月光奏鸣曲，用 AI 生成了一幅画面——柔和的月光洒在平静的水面上，色调偏冷蓝。对应音乐的"安静"和"忧伤"。</p><p><strong>电子乐 × 几何构成</strong>：选了一首快节奏电子舞曲，生成的画面充满锐利的几何图形和霓虹色块，视觉上有"跳动"的节奏感。</p><p><strong>民谣 × 自然场景</strong>：选了一首吉他民谣，生成的画面是日落时分的田野，温暖的橙色调。对应音乐的"自然"和"温暖"。</p><h3>发现</h3><p>AI 在"听"音乐（或者说，理解音乐的文本描述）后生成的画面，确实和音乐的情绪有对应关系。虽然不精确，但方向是对的。跨感官的艺术表达是一个有趣的方向。</p>'
+  },
+  'cr-culture-1':{
+    cat:'special',
+    title:'东方美学文化探索',
+    date:'2026 年 4 月',
+    readTime:'约 5 分钟',
+    cover:'<div class="article-cover-placeholder">东方美学文化探索</div>',
+    body:'<p>从宋代瓷器到日本浮世绘，用 AI 重新演绎东方美学传统。</p><h3>宋代极简主义</h3><p>宋瓷被认为是世界上最早的极简设计。汝窑的天青色、官窑的冰裂纹、哥窑的金丝铁线——这些美学语言领先欧洲 800 年。用 AI 生成了 20 张宋瓷风格的产品背景图，天青色的温润质感在 AI 的还原下非常美。</p><h3>浮世绘</h3><p>葛饰北斋的神奈川冲浪里、歌川广重的东海道五十三次——这些经典作品影响了梵高、莫奈等西方大师。用 AI 生成了浮世绘风格的现代场景：东京街头的浮世绘、上海天际线的浮世绘。</p><h3>中国水墨</h3><p>水墨画的核心是"留白"和"意境"，这对 AI 是一个挑战——AI 倾向于填满画面，而水墨的精髓恰恰在"不画什么"。经过大量调试，终于让 AI 学会了"留白"。</p><p>这个专题不是为了商业用途，而是对东方美学的一次系统性梳理。了解传统，才能更好地做现代设计。</p>'
+  }
+
+};
+</script>
+
+</body>
+</html>

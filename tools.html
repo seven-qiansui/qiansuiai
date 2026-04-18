@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI 工具箱 - 千岁 AI</title>
+  <meta name="description" content="千岁 AI 精选 AI 工具推荐，涵盖文案、设计、视频、数据分析等领域。">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div class="scroll-progress" id="scrollProgress"></div>
+<div class="bg-glow"><div class="bg-glow-g3"></div><div class="bg-glow-g4"></div><div class="bg-glow-g5"></div></div>
+
+<nav class="navbar" id="navbar">
+  <div class="container">
+    <a href="index.html" class="nav-brand">
+      <svg class="logo-mark" viewBox="0 0 32 32" fill="none">
+        <path d="M16 2L4 9v14l12 7 12-7V9L16 2z" stroke="url(#logoGrad)" stroke-width="1.5" fill="none"/>
+        <path d="M16 8l-5 3v6l5 3 5-3v-6l-5-3z" fill="url(#logoGrad)" opacity="0.15"/>
+        <path d="M16 8l-5 3v6l5 3 5-3v-6l-5-3z" stroke="url(#logoGrad)" stroke-width="1.2"/>
+        <path d="M16 11l-2 1.2v2.6L16 16l2-1.2v-2.6L16 11z" fill="url(#logoGrad)"/>
+        <defs>
+          <linearGradient id="logoGrad" x1="0" y1="0" x2="32" y2="32">
+            <stop offset="0%" stop-color="#c9a96e"/>
+            <stop offset="100%" stop-color="#dfc08a"/>
+          </linearGradient>
+        </defs>
+      </svg>
+      千岁 AI
+    </a>
+    <div class="nav-links" id="navLinks">
+      <a href="index.html" class="nav-link">首页</a>
+      <a href="services.html" class="nav-link">服务</a>
+      <a href="cases.html" class="nav-link">案例</a>
+      <a href="riluo.html" class="nav-link">随记</a>
+      <a href="creative.html" class="nav-link">创意</a>
+      <a href="tools.html" class="nav-link active">工具</a>
+      <a href="frontier.html" class="nav-link">前沿</a>
+      <a href="contact.html" class="nav-cta">联系</a>
+    </div>
+    <button class="nav-toggle" id="navToggle" aria-label="菜单"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<header class="page-hero">
+  <div class="container" style="max-width:700px">
+    <div class="reveal"><span class="section-label">AI 工具箱</span></div>
+    <h2 class="section-title reveal">精选 <span class="hl">AI 工具</span></h2>
+    <p class="section-desc reveal" style="margin:16px auto 0">18 款 AI 工具，涵盖文案、设计、效率、数据、开发、翻译，点击即可使用。</p>
+  </div>
+</header>
+
+<section class="tools-section">
+  <div class="container">
+    <div class="log-filters reveal">
+      <button class="filter-btn active" data-filter="copy">文案</button>
+      <button class="filter-btn" data-filter="design">设计</button>
+      <button class="filter-btn" data-filter="productivity">效率</button>
+      <button class="filter-btn" data-filter="data">数据</button>
+      <button class="filter-btn" data-filter="dev">开发</button>
+      <button class="filter-btn" data-filter="translate">翻译</button>
+    </div>
+
+    <div class="tools-grid" id="toolsGrid">
+
+      <!-- 文案 × 3 -->
+      <div class="tool-card reveal reveal-d1 clickable" data-category="copy" data-tool-id="copy-title">
+        <div class="tool-icon">&#128221;</div>
+        <h3>标题大师</h3>
+        <p>一键生成吸引点击的标题，涵盖数字型、痛点型、对比型等多种风格。</p>
+      </div>
+      <div class="tool-card reveal reveal-d2 clickable" data-category="copy" data-tool-id="copy-desc">
+        <div class="tool-icon">&#128196;</div>
+        <h3>产品描述</h3>
+        <p>输入产品信息，自动生成简洁有力的卖点描述，突出用户利益。</p>
+      </div>
+      <div class="tool-card reveal reveal-d3 clickable" data-category="copy" data-tool-id="copy-slogan">
+        <div class="tool-icon">&#128226;</div>
+        <h3>广告语生成</h3>
+        <p>创作朗朗上口的广告语，适合品牌 slogan、活动标语、产品宣传。</p>
+      </div>
+
+      <!-- 设计 × 3 -->
+      <div class="tool-card reveal reveal-d1 clickable" data-category="design" data-tool-id="design-mainimg">
+        <div class="tool-icon">&#127912;</div>
+        <h3>主图提示词</h3>
+        <p>根据产品特点，生成适配电商主图的 AI 绘画提示词。</p>
+      </div>
+      <div class="tool-card reveal reveal-d2 clickable" data-category="design" data-tool-id="design-scene">
+        <div class="tool-icon">&#127748;</div>
+        <h3>场景提示词</h3>
+        <p>为产品生成场景图的 AI 提示词，涵盖家居、户外、办公等场景。</p>
+      </div>
+      <div class="tool-card reveal reveal-d3 clickable" data-category="design" data-tool-id="design-logo">
+        <div class="tool-icon">&#9733;</div>
+        <h3>Logo 灵感</h3>
+        <p>输入品牌信息，生成 Logo 设计的创意方向和 AI 提示词。</p>
+      </div>
+
+      <!-- 效率 × 3 -->
+      <div class="tool-card reveal reveal-d1 clickable" data-category="productivity" data-tool-id="prod-email">
+        <div class="tool-icon">&#9993;</div>
+        <h3>邮件回复</h3>
+        <p>输入对方邮件内容和你的回复意图，自动生成专业得体的邮件回复。</p>
+      </div>
+      <div class="tool-card reveal reveal-d2 clickable" data-category="productivity" data-tool-id="prod-meeting">
+        <div class="tool-icon">&#128203;</div>
+        <h3>会议纪要</h3>
+        <p>输入会议讨论要点，自动生成结构化的会议纪要和待办事项。</p>
+      </div>
+      <div class="tool-card reveal reveal-d3 clickable" data-category="productivity" data-tool-id="prod-plan">
+        <div class="tool-icon">&#128197;</div>
+        <h3>日程规划</h3>
+        <p>输入本周待办事项，自动生成时间合理分配的日程计划。</p>
+      </div>
+
+      <!-- 数据 × 3 -->
+      <div class="tool-card reveal reveal-d1 clickable" data-category="data" data-tool-id="data-interpret">
+        <div class="tool-icon">&#128202;</div>
+        <h3>数据解读</h3>
+        <p>输入数据或指标，自动生成通俗易懂的数据分析报告和洞察建议。</p>
+      </div>
+      <div class="tool-card reveal reveal-d2 clickable" data-category="data" data-tool-id="data-report">
+        <div class="tool-icon">&#128200;</div>
+        <h3>报表建议</h3>
+        <p>描述你的业务场景，自动生成报表设计建议和关键指标推荐。</p>
+      </div>
+      <div class="tool-card reveal reveal-d3 clickable" data-category="data" data-tool-id="data-user">
+        <div class="tool-icon">&#128101;</div>
+        <h3>用户洞察</h3>
+        <p>输入用户行为数据或描述目标人群，自动生成用户画像和分析报告。</p>
+      </div>
+
+      <!-- 开发 × 3 -->
+      <div class="tool-card reveal reveal-d1 clickable" data-category="dev" data-tool-id="dev-explain">
+        <div class="tool-icon">&#128187;</div>
+        <h3>代码解释</h3>
+        <p>粘贴一段代码，自动生成通俗易懂的功能解释和注释。</p>
+      </div>
+      <div class="tool-card reveal reveal-d2 clickable" data-category="dev" data-tool-id="dev-debug">
+        <div class="tool-icon">&#128308;</div>
+        <h3>Bug 诊断</h3>
+        <p>描述 Bug 现象和相关代码，自动生成可能原因和修复建议。</p>
+      </div>
+      <div class="tool-card reveal reveal-d3 clickable" data-category="dev" data-tool-id="dev-api">
+        <div class="tool-icon">&#128279;</div>
+        <h3>API 设计</h3>
+        <p>描述业务需求，自动生成 RESTful API 接口设计方案和示例代码。</p>
+      </div>
+
+      <!-- 翻译 × 3 -->
+      <div class="tool-card reveal reveal-d1 clickable" data-category="translate" data-tool-id="trans-multi">
+        <div class="tool-icon">&#127760;</div>
+        <h3>多语翻译</h3>
+        <p>支持中、英、日、法、德等多语言互译，保持原文语义和语气。</p>
+      </div>
+      <div class="tool-card reveal reveal-d2 clickable" data-category="translate" data-tool-id="trans-ecom">
+        <div class="tool-icon">&#128722;</div>
+        <h3>电商翻译</h3>
+        <p>专为电商场景优化，翻译产品标题、描述、关键词，适配海外平台。</p>
+      </div>
+      <div class="tool-card reveal reveal-d3 clickable" data-category="translate" data-tool-id="trans-local">
+        <div class="tool-icon">&#128205;</div>
+        <h3>本地化翻译</h3>
+        <p>营销文案、品牌故事的本地化翻译，考虑文化差异和语言习惯。</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="qr-modal" id="qrModal">
+  <button class="qr-close" onclick="closeQRModal()">&#10005;</button>
+  <div class="qr-modal-content">
+    <img id="qrImage" src="" alt="二维码"><p id="qrText"></p>
+  </div>
+</div>
+
+<div class="tool-modal" id="toolModal">
+  <button class="qr-close" onclick="closeToolModal()">&#10005;</button>
+  <div class="tool-modal-content">
+    <div class="tool-header">
+      <h2 id="toolTitle"></h2>
+      <p id="toolDesc"></p>
+    </div>
+    <div class="tool-app">
+      <div class="tool-input-area">
+        <textarea id="toolInput" rows="4" placeholder="输入你的需求..."></textarea>
+        <div class="tool-extra-inputs" id="toolExtraInputs"></div>
+      </div>
+      <button class="btn btn-primary" id="toolGenerate" onclick="generateTool()">生成</button>
+      <div class="tool-output" id="toolOutput">
+        <div class="tool-output-placeholder">点击生成，等待结果...</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer class="site-footer">
+  <div class="container text-center">
+    <p>&copy; 2026 千岁 AI 保留所有权利 &middot; Powered by OpenClaw</p>
+    <p style="margin-top:4px">电商视觉 视频制作 社媒运营 企业 AI</p>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+<script>
+// 筛选
+(function(){
+  var btns=document.querySelectorAll('.log-filters .filter-btn');
+  var cards=document.querySelectorAll('.tool-card[data-category]');
+  if(!btns.length||!cards.length)return;
+  var defaultFilter='copy';
+  cards.forEach(function(c){
+    var cat=c.getAttribute('data-category');
+    if(cat!==defaultFilter){c.style.display='none';}
+  });
+  btns.forEach(function(b){b.addEventListener('click',function(){
+    var f=b.getAttribute('data-filter');
+    btns.forEach(function(x){x.classList.remove('active')});b.classList.add('active');
+    cards.forEach(function(c){
+      var cat=c.getAttribute('data-category');
+      if(f==='all'||cat===f){c.style.display='';c.classList.remove('visible');requestAnimationFrame(function(){c.classList.add('visible')});}
+      else{c.style.display='none';}
+    });
+  });});
+})();
+
+// 工具弹窗
+var toolModal=document.getElementById('toolModal');
+var toolTitle=document.getElementById('toolTitle');
+var toolDesc=document.getElementById('toolDesc');
+var toolInput=document.getElementById('toolInput');
+var toolExtraInputs=document.getElementById('toolExtraInputs');
+var toolOutput=document.getElementById('toolOutput');
+var currentToolId=null;
+
+function openToolModal(id){
+  var t=toolData[id];
+  if(!t||!toolModal)return;
+  currentToolId=id;
+  toolTitle.textContent=t.name;
+  toolDesc.textContent=t.desc;
+  toolInput.placeholder=t.inputPlaceholder||'输入你的需求...';
+  toolInput.value='';
+  toolOutput.innerHTML='<div class="tool-output-placeholder">点击生成，等待结果...</div>';
+  // 额外输入
+  toolExtraInputs.innerHTML='';
+  if(t.extraFields){
+    t.extraFields.forEach(function(f){
+      if(f.type==='select'){
+        var sel=document.createElement('select');
+        sel.id='extra_'+f.id;
+        sel.className='tool-extra-select';
+        var def=document.createElement('option');
+        def.value='';def.disabled=true;def.selected=true;def.textContent=f.placeholder||'选择'+f.label;
+        sel.appendChild(def);
+        f.options.forEach(function(o){
+          var opt=document.createElement('option');opt.value=o;opt.textContent=o;sel.appendChild(opt);
+        });
+        toolExtraInputs.appendChild(sel);
+      }else{
+        var inp=document.createElement('input');
+        inp.type=f.type||'text';inp.id='extra_'+f.id;inp.className='tool-extra-input';inp.placeholder=f.placeholder||'输入'+f.label;
+        toolExtraInputs.appendChild(inp);
+      }
+    });
+  }
+  toolModal.classList.add('active');
+  document.body.style.overflow='hidden';
+}
+function closeToolModal(){
+  if(!toolModal)return;
+  toolModal.classList.remove('active');
+  document.body.style.overflow='';
+  currentToolId=null;
+}
+if(toolModal){
+  toolModal.addEventListener('click',function(e){
+    if(e.target===toolModal)closeToolModal();
+  });
+}
+document.addEventListener('keydown',function(e){
+  if(e.key==='Escape')closeToolModal();
+});
+
+var clickableCards=document.querySelectorAll('.tool-card[data-tool-id]');
+clickableCards.forEach(function(card){
+  card.style.cursor='pointer';
+  card.addEventListener('click',function(){
+    openToolModal(this.getAttribute('data-tool-id'));
+  });
+});
+
+// AI 调用 - 阿里通义千问
+var API_KEY='sk-sp-ce509375e54843adbbda43ba218ef139';
+// 通过本地代理绕过 CORS 限制 (使用 proxy-server.js)
+var API_URL='/api/v1/chat/completions';
+
+// 模型映射 - coding 端点可用模型：qwen3.6-plus（强）、qwen3.5-plus（快）
+var modelMap={
+  copy:'qwen3.6-plus',       // 文案创作：3.6 创意更好
+  design:'qwen3.6-plus',     // 设计提示词：3.6 理解力更强
+  productivity:'qwen3.5-plus', // 效率工具：3.5 响应更快
+  data:'qwen3.6-plus',       // 数据分析：3.6 推理能力更强
+  dev:'qwen3.6-plus',        // 开发工具：3.6 代码能力最优
+  translate:'qwen3.5-plus'    // 翻译：3.5 速度够用
+};
+
+function generateTool(){
+  var t=toolData[currentToolId];
+  if(!t)return;
+  var userInput=toolInput.value.trim();
+  if(!userInput){toolInput.focus();return;}
+  // 收集额外输入
+  var extraData={};
+  if(t.extraFields){
+    t.extraFields.forEach(function(f){
+      var el=document.getElementById('extra_'+f.id);
+      if(el)extraData[f.label]=el.value;
+    });
+  }
+  // 构建 system prompt
+  var systemPrompt=t.systemPrompt;
+  var userPrompt=userInput;
+  if(Object.keys(extraData).length>0){
+    userPrompt+='\n\n补充信息：'+JSON.stringify(extraData);
+  }
+  var outputEl=toolOutput;
+  var genBtn=document.getElementById('toolGenerate');
+  genBtn.textContent='生成中...';genBtn.disabled=true;
+  outputEl.innerHTML='<div class="tool-output-loading">正在思考中...</div>';
+
+  fetch(API_URL,{
+    method:'POST',
+    headers:{'Content-Type':'application/json','Authorization':'Bearer '+API_KEY},
+    body:JSON.stringify({model:modelMap[t.cat]||'qwen-plus',messages:[{role:'system',content:systemPrompt},{role:'user',content:userPrompt}],stream:true})
+  })
+  .then(function(r){
+    if(!r.ok||!r.body)throw new Error('请求失败，请检查 API Key 和网络');
+    var reader=r.body.getReader();
+    var decoder=new TextDecoder();
+    var full='';
+    outputEl.innerHTML='';
+    function read(){
+      return reader.read().then(function(e){
+        if(e.done){genBtn.textContent='生成';genBtn.disabled=false;return;}
+        var chunk=decoder.decode(e.value,{stream:true});
+        var lines=chunk.split('\n');
+        for(var i=0;i<lines.length;i++){
+          var line=lines[i].trim();
+          if(!line||line==='data: [DONE]')continue;
+          if(line.indexOf('data: ')===0){
+            try{
+              var j=JSON.parse(line.slice(6));
+              var c=j.choices[0].delta.content;
+              if(c){full+=c;outputEl.innerHTML=formatMarkdown(full);}
+            }catch(ex){}
+          }
+        }
+        return read();
+      });
+    }
+    return read();
+  })
+  .catch(function(err){
+    outputEl.innerHTML='<div class="tool-output-error">'+err.message+'<br>请在代码中配置阿里通义千问 API Key。</div>';
+    genBtn.textContent='生成';genBtn.disabled=false;
+  });
+}
+
+// Markdown 简易格式化
+function formatMarkdown(text){
+  return text
+    .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
+    .replace(/\*\*(.+?)\*\*/g,'<strong>$1</strong>')
+    .replace(/\*(.+?)\*/g,'<em>$1</em>')
+    .replace(/^### (.+)$/gm,'<h3>$1</h3>')
+    .replace(/^## (.+)$/gm,'<h2>$1</h2>')
+    .replace(/^# (.+)$/gm,'<h1>$1</h1>')
+    .replace(/^[-*] (.+)$/gm,'<li>$1</li>')
+    .replace(/(<li>.*<\/li>)/s,'<ul>$1</ul>')
+    .replace(/\n{2,}/g,'</p><p>')
+    .replace(/\n/g,'<br>')
+    .replace(/^/,'<p>').replace(/$/,'</p>');
+}
+
+// 工具数据
+var toolData={
+  // 文案
+  'copy-title':{
+    name:'标题大师',cat:'copy',
+    desc:'一键生成吸引点击的标题',
+    inputPlaceholder:'输入你的主题或内容...',
+    extraFields:[
+      {id:'style',type:'select',label:'风格',options:['数字型','痛点型','对比型','疑问型','悬念型','清单型'],placeholder:'选择标题风格'},
+      {id:'platform',type:'select',label:'平台',options:['公众号','小红书','知乎','抖音','B站','通用'],placeholder:'选择发布平台'}
+    ],
+    systemPrompt:'你是一个资深内容标题专家。擅长创作吸引点击的标题。根据用户输入的主题和选择的风格，生成 10 个高质量的标题。每个标题后面简要说明为什么吸引人。标题要符合所选平台的用户偏好和传播规律。'
+  },
+  'copy-desc':{
+    name:'产品描述',cat:'copy',
+    desc:'输入产品信息，自动生成卖点描述',
+    inputPlaceholder:'输入产品名称和基本信息...',
+    extraFields:[
+      {id:'audience',type:'select',label:'目标人群',options:['年轻人','职场人士','宝妈','学生','中老年','通用'],placeholder:'选择目标人群'},
+      {id:'tone',type:'select',label:'语气',options:['专业','亲切','幽默','高端','活泼'],placeholder:'选择描述语气'}
+    ],
+    systemPrompt:'你是一个电商产品文案专家。根据用户输入的产品信息和目标人群，生成 5 个不同角度的产品描述：1个一句话卖点、1个 50 字简介、1个 200 字详细描述、1个用户利益列表、1个 FAQ。突出用户利益而非产品功能，语言简洁有力。'
+  },
+  'copy-slogan':{
+    name:'广告语生成',cat:'copy',
+    desc:'创作朗朗上口的广告语',
+    inputPlaceholder:'输入品牌名、产品或核心卖点...',
+    extraFields:[
+      {id:'style',type:'select',label:'风格',options:['押韵型','对比型','痛点型','情怀型','直接型','趣味型'],placeholder:'选择广告语风格'},
+      {id:'length',type:'select',label:'长度',options:['4-6字','7-10字','11-15字','15字以上'],placeholder:'选择广告语长度'}
+    ],
+    systemPrompt:'你是一个品牌广告文案专家。根据用户输入的品牌信息，生成 10 条不同风格的广告语/slogan。每条广告语后面附上创意说明（20 字以内）。广告语要简洁、朗朗上口、有记忆点、能传达品牌价值。'
+  },
+
+  // 设计
+  'design-mainimg':{
+    name:'主图提示词',cat:'design',
+    desc:'生成电商主图的 AI 绘画提示词',
+    inputPlaceholder:'输入产品名称和主要卖点...',
+    extraFields:[
+      {id:'style',type:'select',label:'风格',options:['极简','科技','自然','温馨','高端','可爱'],placeholder:'选择主图风格'},
+      {id:'color',type:'select',label:'色调',options:['暖色','冷色','中性','对比','单色'],placeholder:'选择主色调'}
+    ],
+    systemPrompt:'你是一个 AI 绘画提示词专家，擅长为电商主图创作高质量的英文 prompt。根据用户输入的产品信息和风格偏好，生成 5 个不同构图的 Midjourney/Stable Diffusion 提示词。每个提示词包含：场景描述、光影要求、色彩氛围、构图方式。提示词用英文输出，附带中文解释。'
+  },
+  'design-scene':{
+    name:'场景提示词',cat:'design',
+    desc:'为产品生成场景图的 AI 提示词',
+    inputPlaceholder:'输入产品名称和使用场景...',
+    extraFields:[
+      {id:'scene',type:'select',label:'场景类型',options:['家居','户外','办公','厨房','浴室','卧室','客厅','街头'],placeholder:'选择使用场景'},
+      {id:'mood',type:'select',label:'氛围',options:['温暖','清新','高端','自然','活力','宁静'],placeholder:'选择场景氛围'}
+    ],
+    systemPrompt:'你是一个场景设计提示词专家。根据用户的产品和场景需求，生成 5 个不同角度的场景图 AI 提示词。每个提示词包含：环境描述、光线方向、季节感、色彩搭配、产品放置方式。提示词用英文输出，附带中文说明和使用建议。'
+  },
+  'design-logo':{
+    name:'Logo 灵感',cat:'design',
+    desc:'生成 Logo 设计的创意方向和提示词',
+    inputPlaceholder:'输入品牌名称和行业...',
+    extraFields:[
+      {id:'industry',type:'select',label:'行业',options:['科技','美妆','食品','教育','运动','时尚','母婴','餐饮'],placeholder:'选择所属行业'},
+      {id:'style',type:'select',label:'风格',options:['极简','抽象图形','文字型','具象图标','手写体','复古'],placeholder:'选择 Logo 风格'}
+    ],
+    systemPrompt:'你是一个 Logo 设计创意专家。根据用户输入的品牌信息和行业，提供：1. 3 个 Logo 设计方向（含设计理念说明）2. 每个方向对应的 AI 绘画提示词（英文）3. 配色方案建议 4. 字体搭配建议。Logo 设计要考虑行业特征、品牌定位、目标人群、可扩展性。'
+  },
+
+  // 效率
+  'prod-email':{
+    name:'邮件回复',cat:'productivity',
+    desc:'自动生成专业得体的邮件回复',
+    inputPlaceholder:'输入对方邮件的核心内容或你的回复意图...',
+    extraFields:[
+      {id:'tone',type:'select',label:'语气',options:['正式','友好','委婉','坚定','简短'],placeholder:'选择回复语气'},
+      {id:'lang',type:'select',label:'语言',options:['中文','English','日本語'],placeholder:'选择邮件语言'}
+    ],
+    systemPrompt:'你是一个商务邮件写作专家。根据用户输入的邮件背景和回复意图，生成一封结构完整、语气得体、内容清晰的邮件回复。邮件包含：恰当的称呼、正文（分段清晰）、行动项或待确认事项、礼貌结尾。根据选择的语气调整措辞风格。'
+  },
+  'prod-meeting':{
+    name:'会议纪要',cat:'productivity',
+    desc:'自动生成结构化的会议纪要',
+    inputPlaceholder:'输入会议讨论的要点和决定...',
+    extraFields:[
+      {id:'type',type:'select',label:'会议类型',options:'["项目进度","需求评审","脑暴","复盘","客户沟通"]',placeholder:'选择会议类型'}
+    ],
+    systemPrompt:'你是一个会议纪要专家。将用户输入的会议讨论要点整理成结构化的会议纪要，包含：1. 会议基本信息（类型、时间）2. 参会人员名单（留空待填）3. 议题讨论（按议题分点整理）4. 决议事项（明确结论）5. 待办事项（含责任人和截止日期）。语言简洁，逻辑清晰。'
+  },
+  'prod-plan':{
+    name:'日程规划',cat:'productivity',
+    desc:'自动生成时间合理分配的日程计划',
+    inputPlaceholder:'输入本周的待办事项...',
+    extraFields:[
+      {id:'workTime',type:'select',label:'工作时段',options:['9:00-18:00','10:00-19:00','弹性工作制','全天自由'],placeholder:'选择工作时段'},
+      {id:'focus',type:'select',label:'优先级',options:['效率优先','创意优先','会议优先','学习优先'],placeholder:'选择本周优先级'}
+    ],
+    systemPrompt:'你是一个时间管理专家。根据用户输入的待办事项和工作习惯，生成一份详细的日程计划。包含：1. 本周概览（总体时间分配）2. 每日详细日程（按小时划分）3. 专注时间段和休息建议 4. 弹性时间和缓冲期。日程安排要考虑任务优先级、精力曲线、避免会议密集。'
+  },
+
+  // 数据
+  'data-interpret':{
+    name:'数据解读',cat:'data',
+    desc:'自动生成数据分析和洞察建议',
+    inputPlaceholder:'输入你的数据和指标...',
+    extraFields:[
+      {id:'industry',type:'select',label:'行业',options:['电商','教育','金融','医疗','游戏','通用'],placeholder:'选择所属行业'},
+      {id:'audience',type:'select',label:'受众',options:['老板/高管','业务团队','技术团队','外部客户'],placeholder:'选择报告受众'}
+    ],
+    systemPrompt:'你是一个数据分析专家。根据用户输入的数据和指标，生成一份通俗易懂的数据解读报告，包含：1. 核心发现（3 个最重要的数据洞察）2. 数据趋势分析 3. 异常值或亮点解读 4. 行动建议（具体可执行）5. 需要关注的风险点。用非技术语言，根据受众调整专业程度。'
+  },
+  'data-report':{
+    name:'报表建议',cat:'data',
+    desc:'生成报表设计建议和关键指标推荐',
+    inputPlaceholder:'描述你的业务场景和报表需求...',
+    extraFields:[
+      {id:'business',type:'select',label:'业务类型',options:['销售','运营','营销','财务','产品','人力'],placeholder:'选择业务类型'},
+      {id:'freq',type:'select',label:'查看频率',options:['每日','每周','每月','实时'],placeholder:'选择查看频率'}
+    ],
+    systemPrompt:'你是一个数据可视化专家。根据用户的业务场景，提供报表设计建议，包含：1. 核心指标推荐（5-8 个关键指标，说明为什么重要）2. 可视化图表类型建议（每个指标用哪种图表）3. 布局建议（信息层次）4. 预警阈值建议 5. 关联分析建议。确保报表简洁、有 actionable 的洞察。'
+  },
+  'data-user':{
+    name:'用户洞察',cat:'data',
+    desc:'生成用户画像和分析报告',
+    inputPlaceholder:'描述你的目标用户或输入用户行为数据...',
+    extraFields:[
+      {id:'method',type:'select',label:'分析维度',options:['人口统计','行为特征','需求痛点','消费能力','全维度'],placeholder:'选择分析维度'}
+    ],
+    systemPrompt:'你是一个用户研究专家。根据用户输入的信息，生成详细的用户画像分析报告，包含：1. 用户基本信息（年龄、性别、地域、职业）2. 行为特征和习惯 3. 需求痛点和未被满足的期望 4. 消费动机和决策路径 5. 触达渠道偏好 6. 针对性的运营建议。报告要具体、有数据思维。'
+  },
+
+  // 开发
+  'dev-explain':{
+    name:'代码解释',cat:'dev',
+    desc:'生成代码的功能解释和注释',
+    inputPlaceholder:'粘贴你需要解释的代码...',
+    extraFields:[
+      {id:'level',type:'select',label:'解释深度',options:['概述','逐行解释','架构层面'],placeholder:'选择解释深度'}
+    ],
+    systemPrompt:'你是一个资深开发者和代码解释专家。根据用户输入的代码，生成通俗易懂的功能解释，包含：1. 这段代码的整体作用（一句话）2. 核心逻辑流程 3. 关键函数/变量的作用 4. 潜在的性能问题或改进建议 5. 如果是逐行解释模式，逐行添加注释。用通俗的语言，避免过度技术化。'
+  },
+  'dev-debug':{
+    name:'Bug 诊断',cat:'dev',
+    desc:'生成 Bug 可能原因和修复建议',
+    inputPlaceholder:'描述 Bug 现象，粘贴相关代码...',
+    extraFields:[
+      {id:'lang',type:'select',label:'编程语言',options:['JavaScript','Python','Java','Go','PHP','其他'],placeholder:'选择编程语言'},
+      {id:'severity',type:'select',label:'严重程度',options:['崩溃','功能异常','性能问题','样式问题'],placeholder:'选择严重程度'}
+    ],
+    systemPrompt:'你是一个资深 debug 专家。根据用户描述的 Bug 现象和代码，按可能性从高到低列出 5 个可能的原因，每个原因包含：1. 具体解释（为什么可能导致这个 Bug）2. 验证方法（如何确认是这个原因）3. 修复建议（具体代码修改）。先给出最可能的原因和最快的排查路径。'
+  },
+  'dev-api':{
+    name:'API 设计',cat:'dev',
+    desc:'生成 RESTful API 接口设计方案',
+    inputPlaceholder:'描述你的业务需求，需要哪些接口...',
+    extraFields:[
+      {id:'arch',type:'select',label:'架构风格',options:['RESTful','GraphQL','gRPC'],placeholder:'选择架构风格'},
+      {id:'auth',type:'select',label:'认证方式',options:['JWT','OAuth2','API Key','Session'],placeholder:'选择认证方式'}
+    ],
+    systemPrompt:'你是一个 API 设计专家。根据用户的业务需求，设计一套完整的 API 接口方案，包含：1. API 总体设计原则 2. 每个接口的详细信息（URL、HTTP Method、请求参数、响应格式、状态码）3. 错误处理规范 4. 分页和排序设计 5. 认证和授权方案 6. 版本管理建议。遵循 RESTful 最佳实践，使用 JSON 格式。'
+  },
+
+  // 翻译
+  'trans-multi':{
+    name:'多语翻译',cat:'translate',
+    desc:'支持中、英、日、法、德等多语言互译',
+    inputPlaceholder:'输入需要翻译的内容...',
+    extraFields:[
+      {id:'from',type:'select',label:'源语言',options:['中文','English','日本語','Français','Deutsch'],placeholder:'选择源语言'},
+      {id:'to',type:'select',label:'目标语言',options:['English','中文','日本語','Français','Deutsch'],placeholder:'选择目标语言'}
+    ],
+    systemPrompt:'你是一个专业的多语言翻译专家。根据用户指定的源语言和目标语言，提供准确、流畅的翻译。翻译时注意：1. 保持原文的语义和语气 2. 处理文化差异和习语 3. 如果原文有歧义，选择最可能的含义并说明 4. 翻译完成后，附上 1-2 个备选翻译供参考。'
+  },
+  'trans-ecom':{
+    name:'电商翻译',cat:'translate',
+    desc:'为电商场景优化的翻译服务',
+    inputPlaceholder:'输入产品标题、描述或关键词...',
+    extraFields:[
+      {id:'platform',type:'select',label:'目标平台',options:['Amazon','Shopify','eBay','独立站','速卖通'],placeholder:'选择目标电商平台'},
+      {id:'to',type:'select',label:'目标语言',options:['English','日本語','Deutsch','Français','Español'],placeholder:'选择目标语言'}
+    ],
+    systemPrompt:'你是一个电商翻译和本地化专家。根据用户输入的产品信息和目标平台、语言，提供：1. 优化后的产品标题（符合目标平台的 SEO 规范）2. 产品描述翻译 3. 搜索关键词（15-20 个）4. 注意事项（目标市场的合规要求和文化禁忌）。翻译要符合电商平台的搜索算法和用户阅读习惯。'
+  },
+  'trans-local':{
+    name:'本地化翻译',cat:'translate',
+    desc:'营销文案的品牌本地化翻译',
+    inputPlaceholder:'输入需要本地化的文案内容...',
+    extraFields:[
+      {id:'type',type:'select',label:'内容类型',options:['品牌故事','营销文案','产品说明','广告语','社交媒体'],placeholder:'选择内容类型'},
+      {id:'market',type:'select',label:'目标市场',options:['北美','欧洲','日本','东南亚','中东'],placeholder:'选择目标市场'}
+    ],
+    systemPrompt:'你是一个品牌本地化翻译专家。将用户的文案翻译到目标市场语言时，注意：1. 不只是字面翻译，要适配目标市场的文化背景和语言习惯 2. 品牌调性和情感的准确传递 3. 避免文化冲突和不当联想 4. 如有必要，提供改写建议而非直接翻译 5. 输出翻译版本和文化适配说明。'
+  }
+};
+</script>
+
+</body>
+</html>

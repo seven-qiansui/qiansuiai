@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>联系我们 - 千岁 AI</title>
+  <meta name="description" content="联系千岁 AI - 微信、邮件咨询，快速获取服务方案。">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <div class="scroll-progress" id="scrollProgress"></div>
+  <div class="bg-glow"><div class="bg-glow-g3"></div><div class="bg-glow-g4"></div><div class="bg-glow-g5"></div></div>
+
+  <nav class="navbar" id="navbar">
+    <div class="container">
+      <a href="index.html" class="nav-brand">
+        <svg class="logo-mark" viewBox="0 0 32 32" fill="none">
+          <path d="M16 2L4 9v14l12 7 12-7V9L16 2z" stroke="url(#logoGrad)" stroke-width="1.5" fill="none"/>
+          <path d="M16 8l-5 3v6l5 3 5-3v-6l-5-3z" fill="url(#logoGrad)" opacity="0.15"/>
+          <path d="M16 8l-5 3v6l5 3 5-3v-6l-5-3z" stroke="url(#logoGrad)" stroke-width="1.2"/>
+          <path d="M16 11l-2 1.2v2.6L16 16l2-1.2v-2.6L16 11z" fill="url(#logoGrad)"/>
+          <defs>
+            <linearGradient id="logoGrad" x1="0" y1="0" x2="32" y2="32">
+              <stop offset="0%" stop-color="#c9a96e"/>
+              <stop offset="100%" stop-color="#dfc08a"/>
+            </linearGradient>
+          </defs>
+        </svg>
+        千岁 AI
+      </a>
+      <div class="nav-links" id="navLinks">
+        <a href="index.html" class="nav-link">首页</a>
+        <a href="services.html" class="nav-link">服务</a>
+        <a href="cases.html" class="nav-link">案例</a>
+        <a href="riluo.html" class="nav-link">随记</a>
+        <a href="creative.html" class="nav-link">创意</a>
+        <a href="tools.html" class="nav-link">工具</a>
+        <a href="frontier.html" class="nav-link">前沿</a>
+        <a href="contact.html" class="nav-cta active">联系</a>
+      </div>
+      <button class="nav-toggle" id="navToggle" aria-label="菜单">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <header class="page-hero">
+    <div class="container text-center reveal">
+      <span class="section-label">Contact</span>
+      <h2 class="section-title">联系我们</h2>
+      <p class="section-desc">常规需求 ≤2 小时响应，紧急需求 ≤1 小时。<br>选择你最方便的联系方式。</p>
+    </div>
+  </header>
+
+  <section class="contact-page">
+    <div class="container">
+      <div class="contact-grid reveal">
+        <div class="contact-card-item contact-hover-qr" data-qr="wechat">
+          <div class="contact-card-icon">&#128172;</div>
+          <h3>微信咨询</h3>
+          <p>最常用的联系方式，快速响应</p>
+          <button class="btn btn-contact" onclick="openQRModal('wechat')" style="margin-top:24px">查看二维码</button>
+        </div>
+        <div class="contact-card-item contact-hover-qr" data-qr="official">
+          <div class="contact-card-icon">&#128227;</div>
+          <h3>公众号</h3>
+          <p>关注获取最新动态和干货</p>
+          <button class="btn btn-contact" onclick="openQRModal('official')" style="margin-top:24px">查看二维码</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="faq-section">
+    <div class="container">
+      <div class="text-center reveal">
+        <span class="section-label">FAQ</span>
+        <h2 class="section-title">常见问题</h2>
+        <p class="section-desc" style="margin:16px auto 0">关于合作流程、工期、修改等常见疑问</p>
+      </div>
+      <div class="faq-list">
+        <div class="faq-item reveal">
+          <div class="faq-q">合作流程是怎样的？</div>
+          <div class="faq-a">需求沟通 → 方案报价 → 确认合作 → AI 制作 → 精修交付 → 售后修改。整个流程透明可控，随时可以沟通进展。</div>
+        </div>
+        <div class="faq-item reveal">
+          <div class="faq-q">工期一般需要多久？</div>
+          <div class="faq-a">主图设计 1-2 天，详情页 3-5 天，视频 2-4 天。具体根据项目复杂度而定，急单可加急处理。</div>
+        </div>
+        <div class="faq-item reveal">
+          <div class="faq-q">可以修改吗？</div>
+          <div class="faq-a">每个套餐都包含修改次数。主图含 1 次修改，详情页含 2 次修改。超出部分按单次收费，价格透明。</div>
+        </div>
+        <div class="faq-item reveal">
+          <div class="faq-q">支持哪些电商平台？</div>
+          <div class="faq-a">淘宝、天猫、京东、拼多多、抖音、快手、小红书等主流平台，均可适配对应尺寸和规范要求。</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="qr-modal" id="qrModal">
+    <button class="qr-close" onclick="closeQRModal()">&#10005;</button>
+    <div class="qr-modal-content">
+      <img id="qrImage" src="" alt="二维码">
+      <p id="qrText"></p>
+    </div>
+  </div>
+
+  <footer class="site-footer">
+    <div class="container text-center">
+      <p>&copy; 2026 千岁 AI 保留所有权利 &middot; Powered by OpenClaw</p>
+      <p style="margin-top:4px">电商视觉 视频制作 社媒运营 企业 AI</p>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+
+</body>
+</html>

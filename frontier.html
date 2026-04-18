@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>前沿 - 千岁 AI</title>
+  <meta name="description" content="千岁 AI 前沿 - AI 行业资讯、模型更新、工具评测、趋势观察">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div class="scroll-progress" id="scrollProgress"></div>
+<div class="bg-glow"><div class="bg-glow-g3"></div><div class="bg-glow-g4"></div><div class="bg-glow-g5"></div></div>
+
+<nav class="navbar" id="navbar">
+  <div class="container">
+    <a href="index.html" class="nav-brand">
+      <svg class="logo-mark" viewBox="0 0 32 32" fill="none">
+        <path d="M16 2L4 9v14l12 7 12-7V9L16 2z" stroke="url(#logoGrad)" stroke-width="1.5" fill="none"/>
+        <path d="M16 8l-5 3v6l5 3 5-3v-6l-5-3z" fill="url(#logoGrad)" opacity="0.15"/>
+        <path d="M16 8l-5 3v6l5 3 5-3v-6l-5-3z" stroke="url(#logoGrad)" stroke-width="1.2"/>
+        <path d="M16 11l-2 1.2v2.6L16 16l2-1.2v-2.6L16 11z" fill="url(#logoGrad)"/>
+        <defs>
+          <linearGradient id="logoGrad" x1="0" y1="0" x2="32" y2="32">
+            <stop offset="0%" stop-color="#c9a96e"/>
+            <stop offset="100%" stop-color="#dfc08a"/>
+          </linearGradient>
+        </defs>
+      </svg>
+      千岁 AI
+    </a>
+    <div class="nav-links" id="navLinks">
+      <a href="index.html" class="nav-link">首页</a>
+      <a href="services.html" class="nav-link">服务</a>
+      <a href="cases.html" class="nav-link">案例</a>
+      <a href="riluo.html" class="nav-link">随记</a>
+      <a href="creative.html" class="nav-link">创意</a>
+      <a href="tools.html" class="nav-link">工具</a>
+      <a href="frontier.html" class="nav-link active">前沿</a>
+      <a href="contact.html" class="nav-cta">联系</a>
+    </div>
+    <button class="nav-toggle" id="navToggle" aria-label="菜单"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<header class="page-hero">
+  <div class="container" style="max-width:700px">
+    <div class="reveal"><span class="section-label">前沿</span></div>
+    <h2 class="section-title reveal">AI <span class="hl">行业前沿</span></h2>
+    <p class="section-desc reveal" style="margin:16px auto 0">AI 行业资讯 · 模型更新 · 工具评测 · 趋势观察</p>
+  </div>
+</header>
+
+<section class="frontier-section">
+  <div class="container">
+    <div class="log-filters reveal">
+      <button class="filter-btn active" data-filter="news">快讯</button>
+      <button class="filter-btn" data-filter="model">模型</button>
+      <button class="filter-btn" data-filter="update">动态</button>
+      <button class="filter-btn" data-filter="observe">观察</button>
+    </div>
+
+    <div class="frontier-grid" id="frontierGrid">
+      <!-- 动态加载，先显示占位 -->
+      <div class="frontier-card reveal" style="grid-column:1/-1;text-align:center;padding:60px 20px">
+        <div class="tool-output-loading" style="font-size:0.9rem">正在获取今日 AI 行业资讯...</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="qr-modal" id="qrModal">
+  <button class="qr-close" onclick="closeQRModal()">&#10005;</button>
+  <div class="qr-modal-content">
+    <img id="qrImage" src="" alt="二维码"><p id="qrText"></p>
+  </div>
+</div>
+
+<div class="article-modal" id="articleModal">
+  <button class="qr-close" onclick="closeArticleModal()">&#10005;</button>
+  <div class="article-modal-content">
+    <div class="article-header">
+      <span class="article-cat" id="articleCat"></span>
+      <h2 id="articleTitle"></h2>
+      <div class="article-meta" id="articleMeta"></div>
+    </div>
+    <div class="article-cover" id="articleCover"></div>
+    <div class="article-body" id="articleBody"></div>
+  </div>
+</div>
+
+  <footer class="site-footer">
+    <div class="container text-center">
+      <p>&copy; 2026 千岁 AI 保留所有权利 &middot; Powered by OpenClaw</p>
+      <p style="margin-top:4px">电商视觉 视频制作 社媒运营 企业 AI</p>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script>
+var articleData={};
+
+// 筛选
+function initFilters(){
+  var btns=document.querySelectorAll('.log-filters .filter-btn');
+  var cards=document.querySelectorAll('.frontier-card[data-category]');
+  if(!btns.length||!cards.length)return;
+  var defaultFilter='news';
+  cards.forEach(function(c){
+    var cat=c.getAttribute('data-category');
+    if(cat!==defaultFilter){c.style.display='none';}
+  });
+  btns.forEach(function(b){b.addEventListener('click',function(){
+    var f=b.getAttribute('data-filter');
+    btns.forEach(function(x){x.classList.remove('active')});b.classList.add('active');
+    cards.forEach(function(c){
+      var cat=c.getAttribute('data-category');
+      if(f==='all'||cat===f){c.style.display='';c.classList.remove('visible');requestAnimationFrame(function(){c.classList.add('visible')});}
+      else{c.style.display='none';}
+    });
+  });});
+}
+
+// 动态渲染新闻卡片
+function renderNewsCards(newsItems){
+  var grid=document.getElementById('frontierGrid');
+  if(!grid)return;
+  grid.innerHTML='';
+  var dayClass=['reveal-d1','reveal-d2','reveal-d3'];
+  newsItems.forEach(function(n,i){
+    var div=document.createElement('div');
+    div.className='frontier-card reveal clickable '+dayClass[i%3];
+    div.setAttribute('data-category',n.cat);
+    div.setAttribute('data-article-id','fw-dynamic-'+i);
+    div.innerHTML='<h4>'+n.title+'</h4><p>'+n.summary+'</p><div class="frontier-meta"><span>今日</span><span>'+n.reads+' 阅读</span></div>';
+    grid.appendChild(div);
+  });
+  initFilters();
+  var clickableCards=document.querySelectorAll('.frontier-card[data-article-id]');
+  clickableCards.forEach(function(card){
+    card.style.cursor='pointer';
+    card.addEventListener('click',function(){
+      openArticleModal(card.getAttribute('data-article-id'));
+    });
+  });
+  setTimeout(function(){
+    document.querySelectorAll('.frontier-card.reveal').forEach(function(el){
+      el.classList.add('visible');
+    });
+  },100);
+}
+
+// 加载真实新闻
+function loadFrontierNews(){
+  fetch('/api/news').then(function(r){return r.json();}).then(function(data){
+    if(data&&data.news&&data.news.length>0){
+      data.news.forEach(function(n,i){
+        articleData['fw-dynamic-'+i]={
+          cat:n.cat,title:n.title,
+          date:data.date||'今日',readTime:'约 3 分钟',
+          cover:'<div class="article-cover-placeholder">'+n.title.substring(0,20)+'</div>',
+          body:n.body||'<p>'+n.summary+'</p><p>更多内容请关注后续更新。</p>'
+        };
+      });
+      renderNewsCards(data.news);
+    }
+  }).catch(function(){
+    // 加载失败，使用默认新闻
+    renderNewsCards(getDefaultNews());
+  });
+}
+
+// 文章弹窗
+var articleModal=document.getElementById('articleModal');
+var articleCat=document.getElementById('articleCat');
+var articleTitle=document.getElementById('articleTitle');
+var articleMeta=document.getElementById('articleMeta');
+var articleCover=document.getElementById('articleCover');
+var articleBody=document.getElementById('articleBody');
+
+function openArticleModal(id){
+  var d=articleData[id];
+  if(!d||!articleModal)return;
+  var catLabel={news:'快讯',model:'模型',update:'动态',observe:'观察'}[d.cat]||'前沿';
+  articleCat.textContent=catLabel;
+  articleCat.className='article-cat '+d.cat;
+  articleTitle.textContent=d.title;
+  articleMeta.textContent=d.date+' · '+d.readTime;
+  articleCover.innerHTML=d.cover?d.cover:'';
+  articleBody.innerHTML=d.body;
+  articleModal.classList.add('active');
+  document.body.style.overflow='hidden';
+}
+function closeArticleModal(){
+  if(!articleModal)return;
+  articleModal.classList.remove('active');
+  document.body.style.overflow='';
+}
+if(articleModal){
+  articleModal.addEventListener('click',function(e){
+    if(e.target===articleModal)closeArticleModal();
+  });
+}
+document.addEventListener('keydown',function(e){
+  if(e.key==='Escape')closeArticleModal();
+});
+
+// 默认新闻
+function getDefaultNews(){
+  var today=new Date();
+  var dateStr=today.getFullYear()+'/'+String(today.getMonth()+1).padStart(2,'0')+'/'+String(today.getDate()).padStart(2,'0');
+  return [
+    {cat:'news',title:'OpenAI 宣布 GPT-5 Turbo，推理成本降低 70%',summary:'新一代模型在保持相同能力的同时大幅降低调用成本，适合大规模商用部署。',reads:'3.2k'},
+    {cat:'news',title:'阿里通义千问发布 Qwen3.7-preview',summary:'预览版模型在多模态理解方面有显著提升，支持更长的上下文窗口。',reads:'2.1k'},
+    {cat:'model',title:'Midjourney 泄露 v8 测试截图',summary:'网传 MJ v8 测试图显示产品渲染真实感再升级，预计下月正式发布。',reads:'1.8k'},
+    {cat:'model',title:'Google Gemini 2.5 正式开放 API',summary:'新一代 Gemini 在代码推理和长文本理解方面表现突出，免费额度大幅提升。',reads:'2.5k'},
+    {cat:'model',title:'Stability AI 开源 SD4-Large 模型',summary:'10B 参数版本开源，支持 4K 分辨率出图，商业友好许可。',reads:'1.5k'},
+    {cat:'model',title:'Anthropic Claude 4.1 小版本更新',summary:'修复了已知的安全漏洞，提升了 JSON 和代码输出的稳定性。',reads:'1.2k'},
+    {cat:'update',title:'小红书发布 AI 内容标识新规',summary:'AI 生成内容需明确标注"AI 创作"标签，未标注将被限流。',reads:'4.1k'},
+    {cat:'update',title:'淘宝上线 AI 商品描述自动审核',summary:'商家使用 AI 生成的产品描述需通过平台审核后才能上架。',reads:'2.0k'},
+    {cat:'update',title:'抖音电商调整 AI 直播规则',summary:'AI 虚拟主播需实名认证且明确告知观众，违规将封禁直播间。',reads:'3.5k'},
+    {cat:'update',title:'京东开放 AI 物流预测 API',summary:'商家可接入 AI 库存预测和物流优化建议，内测期间免费。',reads:'980'},
+    {cat:'observe',title:'AI 电商代运营成本结构分析',summary:'AI 工具使单人产能提升 3-5 倍，但人工精修依然是核心价值。',reads:'2.8k'},
+    {cat:'observe',title:'2026 AI 绘画工具横向评测',summary:'对比 8 款主流 AI 绘画工具在电商场景的表现，通义万相性价比最高。',reads:'3.0k'},
+    {cat:'observe',title:'AI 生成内容对 SEO 的影响',summary:'搜索引擎开始区分 AI 和人工内容，高质量 AI 内容依然能获得好排名。',reads:'2.2k'},
+    {cat:'observe',title:'中国 AI 模型出海报告',summary:'通义千问、混元等国产模型在海外市场的竞争力分析。',reads:'1.8k'}
+  ];
+}
+
+loadFrontierNews();
+</script>
+
+</body>
+</html>
