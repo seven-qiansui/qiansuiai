@@ -7,7 +7,7 @@ set -euo pipefail
 
 SERVER="root@8.163.68.155"
 REMOTE="/var/www/qiansuiai.cn/current"
-SSH_KEY="$HOME/.ssh/qiansuiai"
+SSH_KEY="$HOME/.ssh/qiansuiai_new"
 
 echo ">>> 开始部署到阿里云..."
 
