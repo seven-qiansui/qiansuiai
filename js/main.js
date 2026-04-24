@@ -3,12 +3,52 @@
 // ============================================================
 document.addEventListener("DOMContentLoaded", function () {
 
-  // --- 1. 导航栏收缩 ---
+  // --- 0. 鼠标跟随金色光晕 ---
+  var cursorGlow = document.querySelector(".cursor-glow");
+  if (!cursorGlow) {
+    cursorGlow = document.createElement("div");
+    cursorGlow.className = "cursor-glow";
+    document.body.appendChild(cursorGlow);
+  }
+  var mouseX = 0, mouseY = 0, glowX = 0, glowY = 0;
+  document.addEventListener("mousemove", function (e) {
+    mouseX = e.clientX;
+    mouseY = e.clientY;
+    cursorGlow.classList.add("active");
+  });
+  document.addEventListener("mouseleave", function () {
+    cursorGlow.classList.remove("active");
+  });
+  function animateCursorGlow() {
+    // 平滑跟随 (ease factor 0.12)
+    glowX += (mouseX - glowX) * 0.12;
+    glowY += (mouseY - glowY) * 0.12;
+    cursorGlow.style.left = glowX + "px";
+    cursorGlow.style.top = glowY + "px";
+    requestAnimationFrame(animateCursorGlow);
+  }
+  animateCursorGlow();
+
+  // --- 1. 导航栏收缩 + Hero 视差 ---
   var navbar = document.getElementById("navbar");
+  var heroOrb = document.querySelector(".hero-visual-orb");
   function updateNav() {
     if (!navbar) return;
     if (window.scrollY > 50) { navbar.classList.add("shrink"); }
     else { navbar.classList.remove("shrink"); }
+    // Hero orb 视差 + 内容淡出
+    if (window.scrollY < window.innerHeight) {
+      var p = window.scrollY / window.innerHeight;
+      if (heroOrb) {
+        heroOrb.style.transform = 'translate(-50%, calc(-50% + ' + (p * 60) + 'px)) scale(' + (1 + p * 0.15) + ')';
+        heroOrb.style.opacity = 1 - p * 1.5;
+      }
+      var heroContent = document.querySelector(".hero-content");
+      if (heroContent) {
+        heroContent.style.opacity = 1 - p * 1.8;
+        heroContent.style.transform = 'translateY(' + (p * -30) + 'px)';
+      }
+    }
   }
   window.addEventListener("scroll", updateNav, { passive: true });
   updateNav();
@@ -43,6 +83,21 @@ document.addEventListener("DOMContentLoaded", function () {
     for (var i = 0; i < reveals.length; i++) { io.observe(reveals[i]); }
   } else {
     for (var i = 0; i < reveals.length; i++) { reveals[i].classList.add("visible"); }
+  }
+
+  // --- 3.5 打字机词轮播 ---
+  var twWord = document.getElementById("twWord");
+  if (twWord) {
+    var twWords = ["AI 视觉设计", "视频制作", "社媒运营", "企业 AI 服务"];
+    var twIndex = 0;
+    setInterval(function () {
+      twIndex = (twIndex + 1) % twWords.length;
+      twWord.classList.add("switching");
+      setTimeout(function () {
+        twWord.textContent = twWords[twIndex];
+        twWord.classList.remove("switching");
+      }, 200);
+    }, 3000);
   }
 
   // --- 4. 数字递增动画 ---
@@ -299,33 +354,32 @@ document.addEventListener("DOMContentLoaded", function () {
     "ai-8": { title: "营销团队 AI 部署", desc: "智能投放 内容生成 用户画像精准营销", deliverables: aiWorkflow }
   };
 
-  var caseModal = document.getElementById("caseModal");
-  var caseTitle = document.getElementById("caseModalTitle");
-  var caseDesc = document.getElementById("caseModalDesc");
-  var caseDeliverables = document.getElementById("caseDeliverables");
+  var _caseModal = document.getElementById("caseModal");
+  var _caseTitle = document.getElementById("caseModalTitle");
+  var _caseDesc = document.getElementById("caseModalDesc");
+  var _caseDeliverables = document.getElementById("caseDeliverables");
 
-  function openCaseModal(eOrId, id) {
+  // 全局函数（供 HTML onclick 调用）
+  window.openCaseModal = function (eOrId, id) {
     var e = (eOrId instanceof Event) ? eOrId : null;
     var realId = id || eOrId;
     if (e) e.preventDefault();
     var data = caseData[realId];
-    if (!data || !caseModal) return;
-    caseTitle.textContent = data.title;
-    caseDesc.textContent = data.desc;
-    var icons = ["image", "layers", "scroll", "sparkles"];
+    if (!data || !_caseModal) return;
+    _caseTitle.textContent = data.title;
+    _caseDesc.textContent = data.desc;
     var html = "";
     for (var i = 0; i < data.deliverables.length; i++) {
       var d = data.deliverables[i];
-      var icon = icons[i] || "check";
       html += '<div class="case-deliverable"><div class="del-icon"><svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg></div><div class="del-name">' + d.name + '</div><div class="del-count">' + d.count + '</div></div>';
     }
-    caseDeliverables.innerHTML = html;
-    caseModal.classList.add("active");
-  }
+    _caseDeliverables.innerHTML = html;
+    _caseModal.classList.add("active");
+  };
 
-  function closeCaseModal() {
-    if (caseModal) caseModal.classList.remove("active");
-  }
+  window.closeCaseModal = function () {
+    if (_caseModal) _caseModal.classList.remove("active");
+  };
 
   // 点击案例卡片
   for (var c = 0; c < caseCards.length; c++) {
@@ -335,18 +389,18 @@ document.addEventListener("DOMContentLoaded", function () {
       if (window.innerWidth < 768) {
         window.location.href = "contact.html";
       } else {
-        openCaseModal(id);
+        window.openCaseModal(id);
       }
     });
   }
 
   // 点击弹窗背景关闭
-  if (caseModal) {
-    caseModal.addEventListener("click", function (e) {
-      if (e.target === caseModal) closeCaseModal();
+  if (_caseModal) {
+    _caseModal.addEventListener("click", function (e) {
+      if (e.target === _caseModal) window.closeCaseModal();
     });
     document.addEventListener("keydown", function (e) {
-      if (e.key === "Escape") closeCaseModal();
+      if (e.key === "Escape") window.closeCaseModal();
     });
   }
 
@@ -459,7 +513,8 @@ document.addEventListener("click", function (e) {
 
   function createBgStars() {
     bgStars = [];
-    for (var i = 0; i < 400; i++) {
+    var count = window.innerWidth < 768 ? 150 : 400;
+    for (var i = 0; i < count; i++) {
       bgStars.push({
         x: Math.random() * width,
         y: Math.random() * height,
@@ -540,31 +595,31 @@ document.addEventListener("click", function (e) {
   pickConstellations();
   window.addEventListener("resize", function () { resize(); pickConstellations(); });
 
-  function draw() {
+  function draw(timestamp) {
     ctx.clearRect(0, 0, width, height);
     ctx.fillStyle = "#000000";
     ctx.fillRect(0, 0, width, height);
-    var t = Date.now();
+    var t = timestamp || 0;
 
-    // 背景星星 — 呼吸闪烁
+    // 背景星星 — 暖金色调呼吸闪烁
     for (var i = 0; i < bgStars.length; i++) {
       var s = bgStars[i];
       var a = s.alpha + Math.sin(t * s.speed + s.phase) * 0.2;
       a = Math.max(0.05, Math.min(1, a));
       ctx.beginPath();
       ctx.arc(s.x, s.y, s.size, 0, Math.PI * 2);
-      ctx.fillStyle = "rgba(255,255,255," + a + ")";
+      ctx.fillStyle = "rgba(230,210,170," + a + ")";
       ctx.fill();
     }
 
-    // 星座 — 整体呼吸 + 单星呼吸
+    // 星座 — 金色整体呼吸 + 单星呼吸
     for (var i = 0; i < constellations.length; i++) {
       var c = constellations[i];
       var groupPulse = Math.sin(t * c.breatheSpeed + c.phase) * 0.5 + 0.5; // 0~1
 
-      // 连线
-      var lineAlpha = 0.04 + groupPulse * 0.08;
-      ctx.strokeStyle = "rgba(180,190,220," + lineAlpha + ")";
+      // 连线 - 香槟金色
+      var lineAlpha = 0.03 + groupPulse * 0.06;
+      ctx.strokeStyle = "rgba(201,169,110," + lineAlpha + ")";
       ctx.lineWidth = 0.5;
       for (var j = 0; j < c.edges.length; j++) {
         ctx.beginPath();
@@ -576,11 +631,11 @@ document.addEventListener("click", function (e) {
       // 星星 — 各自呼吸
       for (var j = 0; j < c.points.length; j++) {
         var p = c.points[j];
-        var dotAlpha = 0.1 + Math.sin(t * p.breatheSpeed + p.phase) * 0.15 + groupPulse * 0.15;
-        dotAlpha = Math.max(0.05, Math.min(0.8, dotAlpha));
+        var dotAlpha = 0.08 + Math.sin(t * p.breatheSpeed + p.phase) * 0.12 + groupPulse * 0.12;
+        dotAlpha = Math.max(0.04, Math.min(0.7, dotAlpha));
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-        ctx.fillStyle = "rgba(200,210,240," + dotAlpha + ")";
+        ctx.fillStyle = "rgba(223,192,138," + dotAlpha + ")";
         ctx.fill();
       }
     }
@@ -593,9 +648,18 @@ document.addEventListener("click", function (e) {
       var c = buildConstellation();
       if (c) { constellations[idx] = c; }
     }
-
-    requestAnimationFrame(draw);
   }
 
-  draw();
+  var animPaused = false;
+  document.addEventListener("visibilitychange", function () {
+    animPaused = document.hidden;
+    if (!animPaused) requestAnimationFrame(loop);
+  });
+
+  function loop(ts) {
+    if (animPaused) return;
+    draw(ts);
+    requestAnimationFrame(loop);
+  }
+  loop();
 })();

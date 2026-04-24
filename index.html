@@ -5,11 +5,19 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>千岁 AI - AI 驱动的内容生产力</title>
   <meta name="description" content="千岁 AI 专注电商视觉设计、社媒内容运营、企业 AI 技术服务，用 AI 技术助力企业降本增效。">
+  <link rel="canonical" href="https://www.qiansuiai.cn/">
+  <meta property="og:title" content="千岁 AI - AI 驱动的内容生产力">
+  <meta property="og:description" content="千岁 AI 专注电商视觉设计、社媒内容运营、企业 AI 技术服务，用 AI 技术助力企业降本增效。">
+  <meta property="og:url" content="https://www.qiansuiai.cn/">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="千岁 AI">
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
 <div class="scroll-progress" id="scrollProgress"></div>
+<div class="cursor-glow"></div>
+<div class="noise-overlay"></div>
 <div class="bg-glow">
   <div class="bg-glow-g3"></div>
   <div class="bg-glow-g4"></div>
@@ -20,19 +28,7 @@
 <nav class="navbar" id="navbar">
   <div class="container">
     <a href="index.html" class="nav-brand">
-      <svg class="logo-mark" viewBox="0 0 32 32" fill="none">
-        <path d="M16 2L4 9v14l12 7 12-7V9L16 2z" stroke="url(#logoGrad)" stroke-width="1.5" fill="none"/>
-        <path d="M16 8l-5 3v6l5 3 5-3v-6l-5-3z" fill="url(#logoGrad)" opacity="0.15"/>
-        <path d="M16 8l-5 3v6l5 3 5-3v-6l-5-3z" stroke="url(#logoGrad)" stroke-width="1.2"/>
-        <path d="M16 11l-2 1.2v2.6L16 16l2-1.2v-2.6L16 11z" fill="url(#logoGrad)"/>
-        <defs>
-          <linearGradient id="logoGrad" x1="0" y1="0" x2="32" y2="32">
-            <stop offset="0%" stop-color="#c9a96e"/>
-            <stop offset="100%" stop-color="#dfc08a"/>
-          </linearGradient>
-        </defs>
-      </svg>
-      千岁 AI
+      <img src="logo.png" alt="千岁 AI" class="logo-mark">
     </a>
     <div class="nav-links" id="navLinks">
       <a href="index.html" class="nav-link active">首页</a>
@@ -56,9 +52,14 @@
         <span class="hero-line1">用 AI 技术</span><br>
         <span class="gradient-text hero-line2">重塑内容生产力</span>
       </h1>
-      <p class="hero-tagline">电商视觉 视频制作 社媒运营 企业 AI</p>
+      <div class="hero-typewriter">
+        <span class="hero-line1" id="twPrefix">我们提供</span>
+        <span class="tw-word" id="twWord">AI 视觉设计</span>
+        <span class="hero-line1">服务</span>
+      </div>
     </div>
   </div>
+  <div class="hero-visual-orb"></div>
 </section>
 
 <!-- 最新动态 -->
@@ -101,7 +102,7 @@
     <div class="cases-preview-grid">
       <a href="cases.html" class="case-preview-card reveal reveal-d1" onclick="openCaseModal(event,'ecommerce-1')">
         <div class="cp-cover">
-          <img src="cases/ecommerce-1.jpg" alt="护肤品主图详情页" onerror="this.style.display='none';this.parentElement.style.background='linear-gradient(135deg,rgba(201,169,110,0.15),rgba(201,169,110,0.05))';">
+          <img loading="lazy" src="cases/ecommerce-1.jpg" alt="护肤品主图详情页" onerror="this.style.display='none';this.parentElement.style.background='linear-gradient(135deg,rgba(201,169,110,0.15),rgba(201,169,110,0.05))';">
         </div>
         <div class="cp-info">
           <span class="cp-cat">电商视觉</span>
@@ -111,7 +112,7 @@
       </a>
       <a href="cases.html" class="case-preview-card reveal reveal-d2" onclick="openCaseModal(event,'video-1')">
         <div class="cp-cover">
-          <img src="cases/video-1.jpg" alt="品牌宣传片" onerror="this.style.display='none';this.parentElement.style.background='linear-gradient(135deg,rgba(96,165,250,0.15),rgba(96,165,250,0.05))';">
+          <img loading="lazy" src="cases/video-1.jpg" alt="品牌宣传片" onerror="this.style.display='none';this.parentElement.style.background='linear-gradient(135deg,rgba(96,165,250,0.15),rgba(96,165,250,0.05))';">
         </div>
         <div class="cp-info">
           <span class="cp-cat">视频制作</span>
@@ -121,7 +122,7 @@
       </a>
       <a href="cases.html" class="case-preview-card reveal reveal-d3" onclick="openCaseModal(event,'social-1')">
         <div class="cp-cover">
-          <img src="cases/social-1.jpg" alt="小红书种草笔记" onerror="this.style.display='none';this.parentElement.style.background='linear-gradient(135deg,rgba(167,139,250,0.15),rgba(167,139,250,0.05))';">
+          <img loading="lazy" src="cases/social-1.jpg" alt="小红书种草笔记" onerror="this.style.display='none';this.parentElement.style.background='linear-gradient(135deg,rgba(167,139,250,0.15),rgba(167,139,250,0.05))';">
         </div>
         <div class="cp-info">
           <span class="cp-cat">社媒运营</span>
@@ -131,7 +132,7 @@
       </a>
       <a href="cases.html" class="case-preview-card reveal" onclick="openCaseModal(event,'ai-1')">
         <div class="cp-cover">
-          <img src="cases/ai-1.jpg" alt="流程自动化定制" onerror="this.style.display='none';this.parentElement.style.background='linear-gradient(135deg,rgba(52,211,153,0.15),rgba(52,211,153,0.05))';">
+          <img loading="lazy" src="cases/ai-1.jpg" alt="流程自动化定制" onerror="this.style.display='none';this.parentElement.style.background='linear-gradient(135deg,rgba(52,211,153,0.15),rgba(52,211,153,0.05))';">
         </div>
         <div class="cp-info">
           <span class="cp-cat">企业 AI</span>
@@ -225,9 +226,9 @@
       <h2 class="section-title">聊清楚就开干 <span class="hl">简单高效</span></h2>
     </div>
     <div class="process-grid">
-      <div class="process-item reveal-d1"><span class="step-num">01</span><div><h4>需求沟通</h4><p>目标人群 预算范围 越具体越好</p></div></div>
-      <div class="process-item reveal-d2"><span class="step-num">02</span><div><h4>方案报价</h4><p>风格方向 报价工期 确认后开做</p></div></div>
-      <div class="process-item reveal-d3"><span class="step-num">03</span><div><h4>AI 初稿</h4><p>先出方向 避免大返工</p></div></div>
+      <div class="process-item reveal reveal-d1"><span class="step-num">01</span><div><h4>需求沟通</h4><p>目标人群 预算范围 越具体越好</p></div></div>
+      <div class="process-item reveal reveal-d2"><span class="step-num">02</span><div><h4>方案报价</h4><p>风格方向 报价工期 确认后开做</p></div></div>
+      <div class="process-item reveal reveal-d3"><span class="step-num">03</span><div><h4>AI 初稿</h4><p>先出方向 避免大返工</p></div></div>
       <div class="process-item reveal"><span class="step-num">04</span><div><h4>精修交付</h4><p>细节打磨 含售后修改</p></div></div>
     </div>
   </div>
@@ -245,53 +246,53 @@
         <div class="testimonial-card">
           <div class="testimonial-user"><div class="testimonial-avatar">张</div><div><div class="testimonial-name">张先生</div><div class="testimonial-role">护肤品牌主理人</div></div></div>
           <p class="testimonial-text">"产品图修了三轮，每次都改到位了，最后主图点击率涨了快一半。"</p>
-          <span class="testimonial-time">3 天前</span>
+          <span class="testimonial-time">2026 年 4 月 16 日</span>
         </div>
         <div class="testimonial-card">
           <div class="testimonial-user"><div class="testimonial-avatar">李</div><div><div class="testimonial-name">李女士</div><div class="testimonial-role">美妆品牌操盘手</div></div></div>
           <p class="testimonial-text">"小红书代运营，前两周没感觉，第三周出了一篇爆文，直接带来 300+ 咨询。"</p>
-          <span class="testimonial-time">1 周前</span>
+          <span class="testimonial-time">2026 年 4 月 12 日</span>
         </div>
         <div class="testimonial-card">
           <div class="testimonial-user"><div class="testimonial-avatar">陈</div><div><div class="testimonial-name">陈总</div><div class="testimonial-role">3C 数码电商</div></div></div>
           <p class="testimonial-text">"之前找了两家设计公司，来回改了一个月没结果。这里 3 天交付，效果比之前还好。"</p>
-          <span class="testimonial-time">2 周前</span>
+          <span class="testimonial-time">2026 年 4 月 5 日</span>
         </div>
         <div class="testimonial-card">
           <div class="testimonial-user"><div class="testimonial-avatar">林</div><div><div class="testimonial-name">林女士</div><div class="testimonial-role">健康管理公司</div></div></div>
           <p class="testimonial-text">"公众号推文交过来就能发，质量很稳，每月省下至少一半的时间。"</p>
-          <span class="testimonial-time">1 个月前</span>
+          <span class="testimonial-time">2026 年 3 月 28 日</span>
         </div>
         <div class="testimonial-card">
           <div class="testimonial-user"><div class="testimonial-avatar">黄</div><div><div class="testimonial-name">黄总</div><div class="testimonial-role">服饰品牌创始人</div></div></div>
           <p class="testimonial-text">"响应快、交付快、沟通简单，不废话不拖延，是我喜欢的合作方式。"</p>
-          <span class="testimonial-time">1 个月前</span>
+          <span class="testimonial-time">2026 年 3 月 20 日</span>
         </div>
         <!-- 复制用于无缝滚动 -->
         <div class="testimonial-card">
           <div class="testimonial-user"><div class="testimonial-avatar">张</div><div><div class="testimonial-name">张先生</div><div class="testimonial-role">护肤品牌主理人</div></div></div>
           <p class="testimonial-text">"产品图修了三轮，每次都改到位了，最后主图点击率涨了快一半。"</p>
-          <span class="testimonial-time">3 天前</span>
+          <span class="testimonial-time">2026 年 4 月 16 日</span>
         </div>
         <div class="testimonial-card">
           <div class="testimonial-user"><div class="testimonial-avatar">李</div><div><div class="testimonial-name">李女士</div><div class="testimonial-role">美妆品牌操盘手</div></div></div>
           <p class="testimonial-text">"小红书代运营，前两周没感觉，第三周出了一篇爆文，直接带来 300+ 咨询。"</p>
-          <span class="testimonial-time">1 周前</span>
+          <span class="testimonial-time">2026 年 4 月 12 日</span>
         </div>
         <div class="testimonial-card">
           <div class="testimonial-user"><div class="testimonial-avatar">陈</div><div><div class="testimonial-name">陈总</div><div class="testimonial-role">3C 数码电商</div></div></div>
           <p class="testimonial-text">"之前找了两家设计公司，来回改了一个月没结果。这里 3 天交付，效果比之前还好。"</p>
-          <span class="testimonial-time">2 周前</span>
+          <span class="testimonial-time">2026 年 4 月 5 日</span>
         </div>
         <div class="testimonial-card">
           <div class="testimonial-user"><div class="testimonial-avatar">林</div><div><div class="testimonial-name">林女士</div><div class="testimonial-role">健康管理公司</div></div></div>
           <p class="testimonial-text">"公众号推文交过来就能发，质量很稳，每月省下至少一半的时间。"</p>
-          <span class="testimonial-time">1 个月前</span>
+          <span class="testimonial-time">2026 年 3 月 28 日</span>
         </div>
         <div class="testimonial-card">
           <div class="testimonial-user"><div class="testimonial-avatar">黄</div><div><div class="testimonial-name">黄总</div><div class="testimonial-role">服饰品牌创始人</div></div></div>
           <p class="testimonial-text">"响应快、交付快、沟通简单，不废话不拖延，是我喜欢的合作方式。"</p>
-          <span class="testimonial-time">1 个月前</span>
+          <span class="testimonial-time">2026 年 3 月 20 日</span>
         </div>
       </div>
     </div>
@@ -312,7 +313,7 @@
             微信咨询
           </button>
           <div class="contact-qr" id="wechatQR">
-            <img src="wechat-qr.jpg" alt="微信二维码" onerror="this.parentElement.innerHTML='<span>微信二维码</span>'">
+            <img loading="lazy" src="wechat-qr.jpg" alt="微信二维码" onerror="this.parentElement.innerHTML='<span>微信二维码</span>'">
           </div>
         </div>
         <div class="contact-btn-wrap">
@@ -321,7 +322,7 @@
             关注公众号
           </button>
           <div class="contact-qr" id="officialQR">
-            <img src="wechat-official.jpg" alt="公众号二维码" onerror="this.parentElement.innerHTML='<span>公众号二维码</span>'">
+            <img loading="lazy" src="wechat-official.jpg" alt="公众号二维码" onerror="this.parentElement.innerHTML='<span>公众号二维码</span>'">
           </div>
         </div>
       </div>
@@ -338,7 +339,7 @@
 
 <!-- 案例弹窗 -->
 <div class="case-modal" id="caseModal">
-  <button class="qr-close" onclick="closeCaseModal()">&#10005;</button>
+  <button class="qr-close" onclick="closeCaseModal()" aria-label="关闭">&#10005;</button>
   <div class="case-modal-content">
     <h3 class="case-modal-title" id="caseModalTitle"></h3>
     <p class="case-modal-desc" id="caseModalDesc"></p>

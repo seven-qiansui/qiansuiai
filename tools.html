@@ -5,6 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>AI 工具箱 - 千岁 AI</title>
   <meta name="description" content="千岁 AI 精选 AI 工具推荐，涵盖文案、设计、视频、数据分析等领域。">
+  <link rel="canonical" href="https://www.qiansuiai.cn/tools.html">
+  <meta property="og:title" content="AI 工具箱 - 千岁 AI">
+  <meta property="og:description" content="千岁 AI 精选 AI 工具推荐，涵盖文案、设计、视频、数据分析等领域。">
+  <meta property="og:url" content="https://www.qiansuiai.cn/tools.html">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="千岁 AI">
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -15,19 +21,7 @@
 <nav class="navbar" id="navbar">
   <div class="container">
     <a href="index.html" class="nav-brand">
-      <svg class="logo-mark" viewBox="0 0 32 32" fill="none">
-        <path d="M16 2L4 9v14l12 7 12-7V9L16 2z" stroke="url(#logoGrad)" stroke-width="1.5" fill="none"/>
-        <path d="M16 8l-5 3v6l5 3 5-3v-6l-5-3z" fill="url(#logoGrad)" opacity="0.15"/>
-        <path d="M16 8l-5 3v6l5 3 5-3v-6l-5-3z" stroke="url(#logoGrad)" stroke-width="1.2"/>
-        <path d="M16 11l-2 1.2v2.6L16 16l2-1.2v-2.6L16 11z" fill="url(#logoGrad)"/>
-        <defs>
-          <linearGradient id="logoGrad" x1="0" y1="0" x2="32" y2="32">
-            <stop offset="0%" stop-color="#c9a96e"/>
-            <stop offset="100%" stop-color="#dfc08a"/>
-          </linearGradient>
-        </defs>
-      </svg>
-      千岁 AI
+      <img src="logo.png" alt="千岁 AI" class="logo-mark">
     </a>
     <div class="nav-links" id="navLinks">
       <a href="index.html" class="nav-link">首页</a>
@@ -171,14 +165,14 @@
 </section>
 
 <div class="qr-modal" id="qrModal">
-  <button class="qr-close" onclick="closeQRModal()">&#10005;</button>
+  <button class="qr-close" onclick="closeQRModal()" aria-label="关闭">&#10005;</button>
   <div class="qr-modal-content">
     <img id="qrImage" src="" alt="二维码"><p id="qrText"></p>
   </div>
 </div>
 
 <div class="tool-modal" id="toolModal">
-  <button class="qr-close" onclick="closeToolModal()">&#10005;</button>
+  <button class="qr-close" onclick="closeToolModal()" aria-label="关闭">&#10005;</button>
   <div class="tool-modal-content">
     <div class="tool-header">
       <h2 id="toolTitle"></h2>
